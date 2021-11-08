@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18058896, g: 0.2260796, b: 0.3070915, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -200,13 +200,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8050137}
-  m_LocalRotation: {x: 0.49823412, y: 0.29102188, z: -0.18211587, w: 0.7961802}
-  m_LocalPosition: {x: -7, y: 20, z: -7}
+  m_LocalRotation: {x: 0.5299155, y: 0.31347594, z: -0.21949817, w: 0.7567979}
+  m_LocalPosition: {x: -5, y: 25, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1054456848}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 64.075, y: 40.157, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: 45, z: 0}
 --- !u!114 &8050141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 491562699}
   - component: {fileID: 491562701}
   - component: {fileID: 491562700}
+  - component: {fileID: 491562702}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Untagged
@@ -322,6 +323,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 491562698}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &491562702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491562698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f6f127131ecf3419aa47e66fb1a8d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &903506577
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +509,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  aimLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &1111256771
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +524,7 @@ GameObject:
   - component: {fileID: 1111256774}
   - component: {fileID: 1111256773}
   - component: {fileID: 1111256772}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -547,7 +564,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8d0f635943e5df741a4548344e9f0472, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
