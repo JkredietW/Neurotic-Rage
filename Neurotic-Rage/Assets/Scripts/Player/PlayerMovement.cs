@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public Weapon currentWeapon;
     public List<Weapon> weaponSlots;
     float nextAttack, attackCooldown;
+    int currentWeaponSlot;
 
     [Header("Bullets")]
     public Transform bulletOrigin;
@@ -46,12 +47,30 @@ public class PlayerMovement : MonoBehaviour
             nextAttack = Time.time + attackCooldown;
             FireWeapon();
         }
+        SwapWeapon();
     }
     private void FixedUpdate()
     {
         controller.Move(movementSpeed * Time.deltaTime * moveDir.normalized);
     }
 
+    public void SwapWeapon()
+    {
+        if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
+        {
+            currentWeaponSlot += (int)Input.mouseScrollDelta.y;
+            if(currentWeaponSlot > weaponSlots.Count)
+            {
+                currentWeaponSlot = 0;
+            }
+            if(currentWeaponSlot < 0)
+            {
+                currentWeaponSlot = weaponSlots.Count - 1;
+            }
+            currentWeapon = weaponSlots[currentWeaponSlot];
+            attackCooldown = currentWeapon.OnSwap();
+        }
+    }
     public void FireWeapon()
     {
         Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, playerAim.transform.rotation);
