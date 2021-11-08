@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392d0d83a16a9494db22f464d352bcc4, type: 3}
+  m_Name: HandGun
+  m_EditorClassIdentifier: 
+  weaponId: 1
+  type: 1
+  damage: 50
+  attacksPerSecond: 1
+  ammo: 6
+  maxAmmo: 6
+  bulletSpeed: 100

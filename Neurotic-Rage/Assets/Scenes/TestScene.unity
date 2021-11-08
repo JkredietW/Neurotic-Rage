@@ -509,9 +509,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
+  currentAmmo: 0
+  maxAmmo: 0
   aimLayer:
     serializedVersion: 2
     m_Bits: 1024
+  currentWeapon: {fileID: 11400000, guid: de8483fe09aabcc48877298558c5fb1b, type: 2}
+  weaponSlots:
+  - {fileID: 11400000, guid: de8483fe09aabcc48877298558c5fb1b, type: 2}
+  - {fileID: 11400000, guid: ed28629676a34d2418836ce32a96cdcc, type: 2}
+  bulletOrigin: {fileID: 1457227621}
+  bulletPrefab: {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
 --- !u!1 &1111256771
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +643,7 @@ Transform:
   m_GameObject: {fileID: 1457227620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0.69}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 491562699}
   m_RootOrder: 0

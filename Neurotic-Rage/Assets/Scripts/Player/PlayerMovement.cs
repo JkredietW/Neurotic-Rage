@@ -6,30 +6,61 @@ public class PlayerMovement : MonoBehaviour
 {
     CharacterController controller;
     Camera playerCamera;
+    PlayerAim playerAim;
 
     [Header("PlayerStats")]
     public float movementSpeed = 1;
+    public int currentAmmo, maxAmmo;
 
     Vector3 moveDir;
 
     [Header("CameraStats")]
     public LayerMask aimLayer;
 
+    [Header("Weapons")]
+    public Weapon currentWeapon;
+    public List<Weapon> weaponSlots;
+    float nextAttack, attackCooldown;
+
+    [Header("Bullets")]
+    public Transform bulletOrigin;
+    public Rigidbody bulletPrefab;
+
     private void Awake()
     {
+        //get components
         controller = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
-        GetComponentInChildren<PlayerAim>().GetVariables();
+        playerAim = GetComponentInChildren<PlayerAim>();
+
+        //set variables
+        playerAim.GetVariables();
+        attackCooldown = currentWeapon.OnSwap();
     }
 
     private void Update()
     {
-        moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        moveDir = Quaternion.Euler(0,playerCamera.transform.eulerAngles.y,0) * moveDir;
+        Movement();
+        if (Input.GetButton("Fire1") && Time.time >= nextAttack)
+        {
+            nextAttack = Time.time + attackCooldown;
+            FireWeapon();
+        }
     }
     private void FixedUpdate()
     {
         controller.Move(movementSpeed * Time.deltaTime * moveDir.normalized);
+    }
+
+    public void FireWeapon()
+    {
+        Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, playerAim.transform.rotation);
+        spawnedBullet.velocity = spawnedBullet.transform.forward * currentWeapon.bulletSpeed;
+    }
+    public void Movement()
+    {
+        moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
     }
     #region return references
     public CharacterController GiveController()
