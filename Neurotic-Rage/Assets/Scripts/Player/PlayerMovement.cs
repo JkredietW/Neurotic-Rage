@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("PlayerStats")]
     public float movementSpeed = 1;
+        public float reloadTime;
     public int currentAmmo, maxAmmo;
 
     Vector3 moveDir;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public List<Weapon> weaponSlots;
     float nextAttack, attackCooldown;
     int currentWeaponSlot;
+    bool isReloading;
 
     [Header("Bullets")]
     public Transform bulletOrigin;
@@ -42,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
-        if (Input.GetButton("Fire1") && Time.time >= nextAttack)
+        if (Input.GetButton("Fire1") && Time.time >= nextAttack && !isReloading)
         {
             nextAttack = Time.time + attackCooldown;
             FireWeapon();
@@ -73,8 +75,37 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FireWeapon()
     {
-        Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, playerAim.transform.rotation);
-        spawnedBullet.velocity = spawnedBullet.transform.forward * currentWeapon.bulletSpeed;
+        if(currentWeapon.ammo > 0)
+        {
+            currentWeapon.ammo -= 1;
+            Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, playerAim.transform.rotation);
+            spawnedBullet.velocity = spawnedBullet.transform.forward * currentWeapon.bulletSpeed;
+        }
+        else
+        {
+            ReloadWeapon();
+        }
+    }
+    public void ReloadWeapon()
+    {
+        isReloading = true;
+        new WaitForSeconds(reloadTime);
+        if(currentAmmo == 0)
+        {
+            print("no more ammo");
+            return;
+        }
+        if(currentAmmo - currentWeapon.maxAmmo > 0)
+        {
+            currentWeapon.ammo = currentWeapon.maxAmmo;
+            currentAmmo -= currentWeapon.maxAmmo;
+        }
+        else
+        {
+            currentWeapon.ammo = currentAmmo;
+            currentAmmo = 0;
+        }
+        isReloading = false;
     }
     public void Movement()
     {

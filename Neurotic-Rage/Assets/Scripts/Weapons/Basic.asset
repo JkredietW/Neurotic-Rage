@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponId: 0
   type: 0
   damage: 10
-  attacksPerSecond: 2
-  ammo: 1000
-  maxAmmo: 1000
-  bulletSpeed: 100
+  attacksPerSecond: 4
+  ammo: 89
+  maxAmmo: 100
+  bulletSpeed: 50

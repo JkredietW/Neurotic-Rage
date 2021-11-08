@@ -509,8 +509,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  currentAmmo: 0
-  maxAmmo: 0
+  reloadTime: 0
+  currentAmmo: 1000
+  maxAmmo: 1000
   aimLayer:
     serializedVersion: 2
     m_Bits: 1024
