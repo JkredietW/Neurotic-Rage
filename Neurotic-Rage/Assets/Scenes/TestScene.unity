@@ -521,6 +521,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ed28629676a34d2418836ce32a96cdcc, type: 2}
   bulletOrigin: {fileID: 1457227621}
   bulletPrefab: {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
+  rotationOffset: 3
+  projectileCount: 5
+  shootAngle: 5
 --- !u!1 &1111256771
 GameObject:
   m_ObjectHideFlags: 0

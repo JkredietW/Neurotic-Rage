@@ -16,6 +16,9 @@ MonoBehaviour:
   type: 1
   damage: 50
   attacksPerSecond: 1
-  ammo: 6
+  ammo: 2
   maxAmmo: 6
   bulletSpeed: 100
+  projectileCount: 1
+  rotationOffset: 0
+  shootAngle: 0

@@ -14,6 +14,9 @@ public class Weapon : ScriptableObject
     public float attacksPerSecond;
     public int ammo, maxAmmo;
     public float bulletSpeed;
+    public int projectileCount = 1;
+    public float rotationOffset;
+    public float shootAngle;
 
     [SerializeField]
     public enum weaponType
