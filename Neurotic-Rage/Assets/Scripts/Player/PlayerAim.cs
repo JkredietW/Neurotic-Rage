@@ -27,10 +27,5 @@ public class PlayerAim : MonoBehaviour
             lookAtDirection.Normalize();
             transform.rotation = Quaternion.LookRotation(lookAtDirection);
         }
-        else
-        {
-            print("Raycast didnt hit anything, source: " + transform.name);
-            return;
-        }
     }
 }
