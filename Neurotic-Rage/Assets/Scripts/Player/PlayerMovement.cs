@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("PlayerStats")]
     public float movementSpeed = 1;
-        public float reloadTime;
+    public float reloadTime;
     public int currentAmmo, maxAmmo;
 
     Vector3 moveDir;
+    public VisualEffect moveDust;
+    bool dustIsInEffect;
 
     [Header("CameraStats")]
     public LayerMask aimLayer;
@@ -28,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Bullets")]
     public Transform bulletOrigin;
     public Rigidbody bulletPrefab;
-
+    float total, min, max;
+    public VisualEffect muzzleFlashObject;
     private void Awake()
     {
         //get components
@@ -60,8 +64,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
         {
-            currentWeaponSlot += (int)Input.mouseScrollDelta.y;
-            if(currentWeaponSlot > weaponSlots.Count)
+            currentWeaponSlot -= (int)Input.mouseScrollDelta.y;
+            if(currentWeaponSlot > weaponSlots.Count - 1)
             {
                 currentWeaponSlot = 0;
             }
@@ -78,8 +82,29 @@ public class PlayerMovement : MonoBehaviour
         if(currentWeapon.ammo > 0)
         {
             currentWeapon.ammo -= 1;
-            Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, playerAim.transform.rotation);
-            spawnedBullet.velocity = spawnedBullet.transform.forward * currentWeapon.bulletSpeed;
+            muzzleFlashObject.Play();
+            for (int i = 0; i < currentWeapon.projectileCount; i++)
+            {
+                //get max angle to shoot all projectiles
+                min = playerAim.transform.rotation.y - currentWeapon.shootAngle;
+                max = playerAim.transform.rotation.y + currentWeapon.shootAngle; //(max - min)
+
+                //how much each projectile is away from eachother
+                total = (max - min) / currentWeapon.projectileCount;
+
+                //get max rotation in radius
+                float value = (float)(Mathf.Atan2(playerAim.transform.rotation.y, playerAim.transform.rotation.w) / Mathf.PI) * 180;
+                if (value > 180)
+                {
+                    value -= 360;
+                }
+                //set random bullet offset
+                float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
+
+                //spawn bullet
+                Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * (currentWeapon.projectileCount / 2)) + (total * i) + roll, 0)));
+                spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * currentWeapon.bulletSpeed;
+            }
         }
         else
         {
@@ -111,6 +136,19 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
+        if(moveDir.magnitude != 0)
+        {
+            if (!dustIsInEffect)
+            {
+                dustIsInEffect = true;
+                moveDust.Play();
+            }
+        }
+        else
+        {
+            dustIsInEffect = false;
+            moveDust.Stop();
+        }
     }
     #region return references
     public CharacterController GiveController()
