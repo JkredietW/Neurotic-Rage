@@ -281,6 +281,7 @@ MonoBehaviour:
   bulletOrigin: {fileID: 4249084292904869259}
   bulletPrefab: {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
   muzzleFlashObject: {fileID: 4249084292904869253}
+  playerRotation: {fileID: 4249084291996338665}
   miniMapObject: {fileID: 8582746054775477706}
   miniMapCameraObject: {fileID: 5928448787377163388}
   bigMapObject: {fileID: 8321160065161740812}

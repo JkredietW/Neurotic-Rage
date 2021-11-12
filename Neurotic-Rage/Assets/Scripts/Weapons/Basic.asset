@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponId: 0
   type: 0
-  damage: 10
+  damage: 1
   attacksPerSecond: 4
   reloadTime: 5
   pierceAmount: 3
-  ammo: 23
+  ammo: 15
   maxAmmo: 100
   bulletSpeed: 50
-  projectileCount: 5
-  rotationOffset: 5
-  shootAngle: 5
+  projectileCount: 1
+  rotationOffset: 0
+  shootAngle: 0

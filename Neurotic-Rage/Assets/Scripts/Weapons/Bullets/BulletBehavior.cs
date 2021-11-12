@@ -7,12 +7,14 @@ public class BulletBehavior : MonoBehaviour
 {
     float damage;
     int pierceAmount;
+    Quaternion rotation;
     public GameObject bloodSpat;
 
-    public void SetUp(float _damage, int _pierces)
+    public void SetUp(float _damage, int _pierces, Quaternion _rotation)
     {
         damage = _damage;
         pierceAmount = _pierces;
+        rotation = _rotation;
         Destroy(gameObject, 5);
     }
     private void OnTriggerEnter(Collider other)
@@ -20,9 +22,10 @@ public class BulletBehavior : MonoBehaviour
         if (other.GetComponent<BaseHealth>())
         {
             BaseHealth health = other.GetComponent<BaseHealth>();
-            GameObject tempBlood = Instantiate(bloodSpat, transform.position - transform.forward, transform.rotation);
+            Vector3 pointToSpawn = other.ClosestPoint(transform.position);
+            GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, rotation);
             tempBlood.GetComponent<VisualEffect>().Play();
-            Destroy(tempBlood.gameObject, 5);
+            Destroy(tempBlood, 5);
             if (pierceAmount > 0)
             {
                 pierceAmount--;
