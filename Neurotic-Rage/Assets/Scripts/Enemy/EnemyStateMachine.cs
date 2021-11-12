@@ -77,6 +77,6 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void EnterChaseState()
     {
-        if()
+        //if()
     }
 }
