@@ -16,7 +16,9 @@ MonoBehaviour:
   type: 1
   damage: 50
   attacksPerSecond: 1
-  ammo: 2
+  reloadTime: 6
+  pierceAmount: 0
+  ammo: 6
   maxAmmo: 6
   bulletSpeed: 100
   projectileCount: 1

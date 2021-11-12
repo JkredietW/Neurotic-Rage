@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("PlayerStats")]
     public float movementSpeed = 1;
-    public float reloadTime;
     public int currentAmmo, maxAmmo;
 
     Vector3 moveDir;
@@ -115,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
     public void ReloadWeapon()
     {
         isReloading = true;
-        new WaitForSeconds(reloadTime);
+        new WaitForSeconds(currentWeapon.reloadTime);
         if(currentAmmo == 0)
         {
             print("no more ammo");

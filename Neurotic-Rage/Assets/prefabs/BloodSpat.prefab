@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5463437405576053268}
   - component: {fileID: 4172508822669274900}
   - component: {fileID: 1067812813697298484}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: BloodSpat
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -16,6 +16,7 @@ MonoBehaviour:
   type: 0
   damage: 10
   attacksPerSecond: 4
+  reloadTime: 5
   pierceAmount: 3
   ammo: 23
   maxAmmo: 100

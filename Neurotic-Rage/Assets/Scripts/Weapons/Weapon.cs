@@ -12,6 +12,7 @@ public class Weapon : ScriptableObject
     [Space]
     public float damage;
     public float attacksPerSecond;
+    public float reloadTime;
     public int pierceAmount;
     public int ammo, maxAmmo;
     public float bulletSpeed;
@@ -29,5 +30,9 @@ public class Weapon : ScriptableObject
     {
         float attackSpeed = attacksPerSecond / (attacksPerSecond * attacksPerSecond);
         return attackSpeed;
+    }
+    private void Awake()
+    {
+        ammo = maxAmmo;
     }
 }
