@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("PlayerStats")]
     public float movementSpeed = 1;
+    public float gravity;
     public int currentAmmo, maxAmmo;
 
     Vector3 moveDir;
@@ -32,6 +33,13 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody bulletPrefab;
     float total, min, max;
     public VisualEffect muzzleFlashObject;
+
+    [Header("MiniMap")]
+    public GameObject miniMapObject;
+    public GameObject miniMapCameraObject;
+    public GameObject bigMapObject;
+    public GameObject bigMapCameraObject;
+
     private void Awake()
     {
         //get components
@@ -53,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
             FireWeapon();
         }
         SwapWeapon();
+        ToggleMap();
     }
     private void FixedUpdate()
     {
@@ -132,10 +141,42 @@ public class PlayerMovement : MonoBehaviour
         }
         isReloading = false;
     }
-    public void Movement()
+    void ToggleMap()
     {
-        moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            if(bigMapObject.activeSelf)
+            {
+                bigMapObject.SetActive(false);
+                bigMapCameraObject.SetActive(false);
+                miniMapCameraObject.SetActive(true);
+                miniMapObject.SetActive(true);
+            }
+            else
+            {
+                bigMapObject.SetActive(true);
+                bigMapCameraObject.SetActive(true);
+                miniMapCameraObject.SetActive(false);
+                miniMapObject.SetActive(false);
+            }
+        }
+    }
+    void Movement()
+    {
+        moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
+
+        //gravity
+        if(!controller.isGrounded)
+        {
+            moveDir.y = gravity;
+        }
+        else
+        {
+            moveDir.y = -0.01f;
+        }
+
+        //particle effect
         if(moveDir.magnitude != 0)
         {
             if (!dustIsInEffect)
