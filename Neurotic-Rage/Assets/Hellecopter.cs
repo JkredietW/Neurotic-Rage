@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Hellecopter : MonoBehaviour
 {
-    public float speed=3;
-    public float nextPointDis = 1.5f;
-    public List<GameObject> route;
+    public float speed= 3;
+	public float nextPointDis = 1.5f;
+	public LayerMask defaultLayer;
+	public List<GameObject> route;
+	public GameObject[] clouds;
 	public Rigidbody rb;
     public bool tokeOff;
 	private bool crash;
@@ -44,6 +46,10 @@ public class Hellecopter : MonoBehaviour
 	}
     public void StartTakeOff()
 	{
+		for (int i = 0; i < clouds.Length; i++)
+		{
+			clouds[i].layer = defaultLayer;
+		}
         tokeOff = true;
     }
 }
