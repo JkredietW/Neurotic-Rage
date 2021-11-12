@@ -15,6 +15,7 @@ public class Hellecopter : MonoBehaviour
     {
 		if (tokeOff)
 		{
+			print(route.Count);
 			if (route.Count == 0)
 			{
 				if (!crash)
@@ -24,6 +25,7 @@ public class Hellecopter : MonoBehaviour
 			}
 			else
 			{
+				transform.LookAt(new Vector3(route[0].transform.position.x,transform.position.y, route[0].transform.position.z));
 				float dist = Vector3.Distance(transform.position, route[0].transform.position);
 				if (dist <= nextPointDis)
 				{
