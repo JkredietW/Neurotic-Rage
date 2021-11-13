@@ -285,7 +285,7 @@ MonoBehaviour:
   miniMapObject: {fileID: 8582746054775477706}
   miniMapCameraObject: {fileID: 5928448787377163388}
   bigMapObject: {fileID: 8321160065161740812}
-  bigMapCameraObject: {fileID: 0}
+  bigMapCameraObject: {fileID: 8321160065161740812}
 --- !u!1 &4249084291936303415
 GameObject:
   m_ObjectHideFlags: 0

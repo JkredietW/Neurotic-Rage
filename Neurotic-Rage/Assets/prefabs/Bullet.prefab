@@ -68,7 +68,7 @@ VisualEffect:
       - m_Value:
           serializedVersion: 2
           key0: {r: 65.965996, g: 3.453716, b: 5.3870144, a: 1}
-          key1: {r: 309.3669, g: 66.071976, b: 4.859157, a: 1}
+          key1: {r: 309.3669, g: 66.071976, b: 4.859157, a: 0.24313726}
           key2: {r: 351.81458, g: 215.20984, b: 7.367838, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
@@ -84,8 +84,8 @@ VisualEffect:
           ctime6: 0
           ctime7: 0
           atime0: 0
-          atime1: 65535
-          atime2: 0
+          atime1: 16577
+          atime2: 65535
           atime3: 0
           atime4: 0
           atime5: 0
@@ -93,7 +93,7 @@ VisualEffect:
           atime7: 0
           m_Mode: 0
           m_NumColorKeys: 3
-          m_NumAlphaKeys: 2
+          m_NumAlphaKeys: 3
         m_Name: Color
         m_Overridden: 1
     m_NamedObject:
@@ -192,7 +192,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4706040462019255236}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

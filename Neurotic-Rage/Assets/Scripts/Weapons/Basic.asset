@@ -15,12 +15,12 @@ MonoBehaviour:
   weaponId: 0
   type: 0
   damage: 1
-  attacksPerSecond: 4
+  attacksPerSecond: 5
   reloadTime: 5
   pierceAmount: 3
-  ammo: 15
+  ammo: 39
   maxAmmo: 100
   bulletSpeed: 50
-  projectileCount: 1
-  rotationOffset: 0
-  shootAngle: 0
+  projectileCount: 10
+  rotationOffset: 1
+  shootAngle: 5
