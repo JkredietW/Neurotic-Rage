@@ -56,9 +56,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
-        if (Input.GetButton("Fire1") && Time.time >= nextAttack && !isReloading)
+        if (Input.GetButton("Fire1") || Input.GetAxis("Fire1") > 0.2f)
         {
-            nextAttack = Time.time + attackCooldown;
             FireWeapon();
         }
         SwapWeapon();
@@ -88,37 +87,41 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FireWeapon()
     {
-        if(currentWeapon.ammo > 0)
+        if (Time.time >= nextAttack && !isReloading)
         {
-            currentWeapon.ammo -= 1;
-            muzzleFlashObject.Play();
-            for (int i = 0; i < currentWeapon.projectileCount; i++)
+            nextAttack = Time.time + attackCooldown;
+            if (currentWeapon.ammo > 0)
             {
-                //get max angle to shoot all projectiles
-                min = playerAim.transform.rotation.y - currentWeapon.shootAngle;
-                max = playerAim.transform.rotation.y + currentWeapon.shootAngle; //(max - min)
-
-                //how much each projectile is away from eachother
-                total = (max - min) / currentWeapon.projectileCount;
-
-                //get max rotation in radius
-                float value = (float)(Mathf.Atan2(playerAim.transform.rotation.y, playerAim.transform.rotation.w) / Mathf.PI) * 180;
-                if (value > 180)
+                currentWeapon.ammo -= 1;
+                muzzleFlashObject.Play();
+                for (int i = 0; i < currentWeapon.projectileCount; i++)
                 {
-                    value -= 360;
-                }
-                //set random bullet offset
-                float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
+                    //get max angle to shoot all projectiles
+                    min = playerAim.transform.rotation.y - currentWeapon.shootAngle;
+                    max = playerAim.transform.rotation.y + currentWeapon.shootAngle; //(max - min)
 
-                //spawn bullet
-                Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * (currentWeapon.projectileCount / 2)) + (total * i) + roll, 0)));
-                spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage, currentWeapon.pierceAmount, playerRotation.rotation);
-                spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
+                    //how much each projectile is away from eachother
+                    total = (max - min) / currentWeapon.projectileCount;
+
+                    //get max rotation in radius
+                    float value = (float)(Mathf.Atan2(playerAim.transform.rotation.y, playerAim.transform.rotation.w) / Mathf.PI) * 180;
+                    if (value > 180)
+                    {
+                        value -= 360;
+                    }
+                    //set random bullet offset
+                    float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
+
+                    //spawn bullet
+                    Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * (currentWeapon.projectileCount / 2)) + (total * i) + roll, 0)));
+                    spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage, currentWeapon.pierceAmount, playerRotation.rotation);
+                    spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
+                }
             }
-        }
-        else
-        {
-            ReloadWeapon();
+            else
+            {
+                ReloadWeapon();
+            }
         }
     }
     public void ReloadWeapon()
