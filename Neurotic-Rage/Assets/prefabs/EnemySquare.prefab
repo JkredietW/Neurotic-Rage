@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7842371120123584817}
   - component: {fileID: 7842371120123584816}
   - component: {fileID: 7842371120123584821}
+  - component: {fileID: 2369333570283345479}
   m_Layer: 15
   m_Name: EnemySquare
   m_TagString: Untagged
@@ -112,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1
   chaseRange: 10
+  destroyTime: 1.25
   player: {fileID: 0}
   navMeshAgent: {fileID: 7842371120123584821}
 --- !u!195 &7842371120123584821
@@ -136,3 +138,21 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2369333570283345479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842371120123584847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 4
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 1.12
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []

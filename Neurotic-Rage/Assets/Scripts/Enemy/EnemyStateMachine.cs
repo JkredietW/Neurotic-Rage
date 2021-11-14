@@ -7,6 +7,7 @@ public class EnemyStateMachine : MonoBehaviour
 {
     public float attackRange;
     public float chaseRange;
+    public float destroyTime = 1.25f;
 
     public GameObject player;
     public NavMeshAgent navMeshAgent;
@@ -21,12 +22,6 @@ public class EnemyStateMachine : MonoBehaviour
         attack,
         dying
     }
-
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         switch (currentEnemyState)
@@ -52,7 +47,7 @@ public class EnemyStateMachine : MonoBehaviour
 
                 break;
             case EnemyStates.dying:
-                EnemyDyingState();
+                StartCoroutine(EnemyDyingState());
                 break;
             default:
                 print("5");
@@ -61,12 +56,10 @@ public class EnemyStateMachine : MonoBehaviour
                 break;
         }
     }
-
     public void EnemyStandbyState()
     {
         EnterChaseState();
     }
-
     public void EnemyChaseState()
     {
         navMeshAgent.SetDestination(player.transform.position);
@@ -88,9 +81,11 @@ public class EnemyStateMachine : MonoBehaviour
         currentEnemyState = EnemyStates.chase;
     }
 
-    public void EnemyDyingState()
+    public IEnumerator EnemyDyingState()
     {
-
+        //idk
+        yield return new WaitForSeconds(destroyTime);
+        Destroy(gameObject);
     }
 
     //
