@@ -8,6 +8,7 @@ public class EventOnCollision : MonoBehaviour
 	{
 		if (!triggerd)
 		{
+			if(other.tag==("Player"))
 			TriggerEvent();
 		}
 	}

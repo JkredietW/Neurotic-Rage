@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 6c460b2977a490445950100358146733, type: 2}
 --- !u!1001 &97208457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -182,8 +190,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (51)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &97208458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 97208457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &97208459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 97208458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &128053112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -191,6 +221,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -243,8 +281,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (23)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &128053113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 128053112}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &128053114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128053113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &148366560
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -252,6 +312,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -304,8 +372,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &148366561 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 148366560}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &148366562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148366561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &178679652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -313,6 +403,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -365,8 +463,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &178679653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 178679652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &178679654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178679653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &198999280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -374,6 +494,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -426,8 +554,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &198999281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 198999280}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &198999282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198999281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &267392827
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -435,6 +585,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -487,8 +645,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &267392828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 267392827}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &267392829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 267392828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &312545003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,6 +676,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -548,8 +736,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &312545004 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 312545003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &312545005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 312545004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &364758838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -557,6 +767,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -609,8 +827,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &364758839 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 364758838}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &364758840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364758839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &384747659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -618,6 +858,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -670,8 +918,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &384747660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 384747659}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &384747661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384747660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &440835590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -679,6 +949,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -731,8 +1009,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (53)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &440835591 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 440835590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &440835592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440835591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &443242393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -740,6 +1040,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -792,8 +1100,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &443242394 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 443242393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &443242395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443242394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &457318576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -801,6 +1131,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -853,8 +1191,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &457318577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 457318576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &457318578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457318577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &458826548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -862,6 +1222,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -914,8 +1282,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &458826549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 458826548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &458826550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458826549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &475910230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -923,6 +1313,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -975,8 +1373,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (73)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &475910231 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 475910230}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &475910232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475910231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &497767023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -984,6 +1404,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1036,8 +1464,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &497767024 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 497767023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &497767025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497767024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &512303591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1045,6 +1495,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1097,8 +1555,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &512303592 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 512303591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &512303593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512303592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &543783043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1106,6 +1586,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1158,8 +1646,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &543783044 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 543783043}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &543783045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543783044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &575246524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1167,6 +1677,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1219,8 +1737,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &575246525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 575246524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &575246526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575246525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &597877090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1228,6 +1768,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1280,8 +1828,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &597877091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 597877090}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &597877092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597877091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &638526775
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1289,6 +1859,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1341,8 +1919,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (66)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &638526776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 638526775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &638526777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638526776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &653267152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1350,6 +1950,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1402,8 +2010,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (59)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &653267153 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 653267152}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &653267154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653267153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &700340478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1411,6 +2041,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1463,8 +2101,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &700340479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 700340478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &700340480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700340479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &730176732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1472,6 +2132,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1524,8 +2192,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (67)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &730176733 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 730176732}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &730176734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730176733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &734541368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1533,6 +2223,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1585,8 +2283,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (76)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &734541369 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 734541368}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &734541370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734541369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &742414134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1594,6 +2314,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1646,8 +2374,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &742414135 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 742414134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &742414136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742414135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &806057776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1655,6 +2405,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1707,8 +2465,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &806057777 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 806057776}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &806057778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806057777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &806657564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1716,6 +2496,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1768,8 +2556,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (74)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &806657565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 806657564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &806657566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806657565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &811179073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1777,6 +2587,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1829,8 +2647,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &811179074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 811179073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &811179075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811179074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &843621063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1838,6 +2678,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1890,8 +2738,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &843621064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 843621063}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &843621065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843621064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &871979323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1899,6 +2769,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1951,8 +2829,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &871979324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 871979323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &871979325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871979324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &886806052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1960,6 +2860,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2012,8 +2920,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (57)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &886806053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 886806052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &886806054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886806053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &923051125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2021,6 +2951,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2073,8 +3011,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &923051126 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 923051125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &923051127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 923051126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &930325858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2082,6 +3046,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2134,8 +3106,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &930325859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 930325858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &930325860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930325859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &956927517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2143,6 +3137,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2195,8 +3197,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (40)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &956927518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 956927517}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &956927519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956927518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &981256304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2204,6 +3228,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2256,8 +3288,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &981256305 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 981256304}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &981256306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981256305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1020293610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2265,6 +3319,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2317,8 +3379,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1020293611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1020293610}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1020293612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020293611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1021804778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2326,6 +3410,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2378,8 +3470,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1021804779 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1021804778}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1021804780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021804779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1035361661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2387,6 +3501,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2439,8 +3561,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (68)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1035361662 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1035361661}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1035361663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035361662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1049179379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2448,6 +3592,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2500,8 +3652,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1049179380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1049179379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1049179381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049179380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1093444026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2509,6 +3683,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2561,8 +3743,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1093444027 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1093444026}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1093444028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093444027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1112942343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2570,6 +3774,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2622,8 +3834,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1112942344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1112942343}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1112942345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112942344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1160404379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2631,6 +3865,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2683,8 +3925,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1160404380 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1160404379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1160404381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160404380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1180564327
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2692,6 +3956,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2744,8 +4016,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1180564328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1180564327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1180564329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180564328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1204464235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2753,6 +4047,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2805,8 +4107,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1204464236 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1204464235}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1204464237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204464236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1206776522
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2814,6 +4138,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2866,8 +4198,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1206776523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1206776522}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1206776524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206776523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1218613620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2875,6 +4229,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2927,8 +4289,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (62)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1218613621 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1218613620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1218613622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218613621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1291354706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2936,6 +4320,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2988,8 +4380,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (75)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1291354707 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1291354706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1291354708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291354707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1308150443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2997,6 +4411,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3049,8 +4471,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1308150444 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1308150443}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1308150445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308150444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1370409794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3058,6 +4502,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3110,8 +4562,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1370409795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1370409794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1370409796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1370409795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1377146607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3119,6 +4593,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3171,8 +4653,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1377146608 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1377146607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1377146609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377146608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1382017724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3180,6 +4684,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3232,8 +4744,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1382017725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1382017724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1382017726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382017725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1445678065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3241,6 +4775,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3293,8 +4835,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1445678066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1445678065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1445678067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445678066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1455361202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3302,6 +4866,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3354,8 +4926,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1455361203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1455361202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1455361204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455361203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1472025958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3363,6 +4957,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3415,8 +5017,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (61)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1472025959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1472025958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1472025960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472025959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1472459217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3424,6 +5048,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3476,8 +5108,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1472459218 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1472459217}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1472459219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472459218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1475891842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3485,6 +5139,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3537,8 +5199,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1475891843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1475891842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1475891844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475891843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1493768389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3546,6 +5230,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3598,8 +5290,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1493768390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1493768389}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1493768391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493768390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1494804942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3607,6 +5321,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3659,8 +5381,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (56)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1494804943 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1494804942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1494804944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494804943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1513553825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3668,6 +5412,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3720,8 +5472,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (63)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1513553826 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1513553825}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1513553827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513553826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1586698838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3729,6 +5503,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3781,8 +5563,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (49)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1586698839 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1586698838}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1586698840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586698839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1647540742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3790,6 +5594,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3842,8 +5654,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (77)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1647540743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1647540742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1647540744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1647540743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1664133675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3851,6 +5685,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3903,8 +5745,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1664133676 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1664133675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1664133677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664133676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1691281209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3912,6 +5776,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3964,8 +5836,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1691281210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1691281209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1691281211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691281210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1699735723
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3973,6 +5867,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4025,8 +5927,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (65)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1699735724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1699735723}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1699735725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699735724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1702512457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4034,6 +5958,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4086,8 +6018,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (70)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1702512458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1702512457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1702512459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702512458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1780260714
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4095,6 +6049,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4147,8 +6109,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (72)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1780260715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1780260714}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1780260716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1780260715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1783664156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4156,6 +6140,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4208,8 +6200,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1783664157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1783664156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1783664158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783664157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1790505986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4217,6 +6231,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4269,8 +6291,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1790505987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1790505986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1790505988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790505987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1816934905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4278,6 +6322,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4330,8 +6382,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1816934906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1816934905}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1816934907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816934906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1845636001
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4339,6 +6413,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4391,8 +6473,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (78)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1845636002 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1845636001}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1845636003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845636002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1889291209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4400,6 +6504,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4452,8 +6564,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1889291210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1889291209}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1889291211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889291210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1958736240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4461,6 +6595,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4513,8 +6655,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (39)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1958736241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1958736240}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1958736242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958736241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &1974957135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4522,6 +6686,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4574,8 +6746,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (71)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &1974957136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 1974957135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1974957137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974957136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &2026503193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4583,6 +6777,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4635,8 +6837,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &2026503194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 2026503193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2026503195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2026503194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &2050365881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4644,6 +6868,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4696,8 +6928,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (69)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &2050365882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 2050365881}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2050365883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2050365882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &2060640743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4705,6 +6959,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4757,8 +7019,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (60)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &2060640744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 2060640743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2060640745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060640744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &2081034012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4766,6 +7050,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4818,8 +7110,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &2081034013 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 2081034012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2081034014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081034013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &2112501958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4827,6 +7141,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4879,8 +7201,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (64)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &2112501959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 2112501958}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2112501960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112501959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20
 --- !u!1001 &2134358884
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4888,6 +7232,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineWidth
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2369333570283345479, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: outlineColor.a
+      value: 0.43137255
+      objectReference: {fileID: 0}
     - target: {fileID: 7842371120123584818, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4940,5 +7292,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemySquare (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+--- !u!1 &2134358885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7842371120123584847, guid: c45b3d6da4265644d8ebc936d6246c43, type: 3}
+  m_PrefabInstance: {fileID: 2134358884}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2134358886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134358885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20

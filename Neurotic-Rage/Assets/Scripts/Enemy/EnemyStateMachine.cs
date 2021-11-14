@@ -13,8 +13,11 @@ public class EnemyStateMachine : MonoBehaviour
     public NavMeshAgent navMeshAgent;
 
     EnemyStates currentEnemyState;
-
-    enum EnemyStates
+	private void Start()
+	{
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+	enum EnemyStates
     {
         standby,
         chase,
@@ -77,7 +80,6 @@ public class EnemyStateMachine : MonoBehaviour
     public void EnemyAttackState()
     {
         //attack animation and damage stuff (maybe spawn in hitbox)
-        print("Attack!");
         currentEnemyState = EnemyStates.chase;
     }
 
@@ -92,18 +94,14 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void EnterChaseState()
     {
-        print("enter chase 1");
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseRange)
         {
-            print("enter chase 2");
             Debug.DrawLine(transform.position, (player.transform.position - gameObject.transform.position));
             RaycastHit hit;
             if(Physics.Raycast(transform.position, (player.transform.position - gameObject.transform.position), out hit, Mathf.Infinity))
             {
-                print("enter chase 3");
                 if (hit.transform.gameObject.layer == 12)
                 {
-                    print("Chasing");
                     currentEnemyState = EnemyStates.chase;
                 }
             }

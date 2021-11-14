@@ -9,6 +9,7 @@ public class Hellecopter : MonoBehaviour
 	public LayerMask defaultLayer;
 	public List<GameObject> route;
 	public GameObject[] clouds;
+	public GameObject player;
 	public GameObject heliCam;
 	public Rigidbody rb;
     public bool tokeOff;
@@ -48,8 +49,8 @@ public class Hellecopter : MonoBehaviour
 	}
     public void StartTakeOff()
 	{
-		FindObjectOfType<PlayerMovement>().gameObject.SetActive(false);
 		heliCam.SetActive(true);
+		player.SetActive(false);
 		for (int i = 0; i < clouds.Length; i++)
 		{
 			clouds[i].layer = defaultLayer;
