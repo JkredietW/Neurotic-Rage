@@ -110,7 +110,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Addon_Gate_15A_R 1
+  m_Name: deur 1
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Garage

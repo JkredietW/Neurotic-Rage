@@ -51,7 +51,13 @@ public class Hellecopter : MonoBehaviour
 	}
 	public void EndScene()
 	{
+		PlayerPrefs.SetFloat("CrashHelX", transform.position.x);
+		PlayerPrefs.SetFloat("CrashHelY", transform.position.y);
+		PlayerPrefs.SetFloat("CrashHelZ", transform.position.z);
 
+		PlayerPrefs.SetFloat("CrashHelXRot", transform.rotation.eulerAngles.x);
+		PlayerPrefs.SetFloat("CrashHelYRot", transform.rotation.eulerAngles.y);
+		PlayerPrefs.SetFloat("CrashHelZRot", transform.rotation.eulerAngles.z);
 	}
     public void StartTakeOff()
 	{
