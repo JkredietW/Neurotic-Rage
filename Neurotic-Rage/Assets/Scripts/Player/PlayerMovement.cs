@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 1;
     public float gravity;
     public int currentAmmo, maxAmmo;
+    [HideInInspector]public bool lastInputWasController;
 
     Vector3 moveDir;
     public VisualEffect moveDust;
@@ -56,8 +57,14 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
-        if (Input.GetButton("Fire1") || Input.GetAxis("Fire1") > 0.2f)
+        if (Input.GetButton("Fire1"))
         {
+            lastInputWasController = false;
+            FireWeapon();
+        }
+        else if(Input.GetAxisRaw("Fire1") > 0.5f)
+        {
+            lastInputWasController = true;
             FireWeapon();
         }
         SwapWeapon();
@@ -78,6 +85,20 @@ public class PlayerMovement : MonoBehaviour
                 currentWeaponSlot = 0;
             }
             if(currentWeaponSlot < 0)
+            {
+                currentWeaponSlot = weaponSlots.Count - 1;
+            }
+            currentWeapon = weaponSlots[currentWeaponSlot];
+            attackCooldown = currentWeapon.OnSwap();
+        }
+        if(Input.GetButtonDown("RightBumber"))
+        {
+            currentWeaponSlot -= 1;
+            if (currentWeaponSlot > weaponSlots.Count - 1)
+            {
+                currentWeaponSlot = 0;
+            }
+            if (currentWeaponSlot < 0)
             {
                 currentWeaponSlot = weaponSlots.Count - 1;
             }
@@ -169,7 +190,6 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
-
         //gravity
         if(!controller.isGrounded)
         {
