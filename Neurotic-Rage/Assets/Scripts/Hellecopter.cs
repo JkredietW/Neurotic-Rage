@@ -6,6 +6,7 @@ public class Hellecopter : MonoBehaviour
 {
     public float speed= 3;
 	public float nextPointDis = 1.5f;
+	public float timeForEnding;
 	public LayerMask defaultLayer;
 	public List<GameObject> route;
 	public GameObject[] clouds;
@@ -46,9 +47,15 @@ public class Hellecopter : MonoBehaviour
 		crash = true;
 		rb.useGravity = true;
 		rb.isKinematic = false;
+		Invoke("EndScene",timeForEnding);
+	}
+	public void EndScene()
+	{
+
 	}
     public void StartTakeOff()
 	{
+		player.transform.parent = transform;
 		heliCam.SetActive(true);
 		player.SetActive(false);
 		for (int i = 0; i < clouds.Length; i++)
