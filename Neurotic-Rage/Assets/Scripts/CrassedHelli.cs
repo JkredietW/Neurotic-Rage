@@ -17,5 +17,6 @@ public class CrassedHelli : MonoBehaviour
 		float zR = PlayerPrefs.GetFloat("CrashHelXRot");
 
 		transform.eulerAngles = new Vector3(xR, yR, zR);
+		
 	}
 }
