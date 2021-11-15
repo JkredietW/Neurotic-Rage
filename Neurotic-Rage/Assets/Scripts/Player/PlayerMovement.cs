@@ -10,9 +10,10 @@ public class PlayerMovement : MonoBehaviour
     PlayerAim playerAim;
 
     [Header("PlayerStats")]
+    public float meleeAttackCooldown;
     public float movementSpeed = 1;
     public float gravity;
-    public int currentAmmo, maxAmmo;
+    public int currentAmmo, maxAmmo, currentSpecialAmmo, maxSpecialAmmo;
     [HideInInspector]public bool lastInputWasController;
 
     Vector3 moveDir;
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     float nextAttack, attackCooldown;
     int currentWeaponSlot;
     bool isReloading;
+    bool hasMeleeAttacked;
 
     [Header("Bullets")]
     public Transform bulletOrigin;
@@ -60,15 +62,19 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
-        if (Input.GetButton("Fire1"))
+        //attacks
+        if (Input.GetButton("Fire1") || Input.GetAxisRaw("Fire1") > 0.5f)
         {
-            lastInputWasController = false;
             FireWeapon();
         }
-        else if(Input.GetAxisRaw("Fire1") > 0.5f)
+        //melee
+        if (Input.GetButton("Fire2") || Input.GetAxisRaw("Fire2") > 0.5f)
         {
-            lastInputWasController = true;
-            FireWeapon();
+            MeleeAttack();
+        }
+        if(Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("ReloadButton"))
+        {
+            ReloadWeapon();
         }
         SwapWeapon();
         ToggleMap();
@@ -107,6 +113,18 @@ public class PlayerMovement : MonoBehaviour
             }
             currentWeapon = weaponSlots[currentWeaponSlot];
             attackCooldown = currentWeapon.OnSwap();
+        }
+    }
+    public void MeleeAttack()
+    {
+        if (Time.time >= nextAttack)
+        {
+            hasMeleeAttacked = true;
+            nextAttack = Time.time + meleeAttackCooldown;
+            //hier attack doen
+
+            new WaitForSeconds(meleeAttackCooldown);
+            hasMeleeAttacked = false;
         }
     }
     public void FireWeapon()
@@ -152,22 +170,50 @@ public class PlayerMovement : MonoBehaviour
     {
         isReloading = true;
         new WaitForSeconds(currentWeapon.reloadTime);
-        if(currentAmmo == 0)
+        if (!hasMeleeAttacked)
         {
-            print("no more ammo");
-            return;
-        }
-        if(currentAmmo - currentWeapon.maxAmmo > 0)
-        {
-            currentWeapon.ammo = currentWeapon.maxAmmo;
-            currentAmmo -= currentWeapon.maxAmmo;
+            if (currentWeapon.type == Weapon.weaponType.light)
+            {
+                if (currentAmmo == 0)
+                {
+                    print("no more ammo");
+                    return;
+                }
+                if (currentAmmo - currentWeapon.maxAmmo > 0)
+                {
+                    currentWeapon.ammo = currentWeapon.maxAmmo;
+                    currentAmmo -= currentWeapon.maxAmmo;
+                }
+                else
+                {
+                    currentWeapon.ammo = currentAmmo;
+                    currentAmmo = 0;
+                }
+            }
+            else if (currentWeapon.type == Weapon.weaponType.heavy)
+            {
+                if (currentSpecialAmmo == 0)
+                {
+                    print("no more ammo");
+                    return;
+                }
+                if (currentSpecialAmmo - currentWeapon.maxAmmo > 0)
+                {
+                    currentWeapon.ammo = currentWeapon.maxAmmo;
+                    currentSpecialAmmo -= currentWeapon.maxAmmo;
+                }
+                else
+                {
+                    currentWeapon.ammo = currentSpecialAmmo;
+                    currentSpecialAmmo = 0;
+                }
+            }
+            isReloading = false;
         }
         else
         {
-            currentWeapon.ammo = currentAmmo;
-            currentAmmo = 0;
+            isReloading = false;
         }
-        isReloading = false;
     }
     void ToggleMap()
     {
@@ -193,6 +239,16 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            lastInputWasController = false;
+        }
+        if(Input.GetAxisRaw("VerticalController") != 0 || Input.GetAxisRaw("HorizontalController") != 0)
+        {
+            lastInputWasController = true;
+        }
+
         //gravity
         if(!controller.isGrounded)
         {
@@ -204,8 +260,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //particle effect
-        if(moveDir.magnitude != 0)
+        if(moveDir.magnitude > 0.1f)
         {
+            //animation
+            animator.SetInteger("State", 1);
+
+            //dust
             if (!dustIsInEffect)
             {
                 dustIsInEffect = true;
@@ -214,6 +274,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            animator.SetInteger("State", 0);
             dustIsInEffect = false;
             moveDust.Stop();
         }
