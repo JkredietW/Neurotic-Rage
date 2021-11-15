@@ -42,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject bigMapObject;
     public GameObject bigMapCameraObject;
 
+    [Header("animations")]
+    public Animator animator;
+
     private void Awake()
     {
         //get components
