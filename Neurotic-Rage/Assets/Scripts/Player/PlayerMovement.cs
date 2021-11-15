@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void ToggleMap()
     {
-        if(Input.GetKeyDown(KeyCode.M))
+        if(Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("YGamePadButton"))
         {
             if(bigMapObject.activeSelf)
             {
