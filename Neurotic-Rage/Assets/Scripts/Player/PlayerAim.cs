@@ -20,6 +20,10 @@ public class PlayerAim : MonoBehaviour
     }
     private void Update()
     {
+        RotateToAim();
+    }
+    public void RotateToAim()
+    {
         if (player.lastInputWasController)
         {
             string[] controllers = Input.GetJoystickNames();
@@ -27,7 +31,7 @@ public class PlayerAim : MonoBehaviour
             {
                 Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(Input.GetAxis("HorizontalTurn"), 0, -Input.GetAxis("VerticalTurn"));
                 Vector3 lookRotationWithControllerMovementBased = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
-                if (lookRotationWithController.magnitude != 0)
+                if (lookRotationWithController.magnitude != 0 || player.isRunning)
                 {
                     if (firstTime)
                     {
@@ -55,17 +59,27 @@ public class PlayerAim : MonoBehaviour
         }
         else
         {
-            RaycastHit _hit;
-            Ray _ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(_ray, out _hit, Mathf.Infinity, aimLayer))
+            if (player.isRunning)
             {
-                if (lastMousePosition != Input.mousePosition)
+                lookAtDirection = player.moveDir;
+                lookAtDirection.y = 0;
+                lookAtDirection.Normalize();
+                transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
+            }
+            else
+            {
+                RaycastHit _hit;
+                Ray _ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(_ray, out _hit, Mathf.Infinity, aimLayer))
                 {
-                    lastMousePosition = Input.mousePosition;
-                    lookAtDirection = _hit.point - player.transform.position;
-                    lookAtDirection.y = 0;
-                    lookAtDirection.Normalize();
-                    transform.rotation = Quaternion.LookRotation(lookAtDirection);
+                    if (lastMousePosition != Input.mousePosition)
+                    {
+                        lastMousePosition = Input.mousePosition;
+                        lookAtDirection = _hit.point - player.transform.position;
+                        lookAtDirection.y = 0;
+                        lookAtDirection.Normalize();
+                        transform.rotation = Quaternion.LookRotation(lookAtDirection);
+                    }
                 }
             }
         }

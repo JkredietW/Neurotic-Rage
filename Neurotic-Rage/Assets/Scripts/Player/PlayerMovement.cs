@@ -14,10 +14,10 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 1;
     public float gravity;
     public int currentAmmo, maxAmmo, currentSpecialAmmo, maxSpecialAmmo;
-    [HideInInspector]public bool lastInputWasController;
-    bool isRunning;
+    [HideInInspector] public bool lastInputWasController;
+    [HideInInspector] public bool isRunning;
 
-    Vector3 moveDir;
+    [HideInInspector] public Vector3 moveDir;
     public VisualEffect moveDust;
     bool dustIsInEffect;
 
@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Sprint"))
         {
             isRunning = true;
+            animator.SetBool("Isrunning", isRunning);
         }
     }
     private void FixedUpdate()
@@ -92,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         float extraSprintSpeed = 0;
         if(isRunning)
         {
-            extraSprintSpeed = movementSpeed * 0.5f;
+            extraSprintSpeed = movementSpeed * 0.7f;
         }
         controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
     }
@@ -133,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
         if (Time.time >= nextAttack)
         {
             isRunning = false;
+            animator.SetBool("Isrunning", isRunning);
             hasMeleeAttacked = true;
             nextAttack = Time.time + meleeAttackCooldown;
             //hier attack doen
@@ -145,7 +147,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Time.time >= nextAttack && !isReloading)
         {
-            isRunning = false;
+            if(isRunning)
+            {
+                isRunning = false;
+                playerAim.RotateToAim();
+            }
             nextAttack = Time.time + attackCooldown;
             if (currentWeapon.ammo > 0)
             {
@@ -295,12 +301,14 @@ public class PlayerMovement : MonoBehaviour
             if(!isRunning)
             {
                 isRunning = false;
+                animator.SetBool("Isrunning", isRunning);
                 moveDust.Stop();
             }
         }
         else
         {
             isRunning = false;
+            animator.SetBool("Isrunning", isRunning);
             dustIsInEffect = false;
             moveDust.Stop();
         }
