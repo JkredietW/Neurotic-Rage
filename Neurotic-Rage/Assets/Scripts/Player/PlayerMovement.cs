@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity;
     public int currentAmmo, maxAmmo, currentSpecialAmmo, maxSpecialAmmo;
     [HideInInspector]public bool lastInputWasController;
+    bool isRunning;
 
     Vector3 moveDir;
     public VisualEffect moveDust;
@@ -63,6 +64,10 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
         DefineDirection();
+        SwapWeapon();
+        ToggleMap();
+
+        //inputs
         //attacks
         if (Input.GetButton("Fire1") || Input.GetAxisRaw("Fire1") > 0.5f)
         {
@@ -77,12 +82,19 @@ public class PlayerMovement : MonoBehaviour
         {
             ReloadWeapon();
         }
-        SwapWeapon();
-        ToggleMap();
+        if(Input.GetButtonDown("Sprint"))
+        {
+            isRunning = true;
+        }
     }
     private void FixedUpdate()
     {
-        controller.Move(movementSpeed * Time.deltaTime * moveDir.normalized);
+        float extraSprintSpeed = 0;
+        if(isRunning)
+        {
+            extraSprintSpeed = movementSpeed * 0.5f;
+        }
+        controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
     }
 
     public void SwapWeapon()
@@ -120,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Time.time >= nextAttack)
         {
+            isRunning = false;
             hasMeleeAttacked = true;
             nextAttack = Time.time + meleeAttackCooldown;
             //hier attack doen
@@ -132,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Time.time >= nextAttack && !isReloading)
         {
+            isRunning = false;
             nextAttack = Time.time + attackCooldown;
             if (currentWeapon.ammo > 0)
             {
@@ -268,19 +282,25 @@ public class PlayerMovement : MonoBehaviour
         {
             moveDir.y = -0.01f;
         }
+
         //particle effect
         if (moveDir.magnitude > 0.1f)
         {
             //dust
-            if (!dustIsInEffect)
+            if (!dustIsInEffect && isRunning)
             {
                 dustIsInEffect = true;
                 moveDust.Play();
             }
+            if(!isRunning)
+            {
+                isRunning = false;
+                moveDust.Stop();
+            }
         }
         else
         {
-            animator.SetFloat("LX", 0);
+            isRunning = false;
             dustIsInEffect = false;
             moveDust.Stop();
         }
