@@ -3883,7 +3883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meleeAttackCooldown: 0
-  movementSpeed: 10
+  movementSpeed: 4
   gravity: -1
   currentAmmo: 1000
   maxAmmo: 1000

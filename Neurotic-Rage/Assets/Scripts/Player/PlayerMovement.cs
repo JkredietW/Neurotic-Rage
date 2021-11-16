@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Movement();
+        DefineDirection();
         //attacks
         if (Input.GetButton("Fire1") || Input.GetAxisRaw("Fire1") > 0.5f)
         {
@@ -235,6 +236,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    //for walk animation
+    void DefineDirection()
+    {
+        Transform forwardDirection = animator.transform;
+        float velocityZ = Vector3.Dot(moveDir.normalized, forwardDirection.forward);
+        float velocityX = Vector3.Dot(moveDir.normalized, forwardDirection.right);
+        animator.SetFloat("LY", velocityZ);
+        animator.SetFloat("LX", velocityX);
+    }
     void Movement()
     {
         moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -258,13 +268,9 @@ public class PlayerMovement : MonoBehaviour
         {
             moveDir.y = -0.01f;
         }
-
         //particle effect
-        if(moveDir.magnitude > 0.1f)
+        if (moveDir.magnitude > 0.1f)
         {
-            //animation
-            animator.SetInteger("State", 1);
-
             //dust
             if (!dustIsInEffect)
             {
@@ -274,7 +280,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            animator.SetInteger("State", 0);
+            animator.SetFloat("LX", 0);
             dustIsInEffect = false;
             moveDust.Stop();
         }
