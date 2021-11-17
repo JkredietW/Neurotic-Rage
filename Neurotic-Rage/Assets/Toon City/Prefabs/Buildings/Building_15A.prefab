@@ -244,9 +244,9 @@ GameObject:
   - component: {fileID: 33000011526670620}
   - component: {fileID: 23000012577167770}
   - component: {fileID: 64000011575449670}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Building_15A
-  m_TagString: Untagged
+  m_TagString: Walkable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
