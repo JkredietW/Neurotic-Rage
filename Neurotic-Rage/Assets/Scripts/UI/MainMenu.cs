@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class MainMenu : MonoBehaviour
 {
@@ -37,5 +38,14 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(secondsToReopen);
         garage = !garage;
         garageDoor.SetBool("Garage", garage);
+        yield return new WaitForSeconds(.25f);
+        CameraShaker.Instance.ShakeOnce(4f, 10f, .1f, .1f);
+        yield return new WaitForSeconds(.1f);
+        CameraShaker.Instance.ShakeOnce(4f, 10f, .1f, .1f);
+    }
+
+    public void ChangeUIPanels()
+    {
+
     }
 }
