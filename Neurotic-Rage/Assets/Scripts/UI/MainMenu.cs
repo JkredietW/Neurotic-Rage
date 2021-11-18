@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -47,5 +48,13 @@ public class MainMenu : MonoBehaviour
     public void ChangeUIPanels()
     {
 
+    }
+    public void LoadScene(int i)
+	{
+        SceneManager.LoadScene(i, LoadSceneMode.Single);
+    }
+    public void AddExtraScene(int i)
+	{
+        SceneManager.LoadScene(i, LoadSceneMode.Additive);
     }
 }
