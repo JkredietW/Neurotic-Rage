@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
     {
         currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, maxAmmo);
         currentSpecialAmmo = Mathf.Clamp(currentSpecialAmmo + specialAmount, 0, maxSpecialAmmo);
+        UpdateAmmoText();
     }
     public void SwapWeapon()
     {
