@@ -11,6 +11,7 @@ public class AmmoBox : MonoBehaviour
         if(other.GetComponent<PlayerMovement>())
         {
             other.GetComponent<PlayerMovement>().GrantAmmo(ammoAmount, specialAmmoAmount);
+            Destroy(gameObject);
         }
     }
 }

@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("animations")]
     public Animator animator;
+    public Animator babyAnimator;
 
     private void Awake()
     {
@@ -92,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isRunning = true;
             animator.SetBool("Isrunning", isRunning);
+            babyAnimator.SetTrigger("DoRunning");
+            babyAnimator.SetBool("IsRunning", isRunning);
         }
     }
     private void FixedUpdate()
@@ -139,6 +142,7 @@ public class PlayerMovement : MonoBehaviour
             currentWeapon = weaponSlots[currentWeaponSlot];
             attackCooldown = currentWeapon.OnSwap();
         }
+        UpdateAmmoText();
     }
     public void MeleeAttack()
     {
@@ -146,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isRunning = false;
             animator.SetBool("Isrunning", isRunning);
+            babyAnimator.SetBool("IsRunning", isRunning);
             hasMeleeAttacked = true;
             nextAttack = Time.time + meleeAttackCooldown;
             //hier attack doen
@@ -214,8 +219,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (currentAmmo - currentWeapon.maxAmmo > 0)
                 {
+                    currentAmmo += currentWeapon.ammo - currentWeapon.maxAmmo;
                     currentWeapon.ammo = currentWeapon.maxAmmo;
-                    currentAmmo -= currentWeapon.maxAmmo;
                 }
                 else
                 {
@@ -232,8 +237,8 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if (currentSpecialAmmo - currentWeapon.maxAmmo > 0)
                 {
+                    currentSpecialAmmo += currentWeapon.ammo - currentWeapon.maxAmmo;
                     currentWeapon.ammo = currentWeapon.maxAmmo;
-                    currentSpecialAmmo -= currentWeapon.maxAmmo;
                 }
                 else
                 {
@@ -321,6 +326,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isRunning = false;
                 animator.SetBool("Isrunning", isRunning);
+                babyAnimator.SetBool("IsRunning", isRunning);
                 moveDust.Stop();
             }
         }
@@ -328,6 +334,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isRunning = false;
             animator.SetBool("Isrunning", isRunning);
+            babyAnimator.SetBool("IsRunning", isRunning);
             dustIsInEffect = false;
             moveDust.Stop();
         }
