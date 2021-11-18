@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     float total, min, max;
     public VisualEffect muzzleFlashObject;
     public Transform playerRotation;
+    public TextMeshProUGUI normalAmmoText, specialAmmoText, weaponAmmoText;
 
     [Header("MiniMap")]
     public GameObject miniMapObject;
@@ -58,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
         //set variables
         playerAim.GetVariables();
         attackCooldown = currentWeapon.OnSwap();
+    }
+    private void Start()
+    {
+        UpdateAmmoText();
     }
 
     private void Update()
@@ -97,7 +103,11 @@ public class PlayerMovement : MonoBehaviour
         }
         controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
     }
-
+    public void GrantAmmo(int amount, int specialAmount)
+    {
+        currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, maxAmmo);
+        currentSpecialAmmo = Mathf.Clamp(currentSpecialAmmo + specialAmount, 0, maxSpecialAmmo);
+    }
     public void SwapWeapon()
     {
         if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
@@ -156,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
             if (currentWeapon.ammo > 0)
             {
                 currentWeapon.ammo -= 1;
+                UpdateAmmoText();
                 muzzleFlashObject.Play();
                 for (int i = 0; i < currentWeapon.projectileCount; i++)
                 {
@@ -193,7 +204,7 @@ public class PlayerMovement : MonoBehaviour
         new WaitForSeconds(currentWeapon.reloadTime);
         if (!hasMeleeAttacked)
         {
-            if (currentWeapon.type == Weapon.weaponType.light)
+            if (currentWeapon.type == weaponType.light)
             {
                 if (currentAmmo == 0)
                 {
@@ -211,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
                     currentAmmo = 0;
                 }
             }
-            else if (currentWeapon.type == Weapon.weaponType.heavy)
+            else if (currentWeapon.type == weaponType.heavy)
             {
                 if (currentSpecialAmmo == 0)
                 {
@@ -235,6 +246,13 @@ public class PlayerMovement : MonoBehaviour
         {
             isReloading = false;
         }
+        UpdateAmmoText();
+    }
+    void UpdateAmmoText()
+    {
+        normalAmmoText.text = $"Normal ammo : " + currentAmmo.ToString() + $"/" + maxAmmo.ToString();
+        specialAmmoText.text = $"Special ammo : " + currentSpecialAmmo.ToString() + $"/" + maxSpecialAmmo.ToString();
+        weaponAmmoText.text = $"Weapon ammo : " + currentWeapon.ammo.ToString() + $"/" + currentWeapon.maxAmmo.ToString();
     }
     void ToggleMap()
     {

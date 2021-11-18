@@ -20,12 +20,6 @@ public class Weapon : ScriptableObject
     public float rotationOffset;
     public float shootAngle;
 
-    [SerializeField]
-    public enum weaponType
-    {
-        light,
-        heavy,
-    }
     public float OnSwap()
     {
         float attackSpeed = attacksPerSecond / (attacksPerSecond * attacksPerSecond);
@@ -35,4 +29,10 @@ public class Weapon : ScriptableObject
     {
         ammo = maxAmmo;
     }
+}
+[SerializeField]
+public enum weaponType
+{
+    light,
+    heavy,
 }
