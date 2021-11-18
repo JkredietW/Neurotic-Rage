@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public Hellecopter hellicopter;
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-    public void Effectuate()
-    {
-        hellicopter.StartTakeOff();
-    }
+	[HideInInspector]
+	public int waves;
+	[HideInInspector]
+	public float time;
+	[HideInInspector]		
+	public int money;
+	private void Update()
+	{
+		time = Time.deltaTime;
+	}
 }

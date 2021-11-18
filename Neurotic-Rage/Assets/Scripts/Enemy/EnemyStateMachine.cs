@@ -94,17 +94,18 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void EnterChaseState()
     {
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseRange)
-        {
-            Debug.DrawLine(transform.position, (player.transform.position - gameObject.transform.position));
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, (player.transform.position - gameObject.transform.position), out hit, Mathf.Infinity))
-            {
-                if (hit.transform.gameObject.layer == 12)
-                {
-                    currentEnemyState = EnemyStates.chase;
-                }
-            }
-        }
+        currentEnemyState = EnemyStates.chase;
+        //if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseRange)
+        //{
+        //    Debug.DrawLine(transform.position, (player.transform.position - gameObject.transform.position));
+        //    RaycastHit hit;
+        //    if(Physics.Raycast(transform.position, (player.transform.position - gameObject.transform.position), out hit, Mathf.Infinity))
+        //    {
+        //        if (hit.transform.gameObject.layer == 12)
+        //        {
+        //            currentEnemyState = EnemyStates.chase;
+        //        }
+        //    }
+        //}
     }
 }
