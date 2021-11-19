@@ -42,6 +42,7 @@ public class PlayerAim : MonoBehaviour
                     transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
                     if (Time.time >= timer)
                     {
+                        player.isShooting = true;
                         player.FireWeapon();
                     }
                 }
@@ -53,6 +54,7 @@ public class PlayerAim : MonoBehaviour
                 }
                 else
                 {
+                    player.isShooting = false;
                     firstTime = true;
                 }
             }

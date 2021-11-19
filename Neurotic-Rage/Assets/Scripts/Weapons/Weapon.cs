@@ -9,6 +9,7 @@ public class Weapon : ScriptableObject
 {
     public int weaponId;
     public weaponType type;
+    public Mesh weaponMesh;
     [Space]
     public float damage;
     public float attacksPerSecond;

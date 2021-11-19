@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponId: 0
   type: 0
+  weaponMesh: {fileID: 491035770379508795, guid: 47211744d56c5e749bb16573a4692c5c, type: 3}
   damage: 1
   attacksPerSecond: 20
   reloadTime: 5
   pierceAmount: 3
-  ammo: 88
+  ammo: 34
   maxAmmo: 100
   bulletSpeed: 50
-  projectileCount: 1
-  rotationOffset: 5
+  projectileCount: 3
+  rotationOffset: 0
   shootAngle: 5
