@@ -21,7 +21,6 @@ public class BaseHealth : MonoBehaviour
     }
     public virtual void Died()
     {
-        Destroy(gameObject);
-        //hier ragdoll;
+        print("Uses base health script");
     }
 }

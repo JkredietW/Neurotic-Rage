@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerAim : MonoBehaviour
 {
     PlayerMovement player;
     Camera playerCamera;
     LayerMask aimLayer;
+
+    public GameObject meleeHitLocation;
+    public float meleeRange = 1, meleeDamage = 10;
+    public GameObject bloodSpat;
 
     Vector3 lookAtDirection;
     Vector3 lastMousePosition;
@@ -29,8 +34,11 @@ public class PlayerAim : MonoBehaviour
             string[] controllers = Input.GetJoystickNames();
             if (controllers.Length > 0)
             {
+                //devine controller look rotation
                 Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(Input.GetAxis("HorizontalTurn"), 0, -Input.GetAxis("VerticalTurn"));
                 Vector3 lookRotationWithControllerMovementBased = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
+                
+                //look torwards lookrotation
                 if (lookRotationWithController.magnitude != 0 || player.isRunning)
                 {
                     if (firstTime)
@@ -61,6 +69,7 @@ public class PlayerAim : MonoBehaviour
         }
         else
         {
+            //mouse look rotation
             if (player.isRunning)
             {
                 lookAtDirection = player.moveDir;
@@ -83,6 +92,20 @@ public class PlayerAim : MonoBehaviour
                         transform.rotation = Quaternion.LookRotation(lookAtDirection);
                     }
                 }
+            }
+        }
+    }
+    public void MeleeDamageHitBox()
+    {
+        Collider[] hitObjects = Physics.OverlapSphere(meleeHitLocation.transform.position, meleeRange);
+        foreach (var item in hitObjects)
+        {
+            if(item.GetComponent<EnemyHealth>())
+            {
+                item.GetComponent<EnemyHealth>().DoDamage(meleeDamage);
+                Vector3 pointToSpawn = item.transform.position;
+                GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, transform.rotation);
+                tempBlood.GetComponent<VisualEffect>().Play();
             }
         }
     }

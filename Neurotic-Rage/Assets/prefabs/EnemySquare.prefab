@@ -97,8 +97,8 @@ GameObject:
   - component: {fileID: 7842371120123584816}
   - component: {fileID: 7842371120123584821}
   - component: {fileID: 2369333570283345479}
-  - component: {fileID: 1674871793073205543}
   - component: {fileID: 6469448030563710917}
+  - component: {fileID: -9104825864430158791}
   m_Layer: 15
   m_Name: EnemySquare
   m_TagString: Untagged
@@ -241,19 +241,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &1674871793073205543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7842371120123584847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2da7d93f608bffc40924447a190d1522, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxhealth: 20
 --- !u!54 &6469448030563710917
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -270,3 +257,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &-9104825864430158791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842371120123584847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fe39205ea5530c44aec497cb6fafa98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxhealth: 20

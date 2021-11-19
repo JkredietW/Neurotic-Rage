@@ -19,7 +19,7 @@ public class BulletBehavior : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<BaseHealth>())
+        if (other.GetComponent<EnemyHealth>())
         {
             BaseHealth health = other.GetComponent<BaseHealth>();
             Vector3 pointToSpawn = other.ClosestPoint(transform.position);

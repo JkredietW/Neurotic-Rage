@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("animations")]
     public Animator animator;
     public Animator babyAnimator;
+    public GameObject swordOnBack, swordInHand;
 
     private void Awake()
     {
@@ -95,11 +96,11 @@ public class PlayerMovement : MonoBehaviour
         //melee
         if (Input.GetButton("Fire2") || Input.GetAxisRaw("Fire2") > 0.5f)
         {
-            MeleeAttack();
+            StartCoroutine(MeleeAttack());
         }
         if(Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("ReloadButton"))
         {
-            ReloadWeapon();
+            StartCoroutine(ReloadWeapon());
         }
         if(Input.GetButtonDown("Sprint"))
         {
@@ -170,8 +171,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ScrollWeapon()
     {
-        if(Input.mouseScrollDelta.y > 0 || Input.mouseScrollDelta.y < 0)
+        if(Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f)
         {
+            animator.SetTrigger("SwitchWeapon");
             currentWeaponSlot -= (int)Input.mouseScrollDelta.y;
             if(currentWeaponSlot > weaponSlots.Count - 1)
             {
@@ -186,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if(Input.GetButtonDown("RightBumber"))
         {
+            animator.SetTrigger("SwitchWeapon");
             currentWeaponSlot -= 1;
             if (currentWeaponSlot > weaponSlots.Count - 1)
             {
@@ -200,16 +203,20 @@ public class PlayerMovement : MonoBehaviour
         }
         UpdateAmmoText();
     }
-    public void MeleeAttack()
+    public IEnumerator MeleeAttack()
     {
-        if (Time.time >= nextAttack)
+        if (Time.time >= nextAttack && !hasMeleeAttacked)
         {
             StartStopRunning(false);
+            swordOnBack.SetActive(false);
+            swordInHand.SetActive(true);
             hasMeleeAttacked = true;
             nextAttack = Time.time + meleeAttackCooldown;
-            //hier attack doen
-
-            new WaitForSeconds(meleeAttackCooldown);
+            animator.SetTrigger("MeleeAttack");
+            //damage/hitbox in animator
+            yield return new WaitForSeconds(meleeAttackCooldown);
+            swordOnBack.SetActive(true);
+            swordInHand.SetActive(false);
             hasMeleeAttacked = false;
         }
     }
@@ -225,6 +232,7 @@ public class PlayerMovement : MonoBehaviour
             nextAttack = Time.time + attackCooldown;
             if (currentWeapon.ammo > 0)
             {
+                animator.SetTrigger("Shoot");
                 currentWeapon.ammo -= 1;
                 UpdateAmmoText();
                 muzzleFlashObject.Play();
@@ -247,17 +255,21 @@ public class PlayerMovement : MonoBehaviour
                     spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage, currentWeapon.pierceAmount, playerRotation.rotation);
                     spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
                 }
+                if(currentWeapon.ammo == 0)
+                {
+                    StartCoroutine(ReloadWeapon());
+                }
             }
             else
             {
-                ReloadWeapon();
+                StartCoroutine(ReloadWeapon());
             }
         }
     }
-    public void ReloadWeapon()
+    public IEnumerator ReloadWeapon()
     {
         isReloading = true;
-        new WaitForSeconds(currentWeapon.reloadTime);
+        yield return new WaitForSeconds(1);
         if (!hasMeleeAttacked || currentWeapon.ammo == currentWeapon.maxAmmo)
         {
             if (currentWeapon.type == weaponType.light)
@@ -266,7 +278,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     print("no more ammo");
                     isReloading = false;
-                    return;
+                    yield break;
                 }
                 currentAmmo -= currentWeapon.maxAmmo - currentWeapon.ammo;
                 if (currentAmmo > 0)
@@ -284,7 +296,7 @@ public class PlayerMovement : MonoBehaviour
                 if (currentSpecialAmmo == 0)
                 {
                     print("no more ammo");
-                    return;
+                    yield break;
                 }
                 currentSpecialAmmo -= currentWeapon.maxAmmo - currentWeapon.ammo;
                 if(currentSpecialAmmo > 0)
