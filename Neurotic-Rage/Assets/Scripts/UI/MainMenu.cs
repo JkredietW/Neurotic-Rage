@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject playPanel;
+    public GameObject settingsPanel;
     public float secondsToReopen;
     public Animator garageDoor;
     public bool garage;
@@ -13,6 +15,16 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         StartCoroutine(IEStart());
+    }
+
+    public void Play(int sceneToLoad, int extraSceneToAdd)
+    {
+        StartCoroutine(IEPlay(sceneToLoad, extraSceneToAdd));
+    }
+
+    public void ChangeActivePanel(GameObject panelToChange)
+    {
+        StartCoroutine(IEChangeActivePanel(panelToChange));
     }
 
     void Update()
@@ -40,14 +52,25 @@ public class MainMenu : MonoBehaviour
         garage = !garage;
         garageDoor.SetBool("Garage", garage);
         yield return new WaitForSeconds(.25f);
+        
         CameraShaker.Instance.ShakeOnce(4f, 10f, .1f, .1f);
         yield return new WaitForSeconds(.1f);
         CameraShaker.Instance.ShakeOnce(4f, 10f, .1f, .1f);
     }
 
-    public void ChangeUIPanels()
+    public IEnumerator IEPlay(int sceneToLoad, int extraSceneToAdd)
     {
+        garage = !garage;
+        garageDoor.SetBool("Garage", garage);
+        yield return new WaitForSeconds(secondsToReopen);
+        SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
+        SceneManager.LoadScene(extraSceneToAdd, LoadSceneMode.Additive);
+    }
 
+    public IEnumerator IEChangeActivePanel(GameObject panelToChange)
+    {
+        yield return new WaitForSeconds(secondsToReopen);
+        panelToChange.SetActive(!panelToChange.activeSelf);
     }
     public void LoadScene(int i)
 	{
