@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
 
-public class SettingManager : MonoBehaviour
+public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer mixer;
     public Resolution[] resolutions;
@@ -13,9 +13,9 @@ public class SettingManager : MonoBehaviour
     public TMP_Dropdown resDrop;
     private void Start()
     {
-        mixer.SetFloat("MasterVol", Mathf.Log10(PlayerPrefs.GetFloat("masterVol")) * 20);
-        mixer.SetFloat("MusicVol", Mathf.Log10(PlayerPrefs.GetFloat("musicVol")) * 20);
-        mixer.SetFloat("SfxVol", Mathf.Log10(PlayerPrefs.GetFloat("sfxVol")) * 20);
+        mixer.SetFloat("MasterVolume", Mathf.Log10(PlayerPrefs.GetFloat("masterVol")) * 20);
+        mixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("musicVol")) * 20);
+        mixer.SetFloat("SFXVolume", Mathf.Log10(PlayerPrefs.GetFloat("sfxVol")) * 20);
         resolutions = Screen.resolutions;
         resDrop.ClearOptions();
         List<string> options = new List<string>();

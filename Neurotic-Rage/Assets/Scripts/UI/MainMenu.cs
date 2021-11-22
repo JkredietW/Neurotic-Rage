@@ -17,9 +17,14 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(IEStart());
     }
 
-    public void Play(int sceneToLoad, int extraSceneToAdd)
+    public void LoadScene(int sceneToLoad)
     {
-        StartCoroutine(IEPlay(sceneToLoad, extraSceneToAdd));
+        //StartCoroutine(IELoadScene(sceneToLoad));
+    }
+
+    public void AddExtraScene(int extraSceneToLoad)
+    {
+        StartCoroutine(IEPlay(extraSceneToLoad));
     }
 
     public void ChangeActivePanel(GameObject panelToChange)
@@ -58,13 +63,12 @@ public class MainMenu : MonoBehaviour
         CameraShaker.Instance.ShakeOnce(4f, 10f, .1f, .1f);
     }
 
-    public IEnumerator IEPlay(int sceneToLoad, int extraSceneToAdd)
+    public IEnumerator IEPlay(int sceneToLoad)
     {
         garage = !garage;
         garageDoor.SetBool("Garage", garage);
         yield return new WaitForSeconds(secondsToReopen);
         SceneManager.LoadScene(sceneToLoad, LoadSceneMode.Single);
-        SceneManager.LoadScene(extraSceneToAdd, LoadSceneMode.Additive);
     }
 
     public IEnumerator IEChangeActivePanel(GameObject panelToChange)
@@ -72,11 +76,11 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(secondsToReopen);
         panelToChange.SetActive(!panelToChange.activeSelf);
     }
-    public void LoadScene(int i)
+    public void IELoadScene(int i)
 	{
         SceneManager.LoadScene(i, LoadSceneMode.Single);
     }
-    public void AddExtraScene(int i)
+    public void IEAddExtraScene(int i)
 	{
         SceneManager.LoadScene(i, LoadSceneMode.Additive);
     }
