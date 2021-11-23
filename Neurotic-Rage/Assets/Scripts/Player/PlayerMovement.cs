@@ -174,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f)
         {
             animator.SetTrigger("SwitchWeapon");
+            babyAnimator.SetTrigger("Switch");
             currentWeaponSlot -= (int)Input.mouseScrollDelta.y;
             if(currentWeaponSlot > weaponSlots.Count - 1)
             {
