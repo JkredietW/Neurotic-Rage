@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     public GameObject playPanel;
     public GameObject settingsPanel;
     public float secondsToReopen;
+    public float secondsTillCameraShake;
     public Animator garageDoor;
     public bool garage;
 
@@ -56,7 +57,7 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(secondsToReopen);
         garage = !garage;
         garageDoor.SetBool("Garage", garage);
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(secondsTillCameraShake);
         
         CameraShaker.Instance.ShakeOnce(4f, 10f, .1f, .1f);
         yield return new WaitForSeconds(.1f);
