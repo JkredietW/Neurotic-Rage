@@ -35,9 +35,35 @@ public class SettingsMenu : MonoBehaviour
         resDrop.RefreshShownValue();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SetMainVolume(float sliderValue)
+    {
+        mixer.SetFloat("MasterVolume", Mathf.Log10(sliderValue) * 20);
+    }
+    public void SetMusicVolume(float sliderValue)
+    {
+        mixer.SetFloat("MusicVolume", Mathf.Log10(sliderValue) * 20);
+    }
+    public void SetSfxVolume(float sliderValue)
+    {
+        mixer.SetFloat("SFXVolume", Mathf.Log10(sliderValue) * 20);
+    }
+    public void SetUiVolume(float sliderValue)
+    {
+        mixer.SetFloat("UiVolume", Mathf.Log10(sliderValue) * 20);
+    }
+    public void SetResolution(int resIndex)
+    {
+        Resolution resolution = resolutions[resIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    public void FullScreen(bool fullScreen)
+    {
+        Screen.fullScreen = fullScreen;
     }
 }
