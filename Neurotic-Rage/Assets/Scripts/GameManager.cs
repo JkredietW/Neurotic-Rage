@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     public float timeBetweenWaves, timeBetweenSpawns;
     public float minimumDistance, maxDistance;
     public Wave[] waves;
-	public Transform[] spawnLocations;
+	public List<Transform> spawnLocations;
+    public Transform enemySpawnLocationParent;
     public List<Transform> spawnsExcluded;
     public GameObject[] Enemies;
     public List<GameObject> enemiesAlive;
@@ -29,6 +30,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>();
+        foreach (Transform item in enemySpawnLocationParent)
+        {
+            spawnLocations.Add(item);
+        }
         Clock();
     }
     public void Clock()
@@ -96,7 +101,7 @@ public class GameManager : MonoBehaviour
         totalTimesThisSpawn = Random.Range(3, 6);
         float closest = Mathf.Infinity;
         int thisOneinList = -1;
-        for (int i = 0; i < spawnLocations.Length; i++)
+        for (int i = 0; i < spawnLocations.Count; i++)
         {
             float distance = Vector3.Distance(player.transform.position, spawnLocations[i].position);
             if (distance > maxDistance || distance < minimumDistance || spawnsExcluded.Contains(spawnLocations[i]))

@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public Vector3 moveDir;
     public VisualEffect moveDust;
     bool dustIsInEffect;
+    bool mayMove;
 
     [Header("CameraStats")]
     public LayerMask aimLayer;
@@ -73,11 +74,15 @@ public class PlayerMovement : MonoBehaviour
         weaponSlots[0].ammo = weaponSlots[0].maxAmmo;
         weaponSlots[1].ammo = weaponSlots[1].maxAmmo;
         UpdateAmmoText();
+        mayMove = true;
     }
 
     private void Update()
     {
-        Movement();
+        if (mayMove)
+        {
+            Movement();
+        }
         DefineDirection();
         ScrollWeapon();
         ToggleMap();
@@ -98,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(MeleeAttack());
         }
-        if(Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("ReloadButton"))
+        if(Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("ReloadButton") && mayMove)
         {
             StartCoroutine(ReloadWeapon());
         }
@@ -111,6 +116,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E) && weaponsInRange.Count > 0)
         {
+            moveDir = Vector3.zero;
+            StartStopRunning(false);
+            mayMove = false;
+            Invoke(nameof(MayMoveAgain), 1);
             SwapWithWorldWeapon();
         }
     }
@@ -121,9 +130,15 @@ public class PlayerMovement : MonoBehaviour
         {
             extraSprintSpeed = movementSpeed * 0.7f;
         }
-        controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
+        if (mayMove)
+        {
+            controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
+        }
     }
-
+    void MayMoveAgain()
+    {
+        mayMove = true;
+    }
 
     public void GrantAmmo(int amount, int specialAmount)
     {
@@ -143,6 +158,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void SwapWithWorldWeapon()
     {
+        animator.SetTrigger("WeaponPickUp");
         bool swapCurrentWeapon = currentWeapon.type == weaponType.light ? true : false;
         Weapon oldWeapon = currentWeapon;
         if(weaponsInRange[0].heldItem.type == weaponType.light)
@@ -206,7 +222,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public IEnumerator MeleeAttack()
     {
-        if (Time.time >= nextAttack && !hasMeleeAttacked)
+        if (Time.time >= nextAttack && !hasMeleeAttacked && mayMove)
         {
             StartStopRunning(false);
             swordOnBack.SetActive(false);
@@ -223,7 +239,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FireWeapon()
     {
-        if (Time.time >= nextAttack && !isReloading)
+        if (Time.time >= nextAttack && !isReloading && mayMove)
         {
             if(isRunning)
             {
@@ -256,12 +272,12 @@ public class PlayerMovement : MonoBehaviour
                     spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage, currentWeapon.pierceAmount, playerRotation.rotation);
                     spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
                 }
-                if(currentWeapon.ammo == 0)
+                if(currentWeapon.ammo == 0 && mayMove)
                 {
                     StartCoroutine(ReloadWeapon());
                 }
             }
-            else
+            else if(mayMove)
             {
                 StartCoroutine(ReloadWeapon());
             }
