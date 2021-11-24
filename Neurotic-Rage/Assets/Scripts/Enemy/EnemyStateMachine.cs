@@ -8,16 +8,26 @@ public class EnemyStateMachine : MonoBehaviour
     public float attackRange;
     public float chaseRange;
     public float destroyTime = 1.25f;
+    public float hitBoxRange;
+    public float damage;
 
+    public int numberOffAttacks;
+
+    public Transform handPos;
     public GameObject player;
     public NavMeshAgent navMeshAgent;
+    private bool doDamage;
+    private bool attacking;
+    private bool hitbox;
+    
+    public Animator anim;
 
     EnemyStates currentEnemyState;
-	private void Start()
-	{
+    private void Start()
+    {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-	enum EnemyStates
+    enum EnemyStates
     {
         standby,
         chase,
@@ -27,13 +37,28 @@ public class EnemyStateMachine : MonoBehaviour
     }
     void Update()
     {
+        if (hitbox)
+        {
+            Collider[] hitObjects=Physics.OverlapSphere(handPos.position, hitBoxRange);
+			for (int i = 0; i < hitObjects.Length; i++)
+			{
+				if (hitObjects[i].transform.tag == "Player")
+				{
+					if (!doDamage)
+					{
+                        StartCoroutine(DoDamage(hitObjects[i].transform.gameObject));
+					}
+				}
+			}
+        }
+        
         switch (currentEnemyState)
         {
             case EnemyStates.standby:
                 EnemyStandbyState();
                 print("1");
 
-            break;
+                break;
             case EnemyStates.chase:
                 EnemyChaseState();
                 print("2");
@@ -59,6 +84,13 @@ public class EnemyStateMachine : MonoBehaviour
                 break;
         }
     }
+    public IEnumerator DoDamage(GameObject player)
+	{
+        doDamage = true;
+        player.GetComponent<PlayerHealth>().DoDamage(damage);
+        yield return new WaitForSeconds(numberOffAttacks / 2);
+        doDamage = false;
+    }
     public void EnemyStandbyState()
     {
         EnterChaseState();
@@ -66,9 +98,13 @@ public class EnemyStateMachine : MonoBehaviour
     public void EnemyChaseState()
     {
         navMeshAgent.SetDestination(player.transform.position);
-        if(Vector3.Distance(gameObject.transform.position, player.transform.position) <= attackRange)
+        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= attackRange)
         {
             currentEnemyState = EnemyStates.attack;
+        }
+        else
+        {
+            currentEnemyState = EnemyStates.chase;
         }
     }
 
@@ -79,7 +115,10 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void EnemyAttackState()
     {
-        //attack animation and damage stuff (maybe spawn in hitbox)
+        if (!attacking)
+        {
+            Attack();
+        }
         currentEnemyState = EnemyStates.chase;
     }
 
@@ -108,4 +147,21 @@ public class EnemyStateMachine : MonoBehaviour
         //    }
         //}
     }
+    public void Attack()
+	{
+        int randomAtt = Random.Range(1, numberOffAttacks);
+        attacking = true;
+        anim.SetBool("Attack" + randomAtt.ToString(), true);
+	}
+    public void HitBoxTrigger(int i)
+	{
+		if (i == 0)
+		{
+            hitbox = false;
+		}
+		else
+		{
+            hitbox = true;
+        }
+	}
 }
