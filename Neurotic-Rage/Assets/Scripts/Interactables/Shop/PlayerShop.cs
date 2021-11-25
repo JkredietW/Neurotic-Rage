@@ -66,6 +66,12 @@ public class PlayerShop : InterActable
     public override void OnPlayerEnter(PlayerMovement _thisOne)
     {
         base.OnPlayerEnter(_thisOne);
+        player.ShopToggle(true);
+    }
+    public override void OnPlayerExit()
+    {
+        player.ShopToggle(false);
+        base.OnPlayerExit();
     }
 }
 [System.Serializable]

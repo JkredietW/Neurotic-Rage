@@ -40,9 +40,13 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(SpawnEnemy());
     }
-    public void EnemyDied()
+    public void EnemyDied(GameObject enemyThatDied)
     {
         killAmount++;
+        if(enemiesAlive.Contains(enemyThatDied))
+        {
+            enemiesAlive.Remove(enemyThatDied);
+        }
         if (enemiesAlive.Count <= 5 && waveIsInProgress)
         {
             WaveComplete();
