@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldWeapon : MonoBehaviour
+public class WorldWeapon : InterActable
 {
     public Weapon heldItem;
     public bool alreadyInWorld;
-    bool playerInRange;
-    PlayerMovement playerMovement;
 
     private void Start()
     {
@@ -17,20 +15,19 @@ public class WorldWeapon : MonoBehaviour
         {
             heldItem.ammo = heldItem.maxAmmo;
         }
-        Invoke("DelayAfterStart", time);
+        Invoke(nameof(DelayAfterStart), time);
     }
     void DelayAfterStart()
     {
         gameObject.AddComponent<BoxCollider>();
         alreadyInWorld = true;
-        Collider[] player = Physics.OverlapSphere(transform.position, GetComponent<SphereCollider>().radius);
-        foreach (var item in player)
+        Collider[] players = Physics.OverlapSphere(transform.position, GetComponent<SphereCollider>().radius);
+        foreach (var item in players)
         {
             if(item.GetComponent<PlayerMovement>())
             {
-                playerInRange = true;
-                playerMovement = item.GetComponent<PlayerMovement>();
-                playerMovement.InWeaponRange(this);
+                player = item.GetComponent<PlayerMovement>();
+                player.InWeaponRange(this);
             }
         }
     }
@@ -41,22 +38,17 @@ public class WorldWeapon : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(transform.forward + transform.up, ForceMode.VelocityChange);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnPlayerEnter(PlayerMovement _thisOne)
     {
-        if(other.GetComponent<PlayerMovement>() && alreadyInWorld)
-        {
-            playerInRange = true;
-            playerMovement = other.GetComponent<PlayerMovement>();
-            playerMovement.InWeaponRange(this);
-        }
+        base.OnPlayerEnter(_thisOne);
+        player.InWeaponRange(this);
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<PlayerMovement>() && alreadyInWorld)
         {
-            playerInRange = false;
-            playerMovement = other.GetComponent<PlayerMovement>();
-            playerMovement.OutOfWeaponRange(this);
+            player = other.GetComponent<PlayerMovement>();
+            player.OutOfWeaponRange(this);
         }
     }
 

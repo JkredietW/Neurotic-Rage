@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmmoBox : MonoBehaviour
+public class AmmoBox : InterActable
 {
     public int ammoAmount, specialAmmoAmount;
 
-    private void OnTriggerEnter(Collider other)
+    public override void OnPlayerEnter(PlayerMovement _thisOne)
     {
-        if(other.GetComponent<PlayerMovement>())
-        {
-            other.GetComponent<PlayerMovement>().GrantAmmo(ammoAmount, specialAmmoAmount);
-            Destroy(gameObject);
-        }
+        base.OnPlayerEnter(_thisOne);
+        player.GrantAmmo(ammoAmount, specialAmmoAmount);
+        Destroy(gameObject);
     }
 }

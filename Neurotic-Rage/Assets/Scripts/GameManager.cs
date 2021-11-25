@@ -45,10 +45,20 @@ public class GameManager : MonoBehaviour
         killAmount++;
         if (enemiesAlive.Count <= 5 && waveIsInProgress)
         {
-            waveCount++;
-            totalWaveCount++;
-            waveIsInProgress = false;
-            Invoke(nameof(Clock), timeBetweenWaves);
+            WaveComplete();
+        }
+    }
+    void WaveComplete()
+    {
+        waveCount++;
+        totalWaveCount++;
+        waveIsInProgress = false;
+        Invoke(nameof(Clock), timeBetweenWaves);
+        //give information to shops in world
+        PlayerShop[] shops = FindObjectsOfType<PlayerShop>();
+        foreach (var shop in shops)
+        {
+            shop.AfterWave();
         }
     }
     public IEnumerator SpawnEnemy()
