@@ -57,6 +57,9 @@ public class PlayerMovement : MonoBehaviour
     public Animator babyAnimator;
     public GameObject swordOnBack, swordInHand;
 
+    [Header("Shop")]
+    bool shopInRange;
+
     private void Awake()
     {
         //get components
@@ -114,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
                 StartStopRunning(true);
             }
         }
-        if (Input.GetKeyDown(KeyCode.E) && weaponsInRange.Count > 0)
+        if (Input.GetKeyDown(KeyCode.E) && weaponsInRange.Count > 0 && mayMove)
         {
             moveDir = Vector3.zero;
             StartStopRunning(false);
@@ -134,6 +137,10 @@ public class PlayerMovement : MonoBehaviour
         {
             controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
         }
+    }
+    public void ShopToggle(bool _bool)
+    {
+        shopInRange = _bool;
     }
     void MayMoveAgain()
     {
