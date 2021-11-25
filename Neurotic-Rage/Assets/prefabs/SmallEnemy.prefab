@@ -2506,7 +2506,7 @@ GameObject:
   - component: {fileID: 2483306680457116688}
   - component: {fileID: 2483306680457116695}
   m_Layer: 0
-  m_Name: enemie
+  m_Name: SmallEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2614,8 +2614,13 @@ MonoBehaviour:
   attackRange: 1
   chaseRange: 10
   destroyTime: 1.25
+  hitBoxRange: 3
+  damage: 15
+  numberOffAttacks: 2
+  handPos: {fileID: 220621129065800695}
   player: {fileID: 0}
   navMeshAgent: {fileID: 2483306680457116689}
+  anim: {fileID: 8294768415698244174}
 --- !u!114 &2483306680457116695
 MonoBehaviour:
   m_ObjectHideFlags: 0

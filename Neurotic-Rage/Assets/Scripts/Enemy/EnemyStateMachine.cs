@@ -149,13 +149,24 @@ public class EnemyStateMachine : MonoBehaviour
     }
     public void Attack()
 	{
-        int randomAtt = Random.Range(1, numberOffAttacks);
         attacking = true;
-        anim.SetBool("Attack" + randomAtt.ToString(), true);
+        anim.SetLayerWeight(1, 100);
+        int randomAtt = Random.Range(0, numberOffAttacks);
+		if (randomAtt == 0)
+		{
+            randomAtt = 1;
+		}
+        anim.SetTrigger("Attack" + randomAtt.ToString());
+        Invoke("ResetAnim", 2);
 	}
-    public void HitBoxTrigger(int i)
+	public void ResetAnim()
 	{
-		if (i == 0)
+        anim.SetLayerWeight(1, 0);
+        attacking = false;
+    }
+	public void HitBoxTrigger(int i)
+	{
+		if (i == 1)
 		{
             hitbox = false;
 		}
