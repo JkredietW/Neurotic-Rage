@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9326ebb8f7e4243a8015ec1d38bd99, type: 3}
+  m_Name: 2Normal
+  m_EditorClassIdentifier: 
+  moneyValue: 180
+  itemType: 1
+  normalAmmoAmount: 200
+  specialAmmoAmount: 0
