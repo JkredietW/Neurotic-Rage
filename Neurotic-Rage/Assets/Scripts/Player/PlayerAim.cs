@@ -17,6 +17,8 @@ public class PlayerAim : MonoBehaviour
     Vector3 lastMousePosition;
     float timer;
     bool firstTime;
+
+    public Joystick mobileAimDirection;
     public void GetVariables()
     {
         player = GetComponentInParent<PlayerMovement>();
@@ -37,9 +39,8 @@ public class PlayerAim : MonoBehaviour
                 //devine controller look rotation
                 Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(Input.GetAxis("HorizontalTurn"), 0, -Input.GetAxis("VerticalTurn"));
                 Vector3 lookRotationWithControllerMovementBased = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
-                
                 //look torwards lookrotation
-                if (lookRotationWithController.magnitude != 0 || player.isRunning)
+                if (lookRotationWithController.magnitude != 0 && !player.isRunning)
                 {
                     if (firstTime)
                     {
@@ -67,7 +68,7 @@ public class PlayerAim : MonoBehaviour
                 }
             }
         }
-        else
+        else if(SystemInfo.deviceType == DeviceType.Desktop)
         {
             //mouse look rotation
             if (player.isRunning)
@@ -92,6 +93,39 @@ public class PlayerAim : MonoBehaviour
                         transform.rotation = Quaternion.LookRotation(lookAtDirection);
                     }
                 }
+            }
+        }
+        else if (SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            Vector3 lookRotationWithJoystick = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(mobileAimDirection.input.x, 0, mobileAimDirection.input.y);
+            Vector3 lookRotationWithJoystickMovementBased = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(mobileAimDirection.input.x, 0, mobileAimDirection.input.y);
+
+            //look torwards lookrotation
+            if (lookRotationWithJoystick.magnitude != 0 && !player.isRunning)
+            {
+                if (firstTime)
+                {
+                    firstTime = false;
+                    timer = Time.time + 0.1f;
+                }
+                lookAtDirection = lookRotationWithJoystick;
+                transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
+                if (Time.time >= timer)
+                {
+                    player.isShooting = true;
+                    player.FireWeapon();
+                }
+            }
+            else if (lookRotationWithJoystickMovementBased.magnitude != 0)
+            {
+                firstTime = true;
+                lookAtDirection = -lookRotationWithJoystickMovementBased;
+                transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
+            }
+            else
+            {
+                player.isShooting = false;
+                firstTime = true;
             }
         }
     }

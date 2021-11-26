@@ -9,6 +9,8 @@ public class BulletBehavior : MonoBehaviour
     int pierceAmount;
     Quaternion rotation;
     public GameObject bloodSpat;
+    public string IgnoreTag1;
+    public string IgnoreTag2;
 
     public void SetUp(float _damage, int _pierces, Quaternion _rotation)
     {
@@ -34,6 +36,14 @@ public class BulletBehavior : MonoBehaviour
             else
             {
                 DoDamageToEnemy(health);
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            if(!other.gameObject.CompareTag(IgnoreTag1) && !other.gameObject.CompareTag(IgnoreTag2))
+            {
+                //hier particle poef doen ofzo?
                 Destroy(gameObject);
             }
         }

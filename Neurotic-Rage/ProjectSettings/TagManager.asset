@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Button
   - Walkable
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - particles
   - Enemy
   - Mouse
-  - 
+  - WallCheckLayer
   - 
   - 
   - 

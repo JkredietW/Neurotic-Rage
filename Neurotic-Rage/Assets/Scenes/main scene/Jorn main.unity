@@ -1311,12 +1311,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c57e293d5d7efba43b490a31e6245ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 0
   chanceForFirstItem: 100
   chanceForSecondItem: 50
   chanceForThirdItem: 20
   resetAfterWaveCount: 3
-  upgradeTypes: []
+  upgradeTypes:
+  - {fileID: 0}
   discountList:
     minimumDiscount: 95
     mediumDiscount: 90

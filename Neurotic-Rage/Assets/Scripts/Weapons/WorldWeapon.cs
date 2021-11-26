@@ -41,7 +41,10 @@ public class WorldWeapon : InterActable
     public override void OnPlayerEnter(PlayerMovement _thisOne)
     {
         base.OnPlayerEnter(_thisOne);
-        player.InWeaponRange(this);
+        if (alreadyInWorld)
+        {
+            player.InWeaponRange(this);
+        }
     }
     private void OnTriggerExit(Collider other)
     {

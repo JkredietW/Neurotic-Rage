@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("CameraStats")]
     public LayerMask aimLayer;
+    public Joystick movementJoystick;
+    public GameObject desktopUI, mobileUI;
 
     [Header("Weapons")]
     public Weapon currentWeapon;
@@ -71,6 +73,18 @@ public class PlayerMovement : MonoBehaviour
         playerAim.GetVariables();
         attackCooldown = currentWeapon.OnSwap();
         weaponsInRange = new List<WorldWeapon>();
+
+        //check what device is being used
+        if(SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            desktopUI.SetActive(true);
+            mobileUI.SetActive(false);
+        }
+        else if(SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            desktopUI.SetActive(false);
+            mobileUI.SetActive(true);
+        }
     }
     private void Start()
     {
@@ -106,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(MeleeAttack());
         }
-        if(Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("ReloadButton") && mayMove)
+        if(Input.GetKeyDown(KeyCode.R) && mayMove || Input.GetButtonDown("ReloadButton") && mayMove)
         {
             StartCoroutine(ReloadWeapon());
         }
@@ -117,13 +131,14 @@ public class PlayerMovement : MonoBehaviour
                 StartStopRunning(true);
             }
         }
-        if (Input.GetKeyDown(KeyCode.E) && weaponsInRange.Count > 0 && mayMove)
+        if (Input.GetKeyDown(KeyCode.E) && weaponsInRange.Count > 0 && mayMove || Input.GetButtonDown("AGamePadButton") && weaponsInRange.Count > 0 && mayMove)
         {
             moveDir = Vector3.zero;
             StartStopRunning(false);
             mayMove = false;
             Invoke(nameof(MayMoveAgain), 1);
             SwapWithWorldWeapon();
+            RemoveOutOfRangeWeapons();
         }
     }
     private void FixedUpdate()
@@ -246,6 +261,14 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FireWeapon()
     {
+        if (Input.GetButton("Fire1"))
+        {
+            lastInputWasController = false;
+        }
+        else if (Input.GetAxisRaw("Fire1") > 0.5f)
+        {
+            lastInputWasController = true;
+        }
         if (Time.time >= nextAttack && !isReloading && mayMove)
         {
             if(isRunning)
@@ -378,17 +401,15 @@ public class PlayerMovement : MonoBehaviour
     }
     void Movement()
     {
-        moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        if(lastInputWasController || SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        }
+        else
+        {
+            moveDir = new Vector3(movementJoystick.input.x, 0, movementJoystick.input.y);
+        }
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
-
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
-        {
-            lastInputWasController = false;
-        }
-        if(Input.GetAxisRaw("VerticalController") != 0 || Input.GetAxisRaw("HorizontalController") != 0)
-        {
-            lastInputWasController = true;
-        }
 
         //gravity
         if(!controller.isGrounded)
@@ -422,20 +443,49 @@ public class PlayerMovement : MonoBehaviour
             moveDust.Stop();
         }
     }
+    void RemoveOutOfRangeWeapons()
+    {
+        foreach (var item in weaponsInRange)
+        {
+            float distance = Vector3.Distance(transform.position, item.transform.position);
+            if(distance > 5)
+            {
+                weaponsInRange.Remove(item);
+            }
+        }
+        ShowTextE();
+    }
     public void InWeaponRange(WorldWeapon newWeapon)
     {
+        RemoveOutOfRangeWeapons();
         //press e
         weaponsInRange.Add(newWeapon);
         ShowTextE();
     }
     public void OutOfWeaponRange(WorldWeapon oldWeapon)
     {
+        RemoveOutOfRangeWeapons();
         //press e
         weaponsInRange.Remove(oldWeapon);
         ShowTextE();
     }
     void ShowTextE()
     {
+        if(lastInputWasController)
+        {
+            pickUpWeaponText.text = "press A to swap weapon.";
+        }
+        else if(SystemInfo.deviceType == DeviceType.Desktop)
+        {
+            pickUpWeaponText.text = "press E to swap weapon.";
+        }
+        else if(SystemInfo.deviceType == DeviceType.Handheld)
+        {
+            //hier button tevoorschijn halen
+        }
+
+
+        //on/off
         if (weaponsInRange.Count > 0)
         {
             pickUpWeaponText.gameObject.SetActive(true);
