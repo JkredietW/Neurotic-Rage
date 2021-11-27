@@ -9,22 +9,32 @@ public class PlayerShop : InterActable
     List<ShopItem> ammoSlots;
     List<ShopItem> healthSlots;
 
+    public List<Transform> slotLocations;
+
     [SerializeField] float chanceForFirstItem = 100, chanceForSecondItem = 50, chanceForThirdItem = 20;
 
     int resetRoll;
     [SerializeField] int resetAfterWaveCount;
     //will be sscripable objects later
-    [SerializeField] List<ShopItem> upgradeTypes;
+    public List<ShopItem> upgradeTypes;
     [SerializeField] Discounts discountList;
     private void Awake()
     {
-        upgradeSlots = new List<ShopItem>(3);
-        ammoSlots = new List<ShopItem>(4);
-        healthSlots = new List<ShopItem>(4);
-        upgradeTypes = new List<ShopItem>();
+        upgradeSlots = new List<ShopItem>();
+        for (int i = 0; i < 3; i++)
+        {
+            upgradeSlots.Add(default);
+        }
+        ammoSlots = new List<ShopItem>();
+        healthSlots = new List<ShopItem>();
     }
     private void Start()
     {
+        GameObject shoppanel = GameObject.FindGameObjectWithTag("Shoppanel");
+        foreach (Transform item in shoppanel.transform)
+        {
+            slotLocations.Add(item);
+        }
         RollItems();
         resetRoll = Random.Range(0, 6);
     }
@@ -44,17 +54,17 @@ public class PlayerShop : InterActable
             float roll = Random.Range(0, 101);
             if (chanceForFirstItem >= roll)
             {
-                upgradeSlots[0] = upgradeTypes[Random.Range(0, upgradeTypes.Count)];
+                upgradeSlots[0] = upgradeTypes[0];
             }
             roll = Random.Range(0, 101);
             if (chanceForSecondItem >= roll)
             {
-                upgradeSlots[1] = upgradeTypes[Random.Range(0, upgradeTypes.Count)];
+                upgradeSlots[1] = upgradeTypes[0];
             }
             roll = Random.Range(0, 101);
             if (chanceForThirdItem >= roll)
             {
-                upgradeSlots[2] = upgradeTypes[Random.Range(0, upgradeTypes.Count)];
+                upgradeSlots[2] = upgradeTypes[0];
             }
         }
         else if (type == ShopType.Ammo || type == ShopType.Health)
@@ -72,6 +82,21 @@ public class PlayerShop : InterActable
     {
         player.ShopToggle(false);
         base.OnPlayerExit();
+    }
+    public void ShopOpened()
+    {
+        //put items in slots
+        for (int i = 0; i < slotLocations.Count; i++)
+        {
+            if (i < upgradeSlots.Count && upgradeSlots[i] != null)
+            {
+                slotLocations[i].GetComponent<UiItem>().Setup(upgradeSlots[i]);
+            }
+            else
+            {
+                slotLocations[i].GetComponent<UiItem>().Setup(default);
+            }
+        }
     }
 }
 [System.Serializable]
