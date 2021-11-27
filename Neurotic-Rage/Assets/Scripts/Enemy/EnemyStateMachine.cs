@@ -5,11 +5,13 @@ using UnityEngine.AI;
 
 public class EnemyStateMachine : MonoBehaviour
 {
+    public float attackCoolDown;
     public float attackRange;
     public float chaseRange;
     public float destroyTime = 1.25f;
     public float hitBoxRange;
     public float damage;
+    public float toCloseRange;
 
     public int numberOffAttacks;
 
@@ -21,6 +23,7 @@ public class EnemyStateMachine : MonoBehaviour
     private bool hitbox;
     
     public Animator anim;
+    public GameObject head;
 
     EnemyStates currentEnemyState;
     private void Start()
@@ -83,6 +86,19 @@ public class EnemyStateMachine : MonoBehaviour
 
                 break;
         }
+        if(Vector3.Distance(gameObject.transform.position, player.transform.position) >= toCloseRange)
+		{
+            navMeshAgent.SetDestination(player.transform.position);
+            anim.SetLayerWeight(1, 0);
+            transform.LookAt(player.transform.position-new Vector3(0,player.transform.position.y,0));
+            head.transform.LookAt(player.transform.position - new Vector3(0, 1.5f, 0));
+        }
+		else
+		{
+            navMeshAgent.SetDestination(transform.position);
+            head.transform.LookAt(player.transform.position- new Vector3(0,1.5f,0));
+            anim.SetLayerWeight(1, 100);
+        }
     }
     public IEnumerator DoDamage(GameObject player)
 	{
@@ -97,7 +113,6 @@ public class EnemyStateMachine : MonoBehaviour
     }
     public void EnemyChaseState()
     {
-        navMeshAgent.SetDestination(player.transform.position);
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= attackRange)
         {
             currentEnemyState = EnemyStates.attack;
@@ -134,34 +149,18 @@ public class EnemyStateMachine : MonoBehaviour
     public void EnterChaseState()
     {
         currentEnemyState = EnemyStates.chase;
-        //if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= chaseRange)
-        //{
-        //    Debug.DrawLine(transform.position, (player.transform.position - gameObject.transform.position));
-        //    RaycastHit hit;
-        //    if(Physics.Raycast(transform.position, (player.transform.position - gameObject.transform.position), out hit, Mathf.Infinity))
-        //    {
-        //        if (hit.transform.gameObject.layer == 12)
-        //        {
-        //            currentEnemyState = EnemyStates.chase;
-        //        }
-        //    }
-        //}
     }
     public void Attack()
 	{
-        attacking = true;
-        anim.SetLayerWeight(1, 100);
-        int randomAtt = Random.Range(0, numberOffAttacks);
-		if (randomAtt == 0)
-		{
-            randomAtt = 1;
-		}
+        anim.SetLayerWeight(2, 100);
+        int randomAtt = Random.Range(1, numberOffAttacks+1);
         anim.SetTrigger("Attack" + randomAtt.ToString());
-        Invoke("ResetAnim", 2);
+        attacking = true;
+        Invoke("ResetAnim", attackCoolDown);
 	}
 	public void ResetAnim()
 	{
-        anim.SetLayerWeight(1, 0);
+        anim.SetLayerWeight(2, 0);
         attacking = false;
     }
 	public void HitBoxTrigger(int i)
