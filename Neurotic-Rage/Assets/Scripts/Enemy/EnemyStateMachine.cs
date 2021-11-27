@@ -12,6 +12,7 @@ public class EnemyStateMachine : MonoBehaviour
     public float hitBoxRange;
     public float damage;
     public float toCloseRange;
+    public float rotationSpeed;
 
     public int numberOffAttacks;
 
@@ -89,15 +90,20 @@ public class EnemyStateMachine : MonoBehaviour
         if(Vector3.Distance(gameObject.transform.position, player.transform.position) >= toCloseRange)
 		{
             navMeshAgent.SetDestination(player.transform.position);
-            anim.SetLayerWeight(1, 0);
-            transform.LookAt(player.transform.position-new Vector3(0,player.transform.position.y,0));
+
+            var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed/2 * Time.deltaTime);
+
             head.transform.LookAt(player.transform.position - new Vector3(0, 1.5f, 0));
+            anim.SetBool("Feet", false);
         }
 		else
 		{
+            var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
             navMeshAgent.SetDestination(transform.position);
             head.transform.LookAt(player.transform.position- new Vector3(0,1.5f,0));
-            anim.SetLayerWeight(1, 100);
         }
     }
     public IEnumerator DoDamage(GameObject player)
@@ -152,15 +158,17 @@ public class EnemyStateMachine : MonoBehaviour
     }
     public void Attack()
 	{
-        anim.SetLayerWeight(2, 100);
+        anim.SetLayerWeight(1, 100);
         int randomAtt = Random.Range(1, numberOffAttacks+1);
         anim.SetTrigger("Attack" + randomAtt.ToString());
+        anim.SetBool("Feet", true);
         attacking = true;
         Invoke("ResetAnim", attackCoolDown);
 	}
 	public void ResetAnim()
 	{
-        anim.SetLayerWeight(2, 0);
+        anim.SetBool("Feet", false);
+        anim.SetLayerWeight(1, 0);
         attacking = false;
     }
 	public void HitBoxTrigger(int i)

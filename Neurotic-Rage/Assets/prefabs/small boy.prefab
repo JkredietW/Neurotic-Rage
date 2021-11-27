@@ -7095,7 +7095,7 @@ GameObject:
   - component: {fileID: 919132148383939818}
   - component: {fileID: 919132148383939819}
   m_Layer: 0
-  m_Name: smoll
+  m_Name: small boy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7110,7 +7110,7 @@ Transform:
   m_GameObject: {fileID: 8846287464891207075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 187.00453, y: 0.09970802, z: 165.33067}
-  m_LocalScale: {x: 1.15, y: 1.15, z: 1.15}
+  m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
   m_Children:
   - {fileID: 954576659456935815}
   - {fileID: 7439164441344513938}
@@ -7191,17 +7191,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0311490021228745af42cf956db33f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackCoolDown: 0
   attackRange: 1.32
   chaseRange: 10
   destroyTime: 1.25
   hitBoxRange: 3
   damage: 15
   toCloseRange: 1.35
+  rotationSpeed: 0
   numberOffAttacks: 2
   handPos: {fileID: 6304069426369150170}
   player: {fileID: 0}
   navMeshAgent: {fileID: 919132148383939819}
   anim: {fileID: 2841683320089693539}
+  head: {fileID: 0}
 --- !u!195 &919132148383939819
 NavMeshAgent:
   m_ObjectHideFlags: 0
