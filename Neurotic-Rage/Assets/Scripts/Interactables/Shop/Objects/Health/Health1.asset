@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afda07128d851724f93bc71d61e0b567, type: 3}
   m_Name: Health1
   m_EditorClassIdentifier: 
-  moneyValue: 100
+  moneyValue: 50
   itemType: 0
   itemName: 
   itemSprite: {fileID: 0}
