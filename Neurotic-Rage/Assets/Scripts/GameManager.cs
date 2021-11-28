@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] Enemies;
     public List<GameObject> enemiesAlive;
 
+    //shop
+    public GameObject shoppanel, shopUI;
+
     //privates
     int waveCount;
     int totalWaveCount; //this one for stats <---

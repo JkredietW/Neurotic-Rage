@@ -30,7 +30,7 @@ public class PlayerShop : InterActable
     }
     private void Start()
     {
-        GameObject shoppanel = GameObject.FindGameObjectWithTag("Shoppanel");
+        GameObject shoppanel = FindObjectOfType<GameManager>().shoppanel;
         foreach (Transform item in shoppanel.transform)
         {
             slotLocations.Add(item);

@@ -60,7 +60,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject swordOnBack, swordInHand;
 
     [Header("Shop")]
-    bool shopInRange;
+    bool shopInRange, shopIsOpen;
+    public GameObject shop;
 
     private void Awake()
     {
@@ -92,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
         weaponSlots[1].ammo = weaponSlots[1].maxAmmo;
         UpdateAmmoText();
         mayMove = true;
+        shop = FindObjectOfType<GameManager>().shopUI;
     }
 
     private void Update()
@@ -131,14 +133,27 @@ public class PlayerMovement : MonoBehaviour
                 StartStopRunning(true);
             }
         }
-        if (Input.GetKeyDown(KeyCode.E) && weaponsInRange.Count > 0 && mayMove || Input.GetButtonDown("AGamePadButton") && weaponsInRange.Count > 0 && mayMove)
+        if (Input.GetKeyDown(KeyCode.E) && mayMove || Input.GetButtonDown("AGamePadButton")  && mayMove)
         {
-            moveDir = Vector3.zero;
-            StartStopRunning(false);
-            mayMove = false;
-            Invoke(nameof(MayMoveAgain), 1);
-            SwapWithWorldWeapon();
-            RemoveOutOfRangeWeapons();
+            if (shopInRange)
+            {
+                OpenShop();
+            }
+            else if(weaponsInRange.Count > 0)
+            {
+                moveDir = Vector3.zero;
+                StartStopRunning(false);
+
+                mayMove = false;
+                Invoke(nameof(MayMoveAgain), 1);
+
+                SwapWithWorldWeapon();
+                RemoveOutOfRangeWeapons();
+            }
+            else
+            {
+                return;
+            }
         }
     }
     private void FixedUpdate()
@@ -152,10 +167,6 @@ public class PlayerMovement : MonoBehaviour
         {
             controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
         }
-    }
-    public void ShopToggle(bool _bool)
-    {
-        shopInRange = _bool;
     }
     void MayMoveAgain()
     {
@@ -177,6 +188,11 @@ public class PlayerMovement : MonoBehaviour
             babyAnimator.SetTrigger("DoRunning");
         }
         babyAnimator.SetBool("IsRunning", isRunning);
+    }
+    void OpenShop()
+    {
+        shopIsOpen = !shopIsOpen;
+        shop.SetActive(shopIsOpen);
     }
     void SwapWithWorldWeapon()
     {
@@ -469,15 +485,20 @@ public class PlayerMovement : MonoBehaviour
         weaponsInRange.Remove(oldWeapon);
         ShowTextE();
     }
+    public void ShopToggle(bool _bool)
+    {
+        shopInRange = _bool;
+        ShowTextE();
+    }
     void ShowTextE()
     {
         if(lastInputWasController)
         {
-            pickUpWeaponText.text = "press A to swap weapon.";
+            pickUpWeaponText.text = "press A.";
         }
         else if(SystemInfo.deviceType == DeviceType.Desktop)
         {
-            pickUpWeaponText.text = "press E to swap weapon.";
+            pickUpWeaponText.text = "press E.";
         }
         else if(SystemInfo.deviceType == DeviceType.Handheld)
         {
@@ -486,7 +507,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //on/off
-        if (weaponsInRange.Count > 0)
+        if (weaponsInRange.Count > 0 || shopInRange)
         {
             pickUpWeaponText.gameObject.SetActive(true);
         }

@@ -275,6 +275,7 @@ MonoBehaviour:
   bloodSpat: {fileID: 8020872181441132644, guid: bdcadd29fdb64bd499ae57eb309edb8c, type: 3}
   IgnoreTag1: Player
   IgnoreTag2: Bullet
+  IgnoreTag3: Shop
 --- !u!1 &7274682531152175277
 GameObject:
   m_ObjectHideFlags: 0

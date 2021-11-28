@@ -60,29 +60,24 @@ public class EnemyStateMachine : MonoBehaviour
         {
             case EnemyStates.standby:
                 EnemyStandbyState();
-                print("1");
 
                 break;
             case EnemyStates.chase:
                 EnemyChaseState();
-                print("2");
 
                 break;
             case EnemyStates.patrol:
                 EnemyPatrolState();
-                print("3");
 
                 break;
             case EnemyStates.attack:
                 EnemyAttackState();
-                print("4");
 
                 break;
             case EnemyStates.dying:
                 StartCoroutine(EnemyDyingState());
                 break;
             default:
-                print("5");
                 Debug.LogError("stateChanger reached default state");
 
                 break;

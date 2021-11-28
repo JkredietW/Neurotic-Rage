@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UiItem : MonoBehaviour
 {
@@ -13,11 +14,13 @@ public class UiItem : MonoBehaviour
         {
             GetComponent<Image>().sprite = heldItem.itemSprite;
             GetComponent<Image>().color = Color.white;
+            GetComponentInChildren<TextMeshProUGUI>().text = heldItem.moneyValue.ToString();
         }
         else
         {
             GetComponent<Image>().sprite = null;
             GetComponent<Image>().color = Color.clear;
+            GetComponentInChildren<TextMeshProUGUI>().text = string.Empty;
         }
     }
 }
