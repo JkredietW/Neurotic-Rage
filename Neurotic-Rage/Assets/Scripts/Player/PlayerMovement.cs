@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public VisualEffect moveDust;
     bool dustIsInEffect;
     bool mayMove;
+    bool isSwitchingWeapon;
 
     [Header("CameraStats")]
     public LayerMask aimLayer;
@@ -62,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Shop")]
     bool shopInRange, shopIsOpen;
     public GameObject shop;
+    PlayerShop lastShopTouched;
 
     private void Awake()
     {
@@ -193,9 +195,14 @@ public class PlayerMovement : MonoBehaviour
     {
         shopIsOpen = !shopIsOpen;
         shop.SetActive(shopIsOpen);
+        lastShopTouched.ShopOpened();
     }
     void SwapWithWorldWeapon()
     {
+        if(isSwitchingWeapon)
+        {
+            return;
+        }
         animator.SetTrigger("WeaponPickUp");
         bool swapCurrentWeapon = currentWeapon.type == weaponType.light ? true : false;
         Weapon oldWeapon = currentWeapon;
@@ -225,8 +232,13 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ScrollWeapon()
     {
-        if(Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f)
+        if(!mayMove || isSwitchingWeapon)
         {
+            return;
+        }
+        if (Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f)
+        {
+            isSwitchingWeapon = true;
             animator.SetTrigger("SwitchWeapon");
             babyAnimator.SetTrigger("Switch");
             currentWeaponSlot -= (int)Input.mouseScrollDelta.y;
@@ -240,9 +252,11 @@ public class PlayerMovement : MonoBehaviour
             }
             currentWeapon = weaponSlots[currentWeaponSlot];
             attackCooldown = currentWeapon.OnSwap();
+            Invoke(nameof(SecAfterSwapWeapon), 0.5f);
         }
         if(Input.GetButtonDown("RightBumber"))
         {
+            isSwitchingWeapon = true;
             animator.SetTrigger("SwitchWeapon");
             currentWeaponSlot -= 1;
             if (currentWeaponSlot > weaponSlots.Count - 1)
@@ -255,8 +269,13 @@ public class PlayerMovement : MonoBehaviour
             }
             currentWeapon = weaponSlots[currentWeaponSlot];
             attackCooldown = currentWeapon.OnSwap();
+            Invoke(nameof(SecAfterSwapWeapon), 0.5f);
         }
         UpdateAmmoText();
+    }
+    void SecAfterSwapWeapon()
+    {
+        isSwitchingWeapon = false;
     }
     public IEnumerator MeleeAttack()
     {
@@ -268,6 +287,7 @@ public class PlayerMovement : MonoBehaviour
             hasMeleeAttacked = true;
             nextAttack = Time.time + meleeAttackCooldown;
             animator.SetTrigger("MeleeAttack");
+            //babyAnimator.SetTrigger("MeleeAttack");
             //damage/hitbox in animator
             yield return new WaitForSeconds(meleeAttackCooldown);
             swordOnBack.SetActive(true);
@@ -277,6 +297,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FireWeapon()
     {
+        if(isReloading || isSwitchingWeapon)
+        {
+            return;
+        }
         if (Input.GetButton("Fire1"))
         {
             lastInputWasController = false;
@@ -331,6 +355,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public IEnumerator ReloadWeapon()
     {
+        if(isSwitchingWeapon)
+        {
+            yield break;
+        }
         isReloading = true;
         yield return new WaitForSeconds(1);
         if (!hasMeleeAttacked || currentWeapon.ammo == currentWeapon.maxAmmo)
@@ -485,8 +513,9 @@ public class PlayerMovement : MonoBehaviour
         weaponsInRange.Remove(oldWeapon);
         ShowTextE();
     }
-    public void ShopToggle(bool _bool)
+    public void ShopToggle(bool _bool, PlayerShop _shop)
     {
+        lastShopTouched = _shop;
         shopInRange = _bool;
         ShowTextE();
     }

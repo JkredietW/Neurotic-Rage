@@ -7,7 +7,7 @@ TagManager:
   - Button
   - Walkable
   - Bullet
-  - Shoppanel
+  - Shop
   layers:
   - Default
   - TransparentFX

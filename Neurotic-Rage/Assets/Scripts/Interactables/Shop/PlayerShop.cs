@@ -16,7 +16,7 @@ public class PlayerShop : InterActable
     int resetRoll;
     [SerializeField] int resetAfterWaveCount;
     //will be sscripable objects later
-    public List<ShopItem> upgradeTypes;
+    public List<ShopItem> ItemTypes;
     [SerializeField] Discounts discountList;
     private void Awake()
     {
@@ -26,7 +26,15 @@ public class PlayerShop : InterActable
             upgradeSlots.Add(default);
         }
         ammoSlots = new List<ShopItem>();
+        for (int i = 0; i < 6; i++)
+        {
+            ammoSlots.Add(default);
+        }
         healthSlots = new List<ShopItem>();
+        for (int i = 0; i < 4; i++)
+        {
+            healthSlots.Add(default);
+        }
     }
     private void Start()
     {
@@ -36,7 +44,7 @@ public class PlayerShop : InterActable
             slotLocations.Add(item);
         }
         RollItems();
-        resetRoll = Random.Range(0, 6);
+        resetRoll = Random.Range(3, 6);
     }
     public void AfterWave()
     {
@@ -54,33 +62,47 @@ public class PlayerShop : InterActable
             float roll = Random.Range(0, 101);
             if (chanceForFirstItem >= roll)
             {
-                upgradeSlots[0] = upgradeTypes[0];
+                upgradeSlots[0] = ItemTypes[Random.Range(0, ItemTypes.Count)];
             }
             roll = Random.Range(0, 101);
             if (chanceForSecondItem >= roll)
             {
-                upgradeSlots[1] = upgradeTypes[0];
+                upgradeSlots[1] = ItemTypes[Random.Range(0, ItemTypes.Count)];
             }
             roll = Random.Range(0, 101);
             if (chanceForThirdItem >= roll)
             {
-                upgradeSlots[2] = upgradeTypes[0];
+                upgradeSlots[2] = ItemTypes[Random.Range(0, ItemTypes.Count)];
             }
         }
-        else if (type == ShopType.Ammo || type == ShopType.Health)
+        else if (type == ShopType.Ammo)
         {
-            //maybe needed later
+            //normal ammo
+            ammoSlots[0] = ItemTypes[0];
+            ammoSlots[1] = ItemTypes[1];
+            ammoSlots[2] = ItemTypes[Random.Range(2, 4)];
+            //special ammo
+            ammoSlots[3] = ItemTypes[4];
+            ammoSlots[4] = ItemTypes[5];
+            ammoSlots[5] = ItemTypes[Random.Range(6, 8)];
+        }
+        else if(type == ShopType.Health)
+        {
+            ammoSlots[0] = ItemTypes[0];
+            ammoSlots[1] = ItemTypes[1];
+            ammoSlots[2] = ItemTypes[2];
+            ammoSlots[3] = ItemTypes[3];
         }
     }
     //open shop here
     public override void OnPlayerEnter(PlayerMovement _thisOne)
     {
         base.OnPlayerEnter(_thisOne);
-        player.ShopToggle(true);
+        player.ShopToggle(true, this);
     }
     public override void OnPlayerExit()
     {
-        player.ShopToggle(false);
+        player.ShopToggle(false, null);
         base.OnPlayerExit();
     }
     public void ShopOpened()
