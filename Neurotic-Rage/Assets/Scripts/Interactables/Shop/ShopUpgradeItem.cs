@@ -6,5 +6,14 @@ using UnityEngine;
 [System.Serializable]
 public class ShopUpgradeItem : ShopItem
 {
-    //is voor later
+    public UpgradeItemStats stats;
+}
+[System.Serializable]
+public class UpgradeItemStats
+{
+    public int pierces;
+    public float damage;
+    public float attackSpeed;
+    public int ammo;
+    public int health;
 }
