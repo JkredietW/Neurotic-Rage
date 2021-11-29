@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public FadeToFromBlack fb;
     public GameObject playPanel;
     public GameObject settingsPanel;
     public float secondsToReopen;
@@ -45,9 +46,10 @@ public class MainMenu : MonoBehaviour
 
     public IEnumerator IEStart()
     {
-        yield return new WaitForSeconds(secondsToReopen);
         garage = !garage;
         garageDoor.SetBool("Garage", garage);
+        yield return new WaitForSeconds(secondsToReopen);
+        fb.FadeFromBlack(1);
     }
 
     public IEnumerator CAOG()
