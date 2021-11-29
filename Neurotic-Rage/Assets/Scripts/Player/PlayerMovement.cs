@@ -49,6 +49,14 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerRotation;
     public TextMeshProUGUI normalAmmoText, specialAmmoText, weaponAmmoText;
 
+    [Header("Upgrades")]
+    public List<ShopUpgradeItem> HeldUpgrades;
+    int extra_pierces;
+    float extra_damage;
+    float extra_attackSpeed;
+    int extra_ammo;
+    int extra_health;
+
     [Header("MiniMap")]
     public GameObject miniMapObject;
     public GameObject miniMapCameraObject;
@@ -196,6 +204,7 @@ public class PlayerMovement : MonoBehaviour
         shopIsOpen = !shopIsOpen;
         shop.SetActive(shopIsOpen);
         lastShopTouched.ShopOpened();
+        Time.timeScale = shopIsOpen == true ? 0 : 1;
     }
     void SwapWithWorldWeapon()
     {
@@ -232,7 +241,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ScrollWeapon()
     {
-        if(!mayMove || isSwitchingWeapon)
+        if(!mayMove || isSwitchingWeapon || shopIsOpen)
         {
             return;
         }
@@ -279,6 +288,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public IEnumerator MeleeAttack()
     {
+        if(shopIsOpen || !mayMove)
+        {
+            yield break;
+        }
         if (Time.time >= nextAttack && !hasMeleeAttacked && mayMove)
         {
             StartStopRunning(false);
@@ -297,7 +310,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FireWeapon()
     {
-        if(isReloading || isSwitchingWeapon)
+        if(isReloading || isSwitchingWeapon || shopIsOpen)
         {
             return;
         }
@@ -355,7 +368,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public IEnumerator ReloadWeapon()
     {
-        if(isSwitchingWeapon)
+        if(isSwitchingWeapon || shopIsOpen)
         {
             yield break;
         }
@@ -420,6 +433,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if(bigMapObject.activeSelf)
             {
+                Time.timeScale = 1;
                 bigMapObject.SetActive(false);
                 bigMapCameraObject.SetActive(false);
                 miniMapCameraObject.SetActive(true);
@@ -427,6 +441,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
+                Time.timeScale = 0;
                 bigMapObject.SetActive(true);
                 bigMapCameraObject.SetActive(true);
                 miniMapCameraObject.SetActive(false);
