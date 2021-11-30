@@ -9,12 +9,14 @@ public class PlayerMovement : MonoBehaviour
     CharacterController controller;
     Camera playerCamera;
     PlayerAim playerAim;
+    [HideInInspector]public PlayerHealth health;
 
     [Header("PlayerStats")]
     public float meleeAttackCooldown;
     public float movementSpeed = 1;
     public float gravity;
     public int currentAmmo, maxAmmo, currentSpecialAmmo, maxSpecialAmmo;
+    public int baseAmmo, baseSpecialAmmo;
     [HideInInspector] public bool lastInputWasController;
     [HideInInspector] public bool isRunning;
 
@@ -49,13 +51,13 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerRotation;
     public TextMeshProUGUI normalAmmoText, specialAmmoText, weaponAmmoText;
 
-    [Header("Upgrades")]
-    public List<ShopUpgradeItem> HeldUpgrades;
+    //upgradeStats
     int extra_pierces;
     float extra_damage;
     float extra_attackSpeed;
     int extra_ammo;
     int extra_health;
+    int extra_bullets;
 
     [Header("MiniMap")]
     public GameObject miniMapObject;
@@ -79,10 +81,11 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
         playerAim = GetComponentInChildren<PlayerAim>();
+        health = GetComponentInChildren<PlayerHealth>();
 
         //set variables
         playerAim.GetVariables();
-        attackCooldown = currentWeapon.OnSwap();
+        attackCooldown = currentWeapon.OnSwap(0);
         weaponsInRange = new List<WorldWeapon>();
 
         //check what device is being used
@@ -99,6 +102,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
+        baseAmmo = maxAmmo;
+        baseSpecialAmmo = maxSpecialAmmo;
         weaponSlots[0].ammo = weaponSlots[0].maxAmmo;
         weaponSlots[1].ammo = weaponSlots[1].maxAmmo;
         UpdateAmmoText();
@@ -182,12 +187,28 @@ public class PlayerMovement : MonoBehaviour
     {
         mayMove = true;
     }
-
+    public void GiveStats(int _pierces, float _damage, float _attckSpeed, int _ammo, int _health, int _bullets)
+    {
+        extra_pierces = _pierces;
+        extra_damage = _damage;
+        extra_attackSpeed = _attckSpeed;
+        extra_ammo = _ammo;
+        MoreMaxAmmo();
+        extra_health = _health;
+        health.GainMoreMaxHealth(extra_health);
+        extra_bullets = _bullets;
+        //stats moeten nog op attack applied worden
+    }
     public void GrantAmmo(int amount, int specialAmount)
     {
         currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, maxAmmo);
         currentSpecialAmmo = Mathf.Clamp(currentSpecialAmmo + specialAmount, 0, maxSpecialAmmo);
         UpdateAmmoText();
+    }
+    void MoreMaxAmmo()
+    {
+        maxAmmo = baseAmmo + extra_ammo;
+        maxSpecialAmmo = baseAmmo + extra_ammo;
     }
     void StartStopRunning(bool _bool)
     {
@@ -260,7 +281,7 @@ public class PlayerMovement : MonoBehaviour
                 currentWeaponSlot = weaponSlots.Count - 1;
             }
             currentWeapon = weaponSlots[currentWeaponSlot];
-            attackCooldown = currentWeapon.OnSwap();
+            attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
         }
         if(Input.GetButtonDown("RightBumber"))
@@ -277,7 +298,7 @@ public class PlayerMovement : MonoBehaviour
                 currentWeaponSlot = weaponSlots.Count - 1;
             }
             currentWeapon = weaponSlots[currentWeaponSlot];
-            attackCooldown = currentWeapon.OnSwap();
+            attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
         }
         UpdateAmmoText();
@@ -336,10 +357,10 @@ public class PlayerMovement : MonoBehaviour
                 currentWeapon.ammo -= 1;
                 UpdateAmmoText();
                 muzzleFlashObject.Play();
-                for (int i = 0; i < currentWeapon.projectileCount; i++)
+                for (int i = 0; i < currentWeapon.projectileCount + extra_bullets; i++)
                 {
                     //how much each projectile is away from eachother
-                    total = currentWeapon.shootAngle / currentWeapon.projectileCount;
+                    total = currentWeapon.shootAngle / currentWeapon.projectileCount + extra_bullets;
 
                     //get max rotation in radius
                     float value = (float)(Mathf.Atan2(playerAim.transform.rotation.y, playerAim.transform.rotation.w) / Mathf.PI) * 180;
@@ -351,8 +372,8 @@ public class PlayerMovement : MonoBehaviour
                     float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
 
                     //spawn bullet
-                    Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * (currentWeapon.projectileCount / 2)) + (total * i) + roll, 0)));
-                    spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage, currentWeapon.pierceAmount, playerRotation.rotation);
+                    Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * (currentWeapon.projectileCount + extra_bullets / 2)) + (total * i) + roll, 0)));
+                    spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage + extra_damage, currentWeapon.pierceAmount + extra_pierces, playerRotation.rotation);
                     spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
                 }
                 if(currentWeapon.ammo == 0 && mayMove)

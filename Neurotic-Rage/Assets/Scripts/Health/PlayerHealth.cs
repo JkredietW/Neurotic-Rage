@@ -15,4 +15,8 @@ public class PlayerHealth : BaseHealth
         base.DoDamage(_damage);
         animator.SetTrigger("GetHit");
     }
+    public void GainMoreMaxHealth(float _extraHealth)
+    {
+        maxhealth = baseMaxHealth + _extraHealth;
+    }
 }

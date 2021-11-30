@@ -9,6 +9,7 @@ public class BulletBehavior : MonoBehaviour
     int pierceAmount;
     Quaternion rotation;
     public GameObject bloodSpat;
+    public List<string> IgnoreTag;
     public string IgnoreTag1;
     public string IgnoreTag2;
     public string IgnoreTag3;
@@ -42,10 +43,13 @@ public class BulletBehavior : MonoBehaviour
         }
         else
         {
-            if(!other.gameObject.CompareTag(IgnoreTag1) && !other.gameObject.CompareTag(IgnoreTag2) && !other.gameObject.CompareTag(IgnoreTag3))
+            for (int i = 0; i < IgnoreTag.Count; i++)
             {
-                //hier particle poef doen ofzo?
-                Destroy(gameObject);
+                if(!IgnoreTag.Contains(other.gameObject.tag) && pierceAmount > 0)
+                {
+                    pierceAmount--;
+                    Destroy(gameObject);
+                }
             }
         }
     }

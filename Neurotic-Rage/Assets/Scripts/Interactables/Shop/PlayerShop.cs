@@ -99,6 +99,7 @@ public class PlayerShop : InterActable
     {
         base.OnPlayerEnter(_thisOne);
         player.ShopToggle(true, this);
+        FindObjectOfType<GameManager>().GiveLastShop(this);
     }
     public override void OnPlayerExit()
     {
@@ -108,17 +109,64 @@ public class PlayerShop : InterActable
     public void ShopOpened()
     {
         //put items in slots
-        for (int i = 0; i < slotLocations.Count; i++)
+        if (type == ShopType.Upgrades)
         {
-            if (i < upgradeSlots.Count && upgradeSlots[i] != null)
+            for (int i = 0; i < slotLocations.Count; i++)
             {
-                slotLocations[i].GetComponent<UiItem>().Setup(upgradeSlots[i]);
-            }
-            else
-            {
-                slotLocations[i].GetComponent<UiItem>().Setup(default);
+                if (i < upgradeSlots.Count && upgradeSlots[i] != null)
+                {
+                    slotLocations[i].GetComponent<UiItem>().Setup(upgradeSlots[i]);
+                }
+                else
+                {
+                    slotLocations[i].GetComponent<UiItem>().Setup(default);
+                }
             }
         }
+        else if (type == ShopType.Ammo)
+        {
+            for (int i = 0; i < slotLocations.Count; i++)
+            {
+                if (i < ammoSlots.Count && ammoSlots[i] != null)
+                {
+                    slotLocations[i].GetComponent<UiItem>().Setup(ammoSlots[i]);
+                }
+                else
+                {
+                    slotLocations[i].GetComponent<UiItem>().Setup(default);
+                }
+            }
+        }
+        else if (type == ShopType.Health)
+        {
+            for (int i = 0; i < slotLocations.Count; i++)
+            {
+                if (i < healthSlots.Count && healthSlots[i] != null)
+                {
+                    slotLocations[i].GetComponent<UiItem>().Setup(healthSlots[i]);
+                }
+                else
+                {
+                    slotLocations[i].GetComponent<UiItem>().Setup(default);
+                }
+            }
+        }
+    }
+    public void RemoveItem(ShopItem _item)
+    {
+        if(_item.itemType == ShopType.Upgrades)
+        {
+            upgradeSlots.Remove(_item);
+        }
+        else if(_item.itemType == ShopType.Ammo)
+        {
+            ammoSlots.Remove(_item);
+        }
+        else if(_item.itemType == ShopType.Health)
+        {
+            healthSlots.Remove(_item);
+        }
+        ShopOpened();
     }
 }
 [System.Serializable]

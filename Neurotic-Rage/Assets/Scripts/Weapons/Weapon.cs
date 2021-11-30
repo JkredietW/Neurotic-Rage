@@ -21,9 +21,10 @@ public class Weapon : ScriptableObject
     public float rotationOffset;
     public float shootAngle;
 
-    public float OnSwap()
+    public float OnSwap(float _extraAttackSpeed)
     {
-        float attackSpeed = attacksPerSecond / (attacksPerSecond * attacksPerSecond);
+        float temp = _extraAttackSpeed + attacksPerSecond;
+        float attackSpeed = temp / (temp * temp);
         return attackSpeed;
     }
     private void Awake()

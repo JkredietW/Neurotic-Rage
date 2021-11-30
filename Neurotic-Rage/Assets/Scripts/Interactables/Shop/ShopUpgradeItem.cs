@@ -16,4 +16,5 @@ public class UpgradeItemStats
     public float attackSpeed;
     public int ammo;
     public int health;
+    public int extraBullets;
 }

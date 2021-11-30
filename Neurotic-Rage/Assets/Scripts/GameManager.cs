@@ -17,10 +17,16 @@ public class GameManager : MonoBehaviour
     public GameObject shoppanel, shopUI;
 
     //privates
-    int waveCount;
+    int waveCount; //this one for scaling
     int totalWaveCount; //this one for stats <---
     int killAmount;
-    float money;
+
+    [Header("player Stats")]
+    public float money;
+    public List<ShopUpgradeItem> HeldUpgrades;
+    public UiItem selectedItemInUI;
+    PlayerShop lastShop;
+    ShopItem selectedItem;
 
 
     PlayerMovement player;
@@ -73,6 +79,7 @@ public class GameManager : MonoBehaviour
         if (!waveIsInProgress)
         {
             waveIsInProgress = true;
+            //when max waves is reached, use previous one
             if (waves[waveCount].totalSpawnAmount == 0)
             {
                 waveCount--;
@@ -140,6 +147,64 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    #region player stats
+    public void GiveLastShop(PlayerShop _shop)
+    {
+        lastShop = _shop;
+    }
+    public void GiveSelectedItem(UiItem _selectedItem)
+    {
+        selectedItem = _selectedItem.heldItem;
+        selectedItemInUI.Setup(selectedItem);
+    }
+    public void BuyItem()
+    {
+        if (money >= selectedItem.moneyValue)
+        {
+            if (selectedItem.itemType == ShopType.Upgrades)
+            {
+                money -= selectedItem.moneyValue;
+                HeldUpgrades.Add(selectedItem as ShopUpgradeItem);
+                CalculateStats();
+            }
+            else if (selectedItem.itemType == ShopType.Ammo)
+            {
+                ShopAmmo tempItem = selectedItem as ShopAmmo;
+                player.GrantAmmo(tempItem.normalAmmoAmount, tempItem.specialAmmoAmount);
+            }
+            else if (selectedItem.itemType == ShopType.Health)
+            {
+                ShopHealth tempItem = selectedItem as ShopHealth;
+                player.health.RecieveHealth(tempItem.healthAmount);
+            }
+            selectedItemInUI.Setup(null);
+            RemoveItemFromShop(selectedItem);
+        }
+    }
+    void RemoveItemFromShop(ShopItem _removeThis)
+    {
+        lastShop.RemoveItem(_removeThis);
+    }
+    void CalculateStats()
+    {
+        int total_pierces = 0;
+        float total_damage = 0;
+        float total_attackSpeed = 0;
+        int total_ammo = 0;
+        int total_health = 0;
+        int total_bullets = 0;
+        for (int i = 0; i < HeldUpgrades.Count; i++)
+        {
+            total_pierces += HeldUpgrades[i].stats.pierces;
+            total_damage += HeldUpgrades[i].stats.damage;
+            total_attackSpeed += HeldUpgrades[i].stats.attackSpeed;
+            total_ammo += HeldUpgrades[i].stats.ammo;
+            total_health += HeldUpgrades[i].stats.health;
+            total_bullets += HeldUpgrades[i].stats.extraBullets;
+        }
+        player.GiveStats(total_pierces, total_damage, total_attackSpeed, total_ammo, total_health, total_bullets);
+    }
+    #endregion
 }
 
 
