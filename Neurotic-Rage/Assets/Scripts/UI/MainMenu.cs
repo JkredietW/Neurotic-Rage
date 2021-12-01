@@ -82,9 +82,17 @@ public class MainMenu : MonoBehaviour
     public void IELoadScene(int i)
 	{
         SceneManager.LoadScene(i, LoadSceneMode.Single);
-    }
-    public void IEAddExtraScene(int i)
+	}
+	public void IEAddExtraScene(int i)
 	{
-        SceneManager.LoadScene(i, LoadSceneMode.Additive);
+		SceneManager.LoadScene(i, LoadSceneMode.Additive);
+	}
+    public void Quit()
+	{
+        Application.Quit();
     }
+	private void OnApplicationQuit()
+	{
+		
+	}
 }

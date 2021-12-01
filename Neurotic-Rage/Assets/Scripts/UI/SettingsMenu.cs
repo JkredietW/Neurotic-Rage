@@ -13,9 +13,11 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown resDrop;
     private void Start()
     {
-        mixer.SetFloat("MasterVolume", Mathf.Log10(PlayerPrefs.GetFloat("masterVol")) * 20);
-        mixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("musicVol")) * 20);
-        mixer.SetFloat("SFXVolume", Mathf.Log10(PlayerPrefs.GetFloat("sfxVol")) * 20);
+        mixer.SetFloat("Master", Mathf.Log10(PlayerPrefs.GetFloat("Master")) * 20);
+        mixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat("Music")) * 20);
+        mixer.SetFloat("SFX", Mathf.Log10(PlayerPrefs.GetFloat("SFX")) * 20);
+        mixer.SetFloat("UI", Mathf.Log10(PlayerPrefs.GetFloat("UI")) * 20);
+
         resolutions = Screen.resolutions;
         resDrop.ClearOptions();
         List<string> options = new List<string>();
@@ -34,27 +36,25 @@ public class SettingsMenu : MonoBehaviour
         resDrop.value = currentResIndex;
         resDrop.RefreshShownValue();
     }
-
-    void Update()
-    {
-        
-    }
-
     public void SetMainVolume(float sliderValue)
     {
-        mixer.SetFloat("MasterVolume", Mathf.Log10(sliderValue) * 20);
+        mixer.SetFloat("Master", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("Master", sliderValue);
     }
     public void SetMusicVolume(float sliderValue)
     {
-        mixer.SetFloat("MusicVolume", Mathf.Log10(sliderValue) * 20);
+        mixer.SetFloat("Music", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("Music", sliderValue);
     }
     public void SetSfxVolume(float sliderValue)
     {
-        mixer.SetFloat("SFXVolume", Mathf.Log10(sliderValue) * 20);
+        mixer.SetFloat("SFX", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("SFX", sliderValue);
     }
     public void SetUiVolume(float sliderValue)
     {
-        mixer.SetFloat("UiVolume", Mathf.Log10(sliderValue) * 20);
+        mixer.SetFloat("UI", Mathf.Log10(sliderValue) * 20);
+        PlayerPrefs.SetFloat("UI", sliderValue);
     }
     public void SetResolution(int resIndex)
     {

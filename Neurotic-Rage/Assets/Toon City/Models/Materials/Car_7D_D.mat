@@ -10,7 +10,7 @@ Material:
   m_Name: Car_7D_D
   m_Shader: {fileID: 4800000, guid: 66506ee874bbf894ea3a4077cbdbdf47, type: 3}
   m_ShaderKeywords: _EMISSION
-  m_LightmapFlags: 1
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -75,6 +75,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaCutoff: 0.5
     - _BumpScale: 1
@@ -88,7 +89,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Outline: 0.001
-    - _OutlineWidth: 0.0065
+    - _OutlineWidth: 0.0001
     - _OutlineWidth2: 0.0065
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
@@ -100,4 +101,5 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0.1102941, g: 0.11110509, b: 0.11110509, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
