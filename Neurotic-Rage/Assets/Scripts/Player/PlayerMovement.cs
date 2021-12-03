@@ -352,7 +352,7 @@ public class PlayerMovement : MonoBehaviour
             hasMeleeAttacked = true;
             nextAttack = Time.time + meleeAttackCooldown;
             animator.SetTrigger("MeleeAttack");
-            //babyAnimator.SetTrigger("MeleeAttack");
+            babyAnimator.SetTrigger("MeleeAttack");
             //damage/hitbox in animator
             yield return new WaitForSeconds(meleeAttackCooldown);
             swordOnBack.SetActive(true);
