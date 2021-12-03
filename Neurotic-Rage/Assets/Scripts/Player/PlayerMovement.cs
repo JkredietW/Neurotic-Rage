@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject desktopUI, mobileUI;
 
     [Header("Weapons")]
+    [SerializeField] GameObject weaponInHand; //used for mesh
+    public List<GameObject> specialWeapons;
     public Weapon currentWeapon;
     public List<Weapon> weaponSlots;
     float nextAttack, attackCooldown;
@@ -271,7 +273,12 @@ public class PlayerMovement : MonoBehaviour
                 currentWeapon.OnSwap(extra_attackSpeed);
                 break;
         }
-
+        weaponInHand.GetComponent<MeshFilter>().mesh = currentWeapon.weaponMesh;
+        if (currentWeapon.type == weaponType.special)
+        {
+            weaponInHand.GetComponent<MeshFilter>().mesh = null;
+            Instantiate(specialWeapons[currentWeapon.specialWeaponId], weaponInHand.transform.position, weaponInHand.transform.rotation, weaponInHand.transform);
+        }
         WorldWeapon temp = weaponsInRange[0];
         weaponsInRange.Remove(weaponsInRange[0]);
         if(temp != null)
@@ -308,6 +315,15 @@ public class PlayerMovement : MonoBehaviour
             currentWeapon = weaponSlots[currentWeaponSlot];
             attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
+            if (weaponInHand.transform.childCount > 0)
+            {
+                Destroy(weaponInHand.transform.GetChild(0).gameObject);
+            }
+            if (currentWeapon.type == weaponType.special)
+            {
+                weaponInHand.GetComponent<MeshFilter>().mesh = null;
+                Instantiate(specialWeapons[currentWeapon.specialWeaponId], weaponInHand.transform.position, weaponInHand.transform.rotation, weaponInHand.transform);
+            }
         }
         if(Input.GetButtonDown("RightBumber"))
         {
@@ -325,13 +341,22 @@ public class PlayerMovement : MonoBehaviour
             currentWeapon = weaponSlots[currentWeaponSlot];
             attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
+            if (weaponInHand.transform.childCount > 0)
+            {
+                Destroy(weaponInHand.transform.GetChild(0).gameObject);
+            }
+            if (currentWeapon.type == weaponType.special)
+            {
+                weaponInHand.GetComponent<MeshFilter>().mesh = null;
+                Instantiate(specialWeapons[currentWeapon.specialWeaponId], weaponInHand.transform.position, weaponInHand.transform.rotation, weaponInHand.transform);
+            }
         }
         UpdateAmmoText();
     }
     void DropWeapon(Weapon _oldWeapon)
     {
         //instatiate weapon that was held
-        Instantiate(worldWeaponPrefab, bulletOrigin.position, playerAim.transform.rotation).Setup(_oldWeapon);
+        Instantiate(worldWeaponPrefab, bulletOrigin.position, playerAim.transform.rotation).Setup(_oldWeapon, true);
         currentWeapon.OnSwap(extra_attackSpeed);
     }
     void SecAfterSwapWeapon()
@@ -409,7 +434,15 @@ public class PlayerMovement : MonoBehaviour
                 }
                 if(currentWeapon.ammo == 0 && mayMove)
                 {
-                    StartCoroutine(ReloadWeapon());
+                    if(currentWeapon.type == weaponType.special)
+                    {
+                        DropWeapon(currentWeapon);
+                        currentWeapon = weaponSlots[currentWeaponSlot];
+                    }
+                    else
+                    {
+                        StartCoroutine(ReloadWeapon());
+                    }
                 }
             }
             else if(mayMove)

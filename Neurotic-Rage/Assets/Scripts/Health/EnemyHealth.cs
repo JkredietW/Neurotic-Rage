@@ -32,7 +32,7 @@ public class EnemyHealth : BaseHealth
         {
             FindObjectOfType<GameManager>().ResetDropChance();
             float chance = Random.Range(0, dropItems.Count);
-            Instantiate(worldWeaponPrefab, transform.position, Quaternion.identity).Setup(dropItems[(int)chance]);
+            Instantiate(worldWeaponPrefab, transform.position, Quaternion.identity).Setup(dropItems[(int)chance], false);
         }
     }
     public void EnemySetup(float _scaling, float _drop, WorldWeapon _worldWeapon, List<Weapon> _weapons)

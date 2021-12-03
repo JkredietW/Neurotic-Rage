@@ -8,6 +8,7 @@ using System;
 public class Weapon : ScriptableObject
 {
     public int weaponId;
+    public int specialWeaponId;
     public weaponType type;
     public Mesh weaponMesh;
     public Mesh weaponMesh2;

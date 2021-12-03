@@ -4049,7 +4049,7 @@ GameObject:
   - component: {fileID: 8096852976470763872}
   - component: {fileID: 8938601930477078116}
   - component: {fileID: 5229236121690446679}
-  m_Layer: 30
+  m_Layer: 11
   m_Name: minimapEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
