@@ -10,6 +10,7 @@ public class Weapon : ScriptableObject
     public int weaponId;
     public weaponType type;
     public Mesh weaponMesh;
+    public Mesh weaponMesh2;
     [Space]
     public float damage;
     public float attacksPerSecond;
@@ -37,4 +38,5 @@ public enum weaponType
 {
     light,
     heavy,
+    special,
 }

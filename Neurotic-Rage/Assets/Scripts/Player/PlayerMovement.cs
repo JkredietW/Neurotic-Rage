@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float meleeAttackCooldown;
     public float movementSpeed = 1;
     public float gravity;
-    public int currentAmmo, maxAmmo, currentSpecialAmmo, maxSpecialAmmo;
-    public int baseAmmo, baseSpecialAmmo;
+    public int currentAmmo, maxAmmo, currentHeavyAmmo, maxHeavyAmmo;
+    public int baseAmmo, baseHeavyAmmo;
     [HideInInspector] public bool lastInputWasController;
     [HideInInspector] public bool isRunning;
 
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     bool isReloading;
     [HideInInspector] public bool isShooting;
     bool hasMeleeAttacked;
-    List<WorldWeapon> weaponsInRange;
+    private List<WorldWeapon> weaponsInRange;
     public WorldWeapon worldWeaponPrefab;
     public TextMeshProUGUI pickUpWeaponText;
 
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     float total;
     public VisualEffect muzzleFlashObject;
     public Transform playerRotation;
-    public TextMeshProUGUI normalAmmoText, specialAmmoText, weaponAmmoText;
+    public TextMeshProUGUI normalAmmoText, heavyAmmoText, weaponAmmoText;
 
     //upgradeStats
     int extra_pierces;
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         baseAmmo = maxAmmo;
-        baseSpecialAmmo = maxSpecialAmmo;
+        baseHeavyAmmo = maxHeavyAmmo;
         weaponSlots[0].ammo = weaponSlots[0].maxAmmo;
         weaponSlots[1].ammo = weaponSlots[1].maxAmmo;
         UpdateAmmoText();
@@ -199,16 +199,16 @@ public class PlayerMovement : MonoBehaviour
         extra_bullets = _bullets;
         //stats moeten nog op attack applied worden
     }
-    public void GrantAmmo(int amount, int specialAmount)
+    public void GrantAmmo(int _amount, int _heavyAmmo)
     {
-        currentAmmo = Mathf.Clamp(currentAmmo + amount, 0, maxAmmo);
-        currentSpecialAmmo = Mathf.Clamp(currentSpecialAmmo + specialAmount, 0, maxSpecialAmmo);
+        currentAmmo = Mathf.Clamp(currentAmmo + _amount, 0, maxAmmo);
+        currentHeavyAmmo = Mathf.Clamp(currentHeavyAmmo + _heavyAmmo, 0, maxHeavyAmmo);
         UpdateAmmoText();
     }
     void MoreMaxAmmo()
     {
         maxAmmo = baseAmmo + extra_ammo;
-        maxSpecialAmmo = baseAmmo + extra_ammo;
+        maxHeavyAmmo = baseAmmo + extra_ammo;
     }
     void StartStopRunning(bool _bool)
     {
@@ -234,30 +234,50 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         animator.SetTrigger("WeaponPickUp");
-        bool swapCurrentWeapon = currentWeapon.type == weaponType.light ? true : false;
+        int swapCurrentWeaponType = -1;
         Weapon oldWeapon = currentWeapon;
-        if(weaponsInRange[0].heldItem.type == weaponType.light)
+        switch (currentWeapon.type)
         {
-            weaponSlots[0] = weaponsInRange[0].heldItem;
-            if(swapCurrentWeapon)
-            {
-                currentWeapon = weaponSlots[0];
-            }
+            case weaponType.light:
+                swapCurrentWeaponType = 0;
+                break;
+            case weaponType.heavy:
+                swapCurrentWeaponType = 1;
+                break;
+            case weaponType.special:
+                swapCurrentWeaponType = 2;
+                break;
         }
-        else if(weaponsInRange[0].heldItem.type == weaponType.heavy)
+        switch (weaponsInRange[0].heldItem.type)
         {
-            weaponSlots[1] = weaponsInRange[0].heldItem;
-            if(!swapCurrentWeapon)
-            {
-                currentWeapon = weaponSlots[1];
-            }
+            case weaponType.light:
+                weaponSlots[0] = weaponsInRange[0].heldItem;
+                if (swapCurrentWeaponType == 0)
+                {
+                    currentWeapon = weaponSlots[0];
+                }
+                DropWeapon(oldWeapon);
+                break;
+            case weaponType.heavy:
+                weaponSlots[1] = weaponsInRange[0].heldItem;
+                if (swapCurrentWeaponType == 1)
+                {
+                    currentWeapon = weaponSlots[1];
+                }
+                DropWeapon(oldWeapon);
+                break;
+            case weaponType.special:
+                currentWeapon = weaponsInRange[0].heldItem;
+                currentWeapon.OnSwap(extra_attackSpeed);
+                break;
         }
-        //instatiate weapon that was held
-        Instantiate(worldWeaponPrefab, bulletOrigin.position, playerAim.transform.rotation).Setup(oldWeapon);
 
         WorldWeapon temp = weaponsInRange[0];
         weaponsInRange.Remove(weaponsInRange[0]);
-        Destroy(temp.gameObject);
+        if(temp != null)
+        {
+            Destroy(temp.gameObject);
+        }
         ShowTextE();
     }
     public void ScrollWeapon()
@@ -268,6 +288,11 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f)
         {
+            if (currentWeapon.type == weaponType.special)
+            {
+                DropWeapon(currentWeapon);
+            }
+
             isSwitchingWeapon = true;
             animator.SetTrigger("SwitchWeapon");
             babyAnimator.SetTrigger("Switch");
@@ -302,6 +327,12 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
         }
         UpdateAmmoText();
+    }
+    void DropWeapon(Weapon _oldWeapon)
+    {
+        //instatiate weapon that was held
+        Instantiate(worldWeaponPrefab, bulletOrigin.position, playerAim.transform.rotation).Setup(_oldWeapon);
+        currentWeapon.OnSwap(extra_attackSpeed);
     }
     void SecAfterSwapWeapon()
     {
@@ -418,20 +449,20 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (currentWeapon.type == weaponType.heavy)
             {
-                if (currentSpecialAmmo == 0)
+                if (currentHeavyAmmo == 0)
                 {
                     print("no more ammo");
                     yield break;
                 }
-                currentSpecialAmmo -= currentWeapon.maxAmmo - currentWeapon.ammo;
-                if(currentSpecialAmmo > 0)
+                currentHeavyAmmo -= currentWeapon.maxAmmo - currentWeapon.ammo;
+                if(currentHeavyAmmo > 0)
                 {
                     currentWeapon.ammo = currentWeapon.maxAmmo;
                 }
                 else
                 {
-                    currentWeapon.ammo = currentWeapon.maxAmmo + currentSpecialAmmo;
-                    currentSpecialAmmo = 0;
+                    currentWeapon.ammo = currentWeapon.maxAmmo + currentHeavyAmmo;
+                    currentHeavyAmmo = 0;
                 }
             }
             isReloading = false;
@@ -445,7 +476,7 @@ public class PlayerMovement : MonoBehaviour
     void UpdateAmmoText()
     {
         normalAmmoText.text = $"Normal ammo : " + currentAmmo.ToString() + $"/" + maxAmmo.ToString();
-        specialAmmoText.text = $"Special ammo : " + currentSpecialAmmo.ToString() + $"/" + maxSpecialAmmo.ToString();
+        heavyAmmoText.text = $"Heavy ammo : " + currentHeavyAmmo.ToString() + $"/" + maxHeavyAmmo.ToString();
         weaponAmmoText.text = $"Weapon ammo : " + currentWeapon.ammo.ToString() + $"/" + currentWeapon.maxAmmo.ToString();
     }
     void ToggleMap()
@@ -527,25 +558,28 @@ public class PlayerMovement : MonoBehaviour
     {
         foreach (var item in weaponsInRange)
         {
-            float distance = Vector3.Distance(transform.position, item.transform.position);
-            if(distance > 5)
+            if(item == null)
             {
                 weaponsInRange.Remove(item);
+            }
+            else
+            {
+                float distance = Vector3.Distance(transform.position, item.transform.position);
+                if(distance > 5)
+                {
+                    weaponsInRange.Remove(item);
+                }
             }
         }
         ShowTextE();
     }
     public void InWeaponRange(WorldWeapon newWeapon)
     {
-        RemoveOutOfRangeWeapons();
-        //press e
         weaponsInRange.Add(newWeapon);
         ShowTextE();
     }
     public void OutOfWeaponRange(WorldWeapon oldWeapon)
     {
-        RemoveOutOfRangeWeapons();
-        //press e
         weaponsInRange.Remove(oldWeapon);
         ShowTextE();
     }

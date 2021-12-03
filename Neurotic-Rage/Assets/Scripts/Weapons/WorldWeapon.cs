@@ -19,16 +19,25 @@ public class WorldWeapon : InterActable
     }
     void DelayAfterStart()
     {
-        gameObject.AddComponent<BoxCollider>();
-        alreadyInWorld = true;
-        Collider[] players = Physics.OverlapSphere(transform.position, GetComponent<SphereCollider>().radius);
-        foreach (var item in players)
+        if (heldItem.type == weaponType.special)
         {
-            if(item.GetComponent<PlayerMovement>())
+            gameObject.AddComponent<BoxCollider>();
+            //hier shit laten weg poeven
+        }
+        else
+        {
+            gameObject.AddComponent<BoxCollider>();
+            Collider[] players = Physics.OverlapSphere(transform.position, GetComponent<SphereCollider>().radius);
+            print(GetComponent<SphereCollider>().radius);
+            foreach (var item in players)
             {
-                player = item.GetComponent<PlayerMovement>();
-                player.InWeaponRange(this);
+                if (item.GetComponent<PlayerMovement>())
+                {
+                    player = item.GetComponent<PlayerMovement>();
+                    //player.InWeaponRange(this);
+                }
             }
+            alreadyInWorld = true;
         }
     }
     public void Setup(Weapon _newWeapon)
@@ -53,10 +62,5 @@ public class WorldWeapon : InterActable
             player = other.GetComponent<PlayerMovement>();
             player.OutOfWeaponRange(this);
         }
-    }
-
-    public void ItemIsPickedUp()
-    {
-        Destroy(gameObject);
     }
 }

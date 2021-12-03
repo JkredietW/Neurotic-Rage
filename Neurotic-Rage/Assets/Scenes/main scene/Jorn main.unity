@@ -1581,6 +1581,12 @@ MonoBehaviour:
   money: 10000
   HeldUpgrades: []
   selectedItemInUI: {fileID: 7834566876306306328}
+  baseScaling: 1
+  scalingPerWave: 0.1
+  dropChancePerMinute: 1
+  worldWeaponPrefab: {fileID: 4785820487764305760, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
+  dropItems:
+  - {fileID: 11400000, guid: 55505f5c6647e0b4f8e1d5608233eae6, type: 2}
 --- !u!4 &744744873
 Transform:
   m_ObjectHideFlags: 0
@@ -3951,6 +3957,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4785820487764305760, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
+      propertyPath: heldItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 55505f5c6647e0b4f8e1d5608233eae6, type: 2}
+    - target: {fileID: 4785820487764305760, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
       propertyPath: alreadyInWorld
       value: 1
       objectReference: {fileID: 0}
@@ -3964,15 +3974,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4785820487764305775, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 179.17
+      value: 518.56
       objectReference: {fileID: 0}
     - target: {fileID: 4785820487764305775, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.79
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4785820487764305775, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 170.01
+      value: 383.77
       objectReference: {fileID: 0}
     - target: {fileID: 4785820487764305775, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
       propertyPath: m_LocalRotation.w

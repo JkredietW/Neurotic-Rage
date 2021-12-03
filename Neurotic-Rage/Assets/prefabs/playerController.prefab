@@ -8334,10 +8334,10 @@ MonoBehaviour:
   gravity: -1
   currentAmmo: 100
   maxAmmo: 1000
-  currentSpecialAmmo: 200
-  maxSpecialAmmo: 1000
+  currentHeavyAmmo: 0
+  maxHeavyAmmo: 0
   baseAmmo: 0
-  baseSpecialAmmo: 0
+  baseHeavyAmmo: 0
   lastInputWasController: 0
   isRunning: 0
   moveDir: {x: 0, y: 0, z: 0}
@@ -8353,6 +8353,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de8483fe09aabcc48877298558c5fb1b, type: 2}
   - {fileID: 11400000, guid: ed28629676a34d2418836ce32a96cdcc, type: 2}
   isShooting: 0
+  weaponsInRange: []
   worldWeaponPrefab: {fileID: 4785820487764305760, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
   pickUpWeaponText: {fileID: 8464676612361931657}
   bulletOrigin: {fileID: 4249084292904869259}
@@ -8360,7 +8361,7 @@ MonoBehaviour:
   muzzleFlashObject: {fileID: 4249084292904869253}
   playerRotation: {fileID: 20452350970647323}
   normalAmmoText: {fileID: 5642399322283035581}
-  specialAmmoText: {fileID: 4524821030782588243}
+  heavyAmmoText: {fileID: 4524821030782588243}
   weaponAmmoText: {fileID: 245749045974036276}
   miniMapObject: {fileID: 8582746054775477706}
   miniMapCameraObject: {fileID: 5928448787377163388}
