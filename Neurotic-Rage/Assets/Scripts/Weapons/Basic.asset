@@ -18,8 +18,8 @@ MonoBehaviour:
   damage: 1
   attacksPerSecond: 20
   reloadTime: 5
-  pierceAmount: 3
-  ammo: 34
+  pierceAmount: 1
+  ammo: 84
   maxAmmo: 100
   bulletSpeed: 50
   projectileCount: 3

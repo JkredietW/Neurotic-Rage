@@ -17,8 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject shoppanel, shopUI;
 
     //privates
-    int waveCount; //this one for scaling
-    int totalWaveCount; //this one for stats <---
+    int waveCount; 
+    int totalWaveCount;
     int killAmount;
 
     [Header("player Stats")]
@@ -28,13 +28,21 @@ public class GameManager : MonoBehaviour
     PlayerShop lastShop;
     ShopItem selectedItem;
 
+    [Header("Scaling")]
+    public float baseScaling = 1, scalingPerWave = 0.1f;
+    float totalScaling;
+    //item drops
+    public float dropChancePerMinute = 1;
+    float totalDropChance, dropChancePerSec;
+    public WorldWeapon worldWeaponPrefab;
+    public List<Weapon> dropItems;
+
 
     PlayerMovement player;
     int totalTimesThisSpawn;
     int totalSpawnsThisWave;
     int lastLocation;
     bool waveIsInProgress;
-    bool checkIfWaveHasEnded;
 
     private void Start()
     {
@@ -44,6 +52,17 @@ public class GameManager : MonoBehaviour
             spawnLocations.Add(item);
         }
         Clock();
+        dropChancePerSec = dropChancePerMinute / 60;
+        StartCoroutine(ItemDropChanceCalculator());
+    }
+    IEnumerator ItemDropChanceCalculator()
+    {
+        totalDropChance += dropChancePerSec;
+        yield return new WaitForSeconds(1);
+    }
+    public void ResetDropChance()
+    {
+        totalDropChance = 0;
     }
     public void Clock()
     {
@@ -76,15 +95,17 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator SpawnEnemy()
     {
+        totalScaling = baseScaling * (scalingPerWave * totalWaveCount);
         if (!waveIsInProgress)
         {
             waveIsInProgress = true;
             //when max waves is reached, use previous one
-            if (waves[waveCount].totalSpawnAmount == 0)
+            if (waveCount > waves.Length)
             {
                 waveCount--;
             }
-            totalSpawnsThisWave = waves[waveCount].totalSpawnAmount;
+            int tempInt = waves[waveCount].totalSpawnAmount;
+            totalSpawnsThisWave = (int)(tempInt * totalScaling);
             for (int z = 0; z < waves[waveCount].totalSpawnAmount; z++)
             {
                 int roll = (int)Random.Range(waves[waveCount].spawnCluster.x, waves[waveCount].spawnCluster.y);
@@ -93,7 +114,9 @@ public class GameManager : MonoBehaviour
                     if(totalSpawnsThisWave > -1)
                     {
                         totalSpawnsThisWave--;
-                        enemiesAlive.Add(Instantiate(Enemies[waves[waveCount].spawnThis], GetSpawnPositionNearPlayer(), Quaternion.identity));
+                        GameObject tempEnemy = Instantiate(Enemies[waves[waveCount].spawnThis], GetSpawnPositionNearPlayer(), Quaternion.identity);
+                        tempEnemy.GetComponent<EnemyHealth>().EnemySetup(totalScaling, totalDropChance, worldWeaponPrefab, dropItems);
+                        enemiesAlive.Add(tempEnemy);
                     }
                 }
                 yield return new WaitForSeconds(timeBetweenSpawns);

@@ -43,11 +43,15 @@ public class BulletBehavior : MonoBehaviour
         }
         else
         {
-            for (int i = 0; i < IgnoreTag.Count; i++)
+            if (!IgnoreTag.Contains(other.gameObject.tag))
             {
-                if(!IgnoreTag.Contains(other.gameObject.tag) && pierceAmount > 0)
+                float roll = Random.Range(0, 100);
+                if (pierceAmount > 0 && roll > 50)
                 {
                     pierceAmount--;
+                }
+                else
+                {
                     Destroy(gameObject);
                 }
             }
