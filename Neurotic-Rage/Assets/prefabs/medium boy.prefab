@@ -7996,7 +7996,7 @@ GameObject:
   - component: {fileID: 919132148383939818}
   - component: {fileID: 919132148383939819}
   - component: {fileID: 8818648649627694225}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: medium boy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

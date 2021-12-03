@@ -2773,7 +2773,7 @@ GameObject:
   - component: {fileID: 2483306680457116688}
   - component: {fileID: 2483306680457116695}
   - component: {fileID: 9159347637631033463}
-  m_Layer: 31
+  m_Layer: 0
   m_Name: large boy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

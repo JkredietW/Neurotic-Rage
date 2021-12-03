@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator SpawnEnemy()
     {
-        totalScaling = baseScaling * (scalingPerWave * totalWaveCount);
+        totalScaling = baseScaling * ((scalingPerWave * totalWaveCount) + 1);
         if (!waveIsInProgress)
         {
             waveIsInProgress = true;
