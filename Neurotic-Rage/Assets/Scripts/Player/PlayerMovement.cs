@@ -191,11 +191,6 @@ public class PlayerMovement : MonoBehaviour
         float extraSprintSpeed = 0;
         if(isRunning)
         {
-            if (CheckForRunning)
-            {
-                StartStopRunning(true);
-                CheckForRunning = false;
-            }
             extraSprintSpeed = movementSpeed * 0.7f;
         }
         if (mayMove)
@@ -424,7 +419,7 @@ public class PlayerMovement : MonoBehaviour
         {
             lastInputWasController = true;
         }
-        if (Time.time >= nextAttack && !isReloading && mayMove)
+        if (Time.time >= nextAttack && mayMove)
         {
             if(isRunning)
             {
@@ -593,6 +588,7 @@ public class PlayerMovement : MonoBehaviour
             //dust
             if (!dustIsInEffect && isRunning)
             {
+                StartStopRunning(true);
                 dustIsInEffect = true;
                 moveDust.Play();
             }
