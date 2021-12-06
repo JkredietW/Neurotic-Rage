@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private List<Image> weaponSpritesUi;
     [SerializeField] private List<GameObject> selectWeaponIndecator;
     [SerializeField] private List<GameObject> UiWeaponSlots;
+    bool babyRunFix;
 
     [Header("Bullets")]
     public Transform bulletOrigin;
@@ -235,9 +236,13 @@ public class PlayerMovement : MonoBehaviour
         babyAnimator.SetBool("IsRunning", false);
         if (moveDir.magnitude > 0.1f)
         {
+            if (babyRunFix && isRunning)
+            {
+                babyRunFix = false;
+                babyAnimator.SetTrigger("DoRunning");
+            }
             animator.SetBool("Isrunning", isRunning);
             babyAnimator.SetBool("IsRunning", isRunning);
-            babyAnimator.SetTrigger("DoRunning");
         }
     }
     void OpenShop()
@@ -353,11 +358,17 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(weaponInHand.transform.GetChild(0).gameObject);
             }
             UiWeaponSlots[2].SetActive(false);
+            for (int i = 0; i < selectWeaponIndecator.Count; i++)
+            {
+                selectWeaponIndecator[i].SetActive(false);
+            }
+            selectWeaponIndecator[currentWeaponSlot].SetActive(true);
         }
         if(Input.GetButtonDown("RightBumber"))
         {
             isSwitchingWeapon = true;
             animator.SetTrigger("SwitchWeapon");
+            babyAnimator.SetTrigger("Switch");
             currentWeaponSlot -= 1;
             if (currentWeaponSlot > weaponSlots.Count - 1)
             {
@@ -375,6 +386,11 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(weaponInHand.transform.GetChild(0).gameObject);
             }
             UiWeaponSlots[2].SetActive(false);
+            for (int i = 0; i < selectWeaponIndecator.Count; i++)
+            {
+                selectWeaponIndecator[i].SetActive(false);
+            }
+            selectWeaponIndecator[currentWeaponSlot].SetActive(true);
         }
         SwapWeaponSprites();
         UpdateAmmoText();
@@ -398,6 +414,7 @@ public class PlayerMovement : MonoBehaviour
     void SecAfterSwapWeapon()
     {
         isSwitchingWeapon = false;
+        babyAnimator.SetLayerWeight(babyAnimator.GetLayerIndex("AnnyStates"), 0);
     }
     public IEnumerator MeleeAttack()
     {
@@ -616,10 +633,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if(!Input.GetButton("Sprint"))
-            {
-                StartStopRunning(false);
-            }
+            babyRunFix = true;
+            StartStopRunning(false);
             dustIsInEffect = false;
             moveDust.Stop();
         }

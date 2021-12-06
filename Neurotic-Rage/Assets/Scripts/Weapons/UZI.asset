@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: UZI
   m_EditorClassIdentifier: 
   weaponId: 2
+  specialWeaponId: 0
   type: 0
   weaponMesh: {fileID: 491035770379508795, guid: 47211744d56c5e749bb16573a4692c5c, type: 3}
+  Ui_sprite: {fileID: 21300000, guid: ea8d9726cee9d5b47b68bcc9a4b716e9, type: 3}
   damage: 1
   attacksPerSecond: 10
   reloadTime: 2
   pierceAmount: 0
-  ammo: 954
+  ammo: 1000
   maxAmmo: 1000
   bulletSpeed: 50
   projectileCount: 1
