@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Shop
   - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX

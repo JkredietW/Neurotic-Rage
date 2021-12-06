@@ -15,7 +15,7 @@ MonoBehaviour:
   moneyValue: 200
   itemType: 0
   itemName: Extra Bullets1
-  itemSprite: {fileID: 21300000, guid: 2144ee580d5d7ce4b9709d0c7a437d99, type: 3}
+  itemSprite: {fileID: 21300000, guid: b6519164c815c9340a1f5d0e8f01cec3, type: 3}
   stats:
     pierces: 0
     damage: 0

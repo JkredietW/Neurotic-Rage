@@ -49,7 +49,7 @@ public class PlayerAim : MonoBehaviour
                     }
                     lookAtDirection = lookRotationWithController;
                     transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
-                    if (Time.time >= timer)
+                    if (Time.time >= timer && lookRotationWithController.magnitude > 0.5f)
                     {
                         player.isShooting = true;
                         player.FireWeapon();

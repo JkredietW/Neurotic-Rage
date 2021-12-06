@@ -15,10 +15,11 @@ MonoBehaviour:
   moneyValue: 200
   itemType: 2
   itemName: Damage2
-  itemSprite: {fileID: 21300000, guid: b6519164c815c9340a1f5d0e8f01cec3, type: 3}
+  itemSprite: {fileID: 21300000, guid: 8339733e9553446428eb6d34d63ff443, type: 3}
   stats:
     pierces: 0
     damage: 10
     attackSpeed: 0
     ammo: 0
     health: 0
+    extraBullets: 0

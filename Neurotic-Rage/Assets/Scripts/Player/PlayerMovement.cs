@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     private List<WorldWeapon> weaponsInRange;
     public WorldWeapon worldWeaponPrefab;
     public TextMeshProUGUI pickUpWeaponText;
+    private bool CheckForRunning;
 
     [Header("Bullets")]
     public Transform bulletOrigin;
@@ -158,24 +159,30 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetButtonDown("Interact")  && mayMove)
         {
-            if (shopInRange)
+            weaponsInRange.RemoveAll(item => item == null);
+            if (weaponsInRange.Count > 0)
             {
-                OpenShop();
-            }
-            else if(weaponsInRange.Count > 0)
-            {
-                moveDir = Vector3.zero;
-                StartStopRunning(false);
+                float distanceToWeeapon = Vector3.Distance(weaponsInRange[0].transform.position, transform.position);
+                float distanceToShop = Vector3.Distance(shop.transform.position, transform.position);
+                if (distanceToShop < distanceToWeeapon)
+                {
+                    OpenShop();
+                }
+                else
+                {
+                    moveDir = Vector3.zero;
+                    StartStopRunning(false);
 
-                mayMove = false;
-                Invoke(nameof(MayMoveAgain), 1);
+                    mayMove = false;
+                    Invoke(nameof(MayMoveAgain), 1);
 
-                SwapWithWorldWeapon();
-                RemoveOutOfRangeWeapons();
+                    SwapWithWorldWeapon();
+                    RemoveOutOfRangeWeapons();
+                }
             }
             else
             {
-                return;
+                OpenShop();
             }
         }
     }
@@ -184,6 +191,11 @@ public class PlayerMovement : MonoBehaviour
         float extraSprintSpeed = 0;
         if(isRunning)
         {
+            if (CheckForRunning)
+            {
+                StartStopRunning(true);
+                CheckForRunning = false;
+            }
             extraSprintSpeed = movementSpeed * 0.7f;
         }
         if (mayMove)
@@ -220,13 +232,16 @@ public class PlayerMovement : MonoBehaviour
     }
     void StartStopRunning(bool _bool)
     {
+        CheckForRunning = true;
         isRunning = _bool;
-        animator.SetBool("Isrunning", isRunning);
-        if(isRunning)
+        animator.SetBool("Isrunning", false);
+        babyAnimator.SetBool("IsRunning", false);
+        if (moveDir.magnitude > 0.1f)
         {
+            animator.SetBool("Isrunning", isRunning);
+            babyAnimator.SetBool("IsRunning", isRunning);
             babyAnimator.SetTrigger("DoRunning");
         }
-        babyAnimator.SetBool("IsRunning", isRunning);
     }
     void OpenShop()
     {
@@ -283,7 +298,11 @@ public class PlayerMovement : MonoBehaviour
         if (currentWeapon.type == weaponType.special)
         {
             weaponInHand.GetComponent<MeshFilter>().mesh = null;
-            Instantiate(specialWeapons[currentWeapon.specialWeaponId], weaponInHand.transform.position, weaponInHand.transform.rotation, weaponInHand.transform);
+            GameObject specialWeapon = Instantiate(specialWeapons[currentWeapon.specialWeaponId]);
+            //done like this so that scale is 1.1.1
+            specialWeapon.transform.position = weaponInHand.transform.position;
+            specialWeapon.transform.rotation = weaponInHand.transform.rotation;
+            specialWeapon.transform.SetParent(weaponInHand.transform);
         }
         WorldWeapon temp = weaponsInRange[0];
         weaponsInRange.Remove(weaponsInRange[0]);
@@ -585,7 +604,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            StartStopRunning(false);
+            if(!Input.GetButton("Sprint"))
+            {
+                StartStopRunning(false);
+            }
             dustIsInEffect = false;
             moveDust.Stop();
         }

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public float baseScaling = 1, scalingPerWave = 0.1f;
     float totalScaling;
     //item drops
-    public float dropChancePerMinute = 1;
+    public float dropChancePerMinute = 0.5f;
     float totalDropChance, dropChancePerSec;
     public WorldWeapon worldWeaponPrefab;
     public List<Weapon> dropItems;
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     {
         totalDropChance += dropChancePerSec;
         yield return new WaitForSeconds(1);
+        StartCoroutine(ItemDropChanceCalculator());
     }
     public void ResetDropChance()
     {

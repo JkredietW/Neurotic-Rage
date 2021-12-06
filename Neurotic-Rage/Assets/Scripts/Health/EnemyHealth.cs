@@ -28,7 +28,7 @@ public class EnemyHealth : BaseHealth
     void DropItems()
     {
         float roll = Random.Range(0, 100);
-        if(roll > chanceForDrop)
+        if(roll < chanceForDrop)
         {
             FindObjectOfType<GameManager>().ResetDropChance();
             float chance = Random.Range(0, dropItems.Count);

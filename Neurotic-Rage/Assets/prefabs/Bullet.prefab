@@ -278,6 +278,7 @@ MonoBehaviour:
   - Bullet
   - Shop
   - Enemy
+  - Weapon
   IgnoreTag1: Player
   IgnoreTag2: Bullet
   IgnoreTag3: Shop
