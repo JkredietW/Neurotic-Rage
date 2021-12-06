@@ -11,6 +11,14 @@ public class Tutorial : MonoBehaviour
 
     void Start()
     {
+        foreach(GameObject tutorialText in pcTutorialArray)
+        {
+            tutorialText.gameObject.SetActive(false);
+        }
+        foreach(GameObject tutorialText in controllerTutorialArray)
+        {
+            tutorialText.gameObject.SetActive(false);
+        }
         checkForController();
         if (controllerConnected == false)
         {
@@ -72,7 +80,7 @@ public class Tutorial : MonoBehaviour
         else if (tutorialProgression == 5)
         {
             //reload
-            if (Input.GetButtonDown("ReloadButton")) //mis nog input
+            if (Input.GetButtonDown("ReloadButton"))
             {
                 tutorialProgression++;
                 UpdateTutorialUI();
