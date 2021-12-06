@@ -8,7 +8,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private bool controllerConnected;
     public GameObject[] pcTutorialArray;
     public GameObject[] controllerTutorialArray;
-
+    public GameObject helicopterTrigger;
     void Start()
     {
         foreach(GameObject tutorialText in pcTutorialArray)
@@ -52,17 +52,18 @@ public class Tutorial : MonoBehaviour
         }
         else if (tutorialProgression == 2)
         {
-            //interact
-            /*if () //mis nog inputs
+            //melee
+            if (Input.GetButtonDown("Fire2") || Input.GetAxisRaw("Fire2") != 0)
             {
                 tutorialProgression++;
                 UpdateTutorialUI();
-            }*/
+            }
+            
         }
         else if (tutorialProgression == 3)
         {
-            //melee
-            if (Input.GetButtonDown("Fire2")) //mis nog input
+            //interact
+            if (Input.GetButtonDown("Interact"))
             {
                 tutorialProgression++;
                 UpdateTutorialUI();
@@ -71,7 +72,7 @@ public class Tutorial : MonoBehaviour
         else if (tutorialProgression == 4)
         {
             //shoot
-            if (Input.GetButtonDown("Fire1")) //mis nog input
+            if (Input.GetButtonDown("Fire1") || Input.GetAxisRaw("Fire1") != 0)
             {
                 tutorialProgression++;
                 UpdateTutorialUI();
@@ -98,11 +99,11 @@ public class Tutorial : MonoBehaviour
         else if (tutorialProgression == 7)
         {
             //show map
-            /*if () //mis nog inputs
+            if(Input.GetButtonDown("ToggleMap"))
             {
                 tutorialProgression++;
                 UpdateTutorialUI();
-            }*/
+            }
         }
         else if (tutorialProgression == 8)
         {
@@ -139,6 +140,6 @@ public class Tutorial : MonoBehaviour
 
     public void UnlockHelicopter()
     {
-
+        helicopterTrigger.SetActive(true);
     }
 }
