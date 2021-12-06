@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private List<Image> weaponSpritesUi;
     [SerializeField] private List<GameObject> selectWeaponIndecator;
     [SerializeField] private List<GameObject> UiWeaponSlots;
+    [SerializeField] private GameObject statsPanel;
     bool babyRunFix;
 
     [Header("Bullets")]
@@ -57,14 +58,7 @@ public class PlayerMovement : MonoBehaviour
     public VisualEffect muzzleFlashObject;
     public Transform playerRotation;
     public TextMeshProUGUI normalAmmoText, heavyAmmoText, weaponAmmoText;
-
-    //upgradeStats
-    int extra_pierces;
-    float extra_damage;
-    float extra_attackSpeed;
-    int extra_ammo;
-    int extra_health;
-    int extra_bullets;
+    public TextMeshProUGUI slot1WeaponAmmoText, slot2WeaponAmmoText, slotSpecialWeaponAmmo;
 
     [Header("MiniMap")]
     public GameObject miniMapObject;
@@ -82,6 +76,17 @@ public class PlayerMovement : MonoBehaviour
     private GameObject shop;
     PlayerShop lastShopTouched;
 
+    [Header("ItemStats")]
+    int extra_pierces;
+    float extra_damage;
+    float extra_attackSpeed;
+    int extra_ammo;
+    int extra_health;
+    int extra_bullets;
+
+    private List<TextMeshProUGUI> weaponStatsUi, itemStatsUi;
+    [SerializeField] private Transform weaponStatsParent, upgradeItemStatsParent;
+
     private void Awake()
     {
         //get components
@@ -94,9 +99,20 @@ public class PlayerMovement : MonoBehaviour
         playerAim.GetVariables();
         attackCooldown = currentWeapon.OnSwap(0);
         weaponsInRange = new List<WorldWeapon>();
+        weaponStatsUi = new List<TextMeshProUGUI>();
+        itemStatsUi = new List<TextMeshProUGUI>();
+
+        foreach (Transform child in weaponStatsParent)
+        {
+            weaponStatsUi.Add(child.GetComponent<TextMeshProUGUI>());
+        }
+        foreach (Transform child in upgradeItemStatsParent)
+        {
+            itemStatsUi.Add(child.GetComponent<TextMeshProUGUI>());
+        }
 
         //check what device is being used
-        if(SystemInfo.deviceType == DeviceType.Desktop)
+        if (SystemInfo.deviceType == DeviceType.Desktop)
         {
             desktopUI.SetActive(true);
             mobileUI.SetActive(false);
@@ -154,12 +170,17 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(ReloadWeapon());
         }
-        if(Input.GetButtonDown("Sprint"))
+        if(Input.GetButton("Sprint"))
         {
             if (!isShooting)
             {
                 StartStopRunning(true);
             }
+        }
+        else
+        {
+            babyRunFix = true;
+            StartStopRunning(false);
         }
         if (Input.GetButtonDown("Interact")  && mayMove)
         {
@@ -184,11 +205,12 @@ public class PlayerMovement : MonoBehaviour
                     RemoveOutOfRangeWeapons();
                 }
             }
-            else
+            else if(lastShopTouched != null)
             {
                 OpenShop();
             }
         }
+        ShowStats(Input.GetButton("Tab"));
     }
     private void FixedUpdate()
     {
@@ -201,6 +223,39 @@ public class PlayerMovement : MonoBehaviour
         {
             controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
         }
+    }
+    void ShowStats(bool _bool)
+    {
+        statsPanel.SetActive(_bool);
+        UpdateStats();
+    }
+    void UpdateStats()
+    {
+        //current weapon stats
+        weaponStatsUi[0].text = $"Attack speed : {currentWeapon.attacksPerSecond}";
+        weaponStatsUi[1].text = $"Damage : {currentWeapon.damage}";
+        weaponStatsUi[2].text = $"Max ammo : {currentWeapon.maxAmmo}";
+        if(currentWeapon.pierceAmount > 100)
+        {
+            weaponStatsUi[3].text = $"Pierces : INFINITE";
+        }
+        else
+        {
+            weaponStatsUi[3].text = $"Pierces : {currentWeapon.pierceAmount}";
+        }
+        weaponStatsUi[4].text = $"Bullets : {currentWeapon.projectileCount}";
+
+        //item stats
+        itemStatsUi[0].text = $"Attack speed : {extra_attackSpeed}";
+        itemStatsUi[1].text = $"Damage : {extra_damage}";
+        itemStatsUi[2].text = $"Ammo : {extra_ammo}";
+        itemStatsUi[3].text = $"Pierces : {extra_pierces}";
+        itemStatsUi[4].text = $"Bullets : {extra_bullets}";
+        itemStatsUi[5].text = $"Health : {extra_health}";
+    }
+    public void GiveFireCooldown()
+    {
+        nextAttack = Time.time + 0.1f;
     }
     void MayMoveAgain()
     {
@@ -216,7 +271,6 @@ public class PlayerMovement : MonoBehaviour
         extra_health = _health;
         health.GainMoreMaxHealth(extra_health);
         extra_bullets = _bullets;
-        //stats moeten nog op attack applied worden
     }
     public void GrantAmmo(int _amount, int _heavyAmmo)
     {
@@ -324,6 +378,7 @@ public class PlayerMovement : MonoBehaviour
         }
         SwapWeaponSprites();
         ShowTextE();
+        UpdateStats();
     }
     public void ScrollWeapon()
     {
@@ -394,6 +449,7 @@ public class PlayerMovement : MonoBehaviour
         }
         SwapWeaponSprites();
         UpdateAmmoText();
+        UpdateStats();
     }
     void SwapWeaponSprites()
     {
@@ -444,6 +500,8 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+        StartStopRunning(false);
+        babyAnimator.SetLayerWeight(babyAnimator.GetLayerIndex("AnnyStates"), 0);
         if (Input.GetButton("Fire1"))
         {
             lastInputWasController = false;
@@ -506,12 +564,16 @@ public class PlayerMovement : MonoBehaviour
     }
     public IEnumerator ReloadWeapon()
     {
-        if(isSwitchingWeapon || shopIsOpen)
+        if(isReloading || isSwitchingWeapon || shopIsOpen)
         {
             yield break;
         }
         isReloading = true;
-        yield return new WaitForSeconds(1);
+        animator.SetTrigger("Reload");
+        float oldSpeed = animator.speed;
+        animator.speed /= currentWeapon.reloadTime;
+        yield return new WaitForSeconds(currentWeapon.reloadTime);
+        animator.speed = oldSpeed;
         if (!hasMeleeAttacked || currentWeapon.ammo == currentWeapon.maxAmmo)
         {
             if (currentWeapon.type == weaponType.light)
@@ -561,9 +623,14 @@ public class PlayerMovement : MonoBehaviour
     }
     void UpdateAmmoText()
     {
-        normalAmmoText.text = $"Normal ammo : " + currentAmmo.ToString() + $"/" + maxAmmo.ToString();
-        heavyAmmoText.text = $"Heavy ammo : " + currentHeavyAmmo.ToString() + $"/" + maxHeavyAmmo.ToString();
-        weaponAmmoText.text = $"Weapon ammo : " + currentWeapon.ammo.ToString() + $"/" + currentWeapon.maxAmmo.ToString();
+        normalAmmoText.text = $"Normal ammo : {currentAmmo} / {maxAmmo}";
+        heavyAmmoText.text = $"Heavy ammo : {currentHeavyAmmo} / {maxHeavyAmmo}";
+        weaponAmmoText.text = $"Weapon ammo : {currentWeapon.ammo} / {currentWeapon.maxAmmo}";
+
+        //slots
+        slot1WeaponAmmoText.text = $"Ammo : {weaponSlots[0].ammo} / {weaponSlots[0].maxAmmo}";
+        slot2WeaponAmmoText.text = $"Ammo : {weaponSlots[1].ammo} / {weaponSlots[1].maxAmmo}";
+        slotSpecialWeaponAmmo.text = $"Ammo : {currentWeapon.ammo} / {currentWeapon.maxAmmo}";
     }
     void ToggleMap()
     {
@@ -619,15 +686,17 @@ public class PlayerMovement : MonoBehaviour
         if (moveDir.magnitude > 0.1f)
         {
             //dust
-            if (!dustIsInEffect && isRunning)
+            if (!dustIsInEffect)
             {
-                StartStopRunning(true);
+                if(isRunning)
+                {
+                    StartStopRunning(true);
+                }
                 dustIsInEffect = true;
                 moveDust.Play();
             }
             if(!isRunning)
             {
-                StartStopRunning(false);
                 moveDust.Stop();
             }
         }

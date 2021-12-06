@@ -15,7 +15,7 @@ public class Weapon : ScriptableObject
     [Space]
     public float damage;
     public float attacksPerSecond;
-    public float reloadTime;
+    public float reloadTime = 1;
     public int pierceAmount;
     public int ammo, maxAmmo;
     public float bulletSpeed;

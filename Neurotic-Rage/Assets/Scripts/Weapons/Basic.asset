@@ -19,9 +19,9 @@ MonoBehaviour:
   Ui_sprite: {fileID: 21300000, guid: b6519164c815c9340a1f5d0e8f01cec3, type: 3}
   damage: 1
   attacksPerSecond: 20
-  reloadTime: 5
+  reloadTime: 1
   pierceAmount: 1
-  ammo: 100
+  ammo: 88
   maxAmmo: 100
   bulletSpeed: 50
   projectileCount: 3

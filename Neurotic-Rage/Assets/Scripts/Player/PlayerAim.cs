@@ -76,10 +76,8 @@ public class PlayerAim : MonoBehaviour
                 lookAtDirection = player.moveDir;
                 lookAtDirection.y = 0;
                 lookAtDirection.Normalize();
-                if(lookAtDirection != Vector3.zero)
-                {
-                    transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
-                }
+                transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
+                player.GiveFireCooldown();
             }
             else
             {

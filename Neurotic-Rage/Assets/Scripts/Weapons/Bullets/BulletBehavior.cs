@@ -10,9 +10,6 @@ public class BulletBehavior : MonoBehaviour
     Quaternion rotation;
     public GameObject bloodSpat;
     public List<string> IgnoreTag;
-    public string IgnoreTag1;
-    public string IgnoreTag2;
-    public string IgnoreTag3;
 
     public void SetUp(float _damage, int _pierces, Quaternion _rotation)
     {
