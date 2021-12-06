@@ -110,7 +110,10 @@ public class PlayerMovement : MonoBehaviour
         weaponSlots[1].ammo = weaponSlots[1].maxAmmo;
         UpdateAmmoText();
         mayMove = true;
-        shop = FindObjectOfType<GameManager>().shopUI;
+        if (FindObjectOfType<GameManager>())
+        {
+            shop = FindObjectOfType<GameManager>().shopUI;
+        }
     }
 
     private void Update()
@@ -121,8 +124,11 @@ public class PlayerMovement : MonoBehaviour
         }
         DefineDirection();
         ScrollWeapon();
-        ToggleMap();
 
+        if (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("ToggleMap"))
+        {
+            ToggleMap();
+        }
         //inputs
         //attacks
         if (Input.GetButton("Fire1") || Input.GetAxisRaw("Fire1") > 0.5f)
@@ -139,7 +145,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(MeleeAttack());
         }
-        if(Input.GetKeyDown(KeyCode.R) && mayMove || Input.GetButtonDown("ReloadButton") && mayMove)
+        if(Input.GetButtonDown("ReloadButton") && mayMove)
         {
             StartCoroutine(ReloadWeapon());
         }
@@ -150,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
                 StartStopRunning(true);
             }
         }
-        if (Input.GetKeyDown(KeyCode.E) && mayMove || Input.GetButtonDown("AGamePadButton")  && mayMove)
+        if (Input.GetButtonDown("Interact")  && mayMove)
         {
             if (shopInRange)
             {
@@ -514,24 +520,21 @@ public class PlayerMovement : MonoBehaviour
     }
     void ToggleMap()
     {
-        if(Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("YGamePadButton"))
+        if(bigMapObject.activeSelf)
         {
-            if(bigMapObject.activeSelf)
-            {
-                Time.timeScale = 1;
-                bigMapObject.SetActive(false);
-                bigMapCameraObject.SetActive(false);
-                miniMapCameraObject.SetActive(true);
-                miniMapObject.SetActive(true);
-            }
-            else
-            {
-                Time.timeScale = 0;
-                bigMapObject.SetActive(true);
-                bigMapCameraObject.SetActive(true);
-                miniMapCameraObject.SetActive(false);
-                miniMapObject.SetActive(false);
-            }
+            Time.timeScale = 1;
+            bigMapObject.SetActive(false);
+            bigMapCameraObject.SetActive(false);
+            miniMapCameraObject.SetActive(true);
+            miniMapObject.SetActive(true);
+        }
+        else
+        {
+            Time.timeScale = 0;
+            bigMapObject.SetActive(true);
+            bigMapCameraObject.SetActive(true);
+            miniMapCameraObject.SetActive(false);
+            miniMapObject.SetActive(false);
         }
     }
     //for walk animation

@@ -518,13 +518,13 @@ InputManager:
     axis: 5
     joyNum: 0
   - serializedVersion: 3
-    m_Name: YGamePadButton
+    m_Name: ToggleMap
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: joystick button 3
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: m
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -556,7 +556,7 @@ InputManager:
     negativeButton: 
     positiveButton: joystick button 2
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: r
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
@@ -614,13 +614,13 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: AGamePadButton
+    m_Name: Interact
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: joystick button 0
     altNegativeButton: 
-    altPositiveButton: 
+    altPositiveButton: e
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
