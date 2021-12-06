@@ -6,12 +6,14 @@ public class GameManager : MonoBehaviour
 {
     public float timeBetweenWaves, timeBetweenSpawns;
     public float minimumDistance, maxDistance;
-    public Wave[] waves;
+    public Wave presetWave;
 	public List<Transform> spawnLocations;
     public Transform enemySpawnLocationParent;
     public List<Transform> spawnsExcluded;
     public GameObject[] Enemies;
     public List<GameObject> enemiesAlive;
+    public List<GameObject> bossesAlive;
+    private bool isBossRound;
 
     //shop
     public GameObject shoppanel, shopUI;
@@ -44,6 +46,17 @@ public class GameManager : MonoBehaviour
     int lastLocation;
     bool waveIsInProgress;
 
+    [SerializeReference]
+    private float LastBosAmount;
+    [SerializeReference]
+    private float lastMiniBosAmount;
+    [SerializeReference]
+    private float lastBigEnemieAmount;
+    [SerializeReference]
+    private float lastMediumEnemieAmount;
+    [SerializeReference]
+    private float lastSmallEnemieAmount;
+
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>();
@@ -67,7 +80,7 @@ public class GameManager : MonoBehaviour
     }
     public void Clock()
     {
-        StartCoroutine(SpawnEnemy());
+        NewRound();
     }
     public void EnemyDied(GameObject enemyThatDied)
     {
@@ -76,9 +89,24 @@ public class GameManager : MonoBehaviour
         {
             enemiesAlive.Remove(enemyThatDied);
         }
-        if (enemiesAlive.Count <= 5 && waveIsInProgress)
-        {
-            WaveComplete();
+		if (bossesAlive.Contains(enemyThatDied))
+		{
+            enemiesAlive.Remove(enemyThatDied);
+        }
+		if (!isBossRound)
+		{
+            if (enemiesAlive.Count <= 5 && waveIsInProgress)
+            {
+                WaveComplete();
+            }
+        }
+		else
+		{
+            if (bossesAlive.Count <= 0 && waveIsInProgress)
+            {
+                //geef hiero item ding op enemydied positie
+                WaveComplete();
+            }
         }
     }
     void WaveComplete()
@@ -92,36 +120,6 @@ public class GameManager : MonoBehaviour
         foreach (var shop in shops)
         {
             shop.AfterWave();
-        }
-    }
-    public IEnumerator SpawnEnemy()
-    {
-        totalScaling = baseScaling * ((scalingPerWave * totalWaveCount) + 1);
-        if (!waveIsInProgress)
-        {
-            waveIsInProgress = true;
-            //when max waves is reached, use previous one
-            if (waveCount > waves.Length)
-            {
-                waveCount--;
-            }
-            int tempInt = waves[waveCount].totalSpawnAmount;
-            totalSpawnsThisWave = (int)(tempInt * totalScaling);
-            for (int z = 0; z < waves[waveCount].totalSpawnAmount; z++)
-            {
-                int roll = (int)Random.Range(waves[waveCount].spawnCluster.x, waves[waveCount].spawnCluster.y);
-                for (int i = 0; i < roll; i++)
-                {
-                    if(totalSpawnsThisWave > -1)
-                    {
-                        totalSpawnsThisWave--;
-                        GameObject tempEnemy = Instantiate(Enemies[waves[waveCount].spawnThis], GetSpawnPositionNearPlayer(), Quaternion.identity);
-                        tempEnemy.GetComponent<EnemyHealth>().EnemySetup(totalScaling, totalDropChance, worldWeaponPrefab, dropItems);
-                        enemiesAlive.Add(tempEnemy);
-                    }
-                }
-                yield return new WaitForSeconds(timeBetweenSpawns);
-            }
         }
     }
     public Vector3 GetSpawnPositionNearPlayer()
@@ -228,15 +226,88 @@ public class GameManager : MonoBehaviour
         }
         player.GiveStats(total_pierces, total_damage, total_attackSpeed, total_ammo, total_health, total_bullets);
     }
+    public void NewRound()
+	{
+        totalScaling = baseScaling * ((scalingPerWave * totalWaveCount) + 1);
+        if (waveCount % 10 == 0)
+        {
+            StartCoroutine(BossRound());
+            LastBosAmount *= 1.25f;
+        }
+		else
+		{
+            StartCoroutine(SpawnEnemies());
+        }
+        if (waveCount % 5 == 0)
+		{
+            lastMiniBosAmount *=1.05f;
+        }
+        if (waveCount % 4 == 0)
+        {
+            lastBigEnemieAmount *= 1.1f;
+        }
+        if (waveCount % 2 == 0)
+        {
+            lastMediumEnemieAmount *= 1.075f;
+        }
+        lastSmallEnemieAmount *= 1.2f;
+    }
+    public IEnumerator BossRound()
+	{
+		for (int i = 0; i < (int)LastBosAmount; i++)
+		{
+            Spawn(presetWave.boss, true);
+            yield return new WaitForSeconds(timeBetweenSpawns);
+        }
+	}
+    public IEnumerator SpawnEnemies()
+	{
+		for (int i = 0; i < (int)lastSmallEnemieAmount; i++)
+		{
+            Spawn(presetWave.small,false);
+            yield return new WaitForSeconds(timeBetweenSpawns);
+        }
+        for (int i = 0; i < (int)lastMediumEnemieAmount; i++)
+        {
+            Spawn(presetWave.medium, false);
+            yield return new WaitForSeconds(timeBetweenSpawns);
+        }
+        for (int i = 0; i < (int)lastBigEnemieAmount; i++)
+        {
+            Spawn(presetWave.big, false);
+            yield return new WaitForSeconds(timeBetweenSpawns);
+        }
+        for (int i = 0; i < (int)lastMiniBosAmount; i++)
+        {
+            Spawn(presetWave.minibos, false);
+            yield return new WaitForSeconds(timeBetweenSpawns);
+        }
+    }
+    public void Spawn(GameObject gameObject,bool isBoss)
+	{
+        GameObject tempEnemy = Instantiate(gameObject, GetSpawnPositionNearPlayer(), Quaternion.identity);
+        tempEnemy.GetComponent<EnemyHealth>().EnemySetup(totalScaling, totalDropChance, worldWeaponPrefab, dropItems);
+        if (!isBoss)
+        {
+            enemiesAlive.Add(tempEnemy);
+            totalSpawnsThisWave++;
+        }
+		else
+		{
+            bossesAlive.Add(tempEnemy);
+            totalSpawnsThisWave++;
+        }
+    }
     #endregion
 }
-
-
 [System.Serializable]
 public class Wave
 {
-    public int spawnThis;
-	public int totalSpawnAmount;
     public Vector2 spawnCluster;
+    public GameObject big;
+    public GameObject medium;
+    public GameObject small;
+    public GameObject minibos;
+    public GameObject boss;
 }
 

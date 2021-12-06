@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17305717, g: 0.21628833, b: 0.29828784, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1462,43 +1462,20 @@ MonoBehaviour:
   timeBetweenSpawns: 5
   minimumDistance: 50
   maxDistance: 100000
-  waves:
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
-  - spawnThis: 0
-    totalSpawnAmount: 30
-    spawnCluster: {x: 3, y: 6}
+  presetWave:
+    spawnCluster: {x: 3, y: 2}
+    big: {fileID: 3366180777961149070, guid: d4857bce5de4fb741858f55b73d4f86f, type: 3}
+    medium: {fileID: 8846287464891207075, guid: db6d8ec3fc076354bab4370bcc9a1eaf, type: 3}
+    small: {fileID: 3366180777961149070, guid: d4857bce5de4fb741858f55b73d4f86f, type: 3}
+    minibos: {fileID: 3366180777961149070, guid: d4857bce5de4fb741858f55b73d4f86f, type: 3}
+    boss: {fileID: 3366180777961149070, guid: d4857bce5de4fb741858f55b73d4f86f, type: 3}
   spawnLocations: []
   enemySpawnLocationParent: {fileID: 1831273400}
   spawnsExcluded: []
   Enemies:
   - {fileID: 3366180777961149070, guid: d4857bce5de4fb741858f55b73d4f86f, type: 3}
   enemiesAlive: []
+  bossesAlive: []
   shoppanel: {fileID: 376156586}
   shopUI: {fileID: 971270271}
   money: 10000
@@ -1510,6 +1487,11 @@ MonoBehaviour:
   worldWeaponPrefab: {fileID: 4785820487764305760, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
   dropItems:
   - {fileID: 11400000, guid: 55505f5c6647e0b4f8e1d5608233eae6, type: 2}
+  LastBosAmount: 4
+  lastMiniBosAmount: 8
+  lastBigEnemieAmount: 12
+  lastMediumEnemieAmount: 15
+  lastSmallEnemieAmount: 20
 --- !u!4 &744744873
 Transform:
   m_ObjectHideFlags: 0
