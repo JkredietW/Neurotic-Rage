@@ -1459,7 +1459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenWaves: 10
-  timeBetweenSpawns: 5
+  timeBetweenSpawns: 0.5
   minimumDistance: 50
   maxDistance: 100000
   presetWave:
@@ -1472,8 +1472,7 @@ MonoBehaviour:
   spawnLocations: []
   enemySpawnLocationParent: {fileID: 1831273400}
   spawnsExcluded: []
-  Enemies:
-  - {fileID: 3366180777961149070, guid: d4857bce5de4fb741858f55b73d4f86f, type: 3}
+  Enemies: []
   enemiesAlive: []
   bossesAlive: []
   shoppanel: {fileID: 376156586}
@@ -1488,10 +1487,10 @@ MonoBehaviour:
   dropItems:
   - {fileID: 11400000, guid: 55505f5c6647e0b4f8e1d5608233eae6, type: 2}
   LastBosAmount: 4
-  lastMiniBosAmount: 8
-  lastBigEnemieAmount: 12
-  lastMediumEnemieAmount: 15
-  lastSmallEnemieAmount: 20
+  lastMiniBosAmount: 1
+  lastBigEnemieAmount: 4
+  lastMediumEnemieAmount: 5
+  lastSmallEnemieAmount: 10
 --- !u!4 &744744873
 Transform:
   m_ObjectHideFlags: 0

@@ -228,9 +228,12 @@ public class GameManager : MonoBehaviour
     }
     public void NewRound()
 	{
+        waveIsInProgress = true;
+        waveCount++;
         totalScaling = baseScaling * ((scalingPerWave * totalWaveCount) + 1);
         if (waveCount % 10 == 0)
         {
+            print(waveCount % 10);
             StartCoroutine(BossRound());
             LastBosAmount *= 1.25f;
         }
@@ -285,6 +288,7 @@ public class GameManager : MonoBehaviour
     }
     public void Spawn(GameObject gameObject,bool isBoss)
 	{
+        isBossRound = isBoss;
         GameObject tempEnemy = Instantiate(gameObject, GetSpawnPositionNearPlayer(), Quaternion.identity);
         tempEnemy.GetComponent<EnemyHealth>().EnemySetup(totalScaling, totalDropChance, worldWeaponPrefab, dropItems);
         if (!isBoss)
