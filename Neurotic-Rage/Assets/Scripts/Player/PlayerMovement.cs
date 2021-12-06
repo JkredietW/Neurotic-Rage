@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.VFX;
 using TMPro;
 
@@ -16,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float movementSpeed = 1;
     public float gravity;
     public int currentAmmo, maxAmmo, currentHeavyAmmo, maxHeavyAmmo;
-    public int baseAmmo, baseHeavyAmmo;
+    private int baseAmmo, baseHeavyAmmo;
     [HideInInspector] public bool lastInputWasController;
     [HideInInspector] public bool isRunning;
 
@@ -44,7 +45,9 @@ public class PlayerMovement : MonoBehaviour
     private List<WorldWeapon> weaponsInRange;
     public WorldWeapon worldWeaponPrefab;
     public TextMeshProUGUI pickUpWeaponText;
-    private bool CheckForRunning;
+    [SerializeField] private List<Image> weaponSpritesUi;
+    [SerializeField] private List<GameObject> selectWeaponIndecator;
+    [SerializeField] private List<GameObject> UiWeaponSlots;
 
     [Header("Bullets")]
     public Transform bulletOrigin;
@@ -75,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Shop")]
     bool shopInRange, shopIsOpen;
-    public GameObject shop;
+    private GameObject shop;
     PlayerShop lastShopTouched;
 
     private void Awake()
@@ -227,7 +230,6 @@ public class PlayerMovement : MonoBehaviour
     }
     void StartStopRunning(bool _bool)
     {
-        CheckForRunning = true;
         isRunning = _bool;
         animator.SetBool("Isrunning", false);
         babyAnimator.SetBool("IsRunning", false);
@@ -253,6 +255,11 @@ public class PlayerMovement : MonoBehaviour
         }
         animator.SetTrigger("WeaponPickUp");
         int swapCurrentWeaponType = -1;
+        //set all weapon indecator off
+        for (int i = 0; i < selectWeaponIndecator.Count; i++)
+        {
+            selectWeaponIndecator[i].SetActive(false);
+        }
         Weapon oldWeapon = currentWeapon;
         switch (currentWeapon.type)
         {
@@ -266,6 +273,8 @@ public class PlayerMovement : MonoBehaviour
                 swapCurrentWeaponType = 2;
                 break;
         }
+        selectWeaponIndecator[swapCurrentWeaponType].SetActive(true);
+        //swap weapons
         switch (weaponsInRange[0].heldItem.type)
         {
             case weaponType.light:
@@ -275,6 +284,7 @@ public class PlayerMovement : MonoBehaviour
                     currentWeapon = weaponSlots[0];
                 }
                 DropWeapon(oldWeapon);
+                UiWeaponSlots[2].SetActive(false);
                 break;
             case weaponType.heavy:
                 weaponSlots[1] = weaponsInRange[0].heldItem;
@@ -283,18 +293,20 @@ public class PlayerMovement : MonoBehaviour
                     currentWeapon = weaponSlots[1];
                 }
                 DropWeapon(oldWeapon);
+                UiWeaponSlots[2].SetActive(false);
                 break;
             case weaponType.special:
                 currentWeapon = weaponsInRange[0].heldItem;
-                currentWeapon.OnSwap(extra_attackSpeed);
+                UiWeaponSlots[2].SetActive(true);
                 break;
         }
+        attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
         weaponInHand.GetComponent<MeshFilter>().mesh = currentWeapon.weaponMesh;
         if (currentWeapon.type == weaponType.special)
         {
             weaponInHand.GetComponent<MeshFilter>().mesh = null;
             GameObject specialWeapon = Instantiate(specialWeapons[currentWeapon.specialWeaponId]);
-            //done like this so that scale is 1.1.1
+            //done like this so that scale is normal
             specialWeapon.transform.position = weaponInHand.transform.position;
             specialWeapon.transform.rotation = weaponInHand.transform.rotation;
             specialWeapon.transform.SetParent(weaponInHand.transform);
@@ -305,6 +317,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(temp.gameObject);
         }
+        SwapWeaponSprites();
         ShowTextE();
     }
     public void ScrollWeapon()
@@ -339,11 +352,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Destroy(weaponInHand.transform.GetChild(0).gameObject);
             }
-            if (currentWeapon.type == weaponType.special)
-            {
-                weaponInHand.GetComponent<MeshFilter>().mesh = null;
-                Instantiate(specialWeapons[currentWeapon.specialWeaponId], weaponInHand.transform.position, weaponInHand.transform.rotation, weaponInHand.transform);
-            }
+            UiWeaponSlots[2].SetActive(false);
         }
         if(Input.GetButtonDown("RightBumber"))
         {
@@ -365,13 +374,20 @@ public class PlayerMovement : MonoBehaviour
             {
                 Destroy(weaponInHand.transform.GetChild(0).gameObject);
             }
-            if (currentWeapon.type == weaponType.special)
+            UiWeaponSlots[2].SetActive(false);
+        }
+        SwapWeaponSprites();
+        UpdateAmmoText();
+    }
+    void SwapWeaponSprites()
+    {
+        for (int i = 0; i < weaponSlots.Count; i++)
+        {
+            if(weaponSpritesUi[i] != null)
             {
-                weaponInHand.GetComponent<MeshFilter>().mesh = null;
-                Instantiate(specialWeapons[currentWeapon.specialWeaponId], weaponInHand.transform.position, weaponInHand.transform.rotation, weaponInHand.transform);
+                weaponSpritesUi[i].sprite = weaponSlots[i].Ui_sprite;
             }
         }
-        UpdateAmmoText();
     }
     void DropWeapon(Weapon _oldWeapon)
     {
