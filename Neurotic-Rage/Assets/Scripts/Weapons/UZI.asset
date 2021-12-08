@@ -16,6 +16,7 @@ MonoBehaviour:
   specialWeaponId: 0
   type: 0
   weaponMesh: {fileID: 491035770379508795, guid: 47211744d56c5e749bb16573a4692c5c, type: 3}
+  mat: {fileID: 2100000, guid: 69e651e9d6fb9c14197943732232e6f6, type: 2}
   Ui_sprite: {fileID: 21300000, guid: ea8d9726cee9d5b47b68bcc9a4b716e9, type: 3}
   damage: 1
   attacksPerSecond: 10

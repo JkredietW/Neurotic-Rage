@@ -11,6 +11,7 @@ public class Weapon : ScriptableObject
     public int specialWeaponId;
     public weaponType type;
     public Mesh weaponMesh;
+    public Material mat;
     public Sprite Ui_sprite;
     [Space]
     public float damage;

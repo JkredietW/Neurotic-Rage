@@ -130,6 +130,8 @@ public class PlayerMovement : MonoBehaviour
         weaponSlots[0].ammo = weaponSlots[0].maxAmmo;
         weaponSlots[1].ammo = weaponSlots[1].maxAmmo;
         UpdateAmmoText();
+        weaponInHand.GetComponent<MeshFilter>().mesh = currentWeapon.weaponMesh;
+        weaponInHand.GetComponent<MeshRenderer>().material = currentWeapon.mat;
         mayMove = true;
         if (FindObjectOfType<GameManager>())
         {
@@ -417,6 +419,7 @@ public class PlayerMovement : MonoBehaviour
             currentWeapon = weaponSlots[currentWeaponSlot];
             attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
             weaponInHand.GetComponent<MeshFilter>().mesh = currentWeapon.weaponMesh;
+            weaponInHand.GetComponent<MeshRenderer>().material = currentWeapon.mat;
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
             UiWeaponSlots[2].SetActive(false);
             for (int i = 0; i < selectWeaponIndecator.Count; i++)
@@ -447,6 +450,7 @@ public class PlayerMovement : MonoBehaviour
             currentWeapon = weaponSlots[currentWeaponSlot];
             attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
             weaponInHand.GetComponent<MeshFilter>().mesh = currentWeapon.weaponMesh;
+            weaponInHand.GetComponent<MeshRenderer>().material = currentWeapon.mat;
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
             UiWeaponSlots[2].SetActive(false);
             for (int i = 0; i < selectWeaponIndecator.Count; i++)
