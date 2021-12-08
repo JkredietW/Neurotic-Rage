@@ -11922,6 +11922,7 @@ MonoBehaviour:
   bulletOrigin: {fileID: 4249084292904869259}
   bulletPrefab: {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
   muzzleFlashObject: {fileID: 4249084292904869253}
+  muzzleFlashObjectTransform: {fileID: 4249084292904869259}
   playerRotation: {fileID: 20452350970647323}
   normalAmmoText: {fileID: 8992581429766921201}
   heavyAmmoText: {fileID: 7608283681805514739}

@@ -7,7 +7,6 @@ public class WorldWeapon : InterActable
     public Weapon heldItem;
     public bool alreadyInWorld;
 
-    public List<GameObject> specialWeapons;
     bool destoryThisObjectNextDrop;
 
     private void Start()
@@ -40,16 +39,10 @@ public class WorldWeapon : InterActable
     {
         destoryThisObjectNextDrop = _destory;
         heldItem = _newWeapon;
-        GetComponent<MeshFilter>().mesh = heldItem.weaponMesh;
+        GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().AddForce(transform.forward + transform.up, ForceMode.VelocityChange);
 
-        GetComponent<MeshFilter>().mesh = heldItem.weaponMesh;
         gameObject.AddComponent<BoxCollider>();
-        if (heldItem.type == weaponType.special)
-        {
-            GetComponent<MeshFilter>().mesh = null;
-            Instantiate(specialWeapons[heldItem.specialWeaponId], transform.position, transform.rotation, transform);
-        }
         float time = alreadyInWorld == true ? 0 : 0.5f;
         if (alreadyInWorld)
         {
