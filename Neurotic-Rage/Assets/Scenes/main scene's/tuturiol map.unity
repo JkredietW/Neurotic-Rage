@@ -744,8 +744,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PRESS 'R' TO RELOAD
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2019,8 +2019,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''RIGHT CLICK'' TO MELEE ATTACK'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3273,8 +3273,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''LB''/''LEFT BUMPER'' TO SPRINT'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7924,8 +7924,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9382,8 +9382,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''SCROLLWHEEL'' TO SWAP WEAPONS'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10037,8 +10037,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''RT''/''RIGHT TRIGGER'' TO SHOOT'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10238,8 +10238,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''M'' TO SHOW MAP'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11201,8 +11201,8 @@ MonoBehaviour:
   - {fileID: 1217987425}
   - {fileID: 485322131}
   - {fileID: 51614458}
-  - {fileID: 51614458}
   - {fileID: 759844119}
+  - {fileID: 900898223}
   - {fileID: 18820558}
   - {fileID: 340648320}
   - {fileID: 356475208}
@@ -11217,7 +11217,7 @@ MonoBehaviour:
   - {fileID: 1663372805}
   - {fileID: 1937792114}
   - {fileID: 1590029724}
-  helicopterTrigger: {fileID: 0}
+  helicopterTrigger: {fileID: 1484945966}
 --- !u!114 &375705954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13798,8 +13798,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''LEFT SHIFT'' TO SPRINT'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19550,8 +19550,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PRESS 'E' TO INTERACT WITH THE GUN
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -23299,8 +23299,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''LEFT CLICK'' TO SHOOT'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -30145,8 +30145,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''W''''A''''S''''D'' TO MOVE AND ''MOUSE'' TO AIM'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -30534,8 +30534,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PRESS 'A' TO INTERACT WITH THE GUN
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -36636,7 +36636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1484945967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38535,8 +38535,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PRESS 'X' TO RELOAD
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -40028,8 +40028,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: YOU HAVE FINISHED THE TUTORIAL, HEAD TO THE HELICOPTER!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -40053,7 +40053,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 97.3
+  m_fontSize: 102.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -41217,8 +41217,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''RB''/''RIGHT BUMPER'' TO SWAP WEAPONS'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -41242,7 +41242,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 118.2
+  m_fontSize: 120
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -46468,8 +46468,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''LB''/''LEFT TRIGGER'' TO MELEE ATTACK'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -47058,8 +47058,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '''Y'' TO SHOW MATCH'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 17455fb3ca2bb3b4282cfdc480a2478a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
+  m_sharedMaterial: {fileID: -1028849328670268972, guid: 75e1e521ebf8a5f4d9a3e89a14d97207, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
