@@ -61,6 +61,6 @@ public class EnemyHealth : BaseHealth
         rb.isKinematic = true;
         rb.useGravity = false;
         anim.enabled = false;
-        Invoke("DestroyObj", 7);
+        Invoke("DestroyObj", 3.5f);
     }
 }

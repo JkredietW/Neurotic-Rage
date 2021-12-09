@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : BaseHealth
 {
     Animator animator;
+    public GameObject youDied;
+    public FadeToFromBlack fdb;
+    public GameObject[] turnThisOff;
     public Slider healthSlider;
     public GameObject deathPlayer;
     public GameObject deathLight;
@@ -48,6 +52,24 @@ public class PlayerHealth : BaseHealth
                 enemyList[i].transform.GetComponent<EnemyHealth>().PlayerDied();
             }
         }
+		for (int i = 0; i < turnThisOff.Length; i++)
+		{
+            turnThisOff[i].SetActive(false);
+
+        }
+        StartCoroutine(LoadNewScene());
+        Invoke("ShowLoss", 4);
     }
+    public void ShowLoss()
+	{
+        youDied.SetActive(true);
+	}
+    public IEnumerator LoadNewScene()
+	{
+        yield return new WaitForSeconds(10);
+        fdb.FadeToBlack(2.5f);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(0);
+	}
 
 }
