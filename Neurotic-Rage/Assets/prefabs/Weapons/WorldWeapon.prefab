@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4785820487764305771}
   - component: {fileID: 4785820487764305770}
   - component: {fileID: 4785820487764305760}
-  m_Layer: 12
+  m_Layer: 21
   m_Name: WorldWeapon
   m_TagString: Weapon
   m_Icon: {fileID: 0}
@@ -128,5 +128,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heldItem: {fileID: 11400000, guid: 96ede0f51b1b8694b9ff96b391bc7bd2, type: 2}
   alreadyInWorld: 0
-  specialWeapons:
-  - {fileID: 8180016509372760208, guid: fe9af3ea29b321f40afc7df0b43558ca, type: 3}

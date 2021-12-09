@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3642441012341357681}
   - component: {fileID: 5624720283188890400}
   - component: {fileID: 393845977306553871}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: minigun_barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4728109865448239928}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: shootpos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2336368523529852629}
   - component: {fileID: 2875209396208267576}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: Full Minigun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 5439762504003130207}
   - component: {fileID: 3343386100096295996}
   - component: {fileID: 3456739206695041042}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: minigun_body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 3783994437407503896}
   - component: {fileID: 5245311692838761494}
   - component: {fileID: 5797484484616803779}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: MinigunWorld
   m_TagString: Weapon
   m_Icon: {fileID: 0}
