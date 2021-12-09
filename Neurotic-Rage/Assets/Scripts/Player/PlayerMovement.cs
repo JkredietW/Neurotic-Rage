@@ -401,7 +401,13 @@ public class PlayerMovement : MonoBehaviour
         //destroy old world weapon
         WorldWeapon temp = weaponsInRange[0];
         weaponsInRange.Remove(weaponsInRange[0]);
-        if(temp != null)
+
+        //ui sprite
+        weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
+        weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
+        weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
+
+        if (temp != null)
         {
             Destroy(temp.gameObject);
         }
@@ -411,14 +417,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(weaponInHand.transform.GetChild(0).gameObject);
         }
-
-        SwapWeaponSprites();
         ShowTextE();
         UpdateStats();
     }
     public void ScrollWeapon()
     {
-        if(!mayMove || isSwitchingWeapon || shopIsOpen)
+        if(!mayMove || isSwitchingWeapon || shopIsOpen || isReloading)
         {
             return;
         }
@@ -464,6 +468,11 @@ public class PlayerMovement : MonoBehaviour
             //swap cooldown
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
             UiWeaponSlots[2].SetActive(false);
+
+            //ui sprite
+            weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
+            weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
+            weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
 
             //ui indecator
             for (int i = 0; i < selectWeaponIndecator.Count; i++)
@@ -516,6 +525,11 @@ public class PlayerMovement : MonoBehaviour
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
             UiWeaponSlots[2].SetActive(false);
 
+            //ui sprite
+            weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
+            weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
+            weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
+
             //ui indecator
             for (int i = 0; i < selectWeaponIndecator.Count; i++)
             {
@@ -529,19 +543,8 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(weaponInHand.transform.GetChild(0).gameObject);
             }
         }
-        SwapWeaponSprites();
         UpdateAmmoText();
         UpdateStats();
-    }
-    void SwapWeaponSprites()
-    {
-        for (int i = 0; i < weaponSlots.Count; i++)
-        {
-            if(weaponSpritesUi[i] != null)
-            {
-                weaponSpritesUi[i].sprite = weaponSlots[i].Ui_sprite;
-            }
-        }
     }
     void DropWeapon(Weapon _oldWeapon)
     {
@@ -605,6 +608,7 @@ public class PlayerMovement : MonoBehaviour
             if (currentWeapon.ammo > 0)
             {
                 animator.SetTrigger("Shoot");
+                animator.SetTrigger("ShootWithSpecial");
                 currentWeapon.ammo -= 1;
                 UpdateAmmoText();
 

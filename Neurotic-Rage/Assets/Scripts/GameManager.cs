@@ -181,6 +181,10 @@ public class GameManager : MonoBehaviour
     }
     public void BuyItem()
     {
+        if(selectedItem == null)
+        {
+            return;
+        }
         if (money >= selectedItem.moneyValue)
         {
             if (selectedItem.itemType == ShopType.Upgrades)

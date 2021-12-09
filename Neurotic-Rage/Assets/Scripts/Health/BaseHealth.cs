@@ -8,7 +8,7 @@ public class BaseHealth : MonoBehaviour
     protected float health;
     protected float baseMaxHealth;
 
-    private void Start()
+    protected void Start()
     {
         health = maxhealth;
         baseMaxHealth = maxhealth;
