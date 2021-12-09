@@ -626,7 +626,7 @@ public class PlayerMovement : MonoBehaviour
                     float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
 
                     //spawn bullet
-                    Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * (currentWeapon.projectileCount + extra_bullets / 2)) + (total * i) + roll, 0)));
+                    Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
                     spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage + extra_damage, currentWeapon.pierceAmount + extra_pierces, playerRotation.rotation);
                     spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
                 }

@@ -7,6 +7,11 @@ public class CursorChanger : MonoBehaviour
     public Texture2D cursorTexture;
     void Start()
     {
-        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.ForceSoftware);
+        Vector2 newpost = Vector2.zero;
+        if(cursorTexture != null)
+        {
+            newpost = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
+        }
+        Cursor.SetCursor(cursorTexture, newpost, CursorMode.ForceSoftware);
     }
 }
