@@ -46,7 +46,7 @@ public class EnemyStateMachine : MonoBehaviour
             Collider[] hitObjects=Physics.OverlapSphere(handPos.position, hitBoxRange);
 			for (int i = 0; i < hitObjects.Length; i++)
 			{
-				if (hitObjects[i].transform.tag == "Player")
+				if (hitObjects[i].transform.gameObject.CompareTag("Player"))
 				{
 					if (!doDamage)
 					{
