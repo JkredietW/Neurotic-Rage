@@ -53,4 +53,14 @@ public class EnemyHealth : BaseHealth
 	{
         Destroy(gameObject);
     }
+    public void PlayerDied()
+    { 
+        es.enabled = false;
+        agent.enabled = false;
+        col.enabled = false;
+        rb.isKinematic = true;
+        rb.useGravity = false;
+        anim.enabled = false;
+        Invoke("DestroyObj", 7);
+    }
 }

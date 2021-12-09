@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/main scene's/main scene.unity
     guid: 0a478ad7a78fc438f804dec31333c975
+  - enabled: 1
+    path: Assets/Scenes/main scene/Jorn main.unity
+    guid: eed9bf8fbca7f594eb1105ef0547eb96
   m_configObjects: {}

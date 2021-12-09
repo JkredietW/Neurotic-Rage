@@ -7,6 +7,11 @@ public class PlayerHealth : BaseHealth
 {
     Animator animator;
     public Slider healthSlider;
+    public GameObject deathPlayer;
+    public GameObject deathLight;
+    public GameObject mesh;
+    public PlayerMovement pm;
+
 
     private void Start()
     {
@@ -27,4 +32,22 @@ public class PlayerHealth : BaseHealth
         maxhealth = baseMaxHealth + _extraHealth;
         healthSlider.value = health;
     }
+    public override void Died()
+    {
+        mesh.SetActive(false);
+        deathPlayer.SetActive(true);
+        deathLight.SetActive(true);
+        pm.swordInHand.SetActive(false);
+        pm.swordOnBack.SetActive(false);
+        pm.enabled = false;
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemyList.Length; i++)
+        {
+            if (enemyList[i].GetComponent<EnemyHealth>())
+            {
+                enemyList[i].transform.GetComponent<EnemyHealth>().PlayerDied();
+            }
+        }
+    }
+
 }
