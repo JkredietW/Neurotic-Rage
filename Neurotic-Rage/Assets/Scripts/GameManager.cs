@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     //shop
     public GameObject shoppanel, shopUI;
+    [SerializeField] Transform descriptionParent;
+    [SerializeField] List<TextMeshProUGUI> descriptionText;
 
     //privates
     int waveCount; 
@@ -67,6 +70,13 @@ public class GameManager : MonoBehaviour
         Clock();
         dropChancePerSec = dropChancePerMinute / 60;
         StartCoroutine(ItemDropChanceCalculator());
+
+        //get description texts
+        descriptionText = new List<TextMeshProUGUI>();
+        foreach (Transform item in descriptionParent)
+        {
+            descriptionText.Add(item.GetComponent<TextMeshProUGUI>());
+        }
     }
     IEnumerator ItemDropChanceCalculator()
     {
@@ -176,8 +186,129 @@ public class GameManager : MonoBehaviour
     }
     public void GiveSelectedItem(UiItem _selectedItem)
     {
+        if(_selectedItem.heldItem == null)
+        {
+            UpdateDescriptions();
+            return;
+        }
         selectedItem = _selectedItem.heldItem;
         selectedItemInUI.Setup(selectedItem);
+        UpdateDescriptions();
+
+    }
+    void UpdateDescriptions()
+    {
+        if(selectedItemInUI.heldItem == null || selectedItem == null)
+        {
+            for (int i = 0; i < descriptionText.Count; i++)
+            {
+                descriptionText[i].gameObject.SetActive(false);
+            }
+            return;
+        }
+        //item discriptions
+        if (selectedItem.itemType == ShopType.Upgrades)
+        {
+            ShopUpgradeItem item = selectedItem as ShopUpgradeItem;
+
+            //filter out values
+            #region attackspeed
+            if (item.stats.attackSpeed != 0)
+            {
+                descriptionText[0].gameObject.SetActive(true);
+                descriptionText[0].text = $"Attack speed : {item.stats.attackSpeed}";
+            }
+            else
+            {
+                descriptionText[0].gameObject.SetActive(false);
+            }
+            #endregion
+            #region damage
+            if (item.stats.damage != 0)
+            {
+                descriptionText[1].gameObject.SetActive(true);
+                descriptionText[1].text = $"Damage : {item.stats.damage}";
+            }
+            else
+            {
+                descriptionText[1].gameObject.SetActive(false);
+            }
+            #endregion
+            #region ammo
+            if (item.stats.ammo != 0)
+            {
+                descriptionText[2].gameObject.SetActive(true);
+                descriptionText[2].text = $"Ammo : {item.stats.ammo}";
+            }
+            else
+            {
+                descriptionText[2].gameObject.SetActive(false);
+            }
+            #endregion
+            #region pierce
+            if (item.stats.pierces != 0)
+            {
+                descriptionText[3].gameObject.SetActive(true);
+                descriptionText[3].text = $"Pierces : {item.stats.pierces}";
+            }
+            else
+            {
+                descriptionText[3].gameObject.SetActive(false);
+            }
+            #endregion
+            #region bullets
+            if (item.stats.extraBullets != 0)
+            {
+                descriptionText[4].gameObject.SetActive(true);
+                descriptionText[4].text = $"Bullets : {item.stats.extraBullets}";
+            }
+            else
+            {
+                descriptionText[4].gameObject.SetActive(false);
+            }
+            #endregion
+            #region health
+            if (item.stats.health != 0)
+            {
+                descriptionText[5].gameObject.SetActive(true);
+                descriptionText[5].text = $"Health : {item.stats.health}";
+            }
+            else
+            {
+                descriptionText[5].gameObject.SetActive(false);
+            }
+            #endregion
+        }
+        else if(selectedItem.itemType == ShopType.Ammo)
+        {
+            ShopAmmo item = selectedItem as ShopAmmo;
+
+            if(item.normalAmmoAmount != 0)
+            {
+                descriptionText[0].gameObject.SetActive(true);
+                descriptionText[0].text = $"Light ammo : {item.normalAmmoAmount}";
+            }
+            else
+            {
+                descriptionText[0].gameObject.SetActive(false);
+            }
+            if (item.normalAmmoAmount != 0)
+            {
+                descriptionText[1].gameObject.SetActive(true);
+                descriptionText[1].text = $"Heavy ammo : {item.specialAmmoAmount}";
+            }
+            else
+            {
+                descriptionText[1].gameObject.SetActive(false);
+            }
+        }
+        else if (selectedItem.itemType == ShopType.Health)
+        {
+            ShopHealth item = selectedItem as ShopHealth;
+
+            descriptionText[0].gameObject.SetActive(true);
+            descriptionText[0].text = $"Light ammo : {item.healthAmount}";
+        }
     }
     public void BuyItem()
     {
@@ -206,6 +337,7 @@ public class GameManager : MonoBehaviour
             selectedItemInUI.Setup(null);
             RemoveItemFromShop(selectedItem);
         }
+        UpdateDescriptions();
     }
     void RemoveItemFromShop(ShopItem _removeThis)
     {

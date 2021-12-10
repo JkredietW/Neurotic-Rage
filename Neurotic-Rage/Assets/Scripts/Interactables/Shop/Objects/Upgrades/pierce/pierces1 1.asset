@@ -15,7 +15,7 @@ MonoBehaviour:
   moneyValue: 100
   itemType: 2
   itemName: Pierce1
-  itemSprite: {fileID: 21300000, guid: fb390151fdc0c6c41b2977a64a5fd03a, type: 3}
+  itemSprite: {fileID: 21300000, guid: 8667fe53ce6765b4aaa5a2b7ecec091a, type: 3}
   stats:
     pierces: 1
     damage: 0
