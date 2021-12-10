@@ -17,13 +17,13 @@ public class PlayerHealth : BaseHealth
     public PlayerMovement pm;
 
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         animator = GetComponent<PlayerMovement>().animator;
         healthSlider.maxValue = maxhealth;
         healthSlider.value = maxhealth;
         healthSlider.minValue = 0;
-        health = maxhealth;
     }
     public override void DoDamage(float _damage)
     {

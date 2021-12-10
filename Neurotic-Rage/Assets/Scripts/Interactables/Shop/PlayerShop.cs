@@ -62,17 +62,32 @@ public class PlayerShop : InterActable
             float roll = Random.Range(0, 101);
             if (chanceForFirstItem >= roll)
             {
-                upgradeSlots[0] = ItemTypes[Random.Range(0, ItemTypes.Count)];
+                ShopItem item = ItemTypes[Random.Range(0, ItemTypes.Count)];
+                if(item.itemType == ShopType.Random)
+                {
+                    RandomizeItem(item);
+                }
+                upgradeSlots[0] = item;
             }
             roll = Random.Range(0, 101);
             if (chanceForSecondItem >= roll)
             {
-                upgradeSlots[1] = ItemTypes[Random.Range(0, ItemTypes.Count)];
+                ShopItem item = ItemTypes[Random.Range(0, ItemTypes.Count)];
+                if (item.itemType == ShopType.Random)
+                {
+                    RandomizeItem(item);
+                }
+                upgradeSlots[1] = item;
             }
             roll = Random.Range(0, 101);
             if (chanceForThirdItem >= roll)
             {
-                upgradeSlots[2] = ItemTypes[Random.Range(0, ItemTypes.Count)];
+                ShopItem item = ItemTypes[Random.Range(0, ItemTypes.Count)];
+                if (item.itemType == ShopType.Random)
+                {
+                    RandomizeItem(item);
+                }
+                upgradeSlots[2] = item;
             }
         }
         else if (type == ShopType.Ammo)
@@ -93,6 +108,17 @@ public class PlayerShop : InterActable
             ammoSlots[2] = ItemTypes[2];
             ammoSlots[3] = ItemTypes[3];
         }
+    }
+    ShopItem RandomizeItem(ShopItem _item)
+    {
+        ShopUpgradeItem randomizedItem = _item as ShopUpgradeItem;
+        randomizedItem.stats.attackSpeed = Random.Range(-10, 11);
+        randomizedItem.stats.damage = Random.Range(-50, 51);
+        randomizedItem.stats.ammo = Random.Range(-500, 501);
+        randomizedItem.stats.health = Random.Range(-100, 101);
+        randomizedItem.stats.pierces = Random.Range(-5, 6);
+        randomizedItem.stats.extraBullets = Random.Range(-5, 6);
+        return randomizedItem;
     }
     //open shop here
     public override void OnPlayerEnter(PlayerMovement _thisOne)
@@ -182,4 +208,5 @@ public enum ShopType
     Health,
     Ammo,
     Upgrades,
+    Random,
 }

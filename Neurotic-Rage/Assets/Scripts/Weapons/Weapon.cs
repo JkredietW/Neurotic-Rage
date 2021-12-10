@@ -25,7 +25,7 @@ public class Weapon : ScriptableObject
 
     public float OnSwap(float _extraAttackSpeed)
     {
-        float temp = _extraAttackSpeed + attacksPerSecond;
+        float temp = Mathf.Clamp(temp = _extraAttackSpeed + attacksPerSecond, 0.1f, Mathf.Infinity);
         float attackSpeed = temp / (temp * temp);
         return attackSpeed;
     }

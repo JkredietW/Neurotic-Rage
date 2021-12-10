@@ -207,7 +207,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         //item discriptions
-        if (selectedItem.itemType == ShopType.Upgrades)
+        if (selectedItem.itemType == ShopType.Upgrades || selectedItem.itemType == ShopType.Random)
         {
             ShopUpgradeItem item = selectedItem as ShopUpgradeItem;
 
@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour
             if (item.stats.ammo != 0)
             {
                 descriptionText[2].gameObject.SetActive(true);
-                descriptionText[2].text = $"Ammo : {item.stats.ammo}";
+                descriptionText[2].text = $"Max ammo : {item.stats.ammo}";
             }
             else
             {
@@ -271,7 +271,7 @@ public class GameManager : MonoBehaviour
             if (item.stats.health != 0)
             {
                 descriptionText[5].gameObject.SetActive(true);
-                descriptionText[5].text = $"Health : {item.stats.health}";
+                descriptionText[5].text = $"Max health : {item.stats.health}";
             }
             else
             {
@@ -286,7 +286,7 @@ public class GameManager : MonoBehaviour
             if(item.normalAmmoAmount != 0)
             {
                 descriptionText[0].gameObject.SetActive(true);
-                descriptionText[0].text = $"Light ammo : {item.normalAmmoAmount}";
+                descriptionText[0].text = $"Restore light ammo : {item.normalAmmoAmount}";
             }
             else
             {
@@ -295,7 +295,7 @@ public class GameManager : MonoBehaviour
             if (item.normalAmmoAmount != 0)
             {
                 descriptionText[1].gameObject.SetActive(true);
-                descriptionText[1].text = $"Heavy ammo : {item.specialAmmoAmount}";
+                descriptionText[1].text = $"Restore heavy ammo : {item.specialAmmoAmount}";
             }
             else
             {
@@ -307,7 +307,7 @@ public class GameManager : MonoBehaviour
             ShopHealth item = selectedItem as ShopHealth;
 
             descriptionText[0].gameObject.SetActive(true);
-            descriptionText[0].text = $"Light ammo : {item.healthAmount}";
+            descriptionText[0].text = $"Restore health : {item.healthAmount}";
         }
     }
     public void BuyItem()
