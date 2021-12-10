@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject shoppanel, shopUI;
     [SerializeField] Transform descriptionParent;
     [SerializeField] List<TextMeshProUGUI> descriptionText;
+    [SerializeField] TextMeshProUGUI moneyText, waveText;
 
     //privates
     int waveCount; 
@@ -77,6 +78,10 @@ public class GameManager : MonoBehaviour
         {
             descriptionText.Add(item.GetComponent<TextMeshProUGUI>());
         }
+
+        //waves/money to text and wave + 1
+        totalWaveCount++;
+        UpdateTexts();
     }
     IEnumerator ItemDropChanceCalculator()
     {
@@ -92,15 +97,25 @@ public class GameManager : MonoBehaviour
     {
         NewRound();
     }
+    void GiveMoney(float _money)
+    {
+        print(_money);
+        print(money);
+        money += _money;
+        print(money);
+        UpdateTexts();
+    }
     public void EnemyDied(GameObject enemyThatDied)
     {
         killAmount++;
         if(enemiesAlive.Contains(enemyThatDied))
         {
+            GiveMoney(2 * totalWaveCount);
             enemiesAlive.Remove(enemyThatDied);
         }
 		if (bossesAlive.Contains(enemyThatDied))
 		{
+            GiveMoney(10 * totalWaveCount);
             enemiesAlive.Remove(enemyThatDied);
         }
 		if (!isBossRound)
@@ -123,6 +138,7 @@ public class GameManager : MonoBehaviour
     {
         waveCount++;
         totalWaveCount++;
+        UpdateTexts();
         waveIsInProgress = false;
         Invoke(nameof(Clock), timeBetweenWaves);
         //give information to shops in world
@@ -194,7 +210,6 @@ public class GameManager : MonoBehaviour
         selectedItem = _selectedItem.heldItem;
         selectedItemInUI.Setup(selectedItem);
         UpdateDescriptions();
-
     }
     void UpdateDescriptions()
     {
@@ -322,6 +337,7 @@ public class GameManager : MonoBehaviour
             {
                 money -= selectedItem.moneyValue;
                 HeldUpgrades.Add(selectedItem as ShopUpgradeItem);
+                UpdateTexts();
                 CalculateStats();
             }
             else if (selectedItem.itemType == ShopType.Ammo)
@@ -338,6 +354,11 @@ public class GameManager : MonoBehaviour
             RemoveItemFromShop(selectedItem);
         }
         UpdateDescriptions();
+    }
+    void UpdateTexts()
+    {
+        moneyText.text = $"Money : {money}";
+        waveText.text = $"Waves : {totalWaveCount}";
     }
     void RemoveItemFromShop(ShopItem _removeThis)
     {
