@@ -18,7 +18,10 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(IEStart());
     }
-
+    public void BeginScene(int i)
+	{
+        StartCoroutine(StartScene(i));
+	}
     public IEnumerator StartScene(int i)
 	{
 

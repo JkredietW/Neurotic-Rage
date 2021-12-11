@@ -10,6 +10,10 @@ public class EventManager : MonoBehaviour
 	{
         ftb.FadeFromBlack(2);
     }
+    public void StartMain(int i)
+	{
+        StartCoroutine(BeginMainScene(i));
+	}
 	public IEnumerator BeginMainScene(int i)
 	{
         ftb.FadeToBlack(2);

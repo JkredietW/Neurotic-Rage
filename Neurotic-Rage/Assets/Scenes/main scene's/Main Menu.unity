@@ -2782,7 +2782,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 936953257}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: IELoadScene
+        m_MethodName: BeginScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
