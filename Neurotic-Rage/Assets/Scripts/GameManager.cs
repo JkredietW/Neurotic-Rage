@@ -5,6 +5,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public float delayTime;
     public float timeBetweenWaves, timeBetweenSpawns;
     public float minimumDistance, maxDistance;
     public Wave presetWave;
@@ -61,8 +62,9 @@ public class GameManager : MonoBehaviour
     [SerializeReference]
     private float lastSmallEnemieAmount;
 
-    private void Start()
-    {
+
+    public void DelayedStart()
+	{
         player = FindObjectOfType<PlayerMovement>();
         foreach (Transform item in enemySpawnLocationParent)
         {
@@ -99,10 +101,7 @@ public class GameManager : MonoBehaviour
     }
     void GiveMoney(float _money)
     {
-        print(_money);
-        print(money);
         money += _money;
-        print(money);
         UpdateTexts();
     }
     public void EnemyDied(GameObject enemyThatDied)

@@ -38,6 +38,7 @@ public class PlayerHealth : BaseHealth
     }
     public override void Died()
     {
+        pm.MayMove(false);
         mesh.SetActive(false);
         deathPlayer.SetActive(true);
         deathLight.SetActive(true);

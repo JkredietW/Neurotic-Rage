@@ -2887,7 +2887,7 @@ MonoBehaviour:
   hitBoxRange: 3
   damage: 15
   toCloseRange: 1.35
-  rotationSpeed: 0
+  rotationSpeed: 5
   numberOffAttacks: 2
   handPos: {fileID: 220621129065800695}
   player: {fileID: 0}

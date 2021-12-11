@@ -88,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        MayMove(false);
         //get components
         controller = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
@@ -583,7 +584,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void FireWeapon()
     {
-        if(isReloading || isSwitchingWeapon || shopIsOpen)
+        if(isReloading || isSwitchingWeapon || shopIsOpen || !mayMove)
         {
             return;
         }
@@ -859,6 +860,10 @@ public class PlayerMovement : MonoBehaviour
         {
             pickUpWeaponText.gameObject.SetActive(false);
         }
+    }
+    public void MayMove(bool b)
+	{
+        mayMove = b;
     }
     #region return references
     public CharacterController GiveController()

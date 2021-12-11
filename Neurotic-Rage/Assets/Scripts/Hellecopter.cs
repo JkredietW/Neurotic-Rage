@@ -12,10 +12,13 @@ public class Hellecopter : MonoBehaviour
 	public Animator propelor;
 	public GameObject helliCam;
 	public GameObject player;
+	public GameManager gm;
+	public PlayerMovement pm;
 	private bool greenLightB;
 	private void Start()
 	{
 		StartCoroutine(Light());
+		GetComponent<FadeToFromBlack>().FadeFromBlack(2);
 	}
 	public IEnumerator Light()
 	{
@@ -46,6 +49,7 @@ public class Hellecopter : MonoBehaviour
 		SceneManager.LoadScene(sceneIndexToAdd, LoadSceneMode.Additive);
 		helliCam.SetActive(false);
 		player.SetActive(true);
-
+		pm.MayMove(true);
+		gm.DelayedStart();
 	}
 }
