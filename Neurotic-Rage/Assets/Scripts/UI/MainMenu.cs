@@ -19,6 +19,12 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(IEStart());
     }
 
+    public IEnumerator StartScene(int i)
+	{
+
+        yield return new WaitForSeconds(1.5f);
+        IELoadScene(i);
+	}
     public void LoadScene(int sceneToLoad)
     {
         //StartCoroutine(IELoadScene(sceneToLoad));

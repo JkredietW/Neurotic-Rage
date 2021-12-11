@@ -11,12 +11,21 @@ public class SettingsMenu : MonoBehaviour
     public Resolution[] resolutions;
     public int resInt;
     public TMP_Dropdown resDrop;
+    public Slider masterslider;
+    public Slider uislider;
+    public Slider sfxslider;
+    public Slider musicslider;
     private void Start()
     {
         mixer.SetFloat("Master", Mathf.Log10(PlayerPrefs.GetFloat("Master")) * 20);
         mixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat("Music")) * 20);
         mixer.SetFloat("SFX", Mathf.Log10(PlayerPrefs.GetFloat("SFX")) * 20);
         mixer.SetFloat("UI", Mathf.Log10(PlayerPrefs.GetFloat("UI")) * 20);
+
+        masterslider.value = PlayerPrefs.GetFloat("Master");
+        musicslider.value = PlayerPrefs.GetFloat("Music");
+        sfxslider.value = PlayerPrefs.GetFloat("SFX");
+        uislider.value = PlayerPrefs.GetFloat("UI");
 
         resolutions = Screen.resolutions;
         resDrop.ClearOptions();
@@ -36,25 +45,25 @@ public class SettingsMenu : MonoBehaviour
         resDrop.value = currentResIndex;
         resDrop.RefreshShownValue();
     }
-    public void SetMainVolume(float sliderValue)
+    public void SetMainVolume(Slider sliderValue)
     {
-        mixer.SetFloat("Master", Mathf.Log10(sliderValue) * 20);
-        PlayerPrefs.SetFloat("Master", sliderValue);
+        mixer.SetFloat("Master", Mathf.Log10(sliderValue.value) * 20);
+        PlayerPrefs.SetFloat("Master", sliderValue.value);
     }
-    public void SetMusicVolume(float sliderValue)
+    public void SetMusicVolume(Slider sliderValue)
     {
-        mixer.SetFloat("Music", Mathf.Log10(sliderValue) * 20);
-        PlayerPrefs.SetFloat("Music", sliderValue);
+        mixer.SetFloat("Music", Mathf.Log10(sliderValue.value) * 20);
+        PlayerPrefs.SetFloat("Music", sliderValue.value);
     }
-    public void SetSfxVolume(float sliderValue)
+    public void SetSfxVolume(Slider sliderValue)
     {
-        mixer.SetFloat("SFX", Mathf.Log10(sliderValue) * 20);
-        PlayerPrefs.SetFloat("SFX", sliderValue);
+        mixer.SetFloat("SFX", Mathf.Log10(sliderValue.value) * 20);
+        PlayerPrefs.SetFloat("SFX", sliderValue.value);
     }
-    public void SetUiVolume(float sliderValue)
+    public void SetUiVolume(Slider sliderValue)
     {
-        mixer.SetFloat("UI", Mathf.Log10(sliderValue) * 20);
-        PlayerPrefs.SetFloat("UI", sliderValue);
+        mixer.SetFloat("UI", Mathf.Log10(sliderValue.value) * 20);
+        PlayerPrefs.SetFloat("UI", sliderValue.value);
     }
     public void SetResolution(int resIndex)
     {
