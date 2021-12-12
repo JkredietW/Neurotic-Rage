@@ -632,8 +632,41 @@ public class PlayerMovement : MonoBehaviour
 
                     //spawn bullet
                     Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
-                    spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage + extra_damage, currentWeapon.pierceAmount + extra_pierces, playerRotation.rotation);
-                    spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
+
+                    //check for bullet speed, 50+ sometimes goes through things....
+                    if(currentWeapon.bulletSpeed > 50)
+                    {
+                        spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage + extra_damage, currentWeapon.pierceAmount + extra_pierces, playerRotation.rotation, true);
+                        spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
+
+                        int pierces = currentWeapon.pierceAmount + extra_pierces;
+                        RaycastHit[] hitByRaycast = Physics.RaycastAll(bulletOrigin.position, spawnedBullet.velocity);
+                        for (int r = 0; r < hitByRaycast.Length; r++)
+                        {
+                            if(hitByRaycast[r].transform.GetComponent<EnemyHealth>())
+                            {
+                                print(hitByRaycast[r].transform.name);
+                                pierces--;
+                                hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeapon.damage + extra_damage);
+
+                                GameObject tempBlood = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpat, hitByRaycast[r].point, playerRotation.rotation);
+                                tempBlood.GetComponent<VisualEffect>().Play();
+                                Destroy(tempBlood, 5);
+
+                                //return when pierces all gone
+                                if (pierces == 0)
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage + extra_damage, currentWeapon.pierceAmount + extra_pierces, playerRotation.rotation, false);
+                        spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
+                    }
+
                 }
                 if(currentWeapon.ammo == 0 && mayMove)
                 {

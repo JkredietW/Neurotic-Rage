@@ -10,16 +10,22 @@ public class BulletBehavior : MonoBehaviour
     Quaternion rotation;
     public GameObject bloodSpat;
     public List<string> IgnoreTag;
+    bool mayNotDoDamage;
 
-    public void SetUp(float _damage, int _pierces, Quaternion _rotation)
+    public void SetUp(float _damage, int _pierces, Quaternion _rotation, bool _mayNotDoDamage)
     {
         damage = _damage;
         pierceAmount = _pierces;
         rotation = _rotation;
+        mayNotDoDamage = _mayNotDoDamage;
         Destroy(gameObject, 5);
     }
     private void OnTriggerEnter(Collider other)
     {
+        if(mayNotDoDamage)
+        {
+            return;
+        }
         if (other.GetComponent<EnemyHealth>())
         {
             BaseHealth health = other.GetComponent<BaseHealth>();
