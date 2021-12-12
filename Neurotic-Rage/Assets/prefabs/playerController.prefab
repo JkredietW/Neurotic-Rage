@@ -16633,7 +16633,7 @@ MonoBehaviour:
   currentWeapon: {fileID: 11400000, guid: de8483fe09aabcc48877298558c5fb1b, type: 2}
   weaponSlots:
   - {fileID: 11400000, guid: de8483fe09aabcc48877298558c5fb1b, type: 2}
-  - {fileID: 11400000, guid: ed28629676a34d2418836ce32a96cdcc, type: 2}
+  - {fileID: 11400000, guid: c221e4a5f9aab3f43bfaf4bcfb75d11b, type: 2}
   isShooting: 0
   worldWeaponPrefab: {fileID: 4785820487764305760, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
   pickUpWeaponText: {fileID: 8464676612361931657}

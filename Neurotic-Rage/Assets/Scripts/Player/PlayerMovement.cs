@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Animator babyAnimator;
     public GameObject swordOnBack, swordInHand;
+    public Animation reloadAnimationForSpeed;
 
     [Header("Shop")]
     bool shopInRange, shopIsOpen;
@@ -139,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         specialWeapon.transform.rotation = weaponInHand.transform.rotation;
         specialWeapon.transform.SetParent(weaponInHand.transform);
 
-        mayMove = true;
+        MayMove(false);
         if (FindObjectOfType<GameManager>())
         {
             shop = FindObjectOfType<GameManager>().shopUI;
@@ -357,22 +358,18 @@ public class PlayerMovement : MonoBehaviour
         {
             case weaponType.light:
                 weaponSlots[0] = weaponsInRange[0].heldItem;
-                if (swapCurrentWeaponType == 0)
-                {
-                    currentWeapon = weaponSlots[0];
-                }
+                currentWeapon = weaponSlots[0];
                 DropWeapon(oldWeapon);
                 UiWeaponSlots[2].SetActive(false);
                 break;
+
             case weaponType.heavy:
                 weaponSlots[1] = weaponsInRange[0].heldItem;
-                if (swapCurrentWeaponType == 1)
-                {
-                    currentWeapon = weaponSlots[1];
-                }
+                currentWeapon = weaponSlots[1];
                 DropWeapon(oldWeapon);
                 UiWeaponSlots[2].SetActive(false);
                 break;
+
             case weaponType.special:
                 currentWeapon = weaponsInRange[0].heldItem;
                 UiWeaponSlots[2].SetActive(true);
@@ -387,17 +384,7 @@ public class PlayerMovement : MonoBehaviour
         specialWeapon.transform.rotation = weaponInHand.transform.rotation;
         specialWeapon.transform.SetParent(weaponInHand.transform);
 
-        //set animation pose for weapon
-        if (currentWeapon.type == weaponType.special)
-        {
-            //animations
-            animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
-        }
-        else
-        {
-            //animation back
-            animator.SetInteger("SpecialStanceState", -1);
-        }
+        animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
 
         //destroy old world weapon
         WorldWeapon temp = weaponsInRange[0];
@@ -432,9 +419,6 @@ public class PlayerMovement : MonoBehaviour
             //set previous weapon off, no double weapons
             weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
 
-            //set animation to default
-            animator.SetInteger("SpecialStanceState", -1);
-
             //drop current speecial weapon
             if (currentWeapon.type == weaponType.special)
             {
@@ -459,8 +443,12 @@ public class PlayerMovement : MonoBehaviour
             currentWeapon = weaponSlots[currentWeaponSlot];
             attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
 
+            //set animation to default
+            animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
+
             //make weapon
             GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
+            specialWeapon.GetComponent<Collider>().enabled = false;
             //done like this so that scale is normal
             specialWeapon.transform.position = weaponInHand.transform.position;
             specialWeapon.transform.rotation = weaponInHand.transform.rotation;
@@ -495,7 +483,7 @@ public class PlayerMovement : MonoBehaviour
             weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
 
             //set animation to default
-            animator.SetInteger("SpecialStanceState", -1);
+            animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
 
             //animations for switching weapon
             isSwitchingWeapon = true;
@@ -517,6 +505,7 @@ public class PlayerMovement : MonoBehaviour
 
             //make weapon
             GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
+            specialWeapon.GetComponent<Collider>().enabled = false;
             //done like this so that scale is normal
             specialWeapon.transform.position = weaponInHand.transform.position;
             specialWeapon.transform.rotation = weaponInHand.transform.rotation;
@@ -631,7 +620,7 @@ public class PlayerMovement : MonoBehaviour
                     float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
 
                     //spawn bullet
-                    Rigidbody spawnedBullet = Instantiate(bulletPrefab, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
+                    Rigidbody spawnedBullet = Instantiate(currentWeapon.Bullet, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
 
                     //check for bullet speed, 50+ sometimes goes through things....
                     if(currentWeapon.bulletSpeed > 50)
@@ -694,10 +683,10 @@ public class PlayerMovement : MonoBehaviour
         }
         isReloading = true;
         animator.SetTrigger("Reload");
-        float oldSpeed = animator.speed;
-        animator.speed /= currentWeapon.reloadTime;
+        float oldspeed = animator.GetFloat("ReloadSpeed");
+        animator.SetFloat("ReloadSpeed", oldspeed / currentWeapon.reloadTime);
         yield return new WaitForSeconds(currentWeapon.reloadTime);
-        animator.speed = oldSpeed;
+        animator.SetFloat("ReloadSpeed", oldspeed);
         if (!hasMeleeAttacked || currentWeapon.ammo == currentWeapon.maxAmmo)
         {
             if (currentWeapon.type == weaponType.light)

@@ -8,10 +8,11 @@ using System;
 public class Weapon : ScriptableObject
 {
     public int weaponId;
-    public int specialWeaponId;
+    public int specialWeaponId = -1;
     public weaponType type;
     public GameObject objectprefab;
     public Sprite Ui_sprite;
+    public Rigidbody Bullet;
     [Space]
     public float damage;
     public float attacksPerSecond;
