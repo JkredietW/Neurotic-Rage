@@ -8099,13 +8099,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0311490021228745af42cf956db33f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCoolDown: 0
+  attackCoolDown: 3.69
   attackRange: 1.32
   chaseRange: 10
-  destroyTime: 1.25
+  destroyTime: 1.35
   hitBoxRange: 3
-  damage: 15
-  toCloseRange: 1.35
+  damage: 10
+  toCloseRange: 1.2
   rotationSpeed: 5
   numberOffAttacks: 2
   handPos: {fileID: 6304069426369150170}

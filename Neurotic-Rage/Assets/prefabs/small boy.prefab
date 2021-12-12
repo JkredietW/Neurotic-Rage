@@ -8104,8 +8104,8 @@ MonoBehaviour:
   chaseRange: 10
   destroyTime: 1.25
   hitBoxRange: 3
-  damage: 15
-  toCloseRange: 1.35
+  damage: 5
+  toCloseRange: 1.2
   rotationSpeed: 5
   numberOffAttacks: 2
   handPos: {fileID: 6304069426369150170}
