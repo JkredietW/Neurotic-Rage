@@ -148,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
         specialWeapon.transform.position = weaponInHand.transform.position;
         specialWeapon.transform.rotation = weaponInHand.transform.rotation;
         specialWeapon.transform.SetParent(weaponInHand.transform);
+        specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         if (FindObjectOfType<GameManager>())
         {
@@ -345,26 +346,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //get right indecator
-        int swapCurrentWeaponType = -1;
         Weapon oldWeapon = currentWeapon;
-        switch (currentWeapon.type)
-        {
-            case weaponType.light:
-                swapCurrentWeaponType = 0;
-                break;
-            case weaponType.heavy:
-                swapCurrentWeaponType = 1;
-                break;
-            case weaponType.special:
-                swapCurrentWeaponType = 2;
-                break;
-        }
-        selectWeaponIndecator[swapCurrentWeaponType].SetActive(true);
 
         //swap weapons
         switch (weaponsInRange[0].heldItem.type)
         {
             case weaponType.light:
+                selectWeaponIndecator[0].SetActive(true);
                 weaponSlots[0] = weaponsInRange[0].heldItem;
                 currentWeapon = weaponSlots[0];
                 DropWeapon(oldWeapon);
@@ -372,6 +360,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case weaponType.heavy:
+                selectWeaponIndecator[1].SetActive(true);
                 weaponSlots[1] = weaponsInRange[0].heldItem;
                 currentWeapon = weaponSlots[1];
                 DropWeapon(oldWeapon);
@@ -379,6 +368,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
 
             case weaponType.special:
+                selectWeaponIndecator[2].SetActive(true);
                 currentWeapon = weaponsInRange[0].heldItem;
                 UiWeaponSlots[2].SetActive(true);
                 break;
@@ -391,6 +381,7 @@ public class PlayerMovement : MonoBehaviour
         specialWeapon.transform.position = weaponInHand.transform.position;
         specialWeapon.transform.rotation = weaponInHand.transform.rotation;
         specialWeapon.transform.SetParent(weaponInHand.transform);
+        specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
 
@@ -418,7 +409,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ScrollWeapon()
     {
-        if(!mayMove || isSwitchingWeapon || shopIsOpen || isReloading)
+        if(!mayMove || isSwitchingWeapon || shopIsOpen || isReloading || currentWeapon.type != weaponType.special)
         {
             return;
         }
@@ -456,11 +447,11 @@ public class PlayerMovement : MonoBehaviour
 
             //make weapon
             GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
-            specialWeapon.GetComponent<Collider>().enabled = false;
             //done like this so that scale is normal
             specialWeapon.transform.position = weaponInHand.transform.position;
             specialWeapon.transform.rotation = weaponInHand.transform.rotation;
             specialWeapon.transform.SetParent(weaponInHand.transform);
+            specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
             //swap cooldown
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
@@ -513,11 +504,11 @@ public class PlayerMovement : MonoBehaviour
 
             //make weapon
             GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
-            specialWeapon.GetComponent<Collider>().enabled = false;
             //done like this so that scale is normal
             specialWeapon.transform.position = weaponInHand.transform.position;
             specialWeapon.transform.rotation = weaponInHand.transform.rotation;
             specialWeapon.transform.SetParent(weaponInHand.transform);
+            specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
             //swap cooldown
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);

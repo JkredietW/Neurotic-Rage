@@ -1215,6 +1215,7 @@ GameObject:
   - component: {fileID: 4074786246607562457}
   - component: {fileID: -2765391317502063765}
   - component: {fileID: 3584258815711033577}
+  - component: {fileID: 6457811339429835186}
   m_Layer: 21
   m_Name: Uzi
   m_TagString: Weapon
@@ -1260,9 +1261,9 @@ SphereCollider:
   m_GameObject: {fileID: 7320750945144682316}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 0.0001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3584258815711033577
 Rigidbody:
@@ -1280,6 +1281,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &6457811339429835186
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320750945144682316}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0022004407, y: 0.003972051, z: 0.0053997776}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7413738124598109813
 GameObject:
   m_ObjectHideFlags: 0

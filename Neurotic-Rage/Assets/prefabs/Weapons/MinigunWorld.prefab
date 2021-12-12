@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 3783994437407503896}
   - component: {fileID: 5245311692838761494}
   - component: {fileID: 5797484484616803779}
+  - component: {fileID: -3540814796334332233}
   m_Layer: 21
   m_Name: MinigunWorld
   m_TagString: Weapon
@@ -303,9 +304,9 @@ SphereCollider:
   m_GameObject: {fileID: 8180016509372760208}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 0.0001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5797484484616803779
 Rigidbody:
@@ -323,3 +324,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &-3540814796334332233
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180016509372760208}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.13876712, y: 0.6441508, z: 0.4887298}
+  m_Center: {x: -0.031808153, y: 0.17894253, z: 0.36987942}

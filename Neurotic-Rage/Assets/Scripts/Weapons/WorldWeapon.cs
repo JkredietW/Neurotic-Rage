@@ -41,8 +41,10 @@ public class WorldWeapon : InterActable
         heldItem = _newWeapon;
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().AddForce(transform.forward + transform.up, ForceMode.VelocityChange);
-
-        gameObject.AddComponent<BoxCollider>();
+        GetComponent<SphereCollider>().enabled = true;
+        GetComponent<SphereCollider>().radius = 2;
+        GetComponent<BoxCollider>().enabled = true;
+        //gameObject.AddComponent<BoxCollider>();
         float time = alreadyInWorld == true ? 0 : 0.5f;
         if (alreadyInWorld)
         {
