@@ -26,7 +26,9 @@ public class PlayerMovement : MonoBehaviour
     bool dustIsInEffect;
     bool mayMove;
     bool isSwitchingWeapon;
-
+    
+    [SerializeField]
+    private bool tuturial;
     [Header("CameraStats")]
     public LayerMask aimLayer;
     public Joystick movementJoystick;
@@ -89,7 +91,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        MayMove(false);
+		if (!tuturial)
+		{
+            MayMove(false);
+		}
+		else
+		{
+            MayMove(true);
+        }
         //get components
         controller = GetComponent<CharacterController>();
         playerCamera = GetComponentInChildren<Camera>();
@@ -140,7 +149,6 @@ public class PlayerMovement : MonoBehaviour
         specialWeapon.transform.rotation = weaponInHand.transform.rotation;
         specialWeapon.transform.SetParent(weaponInHand.transform);
 
-        MayMove(false);
         if (FindObjectOfType<GameManager>())
         {
             shop = FindObjectOfType<GameManager>().shopUI;
