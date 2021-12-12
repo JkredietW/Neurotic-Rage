@@ -645,7 +645,6 @@ public class PlayerMovement : MonoBehaviour
                         {
                             if(hitByRaycast[r].transform.GetComponent<EnemyHealth>())
                             {
-                                print(hitByRaycast[r].transform.name);
                                 pierces--;
                                 hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeapon.damage + extra_damage);
 
