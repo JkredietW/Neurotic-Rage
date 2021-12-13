@@ -426,6 +426,11 @@ public class GameManager : MonoBehaviour
             Spawn(presetWave.small,false);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
+        for (int i = 0; i < (int)lastMiniBosAmount; i++)
+        {
+            Spawn(presetWave.minibos, false);
+            yield return new WaitForSeconds(timeBetweenSpawns);
+        }
         for (int i = 0; i < (int)lastMediumEnemieAmount; i++)
         {
             Spawn(presetWave.medium, false);
@@ -434,11 +439,6 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < (int)lastBigEnemieAmount; i++)
         {
             Spawn(presetWave.big, false);
-            yield return new WaitForSeconds(timeBetweenSpawns);
-        }
-        for (int i = 0; i < (int)lastMiniBosAmount; i++)
-        {
-            Spawn(presetWave.minibos, false);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }

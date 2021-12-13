@@ -5398,7 +5398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   agent: {fileID: 6837059145829708471}
   player: {fileID: 0}
   anim: {fileID: 1119294833404036682}
