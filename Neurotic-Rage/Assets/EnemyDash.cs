@@ -5,216 +5,103 @@ using UnityEngine.AI;
 
 public class EnemyDash : MonoBehaviour
 {
-    public float attackCoolDown;
-    public float attackRange;
-    public float dashCoolDown;
-    public float chaseRange;
-    public float destroyTime = 1.25f;
-    public float hitBoxRange;
-    public float damage;
-    public float toCloseRange;
-    public float rotationSpeed;
-    public float speed;
-
-    public int numberOffAttacks;
-
-    public Transform handPos;
-    public GameObject player;
-    public NavMeshAgent navMeshAgent;
-    private bool doDamage;
-    private bool attacking;
-    private bool hitbox;
-    private bool canJump;
-    private bool moveTowards;
-    public Animator anim;
-    public GameObject head;
-    private GameObject target;
-    EnemyStates currentEnemyState;
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        StartCoroutine(DashCoolDown());
-    }
-    enum EnemyStates
-    {
-        standby,
-        chase,
-        patrol,
-        attack,
-        dying
-    }
-    public IEnumerator Dash()
+	public LayerMask layer;
+	public NavMeshAgent agent;
+	public GameObject player;
+	private Vector3 target;
+	public Animator anim;
+	public float rotationSpeed;
+	public float damage;
+	public float dashMoveSpeed;
+	public float dashCooldown;
+	public float dashChargeTime;
+	public float attackCooldown;
+	public float dashDist;
+	public float toClose;
+	public float attackRange;
+	private float distance;
+	private bool isAttacking, moveTowards,canDash, isDashing;
+	private void Start()
 	{
-        anim.SetTrigger("DashPose");
-        yield return new WaitForSeconds(1f);
-        moveTowards = true;
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-        {
-            target = hit.transform.gameObject;
-        }
+		player = GameObject.FindGameObjectWithTag("Player");
+		Invoke("LateStart", 4);
+	}
+	public void LateStart()
+	{
+		canDash = true;
+	}
+	private void Update()
+	{
+		distance = Vector3.Distance(transform.position, player.transform.position);
+		if (distance <= attackRange)
+		{
+			if (!isAttacking)
+			{
+				StartCoroutine(Attack());
+			}
+		}
+		else if (distance>= dashDist&& distance > attackRange)
+		{
+			if (!isAttacking)
+			{
+				if (canDash)
+				{
+					StartCoroutine(Dash());
+				}
+			}
+		}
+		if (distance <= toClose||isDashing)
+		{
+			agent.destination = transform.position;
+		}
 		else
 		{
-            target = player;
-        }
-    }
-    public IEnumerator DashCoolDown()
-	{
-        canJump = false;
-        yield return new WaitForSeconds(dashCoolDown);
-        canJump = true;
-    }
-    void Update()
-    {
+			agent.destination = player.transform.position;
+			var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed / 2 * Time.deltaTime);
+		}
+
 		if (moveTowards)
 		{
-            float step = speed * Time.deltaTime; // calculate distance to move
-            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step); ;
-        }
-        if (hitbox)
-        {
-            Collider[] hitObjects = Physics.OverlapSphere(handPos.position, hitBoxRange);
-            for (int i = 0; i < hitObjects.Length; i++)
-            {
-                if (hitObjects[i].transform.gameObject.CompareTag("Player"))
-                {
-                    if (!doDamage)
-                    {
-                        StartCoroutine(DoDamage(hitObjects[i].transform.gameObject));
-                    }
-                }
-            }
-        }
-        switch (currentEnemyState)
-        {
-            case EnemyStates.standby:
-                EnemyStandbyState();
-
-                break;
-            case EnemyStates.chase:
-                EnemyChaseState();
-
-                break;
-            case EnemyStates.patrol:
-                EnemyPatrolState();
-
-                break;
-            case EnemyStates.attack:
-                EnemyAttackState();
-
-                break;
-            case EnemyStates.dying:
-                StartCoroutine(EnemyDyingState());
-                break;
-            default:
-                Debug.LogError("stateChanger reached default state");
-
-                break;
-        }
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) >= toCloseRange)
-        {
-            navMeshAgent.SetDestination(player.transform.position);
-
-            var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed / 2 * Time.deltaTime);
-
-            head.transform.LookAt(player.transform.position - new Vector3(0, 1.5f, 0));
-            anim.SetBool("Feet", false);
-        }
-        else
-        {
-            var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-            navMeshAgent.SetDestination(transform.position);
-            head.transform.LookAt(player.transform.position - new Vector3(0, 1.5f, 0));
-        }
-    }
-    public IEnumerator DoDamage(GameObject player)
-    {
-        doDamage = true;
-        player.GetComponent<PlayerHealth>().DoDamage(damage);
-        yield return new WaitForSeconds(numberOffAttacks / 2);
-        doDamage = false;
-    }
-    public void EnemyStandbyState()
-    {
-        EnterChaseState();
-    }
-    public void EnemyChaseState()
-    {
-        if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= attackRange)
-        {
-            currentEnemyState = EnemyStates.attack;
-        }
-        else
-        {
-            currentEnemyState = EnemyStates.chase;
-        }
-    }
-
-    public void EnemyPatrolState()
-    {
-        EnterChaseState();
-    }
-
-    public void EnemyAttackState()
-    {
-        if (!attacking)
-        {
-            Attack();
-        }
-        currentEnemyState = EnemyStates.chase;
-    }
-
-    public IEnumerator EnemyDyingState()
-    {
-        //idk
-        yield return new WaitForSeconds(destroyTime);
-        Destroy(gameObject);
-    }
-
-    //
-
-    public void EnterChaseState()
-    {
-        currentEnemyState = EnemyStates.chase;
-    }
-    public void Attack()
-    {
-        anim.SetLayerWeight(1, 100);
-        int randomAtt = Random.Range(1, numberOffAttacks + 1);
-        anim.SetTrigger("Attack" + randomAtt.ToString());
-        anim.SetBool("Feet", true);
-        attacking = true;
-        Invoke("ResetAnim", attackCoolDown);
-    }
-    public void ResetAnim()
-    {
-        anim.SetBool("Feet", false);
-        anim.SetLayerWeight(1, 0);
-        attacking = false;
-    }
-    public void HitBoxTrigger(int i)
-    {
-        if (i == 1)
-        {
-            hitbox = false;
-        }
-        else
-        {
-            hitbox = true;
-        }
-    }
-	private void OnTriggerEnter(Collider other)
+			float targetDis = Vector3.Distance(target, transform.position);
+			if (targetDis <= 1.1f)
+			{
+				moveTowards = false;
+				isDashing = false;
+				isAttacking = false;
+				transform.LookAt(new Vector3(target.x,transform.position.y, target.z));
+				agent.destination = player.transform.position;
+			}
+			transform.localPosition = Vector3.MoveTowards(transform.localPosition, target, Time.deltaTime * dashMoveSpeed);
+		}
+	}
+	public IEnumerator Attack()
 	{
-		if (other.gameObject.CompareTag("Player"))
+		anim.SetTrigger("Attack");
+		isAttacking = true;
+		yield return new WaitForSeconds(attackCooldown);
+		isAttacking = false;
+	}
+	public IEnumerator Dash()
+	{
+		target = player.transform.position;
+		if (Physics.Linecast(transform.position, target,layer))
 		{
-            if (canJump)
-            {
-                StartCoroutine(DashCoolDown());
-                StartCoroutine(Dash());
-            }
-        }
+			canDash = false;
+			yield return new WaitForSeconds(dashCooldown);
+			canDash = true;
+			yield break;
+		}
+		canDash = false;
+		isAttacking = true;
+		isDashing = true;
+		anim.SetTrigger("Dash");
+		yield return new WaitForSeconds(dashChargeTime);
+		transform.LookAt(player.transform.position);
+		moveTowards = true;
+		yield return new WaitForSeconds(dashCooldown);
+		isDashing = false;
+		isAttacking = false;
+		canDash = true;
 	}
 }

@@ -8,8 +8,9 @@ public class EnemyHealth : BaseHealth
     public BoxCollider col;
     public Rigidbody rb;
     public Animator anim;
+    public TypeEnemy type;
     public EnemyStateMachine es;
-
+    public EnemyDash ed;
     private float chanceForDrop = 0;
     private WorldWeapon worldWeaponPrefab;
     private List<Weapon> dropItems;
@@ -22,7 +23,14 @@ public class EnemyHealth : BaseHealth
         rb.isKinematic = true;
         rb.useGravity = false;
         anim.enabled = false;
-        es.enabled = false;
+		if (type == TypeEnemy.normal)
+		{
+            es.enabled = false;
+        }
+		else
+		{
+            ed.enabled = false;
+		}
         Invoke("DestroyObj",4);
     }
     void DropItems()
@@ -41,7 +49,14 @@ public class EnemyHealth : BaseHealth
         health = maxhealth;
 
         anim.speed *= _scaling;
-        es.damage *= _scaling;
+        if (type == TypeEnemy.normal)
+        {
+            es.damage *= _scaling;
+        }
+        else
+        {
+            ed.damage *= _scaling;
+        }
         agent.speed *= _scaling;
 
         chanceForDrop = _drop;
@@ -54,8 +69,15 @@ public class EnemyHealth : BaseHealth
         Destroy(gameObject);
     }
     public void PlayerDied()
-    { 
-        es.enabled = false;
+    {
+        if (type == TypeEnemy.normal)
+        {
+            es.enabled = false;
+        }
+        else
+        {
+            ed.enabled = false;
+        }
         agent.enabled = false;
         col.enabled = false;
         rb.isKinematic = true;
@@ -63,4 +85,9 @@ public class EnemyHealth : BaseHealth
         anim.enabled = false;
         Invoke("DestroyObj", 3.5f);
     }
+    public enum TypeEnemy
+	{
+        normal,
+        dash,
+	}
 }
