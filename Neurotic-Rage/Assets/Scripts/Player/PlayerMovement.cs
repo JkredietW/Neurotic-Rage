@@ -74,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
     public Animation reloadAnimationForSpeed;
 
     [Header("Shop")]
-    bool shopInRange, shopIsOpen;
+    bool shopInRange;
+    [HideInInspector]public bool shopIsOpen;
     private GameObject shop;
     PlayerShop lastShopTouched;
 
@@ -163,8 +164,11 @@ public class PlayerMovement : MonoBehaviour
             Movement();
         }
         DefineDirection();
-        ScrollWeapon();
 
+        if (Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f || Input.GetButtonDown("RightBumber"))
+        {
+            ScrollWeapon();
+        }
         if (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("ToggleMap"))
         {
             ToggleMap();
@@ -289,7 +293,7 @@ public class PlayerMovement : MonoBehaviour
         MoreMaxAmmo();
         extra_health = _health;
         health.GainMoreMaxHealth(extra_health);
-        extra_bullets = _bullets;
+        extra_bullets = Mathf.Clamp(extra_bullets = _bullets, 1, 10000000);
     }
     public void GrantAmmo(int _amount, int _heavyAmmo)
     {
@@ -413,85 +417,30 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        if (Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f)
+        if (currentWeapon.type == weaponType.special)
         {
-            if (currentWeapon.type == weaponType.special)
-            {
-                Weapon oldWeapon = currentWeapon;
-                DropWeapon(oldWeapon);
-                currentWeapon = weaponSlots[currentWeaponSlot];
-                attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
-                //remove old weapons
-                if (weaponInHand.transform.childCount > 0)
-                {
-                    Destroy(weaponInHand.transform.GetChild(0).gameObject);
-                }
-                //set animation to default
-                animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
-
-                //make weapon
-                GameObject weapon = Instantiate(currentWeapon.objectprefab);
-                //done like this so that scale is normal
-                weapon.transform.position = weaponInHand.transform.position;
-                weapon.transform.rotation = weaponInHand.transform.rotation;
-                weapon.transform.SetParent(weaponInHand.transform);
-                weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
-                //swap cooldown
-                Invoke(nameof(SecAfterSwapWeapon), 0.5f);
-                UiWeaponSlots[2].SetActive(false);
-
-                //ui sprite
-                weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
-                weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
-                weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
-
-                //ui indecator
-                for (int i = 0; i < selectWeaponIndecator.Count; i++)
-                {
-                    selectWeaponIndecator[i].SetActive(false);
-                }
-                selectWeaponIndecator[currentWeaponSlot].SetActive(true);
-                return;
-            }
+            Weapon oldWeapon = currentWeapon;
+            currentWeapon = weaponSlots[currentWeaponSlot];
+            attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
 
             //set previous weapon off, no double weapons
             weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
 
-            //drop current speecial weapon
-            if (currentWeapon.type == weaponType.special)
-            {
-                DropWeapon(currentWeapon);
-            }
+            //set animation to default
+            animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
 
             //animations for switching weapon
             isSwitchingWeapon = true;
             animator.SetTrigger("SwitchWeapon");
             babyAnimator.SetTrigger("Switch");
 
-            //actual switch values
-            currentWeaponSlot -= (int)Input.mouseScrollDelta.y;
-            if(currentWeaponSlot > weaponSlots.Count - 1)
-            {
-                currentWeaponSlot = 0;
-            }
-            if(currentWeaponSlot < 0)
-            {
-                currentWeaponSlot = weaponSlots.Count - 1;
-            }
-            currentWeapon = weaponSlots[currentWeaponSlot];
-            attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
-
-            //set animation to default
-            animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
-
             //make weapon
-            GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
+            GameObject weapon = Instantiate(currentWeapon.objectprefab);
             //done like this so that scale is normal
-            specialWeapon.transform.position = weaponInHand.transform.position;
-            specialWeapon.transform.rotation = weaponInHand.transform.rotation;
-            specialWeapon.transform.SetParent(weaponInHand.transform);
-            specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            weapon.transform.position = weaponInHand.transform.position;
+            weapon.transform.rotation = weaponInHand.transform.rotation;
+            weapon.transform.SetParent(weaponInHand.transform);
+            weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
             //swap cooldown
             Invoke(nameof(SecAfterSwapWeapon), 0.5f);
@@ -514,103 +463,64 @@ public class PlayerMovement : MonoBehaviour
             {
                 Destroy(weaponInHand.transform.GetChild(0).gameObject);
             }
+            UpdateAmmoText();
+            UpdateStats();
+            DropWeapon(oldWeapon);
+            return;
         }
-        //for controller/mobile
-        if(Input.GetButtonDown("RightBumber"))
+
+        //set previous weapon off, no double weapons
+        weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
+
+        //set animation to default
+        animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
+
+        //animations for switching weapon
+        isSwitchingWeapon = true;
+        animator.SetTrigger("SwitchWeapon");
+        babyAnimator.SetTrigger("Switch");
+
+        //actual switch values
+        currentWeaponSlot -= 1;
+        if (currentWeaponSlot > weaponSlots.Count - 1)
         {
-            if (currentWeapon.type == weaponType.special)
-            {
-                Weapon oldWeapon = currentWeapon;
-                DropWeapon(oldWeapon);
-                currentWeapon = weaponSlots[currentWeaponSlot];
-                attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
-                //remove old weapons
-                if (weaponInHand.transform.childCount > 0)
-                {
-                    Destroy(weaponInHand.transform.GetChild(0).gameObject);
-                }
-                //set animation to default
-                animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
+            currentWeaponSlot = 0;
+        }
+        if (currentWeaponSlot < 0)
+        {
+            currentWeaponSlot = weaponSlots.Count - 1;
+        }
+        currentWeapon = weaponSlots[currentWeaponSlot];
+        attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
 
-                //make weapon
-                GameObject weapon = Instantiate(currentWeapon.objectprefab);
-                //done like this so that scale is normal
-                weapon.transform.position = weaponInHand.transform.position;
-                weapon.transform.rotation = weaponInHand.transform.rotation;
-                weapon.transform.SetParent(weaponInHand.transform);
-                weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        //make weapon
+        GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
+        //done like this so that scale is normal
+        specialWeapon.transform.position = weaponInHand.transform.position;
+        specialWeapon.transform.rotation = weaponInHand.transform.rotation;
+        specialWeapon.transform.SetParent(weaponInHand.transform);
+        specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
-                //swap cooldown
-                Invoke(nameof(SecAfterSwapWeapon), 0.5f);
-                UiWeaponSlots[2].SetActive(false);
+        //swap cooldown
+        Invoke(nameof(SecAfterSwapWeapon), 0.5f);
+        UiWeaponSlots[2].SetActive(false);
 
-                //ui sprite
-                weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
-                weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
-                weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
+        //ui sprite
+        weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
+        weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
+        weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
 
-                //ui indecator
-                for (int i = 0; i < selectWeaponIndecator.Count; i++)
-                {
-                    selectWeaponIndecator[i].SetActive(false);
-                }
-                selectWeaponIndecator[currentWeaponSlot].SetActive(true);
-                return;
-            }
+        //ui indecator
+        for (int i = 0; i < selectWeaponIndecator.Count; i++)
+        {
+            selectWeaponIndecator[i].SetActive(false);
+        }
+        selectWeaponIndecator[currentWeaponSlot].SetActive(true);
 
-            //set previous weapon off, no double weapons
-            weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
-
-            //set animation to default
-            animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
-
-            //animations for switching weapon
-            isSwitchingWeapon = true;
-            animator.SetTrigger("SwitchWeapon");
-            babyAnimator.SetTrigger("Switch");
-
-            //actual switch values
-            currentWeaponSlot -= 1;
-            if (currentWeaponSlot > weaponSlots.Count - 1)
-            {
-                currentWeaponSlot = 0;
-            }
-            if (currentWeaponSlot < 0)
-            {
-                currentWeaponSlot = weaponSlots.Count - 1;
-            }
-            currentWeapon = weaponSlots[currentWeaponSlot];
-            attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
-
-            //make weapon
-            GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
-            //done like this so that scale is normal
-            specialWeapon.transform.position = weaponInHand.transform.position;
-            specialWeapon.transform.rotation = weaponInHand.transform.rotation;
-            specialWeapon.transform.SetParent(weaponInHand.transform);
-            specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
-            //swap cooldown
-            Invoke(nameof(SecAfterSwapWeapon), 0.5f);
-            UiWeaponSlots[2].SetActive(false);
-
-            //ui sprite
-            weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
-            weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
-            weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
-
-            //ui indecator
-            for (int i = 0; i < selectWeaponIndecator.Count; i++)
-            {
-                selectWeaponIndecator[i].SetActive(false);
-            }
-            selectWeaponIndecator[currentWeaponSlot].SetActive(true);
-
-            //remove old weapons
-            if (weaponInHand.transform.childCount > 0)
-            {
-                Destroy(weaponInHand.transform.GetChild(0).gameObject);
-            }
+        //remove old weapons
+        if (weaponInHand.transform.childCount > 0)
+        {
+            Destroy(weaponInHand.transform.GetChild(0).gameObject);
         }
         UpdateAmmoText();
         UpdateStats();
@@ -636,6 +546,10 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Time.time >= nextAttack && !hasMeleeAttacked && mayMove)
         {
+            if (weaponInHand.transform.childCount > 0)
+            {
+                weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
+            }
             StartStopRunning(false);
             swordOnBack.SetActive(false);
             swordInHand.SetActive(true);
@@ -648,6 +562,10 @@ public class PlayerMovement : MonoBehaviour
             swordOnBack.SetActive(true);
             swordInHand.SetActive(false);
             hasMeleeAttacked = false;
+            if (weaponInHand.transform.childCount > 0)
+            {
+                weaponInHand.transform.GetChild(0).gameObject.SetActive(true);
+            }
         }
     }
     public void FireWeapon()
@@ -815,7 +733,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void UpdateAmmoText()
     {
-        normalAmmoText.text = $"Normal ammo : {currentAmmo} / {maxAmmo}";
+        normalAmmoText.text = $"Light ammo : {currentAmmo} / {maxAmmo}";
         heavyAmmoText.text = $"Heavy ammo : {currentHeavyAmmo} / {maxHeavyAmmo}";
         weaponAmmoText.text = $"Weapon ammo : {currentWeapon.ammo} / {currentWeapon.maxAmmo}";
 

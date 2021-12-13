@@ -332,9 +332,9 @@ public class GameManager : MonoBehaviour
         }
         if (money >= selectedItem.moneyValue)
         {
-            if (selectedItem.itemType == ShopType.Upgrades)
+            money -= selectedItem.moneyValue;
+            if (selectedItem.itemType == ShopType.Upgrades || selectedItem.itemType == ShopType.Random)
             {
-                money -= selectedItem.moneyValue;
                 HeldUpgrades.Add(selectedItem as ShopUpgradeItem);
                 UpdateTexts();
                 CalculateStats();

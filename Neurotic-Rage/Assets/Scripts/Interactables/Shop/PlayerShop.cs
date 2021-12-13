@@ -180,7 +180,7 @@ public class PlayerShop : InterActable
     }
     public void RemoveItem(ShopItem _item)
     {
-        if(_item.itemType == ShopType.Upgrades)
+        if(_item.itemType == ShopType.Upgrades || _item.itemType == ShopType.Random)
         {
             upgradeSlots.Remove(_item);
         }

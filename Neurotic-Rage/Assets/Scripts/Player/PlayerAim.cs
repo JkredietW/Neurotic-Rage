@@ -31,6 +31,10 @@ public class PlayerAim : MonoBehaviour
     }
     public void RotateToAim()
     {
+        if(player.shopIsOpen || player.bigMapObject.activeSelf)
+        {
+            return;
+        }
         if (player.lastInputWasController)
         {
             string[] controllers = Input.GetJoystickNames();
