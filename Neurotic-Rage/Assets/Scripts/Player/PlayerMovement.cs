@@ -413,15 +413,48 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        if(currentWeapon.type == weaponType.special)
-        {
-            Weapon oldWeapon = currentWeapon;
-            DropWeapon(oldWeapon);
-            currentWeapon = weaponSlots[currentWeaponSlot];
-            return;
-        }
         if (Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f)
         {
+            if (currentWeapon.type == weaponType.special)
+            {
+                Weapon oldWeapon = currentWeapon;
+                DropWeapon(oldWeapon);
+                currentWeapon = weaponSlots[currentWeaponSlot];
+                attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
+                //remove old weapons
+                if (weaponInHand.transform.childCount > 0)
+                {
+                    Destroy(weaponInHand.transform.GetChild(0).gameObject);
+                }
+                //set animation to default
+                animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
+
+                //make weapon
+                GameObject weapon = Instantiate(currentWeapon.objectprefab);
+                //done like this so that scale is normal
+                weapon.transform.position = weaponInHand.transform.position;
+                weapon.transform.rotation = weaponInHand.transform.rotation;
+                weapon.transform.SetParent(weaponInHand.transform);
+                weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+                //swap cooldown
+                Invoke(nameof(SecAfterSwapWeapon), 0.5f);
+                UiWeaponSlots[2].SetActive(false);
+
+                //ui sprite
+                weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
+                weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
+                weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
+
+                //ui indecator
+                for (int i = 0; i < selectWeaponIndecator.Count; i++)
+                {
+                    selectWeaponIndecator[i].SetActive(false);
+                }
+                selectWeaponIndecator[currentWeaponSlot].SetActive(true);
+                return;
+            }
+
             //set previous weapon off, no double weapons
             weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
 
@@ -485,6 +518,46 @@ public class PlayerMovement : MonoBehaviour
         //for controller/mobile
         if(Input.GetButtonDown("RightBumber"))
         {
+            if (currentWeapon.type == weaponType.special)
+            {
+                Weapon oldWeapon = currentWeapon;
+                DropWeapon(oldWeapon);
+                currentWeapon = weaponSlots[currentWeaponSlot];
+                attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
+                //remove old weapons
+                if (weaponInHand.transform.childCount > 0)
+                {
+                    Destroy(weaponInHand.transform.GetChild(0).gameObject);
+                }
+                //set animation to default
+                animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
+
+                //make weapon
+                GameObject weapon = Instantiate(currentWeapon.objectprefab);
+                //done like this so that scale is normal
+                weapon.transform.position = weaponInHand.transform.position;
+                weapon.transform.rotation = weaponInHand.transform.rotation;
+                weapon.transform.SetParent(weaponInHand.transform);
+                weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+                //swap cooldown
+                Invoke(nameof(SecAfterSwapWeapon), 0.5f);
+                UiWeaponSlots[2].SetActive(false);
+
+                //ui sprite
+                weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
+                weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
+                weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
+
+                //ui indecator
+                for (int i = 0; i < selectWeaponIndecator.Count; i++)
+                {
+                    selectWeaponIndecator[i].SetActive(false);
+                }
+                selectWeaponIndecator[currentWeaponSlot].SetActive(true);
+                return;
+            }
+
             //set previous weapon off, no double weapons
             weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
 
