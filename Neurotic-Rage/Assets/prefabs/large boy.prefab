@@ -2911,7 +2911,12 @@ MonoBehaviour:
   col: {fileID: 2483306680457116694}
   rb: {fileID: 2483306680457116690}
   anim: {fileID: 8294768415698244174}
+  type: 0
   es: {fileID: 2483306680457116688}
+  ed: {fileID: 0}
+  outline:
+  - {fileID: 9159347637631033463}
+  mapindicator: {fileID: 4937562866797392300}
 --- !u!114 &9159347637631033463
 MonoBehaviour:
   m_ObjectHideFlags: 0

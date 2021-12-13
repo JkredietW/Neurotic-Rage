@@ -11,6 +11,8 @@ public class EnemyHealth : BaseHealth
     public TypeEnemy type;
     public EnemyStateMachine es;
     public EnemyDash ed;
+    public Outline[] outline;
+    public GameObject mapindicator;
     private float chanceForDrop = 0;
     private WorldWeapon worldWeaponPrefab;
     private List<Weapon> dropItems;
@@ -18,12 +20,17 @@ public class EnemyHealth : BaseHealth
     {
         FindObjectOfType<GameManager>().EnemyDied(gameObject);
         DropItems();
+        for (int i = 0; i < outline.Length; i++)
+        {
+            outline[i].enabled = false;
+        }
         agent.enabled = false;
         col.enabled = false;
         rb.isKinematic = true;
         rb.useGravity = false;
         anim.enabled = false;
-		if (type == TypeEnemy.normal)
+        mapindicator.SetActive(false);
+        if (type == TypeEnemy.normal)
 		{
             es.enabled = false;
         }
@@ -78,10 +85,15 @@ public class EnemyHealth : BaseHealth
         {
             ed.enabled = false;
         }
+        for (int i = 0; i < outline.Length; i++)
+        {
+            outline[i].enabled = false;
+        }
         agent.enabled = false;
         col.enabled = false;
         rb.isKinematic = true;
         rb.useGravity = false;
+        mapindicator.SetActive(false);
         anim.enabled = false;
         Invoke("DestroyObj", 3.5f);
     }
