@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject shoppanel, shopUI;
     [SerializeField] Transform descriptionParent;
     [SerializeField] List<TextMeshProUGUI> descriptionText;
-    [SerializeField] TextMeshProUGUI moneyText, waveText;
+    [SerializeField] TextMeshProUGUI moneyText, waveText, shopResetCountText;
 
     //privates
     int waveCount; 
@@ -459,6 +459,10 @@ public class GameManager : MonoBehaviour
         }
     }
     #endregion
+    public void ShopIsOpened(PlayerShop _shop)
+    {
+        shopResetCountText.text = $"Reset after :{_shop.resetRoll} waves";
+    }
 }
 [System.Serializable]
 public class Wave

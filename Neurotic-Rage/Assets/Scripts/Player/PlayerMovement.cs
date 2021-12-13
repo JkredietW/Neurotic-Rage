@@ -327,6 +327,7 @@ public class PlayerMovement : MonoBehaviour
         shopIsOpen = !shopIsOpen;
         shop.SetActive(shopIsOpen);
         lastShopTouched.ShopOpened();
+        FindObjectOfType<GameManager>().ShopIsOpened(lastShopTouched);
         Time.timeScale = shopIsOpen == true ? 0 : 1;
     }
     void SwapWithWorldWeapon()
