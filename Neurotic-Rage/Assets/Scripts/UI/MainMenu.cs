@@ -42,12 +42,6 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(IEChangeActivePanel(panelToChange));
     }
-
-    void Update()
-    {
-
-    }
-
     public void CloseAndOpenGarage()
     {
         StartCoroutine(CAOG());
@@ -55,6 +49,7 @@ public class MainMenu : MonoBehaviour
 
     public IEnumerator IEStart()
     {
+        Time.timeScale = 1;
         garage = !garage;
         garageDoor.SetBool("Garage", garage);
         yield return new WaitForSeconds(secondsToReopen);
@@ -100,8 +95,4 @@ public class MainMenu : MonoBehaviour
 	{
         Application.Quit();
     }
-	private void OnApplicationQuit()
-	{
-		
-	}
 }
