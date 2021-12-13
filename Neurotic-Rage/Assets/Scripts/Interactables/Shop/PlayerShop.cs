@@ -13,7 +13,7 @@ public class PlayerShop : InterActable
 
     [SerializeField] float chanceForFirstItem = 100, chanceForSecondItem = 50, chanceForThirdItem = 20;
 
-    int resetRoll;
+    [HideInInspector] public int resetRoll;
     [SerializeField] int resetAfterWaveCount;
     //will be sscripable objects later
     public List<ShopItem> ItemTypes;
