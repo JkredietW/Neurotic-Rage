@@ -409,8 +409,11 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ScrollWeapon()
     {
-        if(!mayMove || isSwitchingWeapon || shopIsOpen || isReloading || currentWeapon.type != weaponType.special)
+        if(!mayMove || isSwitchingWeapon || shopIsOpen || isReloading || currentWeapon.type == weaponType.special)
         {
+            Weapon oldWeapon = currentWeapon;
+            DropWeapon(oldWeapon);
+            currentWeapon = weaponSlots[currentWeaponSlot];
             return;
         }
         if (Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f)
