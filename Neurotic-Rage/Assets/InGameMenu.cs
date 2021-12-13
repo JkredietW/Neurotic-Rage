@@ -6,6 +6,7 @@ public class InGameMenu : MonoBehaviour
 {
 	public bool menuActive;
 	public GameObject inGameMenu;
+	public GameObject pauseMenu;
 	public void Menu()
 	{
 		menuActive = !menuActive;
@@ -14,7 +15,18 @@ public class InGameMenu : MonoBehaviour
 			inGameMenu.transform.GetChild(i).transform.gameObject.SetActive(false);
 		}
 		inGameMenu.transform.GetChild(0).transform.gameObject.SetActive(false);
-		inGameMenu.SetActive(menuActive);
+		if (menuActive)
+		{
+			Time.timeScale = 0;
+			inGameMenu.SetActive(false);
+			pauseMenu.SetActive(true);
+		}
+		else
+		{
+			Time.timeScale = 1;
+			inGameMenu.SetActive(true);
+			pauseMenu.SetActive(false);
+		}
 	}
 	public void SetTrue(GameObject panel)
 	{
