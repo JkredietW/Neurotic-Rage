@@ -7,7 +7,7 @@ public class EnemyDash : MonoBehaviour
 {
 	public LayerMask layer;
 	public NavMeshAgent agent;
-	public GameObject player;
+	public GameObject player, handPos;
 	private Vector3 target;
 	public Animator anim;
 	public float rotationSpeed;
@@ -19,8 +19,9 @@ public class EnemyDash : MonoBehaviour
 	public float dashDist;
 	public float toClose;
 	public float attackRange;
+	public float hitBoxRange;
 	private float distance;
-	private bool isAttacking, moveTowards,canDash, isDashing;
+	private bool isAttacking, moveTowards,canDash, isDashing, hitbox, doDamage;
 	private void Start()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
@@ -32,6 +33,20 @@ public class EnemyDash : MonoBehaviour
 	}
 	private void Update()
 	{
+		if (hitbox)
+		{
+			Collider[] hitObjects = Physics.OverlapSphere(handPos.transform.position, hitBoxRange);
+			for (int i = 0; i < hitObjects.Length; i++)
+			{
+				if (hitObjects[i].transform.gameObject.CompareTag("Player"))
+				{
+					if (!doDamage)
+					{
+						StartCoroutine(DoDamage(hitObjects[i].transform.gameObject));
+					}
+				}
+			}
+		}
 		distance = Vector3.Distance(transform.position, player.transform.position);
 		if (distance <= attackRange)
 		{
@@ -75,6 +90,13 @@ public class EnemyDash : MonoBehaviour
 			transform.localPosition = Vector3.MoveTowards(transform.localPosition, target, Time.deltaTime * dashMoveSpeed);
 		}
 	}
+	public IEnumerator DoDamage(GameObject player)
+	{
+		doDamage = true;
+		player.GetComponent<PlayerHealth>().DoDamage(damage);
+		yield return new WaitForSeconds(2);
+		doDamage = false;
+	}
 	public IEnumerator Attack()
 	{
 		anim.SetTrigger("Attack");
@@ -103,5 +125,17 @@ public class EnemyDash : MonoBehaviour
 		isDashing = false;
 		isAttacking = false;
 		canDash = true;
+	}
+	public void HitBoxTrigger(int i)
+	{
+		if (i == 1)
+		{
+			hitbox = false;
+			doDamage = false;
+		}
+		else
+		{
+			hitbox = true;
+		}
 	}
 }

@@ -171,7 +171,8 @@ public class EnemyStateMachine : MonoBehaviour
 		if (i == 1)
 		{
             hitbox = false;
-		}
+            doDamage = false;
+        }
 		else
 		{
             hitbox = true;
