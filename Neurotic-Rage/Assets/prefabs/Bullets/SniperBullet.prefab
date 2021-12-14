@@ -175,8 +175,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4706040462019255236}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.773488, y: -7.161115, z: -6.7570195}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 391403161305070396}
   - {fileID: 1831277101765503459}
@@ -291,7 +291,7 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: dd5812aa968c3f54bb430379f22ac133, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_ResourceVersion: 1
@@ -369,7 +369,7 @@ VFXRenderer:
   m_StaticShadowCaster: 0
   m_MotionVectors: 0
   m_LightProbeUsage: 0
-  m_ReflectionProbeUsage: 0
+  m_ReflectionProbeUsage: 3
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1

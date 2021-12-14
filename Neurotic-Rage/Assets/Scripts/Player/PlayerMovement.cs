@@ -473,9 +473,6 @@ public class PlayerMovement : MonoBehaviour
         //set previous weapon off, no double weapons
         weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
 
-        //set animation to default
-        animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
-
         //animations for switching weapon
         isSwitchingWeapon = true;
         animator.SetTrigger("SwitchWeapon");
@@ -493,6 +490,9 @@ public class PlayerMovement : MonoBehaviour
         }
         currentWeapon = weaponSlots[currentWeaponSlot];
         attackCooldown = currentWeapon.OnSwap(extra_attackSpeed);
+
+        //set animation to default
+        animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
 
         //make weapon
         GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
