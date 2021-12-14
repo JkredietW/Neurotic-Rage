@@ -9,6 +9,7 @@ public class Tutorial : MonoBehaviour
     public GameObject[] pcTutorialArray;
     public GameObject[] controllerTutorialArray;
     public GameObject helicopterTrigger;
+    public Animator stage1,stage2,stage3,stage4;
     void Start()
     {
         foreach(GameObject tutorialText in pcTutorialArray)
@@ -48,6 +49,7 @@ public class Tutorial : MonoBehaviour
             {
                 tutorialProgression++;
                 UpdateTutorialUI();
+                stage1.SetBool("Activate", true);
             }
         }
         else if (tutorialProgression == 2)
@@ -57,6 +59,7 @@ public class Tutorial : MonoBehaviour
             {
                 tutorialProgression++;
                 UpdateTutorialUI();
+                stage2.SetBool("Activate", true);
             }
             
         }
@@ -67,6 +70,7 @@ public class Tutorial : MonoBehaviour
             {
                 tutorialProgression++;
                 UpdateTutorialUI();
+                stage3.SetBool("Activate", true);
             }
         }
         else if (tutorialProgression == 4)
@@ -85,6 +89,7 @@ public class Tutorial : MonoBehaviour
             {
                 tutorialProgression++;
                 UpdateTutorialUI();
+                stage4.SetBool("Activate", true);
             }
         }
         else if (tutorialProgression == 6)
