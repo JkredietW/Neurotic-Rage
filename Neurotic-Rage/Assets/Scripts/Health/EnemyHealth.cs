@@ -40,7 +40,7 @@ public class EnemyHealth : BaseHealth
 		}
         Invoke("DestroyObj",4);
     }
-    void DropItems()
+    public virtual void DropItems()
     {
         float roll = Random.Range(0, 100);
         if(roll < chanceForDrop)
@@ -50,7 +50,7 @@ public class EnemyHealth : BaseHealth
             Instantiate(worldWeaponPrefab, transform.position, Quaternion.identity).Setup(dropItems[(int)chance], false);
         }
     }
-    public void EnemySetup(float _scaling, float _drop, WorldWeapon _worldWeapon, List<Weapon> _weapons)
+    public virtual void EnemySetup(float _scaling, float _drop, WorldWeapon _worldWeapon, List<Weapon> _weapons)
     {
         maxhealth *= _scaling;
         health = maxhealth;
@@ -71,11 +71,11 @@ public class EnemyHealth : BaseHealth
 
         dropItems = new List<Weapon>(_weapons);
     }
-    public void DestroyObj()
+    public virtual void DestroyObj()
 	{
         Destroy(gameObject);
     }
-    public void PlayerDied()
+    public virtual void PlayerDied()
     {
         if (type == TypeEnemy.normal)
         {

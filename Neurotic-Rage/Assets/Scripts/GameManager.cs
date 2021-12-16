@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] Enemies;
     public List<GameObject> enemiesAlive;
     public List<GameObject> bossesAlive;
-    private bool isBossRound;
+    private bool isBossRound,pauseWave;
+    
 
     //shop
     public GameObject shoppanel, shopUI;
@@ -53,8 +54,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeReference]
     private float LastBosAmount;
-    [SerializeReference]
-    private float lastMiniBosAmount;
     [SerializeReference]
     private float lastBigEnemieAmount;
     [SerializeReference]
@@ -106,6 +105,10 @@ public class GameManager : MonoBehaviour
     }
     public void EnemyDied(GameObject enemyThatDied)
     {
+		if (pauseWave)
+		{
+            return;
+		}
         killAmount++;
         if(enemiesAlive.Contains(enemyThatDied))
         {
@@ -135,6 +138,10 @@ public class GameManager : MonoBehaviour
     }
     void WaveComplete()
     {
+        if (pauseWave)
+        {
+            return;
+        }
         waveCount++;
         totalWaveCount++;
         UpdateTexts();
@@ -194,6 +201,18 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+    public void MomDied()
+	{
+        pauseWave = true;
+    }
+    public void ContinueEndless()
+	{
+        pauseWave = false;
+    }
+    public IEnumerator EndWave()
+	{
+        yield return new WaitForSeconds(1);
+	}
     #region player stats
     public void GiveLastShop(PlayerShop _shop)
     {
@@ -397,10 +416,6 @@ public class GameManager : MonoBehaviour
 		{
             StartCoroutine(SpawnEnemies());
         }
-        if (waveCount % 5 == 0)
-		{
-            lastMiniBosAmount *=1.05f;
-        }
         if (waveCount % 4 == 0)
         {
             lastBigEnemieAmount *= 1.1f;
@@ -424,11 +439,6 @@ public class GameManager : MonoBehaviour
 		for (int i = 0; i < (int)lastSmallEnemieAmount; i++)
 		{
             Spawn(presetWave.small,false);
-            yield return new WaitForSeconds(timeBetweenSpawns);
-        }
-        for (int i = 0; i < (int)lastMiniBosAmount; i++)
-        {
-            Spawn(presetWave.minibos, false);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
         for (int i = 0; i < (int)lastMediumEnemieAmount; i++)
@@ -471,7 +481,6 @@ public class Wave
     public GameObject big;
     public GameObject medium;
     public GameObject small;
-    public GameObject minibos;
     public GameObject boss;
 }
 
