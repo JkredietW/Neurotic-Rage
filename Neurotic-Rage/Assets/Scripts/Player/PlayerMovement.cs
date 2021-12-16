@@ -93,8 +93,11 @@ public class PlayerMovement : MonoBehaviour
 
     //input nonsense
     private PlayerInput input;
-    private InputAction movement;
-    private InputAction Shoot;
+    private InputAction movementAction;
+    private InputAction shootAction;
+    private InputAction swapWeaponAction;
+    private InputAction sprintAction;
+    private InputAction showStatsAction;
 
     private void Awake()
     {
@@ -143,14 +146,50 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnEnable()
     {
-        movement = input.KeyboardControls.Movement;
-        movement.Enable();
+        //axis
+        movementAction = input.KeyboardControls.Movement;
+        movementAction.Enable();
 
-        Shoot = input.KeyboardControls.Shoot;
-        Shoot.Enable();
+        shootAction = input.KeyboardControls.Shoot;
+        shootAction.Enable();
 
+        swapWeaponAction = input.KeyboardControls.SwapWeapon;
+        swapWeaponAction.Enable();
 
+        sprintAction = input.KeyboardControls.Sprint;
+        sprintAction.Enable();
+
+        showStatsAction = input.KeyboardControls.ShowStats;
+        showStatsAction.Enable();
+
+        //single input
+        input.KeyboardControls.Interact.performed += Interact;
+        input.KeyboardControls.Interact.Enable();
+
+        input.KeyboardControls.Reload.performed += Reload;
+        input.KeyboardControls.Reload.Enable();
+
+        input.KeyboardControls.Melee.performed += Melee;
+        input.KeyboardControls.Melee.Enable();
+
+        input.KeyboardControls.ToggleMap.performed += ToggleBigMap;
+        input.KeyboardControls.ToggleMap.Enable();
     }
+
+    private void OnDisable()
+    {
+        //axis
+        movementAction.Disable();
+        shootAction.Disable();
+        swapWeaponAction.Disable();
+
+        //button
+        input.KeyboardControls.Interact.Disable();
+        input.KeyboardControls.Reload.Disable();
+        input.KeyboardControls.Melee.Disable();
+        input.KeyboardControls.ToggleMap.Disable();
+    }
+
     private void Start()
     {
         //set ammo
@@ -182,17 +221,12 @@ public class PlayerMovement : MonoBehaviour
         }
         DefineDirection();
 
-        if (Input.mouseScrollDelta.y > 0.5f || Input.mouseScrollDelta.y < -0.5f || Input.GetButtonDown("RightBumber"))
+        //inputs
+        if (swapWeaponAction.ReadValue<float>() > 0.5f || swapWeaponAction.ReadValue<float>() < 0.5f || Input.GetButtonDown("RightBumber"))
         {
             ScrollWeapon();
         }
-        if (Input.GetKeyDown(KeyCode.M) || Input.GetButtonDown("ToggleMap"))
-        {
-            ToggleMap();
-        }
-        //inputs
-        //attacks
-        if(Shoot.ReadValue<float>() > 0.1f)
+        if(shootAction.ReadValue<float>() > 0.5f)
         {
             isShooting = true;
             FireWeapon();
@@ -201,16 +235,18 @@ public class PlayerMovement : MonoBehaviour
         {
             isShooting = false;
         }
-        //melee
-        if (Input.GetButton("Fire2") || Input.GetAxisRaw("Fire2") > 0.5f)
+        if(showStatsAction.ReadValue<float>() > 0.5f)
         {
-            StartCoroutine(MeleeAttack());
+            ShowStats(true);
         }
-        if(Input.GetButtonDown("ReloadButton") && mayMove)
+        else
         {
-            StartCoroutine(ReloadWeapon());
+            if(statsPanel.activeSelf == true)
+            {
+                ShowStats(false);
+            }
         }
-        if(Input.GetButton("Sprint"))
+        if (sprintAction.ReadValue<float>() > 0.5f)
         {
             if (!isShooting)
             {
@@ -222,35 +258,6 @@ public class PlayerMovement : MonoBehaviour
             babyRunFix = true;
             StartStopRunning(false);
         }
-        if (Input.GetButtonDown("Interact")  && mayMove)
-        {
-            weaponsInRange.RemoveAll(item => item == null);
-            if (weaponsInRange.Count > 0)
-            {
-                float distanceToWeeapon = Vector3.Distance(weaponsInRange[0].transform.position, transform.position);
-                float distanceToShop = Vector3.Distance(shop.transform.position, transform.position);
-                if (distanceToShop < distanceToWeeapon)
-                {
-                    OpenShop();
-                }
-                else
-                {
-                    moveDir = Vector3.zero;
-                    StartStopRunning(false);
-
-                    mayMove = false;
-                    Invoke(nameof(MayMoveAgain), 1);
-
-                    SwapWithWorldWeapon();
-                    RemoveOutOfRangeWeapons();
-                }
-            }
-            else if(lastShopTouched != null)
-            {
-                OpenShop();
-            }
-        }
-        ShowStats(Input.GetButton("Tab"));
     }
     private void FixedUpdate()
     {
@@ -262,6 +269,51 @@ public class PlayerMovement : MonoBehaviour
         if (mayMove)
         {
             controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
+        }
+    }
+    private void ToggleBigMap(InputAction.CallbackContext _value)
+    {
+        ToggleMap();
+    }
+
+    private void Melee(InputAction.CallbackContext _value)
+    {
+        StartCoroutine(MeleeAttack());
+    }
+
+    private void Reload(InputAction.CallbackContext _value)
+    {
+        if(mayMove)
+        {
+            StartCoroutine(ReloadWeapon());
+        }
+    }
+    private void Interact(InputAction.CallbackContext _value)
+    {
+        weaponsInRange.RemoveAll(item => item == null);
+        if (weaponsInRange.Count > 0)
+        {
+            float distanceToWeeapon = Vector3.Distance(weaponsInRange[0].transform.position, transform.position);
+            float distanceToShop = Vector3.Distance(shop.transform.position, transform.position);
+            if (distanceToShop < distanceToWeeapon)
+            {
+                OpenShop();
+            }
+            else
+            {
+                moveDir = Vector3.zero;
+                StartStopRunning(false);
+
+                mayMove = false;
+                Invoke(nameof(MayMoveAgain), 1);
+
+                SwapWithWorldWeapon();
+                RemoveOutOfRangeWeapons();
+            }
+        }
+        else if (lastShopTouched != null)
+        {
+            OpenShop();
         }
     }
     void ShowStats(bool _bool)
@@ -790,7 +842,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Movement()
     {
-        moveDir = new Vector3(movement.ReadValue<Vector2>().x, 0, movement.ReadValue<Vector2>().y);
+        moveDir = new Vector3(movementAction.ReadValue<Vector2>().x, 0, movementAction.ReadValue<Vector2>().y);
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
 
         //gravity
