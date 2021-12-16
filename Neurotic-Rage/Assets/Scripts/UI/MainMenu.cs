@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
@@ -12,11 +13,16 @@ public class MainMenu : MonoBehaviour
     public float secondsToReopen;
     public float secondsTillCameraShake;
     public Animator garageDoor;
+    public ScoreBord scorebord;
     public bool garage;
 
     void Start()
     {
         StartCoroutine(IEStart());
+		for (int i = 0; i < scorebord.scores.Length; i++)
+		{
+            scorebord.scores[i].text.text = scorebord.scores[i].playerPrefName +" "+ PlayerPrefs.GetFloat(scorebord.scores[i].playerPrefName).ToString();
+        }
     }
     public void BeginScene(int i)
 	{
@@ -95,4 +101,15 @@ public class MainMenu : MonoBehaviour
 	{
         Application.Quit();
     }
+}
+[System.Serializable]
+public class ScoreBord
+{
+    public Score[] scores;
+}
+[System.Serializable]
+public class Score
+{
+    public TextMeshProUGUI text;
+    public string playerPrefName;
 }
