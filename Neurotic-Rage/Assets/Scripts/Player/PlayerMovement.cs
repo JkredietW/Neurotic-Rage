@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using TMPro;
@@ -90,6 +91,11 @@ public class PlayerMovement : MonoBehaviour
     private List<TextMeshProUGUI> weaponStatsUi, itemStatsUi;
     [SerializeField] private Transform weaponStatsParent, upgradeItemStatsParent;
 
+    //input nonsense
+    private PlayerInput input;
+    private InputAction movement;
+    private InputAction Shoot;
+
     private void Awake()
     {
 		if (!tuturial)
@@ -105,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         playerAim = GetComponentInChildren<PlayerAim>();
         health = GetComponentInChildren<PlayerHealth>();
+        input = new PlayerInput();
 
         //set variables
         playerAim.GetVariables();
@@ -133,6 +140,16 @@ public class PlayerMovement : MonoBehaviour
             desktopUI.SetActive(false);
             mobileUI.SetActive(true);
         }
+    }
+    private void OnEnable()
+    {
+        movement = input.KeyboardControls.Movement;
+        movement.Enable();
+
+        Shoot = input.KeyboardControls.Shoot;
+        Shoot.Enable();
+
+
     }
     private void Start()
     {
@@ -175,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
         }
         //inputs
         //attacks
-        if (Input.GetButton("Fire1") || Input.GetAxisRaw("Fire1") > 0.5f)
+        if(Shoot.ReadValue<float>() > 0.1f)
         {
             isShooting = true;
             FireWeapon();
@@ -773,14 +790,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Movement()
     {
-        if(lastInputWasController || SystemInfo.deviceType == DeviceType.Desktop)
-        {
-            moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        }
-        else
-        {
-            moveDir = new Vector3(movementJoystick.input.x, 0, movementJoystick.input.y);
-        }
+        moveDir = new Vector3(movement.ReadValue<Vector2>().x, 0, movement.ReadValue<Vector2>().y);
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
 
         //gravity
