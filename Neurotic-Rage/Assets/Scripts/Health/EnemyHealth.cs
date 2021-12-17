@@ -16,7 +16,7 @@ public class EnemyHealth : BaseHealth
     private float chanceForDrop = 0;
     private WorldWeapon worldWeaponPrefab;
     private List<Weapon> dropItems;
-    public override void Died()
+    public  override void Died()
     {
         FindObjectOfType<GameManager>().EnemyDied(gameObject);
         DropItems();
@@ -38,8 +38,13 @@ public class EnemyHealth : BaseHealth
 		{
             ed.enabled = false;
 		}
+        Dying();
         Invoke("DestroyObj",4);
     }
+    public virtual void Dying()
+	{
+
+	}
     public virtual void DropItems()
     {
         float roll = Random.Range(0, 100);

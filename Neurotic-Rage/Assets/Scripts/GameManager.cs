@@ -216,6 +216,7 @@ public class GameManager : MonoBehaviour
         momDiedCanvas.SetActive(false);
         playerCanvas.SetActive(true);
         pauseWave = false;
+        WaveComplete();
     }
     public void EndEnless()
 	{
