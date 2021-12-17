@@ -236,7 +236,7 @@
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller Xbox",
                     "action": "SwapWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -258,7 +258,7 @@
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller Xbox",
                     "action": "Melee",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -352,6 +352,11 @@
         {
             "name": "Keyboard",
             "bindingGroup": "Keyboard",
+            "devices": []
+        },
+        {
+            "name": "Secondplayer",
+            "bindingGroup": "Secondplayer",
             "devices": []
         }
     ]

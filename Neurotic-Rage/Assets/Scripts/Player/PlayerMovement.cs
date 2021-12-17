@@ -92,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform weaponStatsParent, upgradeItemStatsParent;
 
     //input nonsense
+    //player one
     private PlayerInput input;
     private InputAction movementAction;
     private InputAction shootAction;
@@ -99,6 +100,13 @@ public class PlayerMovement : MonoBehaviour
     private InputAction sprintAction;
     private InputAction aimAction;
     public Vector3 aimDirection;
+
+    //player two
+    private PlayerInput inputSecondPlayer;
+    private InputAction shootSecondAction;
+    private InputAction swapWeaponSecondAction;
+    private InputAction aimSecondAction;
+    public Vector3 secondAimDirection;
 
     private void Awake()
     {
@@ -116,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
         playerAim = GetComponentInChildren<PlayerAim>();
         health = GetComponentInChildren<PlayerHealth>();
         input = new PlayerInput();
+        inputSecondPlayer = new PlayerInput();
 
         //set variables
         playerAim.GetVariables();
@@ -147,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnEnable()
     {
+        //player one
         //axis
         movementAction = input.KeyboardControls.Movement;
         movementAction.Enable();
@@ -178,6 +188,26 @@ public class PlayerMovement : MonoBehaviour
 
         input.KeyboardControls.ShowStats.performed += ShowStats;
         input.KeyboardControls.ShowStats.Enable();
+
+        //player two
+        shootSecondAction = inputSecondPlayer.KeyboardControls.Shoot;
+        shootSecondAction.Enable();
+
+        swapWeaponSecondAction = inputSecondPlayer.KeyboardControls.SwapWeapon;
+        swapWeaponSecondAction.Enable();
+
+        aimSecondAction = inputSecondPlayer.KeyboardControls.Aim;
+        aimSecondAction.Enable();
+
+        //single input
+        inputSecondPlayer.KeyboardControls.Reload.performed += ReloadSecond;
+        inputSecondPlayer.KeyboardControls.Reload.Enable();
+
+        inputSecondPlayer.KeyboardControls.ToggleMap.performed += ToggleBigMap;
+        inputSecondPlayer.KeyboardControls.ToggleMap.Enable();
+
+        inputSecondPlayer.KeyboardControls.ShowStats.performed += ShowStats;
+        inputSecondPlayer.KeyboardControls.ShowStats.Enable();
     }
 
     private void OnDisable()
@@ -272,6 +302,11 @@ public class PlayerMovement : MonoBehaviour
         aimDirection = new Vector3(aimAction.ReadValue<Vector2>().x, 0, aimAction.ReadValue<Vector2>().y);
         return aimDirection;
     }
+    public Vector3 GetAimSecond()
+    {
+        secondAimDirection = new Vector3(aimSecondAction.ReadValue<Vector2>().x, 0, aimSecondAction.ReadValue<Vector2>().y);
+        return secondAimDirection;
+    }
     public Vector3 GetMoveDirection()
     {
         return moveDir;
@@ -294,6 +329,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if(mayMove)
         {
+            StartCoroutine(ReloadWeapon());
+        }
+    }
+    private void ReloadSecond(InputAction.CallbackContext _value)
+    {
+        if(mayMove)
+        {
+            //deze anders
             StartCoroutine(ReloadWeapon());
         }
     }

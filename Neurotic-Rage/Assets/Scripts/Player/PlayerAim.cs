@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using UnityEngine.InputSystem;
 
 public class PlayerAim : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class PlayerAim : MonoBehaviour
     bool firstTime;
 
     public Joystick mobileAimDirection;
+
+    public bool twoPlayers;
+
     public void GetVariables()
     {
         player = GetComponentInParent<PlayerMovement>();
@@ -28,6 +32,10 @@ public class PlayerAim : MonoBehaviour
     private void Update()
     {
         RotateToAim();
+        if(twoPlayers)
+        {
+            BabyRotateToAim();
+        }
     }
     public void RotateToAim()
     {
@@ -43,7 +51,6 @@ public class PlayerAim : MonoBehaviour
                 //devine controller look rotation
                 Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * player.GetAim();
                 Vector3 lookRotationWithControllerMovementBased = player.GetMoveDirection();
-                print(lookRotationWithController.magnitude);
                 print(lookRotationWithControllerMovementBased.magnitude);
                 //look torwards lookrotation
                 if (lookRotationWithController.magnitude != 0 && !player.isRunning)
@@ -61,7 +68,7 @@ public class PlayerAim : MonoBehaviour
                         player.FireWeapon();
                     }
                 }
-                else if (lookRotationWithControllerMovementBased.magnitude != 0)
+                else if (lookRotationWithControllerMovementBased.magnitude > 0.1f)
                 {
                     firstTime = true;
                     lookAtDirection = lookRotationWithControllerMovementBased;
@@ -137,6 +144,10 @@ public class PlayerAim : MonoBehaviour
             }
         }
     }
+    public void BabyRotateToAim()
+    {
+
+    }
     public void MeleeDamageHitBox()
     {
         Collider[] hitObjects = Physics.OverlapSphere(meleeHitLocation.transform.position, meleeRange);
@@ -150,5 +161,9 @@ public class PlayerAim : MonoBehaviour
                 tempBlood.GetComponent<VisualEffect>().Play();
             }
         }
+    }
+    public void EnabledTwoPlayers()
+    {
+        twoPlayers = true;
     }
 }

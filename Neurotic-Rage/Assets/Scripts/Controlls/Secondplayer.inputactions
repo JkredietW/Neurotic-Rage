@@ -1,0 +1,210 @@
+{
+    "name": "Secondplayer",
+    "maps": [
+        {
+            "name": "KeyboardControls",
+            "id": "62d4b877-4d44-486a-9f07-63c82430f457",
+            "actions": [
+                {
+                    "name": "Shoot",
+                    "type": "Value",
+                    "id": "844d9891-8fd7-4747-9b19-75703b06d699",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "ae1e216d-4fc4-42ae-9c72-f0e987b0a089",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Reload",
+                    "type": "Button",
+                    "id": "29b7acf0-f5c6-487a-8502-6eed4a481467",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "dbcc3c04-472a-4d2c-bb13-3b70ba79fb71",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "SwapWeapon",
+                    "type": "Value",
+                    "id": "30c7e629-f019-47e8-9bb2-f0cb1da2aed0",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Melee",
+                    "type": "Button",
+                    "id": "09289344-fe02-4895-8967-8fcba0152d02",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ToggleMap",
+                    "type": "Button",
+                    "id": "66c7348b-87f1-4131-8b0f-710d96d8b699",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "4a482858-621b-4d3b-9941-e7c4bd93eaa7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ShowStats",
+                    "type": "Button",
+                    "id": "0d640bd2-4b35-4149-aa8c-852ace7b229d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "4a85f4f8-366d-4499-a175-71a3ec8acb40",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8991ae5c-7bac-41af-9d5e-1568e6d64fdc",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "197fe8a6-2cf5-442c-ace7-c0b932f08ab5",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74b940c7-609d-4f83-8fbf-631e423f634a",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8527ed7-3dec-4967-a519-674fe4dbe83f",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41a2d3cf-086c-4645-9bc2-63e987f3fab7",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "SwapWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "01997d6d-3e68-4006-8f2c-b111f6af3e99",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "Melee",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "241c0d3d-556c-4cc4-9d76-acf695e18111",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "ToggleMap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d8cf635-baac-4dd7-b8ac-e1d1b522a09e",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9b39a9f-7fa9-4682-bd4e-15bf66e72fa1",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "ShowStats",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0214e027-2769-4656-88a7-e582b8e8b580",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller Xbox;Secondplayer",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Secondplayer",
+            "bindingGroup": "Secondplayer",
+            "devices": []
+        }
+    ]
+}

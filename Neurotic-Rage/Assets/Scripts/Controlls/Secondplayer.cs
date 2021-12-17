@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Controlls/PlayerInput.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Controlls/Secondplayer.inputactions'
 
 using System;
 using System.Collections;
@@ -6,22 +6,22 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerInput : IInputActionCollection, IDisposable
+public class @Secondplayer : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @PlayerInput()
+    public @Secondplayer()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""PlayerInput"",
+    ""name"": ""Secondplayer"",
     ""maps"": [
         {
             ""name"": ""KeyboardControls"",
-            ""id"": ""831c6626-6f01-4b41-aab6-26114b0c2509"",
+            ""id"": ""62d4b877-4d44-486a-9f07-63c82430f457"",
             ""actions"": [
                 {
                     ""name"": ""Shoot"",
                     ""type"": ""Value"",
-                    ""id"": ""6b97c69f-e1e0-48af-8cbb-6f1d3e12c37f"",
+                    ""id"": ""844d9891-8fd7-4747-9b19-75703b06d699"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -29,7 +29,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Movement"",
                     ""type"": ""Value"",
-                    ""id"": ""74455640-7d4c-48bb-8110-af654424fb4c"",
+                    ""id"": ""ae1e216d-4fc4-42ae-9c72-f0e987b0a089"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -37,7 +37,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Reload"",
                     ""type"": ""Button"",
-                    ""id"": ""e771843b-2f5b-47c8-936a-a03a2c9896cd"",
+                    ""id"": ""29b7acf0-f5c6-487a-8502-6eed4a481467"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -45,7 +45,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""a759ae00-339e-4175-a808-8466a9836ee0"",
+                    ""id"": ""dbcc3c04-472a-4d2c-bb13-3b70ba79fb71"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -53,7 +53,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""SwapWeapon"",
                     ""type"": ""Value"",
-                    ""id"": ""2ef64698-9891-44f1-86fa-79955c70c59c"",
+                    ""id"": ""30c7e629-f019-47e8-9bb2-f0cb1da2aed0"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -61,7 +61,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Melee"",
                     ""type"": ""Button"",
-                    ""id"": ""f147bdb8-8ac5-4de1-8f38-3be6273b7211"",
+                    ""id"": ""09289344-fe02-4895-8967-8fcba0152d02"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -69,7 +69,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""ToggleMap"",
                     ""type"": ""Button"",
-                    ""id"": ""f69b05e8-7111-4dd8-b07a-353f3072f985"",
+                    ""id"": ""66c7348b-87f1-4131-8b0f-710d96d8b699"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -77,7 +77,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
-                    ""id"": ""2a6b7f1a-6983-4cdf-973d-d57b8b8da6b6"",
+                    ""id"": ""4a482858-621b-4d3b-9941-e7c4bd93eaa7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -85,7 +85,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""ShowStats"",
                     ""type"": ""Button"",
-                    ""id"": ""f6aa32b8-d332-4aa2-abb1-53779c7422d1"",
+                    ""id"": ""0d640bd2-4b35-4149-aa8c-852ace7b229d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -93,7 +93,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": ""Aim"",
                     ""type"": ""Value"",
-                    ""id"": ""dd8fe949-ddcf-4ba1-b3d1-ffbf2deaf0c5"",
+                    ""id"": ""4a85f4f8-366d-4499-a175-71a3ec8acb40"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -101,254 +101,111 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""Direction"",
-                    ""id"": ""4746717d-e23a-4ef2-871e-5bdb058051fe"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""de973c4f-736d-409a-83d0-f3ec3711224f"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""fed05c57-537e-487c-a80a-0af0e352c123"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""bcf5b6ff-7a89-40b9-acc0-e30c5f87b74e"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""e1734376-303e-4968-b540-60033b77ecb5"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": """",
-                    ""id"": ""65f75164-3da1-416e-9b8a-e10922f53c7d"",
+                    ""id"": ""8991ae5c-7bac-41af-9d5e-1568e6d64fdc"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8a144c28-90f2-4707-825f-4a4be87639bd"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Shoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5ef1fa09-ebb4-4cf2-959c-133eb67310a1"",
+                    ""id"": ""197fe8a6-2cf5-442c-ace7-c0b932f08ab5"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e02affe8-a52f-4080-ab5c-b7ad26874a16"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Reload"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""98e92468-e8f4-4e2b-a8a0-80aefe6a938c"",
+                    ""id"": ""74b940c7-609d-4f83-8fbf-631e423f634a"",
                     ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c097d7bd-9bf5-477b-abaf-66940249e18a"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1789f9a3-2eff-4aa6-a86d-6a5516d003be"",
+                    ""id"": ""c8527ed7-3dec-4967-a519-674fe4dbe83f"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cad65d42-1db5-4224-80d4-6cb698c705ab"",
-                    ""path"": ""<Mouse>/scroll/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""SwapWeapon"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5b469c0b-998a-4a11-93ba-e13aba542c1f"",
+                    ""id"": ""41a2d3cf-086c-4645-9bc2-63e987f3fab7"",
                     ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""SwapWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4c010e76-18e3-4f44-a041-b98894861dac"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Melee"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""557d7135-0fe6-464e-8126-7fd83c321bb3"",
+                    ""id"": ""01997d6d-3e68-4006-8f2c-b111f6af3e99"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""Melee"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""17359a6c-2f37-4dc4-8d58-732c2d5e8fcf"",
-                    ""path"": ""<Keyboard>/m"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""ToggleMap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5b1e1be9-5277-497a-9bbe-7425608a6cec"",
+                    ""id"": ""241c0d3d-556c-4cc4-9d76-acf695e18111"",
                     ""path"": ""<Gamepad>/select"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""ToggleMap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b5a71f5f-8c33-406a-89aa-ea069815530e"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""265ee94d-c763-45c3-874f-ef38649c6070"",
+                    ""id"": ""3d8cf635-baac-4dd7-b8ac-e1d1b522a09e"",
                     ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""27d95d9b-bc61-4066-b147-f189dd80d094"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""ShowStats"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4e1df3ae-7489-4815-a5be-9e238c40162a"",
+                    ""id"": ""f9b39a9f-7fa9-4682-bd4e-15bf66e72fa1"",
                     ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""ShowStats"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""76e9e22d-dbb3-4d9d-8e6f-eb101afbbe7a"",
+                    ""id"": ""0214e027-2769-4656-88a7-e582b8e8b580"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller Xbox"",
+                    ""groups"": ""Controller Xbox;Secondplayer"",
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -357,16 +214,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         }
     ],
     ""controlSchemes"": [
-        {
-            ""name"": ""Controller Xbox"",
-            ""bindingGroup"": ""Controller Xbox"",
-            ""devices"": []
-        },
-        {
-            ""name"": ""Keyboard"",
-            ""bindingGroup"": ""Keyboard"",
-            ""devices"": []
-        },
         {
             ""name"": ""Secondplayer"",
             ""bindingGroup"": ""Secondplayer"",
@@ -447,8 +294,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_KeyboardControls_Aim;
     public struct KeyboardControlsActions
     {
-        private @PlayerInput m_Wrapper;
-        public KeyboardControlsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        private @Secondplayer m_Wrapper;
+        public KeyboardControlsActions(@Secondplayer wrapper) { m_Wrapper = wrapper; }
         public InputAction @Shoot => m_Wrapper.m_KeyboardControls_Shoot;
         public InputAction @Movement => m_Wrapper.m_KeyboardControls_Movement;
         public InputAction @Reload => m_Wrapper.m_KeyboardControls_Reload;
@@ -536,24 +383,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         }
     }
     public KeyboardControlsActions @KeyboardControls => new KeyboardControlsActions(this);
-    private int m_ControllerXboxSchemeIndex = -1;
-    public InputControlScheme ControllerXboxScheme
-    {
-        get
-        {
-            if (m_ControllerXboxSchemeIndex == -1) m_ControllerXboxSchemeIndex = asset.FindControlSchemeIndex("Controller Xbox");
-            return asset.controlSchemes[m_ControllerXboxSchemeIndex];
-        }
-    }
-    private int m_KeyboardSchemeIndex = -1;
-    public InputControlScheme KeyboardScheme
-    {
-        get
-        {
-            if (m_KeyboardSchemeIndex == -1) m_KeyboardSchemeIndex = asset.FindControlSchemeIndex("Keyboard");
-            return asset.controlSchemes[m_KeyboardSchemeIndex];
-        }
-    }
     private int m_SecondplayerSchemeIndex = -1;
     public InputControlScheme SecondplayerScheme
     {
