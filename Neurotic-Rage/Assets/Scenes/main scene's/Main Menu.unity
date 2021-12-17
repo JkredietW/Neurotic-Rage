@@ -4317,6 +4317,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3616922725228144382, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
   m_PrefabInstance: {fileID: 3616922724949150452}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &836971531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3616922725228144379, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
+  m_PrefabInstance: {fileID: 3616922724949150452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836971530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff919c09d80bbfd41bf8bc27dfa669b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &836971535 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3616922725228144378, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
@@ -7151,7 +7162,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 836971531}
+        m_TargetAssemblyTypeName: SettingsMenu, Assembly-CSharp
+        m_MethodName: SetResolution
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1338199960
 MonoBehaviour:
