@@ -72,5 +72,23 @@ public class PlayerHealth : BaseHealth
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(0);
 	}
+    public void CarHIt()
+	{
+        StartCoroutine(CarComes());
+    }
+    public IEnumerator CarComes()
+	{
+        pm.MayMove(false);
+        mesh.SetActive(false);
+        deathPlayer.SetActive(true);
+        deathLight.SetActive(true);
+        pm.swordInHand.SetActive(false);
+        pm.swordOnBack.SetActive(false);
+        pm.enabled = false;
+        yield return new WaitForSeconds(1.5f);
+        fdb.FadeToBlack(2.5f);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(0);
+    }
 
 }

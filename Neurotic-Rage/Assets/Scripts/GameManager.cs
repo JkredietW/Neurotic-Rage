@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour
     public float delayTime;
     public float timeBetweenWaves, timeBetweenSpawns;
     public float minimumDistance, maxDistance;
+    public GameObject playerCanvas,momDiedCanvas,car;
     public Wave presetWave;
 	public List<Transform> spawnLocations;
     public Transform enemySpawnLocationParent;
@@ -203,15 +205,28 @@ public class GameManager : MonoBehaviour
     }
     public void MomDied()
 	{
+        car.SetActive(true);
+        car.GetComponent<Animator>().SetBool("MomDied", true);
+        playerCanvas.SetActive(false);
+        momDiedCanvas.SetActive(true);
         pauseWave = true;
     }
     public void ContinueEndless()
 	{
+        momDiedCanvas.SetActive(false);
+        playerCanvas.SetActive(true);
         pauseWave = false;
     }
+    public void EndEnless()
+	{
+        StartCoroutine(EndWave());
+	}
     public IEnumerator EndWave()
 	{
+        momDiedCanvas.SetActive(false);
+        FindObjectOfType<FadeToFromBlack>().FadeToBlack(2);
         yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(0);
 	}
     #region player stats
     public void GiveLastShop(PlayerShop _shop)
