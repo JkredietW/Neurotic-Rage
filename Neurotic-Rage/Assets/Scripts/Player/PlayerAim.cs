@@ -41,8 +41,10 @@ public class PlayerAim : MonoBehaviour
             if (controllers.Length > 0)
             {
                 //devine controller look rotation
-                Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(Input.GetAxis("HorizontalTurn"), 0, -Input.GetAxis("VerticalTurn"));
-                Vector3 lookRotationWithControllerMovementBased = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * new Vector3(-Input.GetAxis("Horizontal"), 0, -Input.GetAxis("Vertical"));
+                Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * player.GetAim();
+                Vector3 lookRotationWithControllerMovementBased = player.GetMoveDirection();
+                print(lookRotationWithController.magnitude);
+                print(lookRotationWithControllerMovementBased.magnitude);
                 //look torwards lookrotation
                 if (lookRotationWithController.magnitude != 0 && !player.isRunning)
                 {
@@ -53,7 +55,7 @@ public class PlayerAim : MonoBehaviour
                     }
                     lookAtDirection = lookRotationWithController;
                     transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
-                    if (Time.time >= timer && lookRotationWithController.magnitude > 0.5f)
+                    if (Time.time >= timer && lookRotationWithController.magnitude > 0.8f)
                     {
                         player.isShooting = true;
                         player.FireWeapon();
@@ -62,11 +64,12 @@ public class PlayerAim : MonoBehaviour
                 else if (lookRotationWithControllerMovementBased.magnitude != 0)
                 {
                     firstTime = true;
-                    lookAtDirection = -lookRotationWithControllerMovementBased;
+                    lookAtDirection = lookRotationWithControllerMovementBased;
                     transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
                 }
                 else
                 {
+                    transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(transform.forward.normalized), transform.rotation, 0.5f);
                     player.isShooting = false;
                     firstTime = true;
                 }

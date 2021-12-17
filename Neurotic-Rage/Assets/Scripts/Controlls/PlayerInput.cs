@@ -84,9 +84,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": ""ShowStats"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""f6aa32b8-d332-4aa2-abb1-53779c7422d1"",
-                    ""expectedControlType"": ""Analog"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Value"",
+                    ""id"": ""dd8fe949-ddcf-4ba1-b3d1-ffbf2deaf0c5"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -164,7 +172,18 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ef1fa09-ebb4-4cf2-959c-133eb67310a1"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Xbox"",
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -182,11 +201,33 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""98e92468-e8f4-4e2b-a8a0-80aefe6a938c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Xbox"",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c097d7bd-9bf5-477b-abaf-66940249e18a"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1789f9a3-2eff-4aa6-a86d-6a5516d003be"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Xbox"",
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -204,11 +245,33 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5b469c0b-998a-4a11-93ba-e13aba542c1f"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwapWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4c010e76-18e3-4f44-a041-b98894861dac"",
                     ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
+                    ""action"": ""Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""557d7135-0fe6-464e-8126-7fd83c321bb3"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Melee"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -226,11 +289,33 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""5b1e1be9-5277-497a-9bbe-7425608a6cec"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Xbox"",
+                    ""action"": ""ToggleMap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""b5a71f5f-8c33-406a-89aa-ea069815530e"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""265ee94d-c763-45c3-874f-ef38649c6070"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Xbox"",
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -243,6 +328,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""ShowStats"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e1df3ae-7489-4815-a5be-9e238c40162a"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Xbox"",
+                    ""action"": ""ShowStats"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76e9e22d-dbb3-4d9d-8e6f-eb101afbbe7a"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller Xbox"",
+                    ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -273,6 +380,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_KeyboardControls_ToggleMap = m_KeyboardControls.FindAction("ToggleMap", throwIfNotFound: true);
         m_KeyboardControls_Sprint = m_KeyboardControls.FindAction("Sprint", throwIfNotFound: true);
         m_KeyboardControls_ShowStats = m_KeyboardControls.FindAction("ShowStats", throwIfNotFound: true);
+        m_KeyboardControls_Aim = m_KeyboardControls.FindAction("Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -331,6 +439,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_KeyboardControls_ToggleMap;
     private readonly InputAction m_KeyboardControls_Sprint;
     private readonly InputAction m_KeyboardControls_ShowStats;
+    private readonly InputAction m_KeyboardControls_Aim;
     public struct KeyboardControlsActions
     {
         private @PlayerInput m_Wrapper;
@@ -344,6 +453,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @ToggleMap => m_Wrapper.m_KeyboardControls_ToggleMap;
         public InputAction @Sprint => m_Wrapper.m_KeyboardControls_Sprint;
         public InputAction @ShowStats => m_Wrapper.m_KeyboardControls_ShowStats;
+        public InputAction @Aim => m_Wrapper.m_KeyboardControls_Aim;
         public InputActionMap Get() { return m_Wrapper.m_KeyboardControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -380,6 +490,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ShowStats.started -= m_Wrapper.m_KeyboardControlsActionsCallbackInterface.OnShowStats;
                 @ShowStats.performed -= m_Wrapper.m_KeyboardControlsActionsCallbackInterface.OnShowStats;
                 @ShowStats.canceled -= m_Wrapper.m_KeyboardControlsActionsCallbackInterface.OnShowStats;
+                @Aim.started -= m_Wrapper.m_KeyboardControlsActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_KeyboardControlsActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_KeyboardControlsActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_KeyboardControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -411,6 +524,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ShowStats.started += instance.OnShowStats;
                 @ShowStats.performed += instance.OnShowStats;
                 @ShowStats.canceled += instance.OnShowStats;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -444,5 +560,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnToggleMap(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnShowStats(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }

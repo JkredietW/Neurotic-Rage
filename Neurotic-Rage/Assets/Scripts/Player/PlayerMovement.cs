@@ -97,7 +97,8 @@ public class PlayerMovement : MonoBehaviour
     private InputAction shootAction;
     private InputAction swapWeaponAction;
     private InputAction sprintAction;
-    private InputAction showStatsAction;
+    private InputAction aimAction;
+    public Vector3 aimDirection;
 
     private void Awake()
     {
@@ -159,8 +160,8 @@ public class PlayerMovement : MonoBehaviour
         sprintAction = input.KeyboardControls.Sprint;
         sprintAction.Enable();
 
-        showStatsAction = input.KeyboardControls.ShowStats;
-        showStatsAction.Enable();
+        aimAction = input.KeyboardControls.Aim;
+        aimAction.Enable();
 
         //single input
         input.KeyboardControls.Interact.performed += Interact;
@@ -174,6 +175,9 @@ public class PlayerMovement : MonoBehaviour
 
         input.KeyboardControls.ToggleMap.performed += ToggleBigMap;
         input.KeyboardControls.ToggleMap.Enable();
+
+        input.KeyboardControls.ShowStats.performed += ShowStats;
+        input.KeyboardControls.ShowStats.Enable();
     }
 
     private void OnDisable()
@@ -182,12 +186,14 @@ public class PlayerMovement : MonoBehaviour
         movementAction.Disable();
         shootAction.Disable();
         swapWeaponAction.Disable();
+        aimAction.Disable();
 
         //button
         input.KeyboardControls.Interact.Disable();
         input.KeyboardControls.Reload.Disable();
         input.KeyboardControls.Melee.Disable();
         input.KeyboardControls.ToggleMap.Disable();
+        input.KeyboardControls.ShowStats.Disable();
     }
 
     private void Start()
@@ -222,7 +228,7 @@ public class PlayerMovement : MonoBehaviour
         DefineDirection();
 
         //inputs
-        if (swapWeaponAction.ReadValue<float>() > 0.5f || swapWeaponAction.ReadValue<float>() < 0.5f || Input.GetButtonDown("RightBumber"))
+        if (swapWeaponAction.ReadValue<float>() > 0.5f || swapWeaponAction.ReadValue<float>() < -0.5f || Input.GetButtonDown("RightBumber"))
         {
             ScrollWeapon();
         }
@@ -234,17 +240,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             isShooting = false;
-        }
-        if(showStatsAction.ReadValue<float>() > 0.5f)
-        {
-            ShowStats(true);
-        }
-        else
-        {
-            if(statsPanel.activeSelf == true)
-            {
-                ShowStats(false);
-            }
         }
         if (sprintAction.ReadValue<float>() > 0.5f)
         {
@@ -271,6 +266,16 @@ public class PlayerMovement : MonoBehaviour
             controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
         }
     }
+
+    public Vector3 GetAim()
+    {
+        aimDirection = new Vector3(aimAction.ReadValue<Vector2>().x, 0, aimAction.ReadValue<Vector2>().y);
+        return aimDirection;
+    }
+    public Vector3 GetMoveDirection()
+    {
+        return moveDir;
+    }
     private void ToggleBigMap(InputAction.CallbackContext _value)
     {
         ToggleMap();
@@ -279,6 +284,10 @@ public class PlayerMovement : MonoBehaviour
     private void Melee(InputAction.CallbackContext _value)
     {
         StartCoroutine(MeleeAttack());
+    }
+    private void ShowStats(InputAction.CallbackContext _value)
+    {
+        ShowStatsToggle(!statsPanel.activeSelf);
     }
 
     private void Reload(InputAction.CallbackContext _value)
@@ -316,7 +325,7 @@ public class PlayerMovement : MonoBehaviour
             OpenShop();
         }
     }
-    void ShowStats(bool _bool)
+    void ShowStatsToggle(bool _bool)
     {
         statsPanel.SetActive(_bool);
         UpdateStats();
@@ -744,7 +753,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public IEnumerator ReloadWeapon()
     {
-        if(isReloading || isSwitchingWeapon || shopIsOpen)
+        if(isReloading || isSwitchingWeapon || shopIsOpen || currentWeapon.ammo >= currentWeapon.maxAmmo)
         {
             yield break;
         }
