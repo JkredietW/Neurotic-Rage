@@ -78,6 +78,8 @@ public class PlayerHealth : BaseHealth
     }
     public IEnumerator CarComes()
 	{
+        FindObjectOfType<CarScript>().otherPos.transform.SetParent(null);
+        FindObjectOfType<CarScript>().transform.SetParent(null);
         pm.MayMove(false);
         mesh.SetActive(false);
         deathPlayer.SetActive(true);

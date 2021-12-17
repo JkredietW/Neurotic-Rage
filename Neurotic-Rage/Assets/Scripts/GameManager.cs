@@ -205,14 +205,36 @@ public class GameManager : MonoBehaviour
     }
     public void MomDied()
 	{
-        car.SetActive(true);
-        car.GetComponent<Animator>().SetBool("MomDied", true);
+        FindObjectOfType<PlayerMovement>().MayMove(false);
         playerCanvas.SetActive(false);
         momDiedCanvas.SetActive(true);
         pauseWave = true;
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemyList.Length; i++)
+        {
+            if (enemyList[i].GetComponent<EnemyHealth>())
+            {
+                enemyList[i].transform.GetComponent<EnemyHealth>().PlayerDied();
+            }
+        }
+        Invoke("KillEnemies", 2.5f);
+    }
+    public void KillEnemies()
+	{
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemyList.Length; i++)
+        {
+            if (enemyList[i].GetComponent<EnemyHealth>())
+            {
+                enemyList[i].transform.GetComponent<EnemyHealth>().PlayerDied();
+            }
+        }
     }
     public void ContinueEndless()
 	{
+        enemiesAlive.Clear();
+        bossesAlive.Clear();
+        FindObjectOfType<PlayerMovement>().MayMove(true);
         momDiedCanvas.SetActive(false);
         playerCanvas.SetActive(true);
         pauseWave = false;
@@ -224,7 +246,10 @@ public class GameManager : MonoBehaviour
 	}
     public IEnumerator EndWave()
 	{
+        car.SetActive(true);
+        car.GetComponent<CarScript>().drive = true;
         momDiedCanvas.SetActive(false);
+        yield return new WaitForSeconds(5);
         FindObjectOfType<FadeToFromBlack>().FadeToBlack(2);
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(0);
@@ -419,6 +444,10 @@ public class GameManager : MonoBehaviour
     }
     public void NewRound()
 	{
+		if (pauseWave)
+		{
+            return;
+		}
         waveIsInProgress = true;
         waveCount++;
         totalScaling = baseScaling * ((scalingPerWave * totalWaveCount) + 1);
@@ -452,6 +481,10 @@ public class GameManager : MonoBehaviour
 	}
     public IEnumerator SpawnEnemies()
 	{
+		if (pauseWave)
+		{
+            yield break;
+		}
 		for (int i = 0; i < (int)lastSmallEnemieAmount; i++)
 		{
             Spawn(presetWave.small,false);
