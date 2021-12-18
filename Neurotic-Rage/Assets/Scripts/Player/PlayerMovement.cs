@@ -1158,8 +1158,11 @@ public class PlayerMovement : MonoBehaviour
     }
     void Movement()
     {
-        //controller
-        moveDir = new Vector3(playerOne.leftStick.x.ReadValue(), 0, playerOne.leftStick.y.ReadValue());
+		//controller
+		if (playerOne != null)
+        { 
+            moveDir = new Vector3(playerOne.leftStick.x.ReadValue(), 0, playerOne.leftStick.y.ReadValue());
+		}
 
         //keyboard
         float vertical = keyboard.wKey.ReadValue() - keyboard.sKey.ReadValue();
