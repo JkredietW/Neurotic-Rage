@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class MainMenu : MonoBehaviour
@@ -15,6 +16,8 @@ public class MainMenu : MonoBehaviour
     public Animator garageDoor;
     public ScoreBord scorebord;
     public bool garage;
+    public EventSystem eventSystem;
+    public GameObject main;
 
     void Start()
     {
@@ -23,6 +26,7 @@ public class MainMenu : MonoBehaviour
 		{
             scorebord.scores[i].text.text = scorebord.scores[i].playerPrefName +" "+ PlayerPrefs.GetFloat(scorebord.scores[i].playerPrefName).ToString();
         }
+        ChangeActivePanel(main);
     }
     public void BeginScene(int i)
 	{
@@ -88,6 +92,8 @@ public class MainMenu : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsToReopen);
         panelToChange.SetActive(!panelToChange.activeSelf);
+        eventSystem.SetSelectedGameObject(null);
+        eventSystem.SetSelectedGameObject(panelToChange.GetComponent<MenuPanel>().firstSelectedObject);
     }
     public void IELoadScene(int i)
 	{
