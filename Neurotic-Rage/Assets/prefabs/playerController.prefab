@@ -3919,6 +3919,7 @@ MonoBehaviour:
   bloodSpat: {fileID: 8020872181441132644, guid: bdcadd29fdb64bd499ae57eb309edb8c, type: 3}
   mobileAimDirection: {fileID: 5511995204779535788}
   twoPlayers: 0
+  babyRotation: {fileID: 2424295402043925094}
 --- !u!114 &1229598224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17895,8 +17896,12 @@ MonoBehaviour:
   shopIsOpen: 0
   weaponStatsParent: {fileID: 164076453848025038}
   upgradeItemStatsParent: {fileID: 5606527920300595196}
-  aimDirection: {x: 0, y: 0, z: 0}
-  secondAimDirection: {x: 0, y: 0, z: 0}
+  isShootingTwo: 0
+  currentWeaponTwo: {fileID: 0}
+  bulletOriginTwo: {fileID: 0}
+  weaponInHandTwo: {fileID: 0}
+  muzzleFlashObjectTwo: {fileID: 0}
+  playerRotationTwo: {fileID: 0}
 --- !u!114 &2374231427107437396
 MonoBehaviour:
   m_ObjectHideFlags: 0

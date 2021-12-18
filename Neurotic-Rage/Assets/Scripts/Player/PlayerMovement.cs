@@ -72,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Animator babyAnimator;
     public GameObject swordOnBack, swordInHand;
-    public Animation reloadAnimationForSpeed;
 
     [Header("Shop")]
     bool shopInRange;
@@ -92,25 +91,45 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform weaponStatsParent, upgradeItemStatsParent;
 
     //input nonsense
-    //player one
-    private PlayerInput input;
-    private InputAction movementAction;
-    private InputAction shootAction;
-    private InputAction swapWeaponAction;
-    private InputAction sprintAction;
-    private InputAction aimAction;
-    public Vector3 aimDirection;
+    private Gamepad playerOne;
+    private Gamepad playerTwo;
 
-    //player two
-    private PlayerInput inputSecondPlayer;
-    private InputAction shootSecondAction;
-    private InputAction swapWeaponSecondAction;
-    private InputAction aimSecondAction;
-    public Vector3 secondAimDirection;
+    //keyboard
+    private Mouse mouse;
+    private Keyboard keyboard;
+
+    //1
+    private Vector3 aimDirection;
+    //2
+    private Vector3 secondAimDirection;
+
+    //player two variables
+    private bool isReloadingTwo;
+    private float nextAttackTwo;
+    private float attackCooldownTwo;
+    [HideInInspector]public bool isShootingTwo;
+    public Weapon currentWeaponTwo;
+    private Transform bulletOriginTwo;
+    [SerializeField] GameObject weaponInHandTwo;
+    public VisualEffect muzzleFlashObjectTwo;
+    private int currentWeaponSlotTwo;
+    public List<Weapon> weaponSlotsTwo;
 
     private void Awake()
     {
-		if (!tuturial)
+        keyboard = Keyboard.current;
+        mouse = Mouse.current;
+        var allGamepads = Gamepad.all;
+        if (allGamepads.Count > 0)
+        {
+            playerOne = allGamepads[0];
+            if (allGamepads.Count > 1)
+            {
+                playerTwo = allGamepads[1];
+            }
+        }
+
+        if (!tuturial)
 		{
             MayMove(false);
 		}
@@ -123,12 +142,11 @@ public class PlayerMovement : MonoBehaviour
         playerCamera = GetComponentInChildren<Camera>();
         playerAim = GetComponentInChildren<PlayerAim>();
         health = GetComponentInChildren<PlayerHealth>();
-        input = new PlayerInput();
-        inputSecondPlayer = new PlayerInput();
 
         //set variables
         playerAim.GetVariables();
         attackCooldown = currentWeapon.OnSwap(0);
+        attackCooldownTwo = currentWeaponTwo.OnSwap(0);
         weaponsInRange = new List<WorldWeapon>();
         weaponStatsUi = new List<TextMeshProUGUI>();
         itemStatsUi = new List<TextMeshProUGUI>();
@@ -154,77 +172,6 @@ public class PlayerMovement : MonoBehaviour
             mobileUI.SetActive(true);
         }
     }
-    private void OnEnable()
-    {
-        //player one
-        //axis
-        movementAction = input.KeyboardControls.Movement;
-        movementAction.Enable();
-
-        shootAction = input.KeyboardControls.Shoot;
-        shootAction.Enable();
-
-        swapWeaponAction = input.KeyboardControls.SwapWeapon;
-        swapWeaponAction.Enable();
-
-        sprintAction = input.KeyboardControls.Sprint;
-        sprintAction.Enable();
-
-        aimAction = input.KeyboardControls.Aim;
-        aimAction.Enable();
-
-        //single input
-        input.KeyboardControls.Interact.performed += Interact;
-        input.KeyboardControls.Interact.Enable();
-
-        input.KeyboardControls.Reload.performed += Reload;
-        input.KeyboardControls.Reload.Enable();
-
-        input.KeyboardControls.Melee.performed += Melee;
-        input.KeyboardControls.Melee.Enable();
-
-        input.KeyboardControls.ToggleMap.performed += ToggleBigMap;
-        input.KeyboardControls.ToggleMap.Enable();
-
-        input.KeyboardControls.ShowStats.performed += ShowStats;
-        input.KeyboardControls.ShowStats.Enable();
-
-        //player two
-        shootSecondAction = inputSecondPlayer.KeyboardControls.Shoot;
-        shootSecondAction.Enable();
-
-        swapWeaponSecondAction = inputSecondPlayer.KeyboardControls.SwapWeapon;
-        swapWeaponSecondAction.Enable();
-
-        aimSecondAction = inputSecondPlayer.KeyboardControls.Aim;
-        aimSecondAction.Enable();
-
-        //single input
-        inputSecondPlayer.KeyboardControls.Reload.performed += ReloadSecond;
-        inputSecondPlayer.KeyboardControls.Reload.Enable();
-
-        inputSecondPlayer.KeyboardControls.ToggleMap.performed += ToggleBigMap;
-        inputSecondPlayer.KeyboardControls.ToggleMap.Enable();
-
-        inputSecondPlayer.KeyboardControls.ShowStats.performed += ShowStats;
-        inputSecondPlayer.KeyboardControls.ShowStats.Enable();
-    }
-
-    private void OnDisable()
-    {
-        //axis
-        movementAction.Disable();
-        shootAction.Disable();
-        swapWeaponAction.Disable();
-        aimAction.Disable();
-
-        //button
-        input.KeyboardControls.Interact.Disable();
-        input.KeyboardControls.Reload.Disable();
-        input.KeyboardControls.Melee.Disable();
-        input.KeyboardControls.ToggleMap.Disable();
-        input.KeyboardControls.ShowStats.Disable();
-    }
 
     private void Start()
     {
@@ -236,12 +183,20 @@ public class PlayerMovement : MonoBehaviour
         UpdateAmmoText();
 
         //make weapon
-        GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
+        GameObject weapon = Instantiate(currentWeapon.objectprefab);
         //done like this so that scale is normal
-        specialWeapon.transform.position = weaponInHand.transform.position;
-        specialWeapon.transform.rotation = weaponInHand.transform.rotation;
-        specialWeapon.transform.SetParent(weaponInHand.transform);
-        specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        weapon.transform.position = weaponInHand.transform.position;
+        weapon.transform.rotation = weaponInHand.transform.rotation;
+        weapon.transform.SetParent(weaponInHand.transform);
+        weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+        //make weapon
+        GameObject weaponTwo = Instantiate(currentWeaponTwo.objectprefab);
+        //done like this so that scale is normal
+        weaponTwo.transform.position = weaponInHandTwo.transform.position;
+        weaponTwo.transform.rotation = weaponInHandTwo.transform.rotation;
+        weaponTwo.transform.SetParent(weaponInHandTwo.transform);
+        weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         if (FindObjectOfType<GameManager>())
         {
@@ -253,36 +208,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (mayMove)
         {
+            //input directly put in movedir
             Movement();
         }
         DefineDirection();
-
-        //inputs
-        if (swapWeaponAction.ReadValue<float>() > 0.5f || swapWeaponAction.ReadValue<float>() < -0.5f || Input.GetButtonDown("RightBumber"))
-        {
-            ScrollWeapon();
-        }
-        if(shootAction.ReadValue<float>() > 0.5f)
-        {
-            isShooting = true;
-            FireWeapon();
-        }
-        else
-        {
-            isShooting = false;
-        }
-        if (sprintAction.ReadValue<float>() > 0.5f)
-        {
-            if (!isShooting)
-            {
-                StartStopRunning(true);
-            }
-        }
-        else
-        {
-            babyRunFix = true;
-            StartStopRunning(false);
-        }
+        Inputs();
     }
     private void FixedUpdate()
     {
@@ -296,51 +226,175 @@ public class PlayerMovement : MonoBehaviour
             controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
         }
     }
+    void Inputs()
+    {
+        //inputs
+        #region controller 1
+        if (playerOne != null)
+        {
+            //1
+            //swap weapon
+            if (playerOne.rightShoulder.IsPressed())
+            {
+                ScrollWeapon();
+            }
+            //shoot 
+            if (playerOne.rightTrigger.IsPressed())
+            {
+                isShooting = true;
+                FireWeapon();
+            }
+            else
+            {
+                isShooting = false;
+            }
+            //interact 
+            if (playerOne.buttonWest.IsPressed())
+            {
+                Interact();
+            }
+            //reload 
+            if (playerOne.buttonEast.IsPressed())
+            {
+                if (mayMove)
+                {
+                    StartCoroutine(ReloadWeapon());
+                }
+            }
+            //sprint
+            if (playerOne.leftShoulder.IsPressed())
+            {
+                if (!isShooting)
+                {
+                    StartStopRunning(true);
+                }
+            }
+            else
+            {
+                babyRunFix = true;
+                StartStopRunning(false);
+            }
+            //toggle big map
+            if (playerOne.buttonNorth.IsPressed())
+            {
+                ToggleMap();
+            }
+            //melee
+            if (playerOne.leftTrigger.IsPressed())
+            {
+                StartCoroutine(MeleeAttack());
+            }
+            //show stats
+            if (playerOne.selectButton.IsPressed())
+            {
+                ShowStatsToggle(!statsPanel.activeSelf);
+            }
+        }
+        #endregion
 
+        #region controller 2
+        //player two
+        if (playerTwo != null)
+        {
+            //reload 2
+            if (playerTwo.buttonEast.IsPressed())
+            {
+                if (mayMove)
+                {
+                    ReloadWeaponTwo();
+                }
+            }
+            //shoot 2
+            if (playerTwo.rightTrigger.IsPressed())
+            {
+                isShootingTwo = true;
+                FireWeaponTwo();
+            }
+            else
+            {
+                isShootingTwo = false;
+            }
+            if(playerTwo.rightShoulder.IsPressed())
+            {
+                //hier swap voor 2e
+            }
+        }
+        #endregion
+
+        #region keyboard
+        //swap weapon
+        if (mouse.scroll.y.ReadValue() > 0.5f || mouse.scroll.y.ReadValue() < -0.5f)
+        {
+            ScrollWeapon();
+        }
+        //shoot 
+        if (mouse.leftButton.IsPressed())
+        {
+            isShooting = true;
+            FireWeapon();
+        }
+        else
+        {
+            isShooting = false;
+        }
+        //interact 
+        if (keyboard.eKey.IsPressed())
+        {
+            Interact();
+        }
+        //reload 
+        if (keyboard.rKey.IsPressed())
+        {
+            if (mayMove)
+            {
+                StartCoroutine(ReloadWeapon());
+            }
+        }
+        //sprint
+        if (keyboard.leftShiftKey.IsPressed())
+        {
+            if (!isShooting)
+            {
+                StartStopRunning(true);
+            }
+        }
+        else
+        {
+            babyRunFix = true;
+            StartStopRunning(false);
+        }
+        //toggle big map
+        if (keyboard.mKey.IsPressed())
+        {
+            ToggleMap();
+        }
+        //melee
+        if (mouse.rightButton.IsPressed())
+        {
+            StartCoroutine(MeleeAttack());
+        }
+        //show stats
+        if (keyboard.tabKey.IsPressed())
+        {
+            ShowStatsToggle(!statsPanel.activeSelf);
+        }
+        #endregion
+    }
     public Vector3 GetAim()
     {
-        aimDirection = new Vector3(aimAction.ReadValue<Vector2>().x, 0, aimAction.ReadValue<Vector2>().y);
+        aimDirection = new Vector3(playerOne.rightStick.x.ReadValue(), 0, playerOne.rightStick.y.ReadValue());
         return aimDirection;
     }
-    public Vector3 GetAimSecond()
+    public Vector3 GetAimTwo()
     {
-        secondAimDirection = new Vector3(aimSecondAction.ReadValue<Vector2>().x, 0, aimSecondAction.ReadValue<Vector2>().y);
-        return secondAimDirection;
+        aimDirection = new Vector3(playerTwo.rightStick.x.ReadValue(), 0, playerTwo.rightStick.y.ReadValue());
+        return aimDirection;
     }
     public Vector3 GetMoveDirection()
     {
         return moveDir;
     }
-    private void ToggleBigMap(InputAction.CallbackContext _value)
-    {
-        ToggleMap();
-    }
-
-    private void Melee(InputAction.CallbackContext _value)
-    {
-        StartCoroutine(MeleeAttack());
-    }
-    private void ShowStats(InputAction.CallbackContext _value)
-    {
-        ShowStatsToggle(!statsPanel.activeSelf);
-    }
-
-    private void Reload(InputAction.CallbackContext _value)
-    {
-        if(mayMove)
-        {
-            StartCoroutine(ReloadWeapon());
-        }
-    }
-    private void ReloadSecond(InputAction.CallbackContext _value)
-    {
-        if(mayMove)
-        {
-            //deze anders
-            StartCoroutine(ReloadWeapon());
-        }
-    }
-    private void Interact(InputAction.CallbackContext _value)
+    void Interact()
     {
         weaponsInRange.RemoveAll(item => item == null);
         if (weaponsInRange.Count > 0)
@@ -647,6 +701,56 @@ public class PlayerMovement : MonoBehaviour
         UpdateAmmoText();
         UpdateStats();
     }
+    public void ScrollWeaponTwo()
+    {
+        if (isSwitchingWeapon || shopIsOpen || isReloading)
+        {
+            return;
+        }
+
+        //set previous weapon off, no double weapons
+        weaponInHandTwo.transform.GetChild(0).gameObject.SetActive(false);
+
+        //animations for switching weapon
+        isSwitchingWeapon = true;
+        //animations hier <-----
+
+        //actual switch values
+        currentWeaponSlotTwo -= 1;
+        if (currentWeaponSlotTwo > weaponSlotsTwo.Count - 1)
+        {
+            currentWeaponSlotTwo = 0;
+        }
+        if (currentWeaponSlotTwo < 0)
+        {
+            currentWeaponSlotTwo = weaponSlotsTwo.Count - 1;
+        }
+        currentWeapon = weaponSlotsTwo[currentWeaponSlot];
+        attackCooldownTwo = currentWeapon.OnSwap(extra_attackSpeed);
+
+        //make weapon
+        GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
+        //done like this so that scale is normal
+        specialWeapon.transform.position = weaponInHand.transform.position;
+        specialWeapon.transform.rotation = weaponInHand.transform.rotation;
+        specialWeapon.transform.SetParent(weaponInHand.transform);
+        specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+        //swap cooldown
+        Invoke(nameof(SecAfterSwapWeapon), 0.5f);
+
+        //ui sprite
+
+        //ui indecator
+
+        //remove old weapons
+        if (weaponInHandTwo.transform.childCount > 0)
+        {
+            Destroy(weaponInHandTwo.transform.GetChild(0).gameObject);
+        }
+        UpdateAmmoText();
+        UpdateStats();
+    }
     void DropWeapon(Weapon _oldWeapon)
     {
         //instatiate weapon that was held
@@ -794,6 +898,107 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    public void FireWeaponTwo()
+    {
+        //check if doing something
+        if (isReloadingTwo)
+        {
+            return;
+        }
+
+        //shooting
+        if (Time.time >= nextAttack && mayMove)
+        {
+            if (isRunning)
+            {
+                isRunning = false;
+                playerAim.RotateToAim();
+            }
+            nextAttackTwo = Time.time + attackCooldownTwo;
+            if (currentWeaponTwo.ammo > 0)
+            {
+                //shooting animation here <-----
+                currentWeaponTwo.ammo -= 1;
+
+                //UpdateAmmoText();
+                ///ammo for second player needs to be added
+
+                //set pos of muzzle for new weapon
+                bulletOriginTwo.position = weaponInHandTwo.transform.GetChild(0).GetComponent<Shootpos>().shootpos.position;
+                muzzleFlashObjectTwo.Play();
+
+                //bullets
+                for (int i = 0; i < currentWeapon.projectileCount + extra_bullets; i++)
+                {
+                    //how much each projectile is away from eachother
+                    total = currentWeaponTwo.shootAngle / currentWeaponTwo.projectileCount + extra_bullets;
+
+                    //get max rotation in radius
+                    float value = (float)(Mathf.Atan2(playerAim.babyRotation.rotation.y, playerAim.babyRotation.rotation.w) / Mathf.PI) * 180;
+                    if (value > 180)
+                    {
+                        value -= 360;
+                    }
+                    //set random bullet offset
+                    float roll = Random.Range(-currentWeaponTwo.rotationOffset, currentWeaponTwo.rotationOffset);
+
+                    //spawn bullet
+                    Rigidbody spawnedBullet = Instantiate(currentWeaponTwo.Bullet, bulletOriginTwo.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeaponTwo.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
+
+                    //check for bullet speed, 50+ sometimes goes through things....
+                    if (currentWeaponTwo.bulletSpeed > 50)
+                    {
+                        //spawns in bullet for visuals
+                        spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeaponTwo.damage + extra_damage, currentWeaponTwo.pierceAmount + extra_pierces, playerAim.babyRotation.rotation, true);
+                        spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeaponTwo.bulletSpeed * Random.Range(0.8f, 1.2f));
+
+                        int pierces = currentWeaponTwo.pierceAmount + extra_pierces;
+                        RaycastHit[] hitByRaycast = Physics.RaycastAll(bulletOriginTwo.position, spawnedBullet.velocity);
+                        for (int r = 0; r < hitByRaycast.Length; r++)
+                        {
+                            if (hitByRaycast[r].transform.GetComponent<EnemyHealth>())
+                            {
+                                pierces--;
+                                hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeaponTwo.damage + extra_damage);
+
+                                GameObject tempBlood = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpat, hitByRaycast[r].point, playerAim.babyRotation.rotation);
+                                tempBlood.GetComponent<VisualEffect>().Play();
+                                Destroy(tempBlood, 5);
+
+                                //return when pierces all gone
+                                if (pierces == 0)
+                                {
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeaponTwo.damage + extra_damage, currentWeaponTwo.pierceAmount + extra_pierces, playerAim.babyRotation.rotation, false);
+                        spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeaponTwo.bulletSpeed * Random.Range(0.8f, 1.2f));
+                    }
+
+                }
+                if (currentWeaponTwo.ammo == 0 && mayMove)
+                {
+                    if (currentWeaponTwo.type == weaponType.special)
+                    {
+                        DropWeapon(currentWeaponTwo);
+                        currentWeaponTwo = weaponSlots[currentWeaponSlot];
+                    }
+                    else
+                    {
+                        ReloadWeaponTwo();
+                    }
+                }
+            }
+            else if (mayMove)
+            {
+                ReloadWeaponTwo();
+            }
+        }
+    }
     public IEnumerator ReloadWeapon()
     {
         if(isReloading || isSwitchingWeapon || shopIsOpen || currentWeapon.ammo >= currentWeapon.maxAmmo)
@@ -853,6 +1058,65 @@ public class PlayerMovement : MonoBehaviour
         }
         UpdateAmmoText();
     }
+    public IEnumerator ReloadWeaponTwo()
+    {
+        if (isReloadingTwo || currentWeaponTwo.ammo >= currentWeaponTwo.maxAmmo)
+        {
+            yield break;
+        }
+        isReloadingTwo = true;
+        //hier animation
+        //float oldspeed = animator.GetFloat("ReloadSpeed");
+        //animator.SetFloat("ReloadSpeed", oldspeed / currentWeapon.reloadTime);
+        yield return new WaitForSeconds(currentWeaponTwo.reloadTime);
+        //animator.SetFloat("ReloadSpeed", oldspeed);
+        if (currentWeaponTwo.ammo == currentWeaponTwo.maxAmmo)
+        {
+            if (currentWeaponTwo.type == weaponType.light)
+            {
+                if (currentAmmo == 0)
+                {
+                    print("no more ammo");
+                    isReloading = false;
+                    yield break;
+                }
+                currentAmmo -= currentWeaponTwo.maxAmmo - currentWeaponTwo.ammo;
+                if (currentAmmo > 0)
+                {
+                    currentWeaponTwo.ammo = currentWeaponTwo.maxAmmo;
+                }
+                else
+                {
+                    currentWeaponTwo.ammo = currentWeaponTwo.maxAmmo + currentAmmo;
+                    currentAmmo = 0;
+                }
+            }
+            else if (currentWeaponTwo.type == weaponType.heavy)
+            {
+                if (currentHeavyAmmo == 0)
+                {
+                    print("no more ammo");
+                    yield break;
+                }
+                currentHeavyAmmo -= currentWeaponTwo.maxAmmo - currentWeaponTwo.ammo;
+                if (currentHeavyAmmo > 0)
+                {
+                    currentWeaponTwo.ammo = currentWeaponTwo.maxAmmo;
+                }
+                else
+                {
+                    currentWeaponTwo.ammo = currentWeaponTwo.maxAmmo + currentHeavyAmmo;
+                    currentHeavyAmmo = 0;
+                }
+            }
+            isReloadingTwo = false;
+        }
+        else
+        {
+            isReloadingTwo = false;
+        }
+        UpdateAmmoText();
+    }
     void UpdateAmmoText()
     {
         normalAmmoText.text = $"Light ammo : {currentAmmo} / {maxAmmo}";
@@ -894,7 +1158,17 @@ public class PlayerMovement : MonoBehaviour
     }
     void Movement()
     {
-        moveDir = new Vector3(movementAction.ReadValue<Vector2>().x, 0, movementAction.ReadValue<Vector2>().y);
+        //controller
+        moveDir = new Vector3(playerOne.leftStick.x.ReadValue(), 0, playerOne.leftStick.y.ReadValue());
+
+        //keyboard
+        float vertical = keyboard.wKey.ReadValue() - keyboard.sKey.ReadValue();
+        float horizontal = keyboard.dKey.ReadValue() - keyboard.aKey.ReadValue();
+        Vector3 keyboardmovement = new Vector3(horizontal, 0, vertical);
+        if(keyboardmovement.magnitude > 0)
+        {
+                    moveDir = new Vector3(horizontal, 0, vertical);
+        }
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
 
         //gravity

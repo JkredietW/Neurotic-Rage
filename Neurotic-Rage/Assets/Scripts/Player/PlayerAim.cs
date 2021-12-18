@@ -16,12 +16,15 @@ public class PlayerAim : MonoBehaviour
 
     Vector3 lookAtDirection;
     Vector3 lastMousePosition;
+    private bool firstTimeTwo;
+    private float timerTwo;
     float timer;
     bool firstTime;
 
     public Joystick mobileAimDirection;
 
     public bool twoPlayers;
+    public Transform babyRotation;
 
     public void GetVariables()
     {
@@ -51,7 +54,6 @@ public class PlayerAim : MonoBehaviour
                 //devine controller look rotation
                 Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * player.GetAim();
                 Vector3 lookRotationWithControllerMovementBased = player.GetMoveDirection();
-                print(lookRotationWithControllerMovementBased.magnitude);
                 //look torwards lookrotation
                 if (lookRotationWithController.magnitude != 0 && !player.isRunning)
                 {
@@ -146,7 +148,22 @@ public class PlayerAim : MonoBehaviour
     }
     public void BabyRotateToAim()
     {
-
+        Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * player.GetAimTwo();
+        if (firstTimeTwo)
+        {
+            firstTimeTwo = false;
+            timerTwo = Time.time + 0.1f;
+        }
+        babyRotation.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookRotationWithController.normalized), babyRotation.rotation, 0.5f);
+        if (Time.time >= timerTwo && lookRotationWithController.magnitude > 0.8f)
+        {
+            player.isShootingTwo = true;
+            player.FireWeaponTwo();
+        }
+        else
+        {
+            firstTimeTwo = false;
+        }
     }
     public void MeleeDamageHitBox()
     {
