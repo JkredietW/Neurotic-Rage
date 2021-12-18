@@ -5,24 +5,35 @@ using UnityEngine;
 public class MusIcScript : MonoBehaviour
 {
 	public AudioSource music;
-    public AudioClip clip1, clip2;
+	public AudioClip[] clips;
+	private AudioClip lastclip;
 	public void Start()
 	{
+		int random = Random.Range(0, clips.Length);
+		music.clip = clips[random];
+		lastclip = music.clip;
 		music.Play();
 	}
     void Update()
     {
         if (!music.isPlaying)
         {
-			if (music.clip = clip1)
-			{
-				music.clip = clip2;
-			}
-			else
-			{
-				music.clip = clip1;
-			}
-            music.Play();
+			int random = Random.Range(0, clips.Length);
+			music.clip = clips[random];
+			music.Play();
         }
     }
+	public AudioClip GetClip()
+	{
+		int random = Random.Range(0, clips.Length);
+		if (clips[random] != lastclip)
+		{ 
+			return clips[random];
+		}
+		else
+		{
+			GetClip();
+			return clips[0];
+		}
+	}
 }
