@@ -144,7 +144,6 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
-        waveCount++;
         totalWaveCount++;
         UpdateTexts();
         waveIsInProgress = false;
@@ -444,7 +443,7 @@ public class GameManager : MonoBehaviour
     }
     public void NewRound()
 	{
-		if (pauseWave)
+        if (pauseWave)
 		{
             return;
 		}
@@ -452,8 +451,7 @@ public class GameManager : MonoBehaviour
         waveCount++;
         totalScaling = baseScaling * ((scalingPerWave * totalWaveCount) + 1);
         if (waveCount % 10 == 0)
-        {
-            print(waveCount % 10);
+        {      
             StartCoroutine(BossRound());
             LastBosAmount *= 1.25f;
         }

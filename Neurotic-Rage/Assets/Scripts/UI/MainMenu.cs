@@ -19,6 +19,9 @@ public class MainMenu : MonoBehaviour
     public bool garage;
     public EventSystem eventSystem;
     public GameObject main;
+    [Header("Sounds")]
+    public AudioSource hover;
+    public AudioSource pressed;
 
     //input detection
     int lastInput; //0 = mouse, 1 = controller
@@ -57,6 +60,14 @@ public class MainMenu : MonoBehaviour
                 }
             }
         }
+    }
+    public void Hover()
+	{
+        hover.Play();
+    }
+    public void Pressed()
+	{
+        pressed.Play();
     }
     public void BeginScene(int i)
 	{
