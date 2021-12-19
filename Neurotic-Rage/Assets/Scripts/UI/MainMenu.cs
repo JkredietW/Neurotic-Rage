@@ -5,6 +5,7 @@ using EZCameraShake;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class MainMenu : MonoBehaviour
     public EventSystem eventSystem;
     public GameObject main;
 
+    //input detection
+    int lastInput; //0 = mouse, 1 = controller
+    Vector2 lastpos;
+    GameObject lastFirstSelected;
+
     void Start()
     {
         StartCoroutine(IEStart());
@@ -27,6 +33,30 @@ public class MainMenu : MonoBehaviour
             scorebord.scores[i].text.text = scorebord.scores[i].playerPrefName +" "+ PlayerPrefs.GetFloat(scorebord.scores[i].playerPrefName).ToString();
         }
         ChangeActivePanel(main);
+    }
+    private void Update()
+    {
+        var mouse = Mouse.current;
+        if(mouse.position.ReadValue() != lastpos)
+        {
+            lastInput = 0;
+        }
+        lastpos = mouse.position.ReadValue();
+
+        var allGamepads = Gamepad.all;
+        if (lastInput == 0)
+        {
+            if (allGamepads.Count > 0)
+            {
+                Vector3 controllerInput = new Vector3(allGamepads[0].leftStick.x.ReadValue(), 0, allGamepads[0].leftStick.y.ReadValue());
+                if (controllerInput.magnitude > 0.1)
+                {
+                    lastInput = 1;
+                    eventSystem.SetSelectedGameObject(null);
+                    eventSystem.SetSelectedGameObject(lastFirstSelected);
+                }
+            }
+        }
     }
     public void BeginScene(int i)
 	{
@@ -93,7 +123,8 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(secondsToReopen);
         panelToChange.SetActive(!panelToChange.activeSelf);
         eventSystem.SetSelectedGameObject(null);
-        eventSystem.SetSelectedGameObject(panelToChange.GetComponent<MenuPanel>().firstSelectedObject);
+        lastFirstSelected = panelToChange.GetComponent<MenuPanel>().firstSelectedObject;
+        eventSystem.SetSelectedGameObject(lastFirstSelected);
     }
     public void IELoadScene(int i)
 	{
