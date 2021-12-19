@@ -26,10 +26,17 @@ public class EnemyStateMachine : MonoBehaviour
     public Animator anim;
     public GameObject head;
 
+    [Header("Sounds")]
+    public AudioSource heavyAttackSound;
+    public AudioSource AttackSound;
+    public AudioSource walkingSound;
+    public AudioSource[] screamSounds;
+
     EnemyStates currentEnemyState;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        StartCoroutine(ScreamSound());
     }
     enum EnemyStates
     {
@@ -38,6 +45,13 @@ public class EnemyStateMachine : MonoBehaviour
         patrol,
         attack,
         dying
+    }
+    public IEnumerator ScreamSound()
+	{
+        float waitTime = Random.Range(2.5f, 10);
+        yield return new WaitForSeconds(waitTime);
+        int randomSound = Random.Range(0, screamSounds.Length);
+        screamSounds[randomSound].Play();
     }
     void Update()
     {
@@ -84,6 +98,10 @@ public class EnemyStateMachine : MonoBehaviour
         }
         if(Vector3.Distance(gameObject.transform.position, player.transform.position) >= toCloseRange)
 		{
+			if (!walkingSound.isPlaying)
+			{
+                walkingSound.Play();
+            }
             navMeshAgent.SetDestination(player.transform.position);
 
             var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
@@ -94,6 +112,10 @@ public class EnemyStateMachine : MonoBehaviour
         }
 		else
 		{
+            if (walkingSound.isPlaying)
+            {
+                walkingSound.Stop();
+            }
             var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
@@ -153,6 +175,10 @@ public class EnemyStateMachine : MonoBehaviour
     }
     public void Attack()
 	{
+        if (walkingSound.isPlaying)
+        {
+            walkingSound.Stop();
+        }
         anim.SetLayerWeight(1, 100);
         int randomAtt = Random.Range(1, numberOffAttacks+1);
         anim.SetTrigger("Attack" + randomAtt.ToString());
@@ -166,7 +192,15 @@ public class EnemyStateMachine : MonoBehaviour
         anim.SetLayerWeight(1, 0);
         attacking = false;
     }
-	public void HitBoxTrigger(int i)
+    public void PlayHeavyAttackSound()
+	{
+        heavyAttackSound.Play();
+    }
+    public void PlayAttackSound()
+    {
+        AttackSound.Play();
+    }
+    public void HitBoxTrigger(int i)
 	{
 		if (i == 1)
 		{

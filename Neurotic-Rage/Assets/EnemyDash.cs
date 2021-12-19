@@ -10,6 +10,8 @@ public class EnemyDash : MonoBehaviour
 	public GameObject player, handPos;
 	private Vector3 target;
 	public Animator anim;
+	[Header("Sounds")]
+	public AudioSource walking, jumping;
 	public float rotationSpeed;
 	public float damage;
 	public float dashMoveSpeed;
