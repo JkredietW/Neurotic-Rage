@@ -75,7 +75,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0001529871, y: 0.0057772626, z: 0.00023223183}
+  m_ConnectedAnchor: {x: -0.00015292456, y: 0.0057772533, z: 0.00023223509}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -1468,7 +1468,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.004701717, y: -0.000035588222, z: 0.00007351629}
+  m_ConnectedAnchor: {x: 0.004701738, y: -0.000035582925, z: 0.000073526535}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -1886,7 +1886,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: -1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000019790614, y: 0.0039172526, z: 0.0000000034924605}
+  m_ConnectedAnchor: {x: 0.00000003143215, y: 0.0039172936, z: -0.000000009546059}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2428,7 +2428,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: 4ea2a2eb26b173d4c980901023a8a8a1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.255
+  m_Volume: 0.381
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2739,7 +2739,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: c636228dffe680545a8d0c963e63d056, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.255
+  m_Volume: 0.488
   m_Pitch: 1.07
   Loop: 1
   Mute: 0
@@ -3178,6 +3178,7 @@ MonoBehaviour:
   outline:
   - {fileID: 9159347637631033463}
   mapindicator: {fileID: 4937562866797392300}
+  enemyType: 0
 --- !u!114 &9159347637631033463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3706,7 +3707,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0010863738, y: -0.000461857, z: -0.00017488854}
+  m_ConnectedAnchor: {x: -0.0010863136, y: -0.00046185093, z: -0.00017489537}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -4492,7 +4493,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0ac72d5036578854c8538ab105470ed2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.255
+  m_Volume: 0.381
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5253,7 +5254,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.005006329, y: 0.000019835543, z: -0.0002889964}
+  m_ConnectedAnchor: {x: -0.005006346, y: 0.000019781119, z: -0.00028897126}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -6051,7 +6052,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000038358863, y: 0.00264671, z: -0.0037907725}
+  m_ConnectedAnchor: {x: -0.000000020547311, y: 0.0026467184, z: -0.00379075}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -6285,7 +6286,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0006796611, y: 0.003076577, z: 0.0010122616}
+  m_ConnectedAnchor: {x: -0.00067971996, y: 0.0030765682, z: 0.0010122786}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 1, z: 0}
   m_TwistLimitSpring:
@@ -6917,7 +6918,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00080691057, y: 0.0030813918, z: 0.0006547379}
+  m_ConnectedAnchor: {x: 0.00080691156, y: 0.0030813878, z: 0.0006547431}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: -1, z: 0}
   m_TwistLimitSpring:
@@ -7454,7 +7455,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: f2734633ad8e01c4bb3d3d5c57aa9289, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.255
+  m_Volume: 0.381
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8258,7 +8259,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: f6f44c85b939e9b48aeb4208397761fb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.255
+  m_Volume: 0.381
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8877,7 +8878,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0010862942, y: -0.00046187246, z: -0.00018170751}
+  m_ConnectedAnchor: {x: 0.0010862933, y: -0.00046186, z: -0.00018170897}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -9108,7 +9109,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000053718395, y: 0.0008281562, z: 0.00026976987}
+  m_ConnectedAnchor: {x: -0.000000007392373, y: 0.0008281598, z: 0.00026977557}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
