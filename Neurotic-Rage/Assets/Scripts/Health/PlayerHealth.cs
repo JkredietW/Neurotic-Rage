@@ -27,6 +27,8 @@ public class PlayerHealth : BaseHealth
     }
     public override void DoDamage(float _damage)
     {
+        FindObjectOfType<GameManager>().statsScript.thisgame_damageTaken += _damage;
+        FindObjectOfType<GameManager>().statsScript.total_damageTaken += _damage;
         base.DoDamage(_damage);
         animator.SetTrigger("GetHit");
         healthSlider.value = health;
@@ -38,6 +40,9 @@ public class PlayerHealth : BaseHealth
     }
     public override void Died()
     {
+        //stats
+        FindObjectOfType<GameManager>().statsScript.total_deaths++;
+        FindObjectOfType<GameManager>().Save();
         pm.MayMove(false);
         mesh.SetActive(false);
         deathPlayer.SetActive(true);

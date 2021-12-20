@@ -1,4 +1,4 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -16,8 +16,19 @@ public class EnemyHealth : BaseHealth
     private float chanceForDrop = 0;
     private WorldWeapon worldWeaponPrefab;
     private List<Weapon> dropItems;
+    public EnemyType enemyType;
+
+    public enum EnemyType
+    {
+        small,
+        medium,
+        big,
+        glitch,
+        giant,
+    }
     public  override void Died()
     {
+        UpdateStats();
         FindObjectOfType<GameManager>().EnemyDied(gameObject);
         DropItems();
         for (int i = 0; i < outline.Length; i++)
@@ -40,6 +51,40 @@ public class EnemyHealth : BaseHealth
 		}
         Dying();
         Invoke("DestroyObj",4);
+    }
+    void UpdateStats()
+    {
+        FindObjectOfType<GameManager>().statsScript.thisgame_kills++;
+        FindObjectOfType<GameManager>().statsScript.total_kills++;
+        switch (enemyType)
+        {
+            case EnemyType.small:
+                FindObjectOfType<GameManager>().statsScript.thisgame_smallEnemyKills++;
+                FindObjectOfType<GameManager>().statsScript.total_smallEnemyKills++;
+                break;
+            case EnemyType.medium:
+                FindObjectOfType<GameManager>().statsScript.thisgame_mediumEnemyKills++;
+                FindObjectOfType<GameManager>().statsScript.total_mediumEnemyKills++;
+                break;
+            case EnemyType.big:
+                FindObjectOfType<GameManager>().statsScript.thisgame_bigEnemyKills++;
+                FindObjectOfType<GameManager>().statsScript.total_bigEnemyKills++;
+                break;
+            case EnemyType.glitch:
+                FindObjectOfType<GameManager>().statsScript.thisgame_glitchEnemyKills++;
+                FindObjectOfType<GameManager>().statsScript.total_glitchEnemyKills++;
+                break;
+            case EnemyType.giant:
+                FindObjectOfType<GameManager>().statsScript.thisgame_giantEnemyKills++;
+                FindObjectOfType<GameManager>().statsScript.total_giantEnemyKills++;
+                break;
+        }
+    }
+    public override void DoDamage(float _damage)
+    {
+        FindObjectOfType<GameManager>().statsScript.thisgame_damageDone += _damage;
+        FindObjectOfType<GameManager>().statsScript.total_damageDone += _damage;
+        base.DoDamage(_damage);
     }
     public virtual void Dying()
 	{

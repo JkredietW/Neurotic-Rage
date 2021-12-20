@@ -98,6 +98,12 @@ public class PlayerMovement : MonoBehaviour
     private Mouse mouse;
     private Keyboard keyboard;
 
+    //stats
+    float statsCooldown;
+    public float timeWhileNotShooting;
+    public float timeWhileShooting;
+    public float distanceWalked;
+
     //1
     private Vector3 aimDirection;
     //2
@@ -213,6 +219,17 @@ public class PlayerMovement : MonoBehaviour
         }
         DefineDirection();
         Inputs();
+
+        //stats
+        distanceWalked += moveDir.magnitude * Time.deltaTime; 
+        if(isShooting)
+        {
+            timeWhileShooting = 1 * Time.deltaTime;
+        }
+        else
+        {
+            timeWhileNotShooting = 1 * Time.deltaTime;
+        }
     }
     private void FixedUpdate()
     {
@@ -287,7 +304,11 @@ public class PlayerMovement : MonoBehaviour
             //show stats
             if (playerOne.selectButton.IsPressed())
             {
-                ShowStatsToggle(!statsPanel.activeSelf);
+                if (Time.time > statsCooldown)
+                {
+                    statsCooldown = Time.time + 0.1f;
+                    ShowStatsToggle(!statsPanel.activeSelf);
+                }
             }
         }
         #endregion
@@ -376,7 +397,11 @@ public class PlayerMovement : MonoBehaviour
         //show stats
         if (keyboard.tabKey.IsPressed())
         {
-            ShowStatsToggle(!statsPanel.activeSelf);
+            if(Time.time > statsCooldown)
+            {
+                statsCooldown = Time.time + 0.1f;
+                ShowStatsToggle(!statsPanel.activeSelf);
+            }
         }
         #endregion
     }
@@ -499,6 +524,11 @@ public class PlayerMovement : MonoBehaviour
     }
     void OpenShop()
     {
+        if(!shopIsOpen)
+        {
+            FindObjectOfType<GameManager>().statsScript.thisgame_shopsOpened++;
+            FindObjectOfType<GameManager>().statsScript.total_shopsOpened++;
+        }
         shopIsOpen = !shopIsOpen;
         shop.SetActive(shopIsOpen);
         lastShopTouched.ShopOpened();
@@ -828,6 +858,10 @@ public class PlayerMovement : MonoBehaviour
                 //set pos of muzzle for new weapon
                 bulletOrigin.position = weaponInHand.transform.GetChild(0).GetComponent<Shootpos>().shootpos.position;
                 muzzleFlashObject.Play();
+                //stats
+                FindObjectOfType<GameManager>().statsScript.thisgame_bulletsShot += currentWeapon.projectileCount + extra_bullets;
+                FindObjectOfType<GameManager>().statsScript.total_bulletsShot += currentWeapon.projectileCount + extra_bullets;
+
                 for (int i = 0; i < currentWeapon.projectileCount + extra_bullets; i++)
                 {
                     //how much each projectile is away from eachother
@@ -853,10 +887,12 @@ public class PlayerMovement : MonoBehaviour
 
                         int pierces = currentWeapon.pierceAmount + extra_pierces;
                         RaycastHit[] hitByRaycast = Physics.RaycastAll(bulletOrigin.position, spawnedBullet.velocity);
+                        bool hitEnemy = false;
                         for (int r = 0; r < hitByRaycast.Length; r++)
                         {
                             if(hitByRaycast[r].transform.GetComponent<EnemyHealth>())
                             {
+                                hitEnemy = true;
                                 pierces--;
                                 hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeapon.damage + extra_damage);
 
@@ -867,6 +903,35 @@ public class PlayerMovement : MonoBehaviour
                                 //return when pierces all gone
                                 if (pierces == 0)
                                 {
+                                    if (hitEnemy)
+                                    {
+                                        FindObjectOfType<GameManager>().statsScript.thisgame_bulletsHit++;
+                                        FindObjectOfType<GameManager>().statsScript.total_bulletsHit++;
+                                    }
+                                    else
+                                    {
+                                        FindObjectOfType<GameManager>().statsScript.thisgame_bulletsMissed++;
+                                        FindObjectOfType<GameManager>().statsScript.total_bulletsMissed++;
+                                    }
+                                    return;
+                                }
+                            }
+                            else //hits nothing
+                            {
+                                pierces--;
+                                //return when pierces all gone
+                                if (pierces == 0)
+                                {
+                                    if (hitEnemy)
+                                    {
+                                        FindObjectOfType<GameManager>().statsScript.thisgame_bulletsHit++;
+                                        FindObjectOfType<GameManager>().statsScript.total_bulletsHit++;
+                                    }
+                                    else
+                                    {
+                                        FindObjectOfType<GameManager>().statsScript.thisgame_bulletsMissed++;
+                                        FindObjectOfType<GameManager>().statsScript.total_bulletsMissed++;
+                                    }
                                     return;
                                 }
                             }
@@ -1005,6 +1070,8 @@ public class PlayerMovement : MonoBehaviour
         {
             yield break;
         }
+        FindObjectOfType<GameManager>().statsScript.thisgame_timesReloaded++;
+        FindObjectOfType<GameManager>().statsScript.total_timesReloaded++;
         isReloading = true;
         animator.SetTrigger("Reload");
         float oldspeed = animator.GetFloat("ReloadSpeed");

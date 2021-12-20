@@ -11,6 +11,7 @@ public class BulletBehavior : MonoBehaviour
     public GameObject bloodSpat;
     public List<string> IgnoreTag;
     bool mayNotDoDamage;
+    bool hasHitAtleastOne;
 
     public void SetUp(float _damage, int _pierces, Quaternion _rotation, bool _mayNotDoDamage)
     {
@@ -28,6 +29,8 @@ public class BulletBehavior : MonoBehaviour
         }
         if (other.GetComponent<EnemyHealth>())
         {
+            //stats
+            hasHitAtleastOne = true;
             BaseHealth health = other.GetComponent<BaseHealth>();
             Vector3 pointToSpawn = other.ClosestPoint(transform.position);
             GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, rotation);
@@ -58,6 +61,19 @@ public class BulletBehavior : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+        }
+    }
+    private void OnDestroy()
+    {
+        if(!hasHitAtleastOne)
+        {
+            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsMissed++;
+            FindObjectOfType<GameManager>().statsScript.total_bulletsMissed++;
+        }
+        else
+        {
+            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsHit++;
+            FindObjectOfType<GameManager>().statsScript.total_bulletsHit++;
         }
     }
     void DoDamageToEnemy(BaseHealth _health)

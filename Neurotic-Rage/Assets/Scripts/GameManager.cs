@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using UnityEngine;
 using TMPro;
 
@@ -63,7 +64,39 @@ public class GameManager : MonoBehaviour
     [SerializeReference]
     private float lastSmallEnemieAmount;
 
+    //stats
+    public StatHolder statsScript;
+    float time;
 
+    private void Start()
+    {
+        time = 0;
+        statsScript = new StatHolder();
+        GetSaves();
+    }
+    public void Save()
+    {
+        string totalplayerstats = JsonUtility.ToJson(statsScript);
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/Stats.json", totalplayerstats);
+    }
+    public void GetSaves()
+    {
+        string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/Stats.json"); 
+        if(data.Length < 1)
+        {
+            return;
+        }
+        StatHolder _statsScript = JsonUtility.FromJson<StatHolder>(data);
+        statsScript = _statsScript;
+    }
+    private void Update()
+    {
+        time = 1 * Time.deltaTime;
+        if (Keyboard.current.enterKey.IsPressed())
+        {
+            Save();
+        }
+    }
     public void DelayedStart()
 	{
         player = FindObjectOfType<PlayerMovement>();
@@ -102,6 +135,8 @@ public class GameManager : MonoBehaviour
     }
     void GiveMoney(float _money)
     {
+        statsScript.thisgame_moneyCollected += _money;
+        statsScript.total_moneyCollected += _money;
         money += _money;
         UpdateTexts();
     }
@@ -144,6 +179,8 @@ public class GameManager : MonoBehaviour
         {
             return;
         }
+        statsScript.thisgame_competedWaves++;
+        statsScript.total_competedWaves++;
         totalWaveCount++;
         UpdateTexts();
         waveIsInProgress = false;
@@ -241,6 +278,10 @@ public class GameManager : MonoBehaviour
     }
     public void EndEnless()
 	{
+        statsScript.total_competedRuns++;
+        statsScript.thisgame_timePlayed += time;
+        statsScript.total_timePlayed += time;
+        Save();
         StartCoroutine(EndWave());
 	}
     public IEnumerator EndWave()
@@ -392,20 +433,30 @@ public class GameManager : MonoBehaviour
         if (money >= selectedItem.moneyValue)
         {
             money -= selectedItem.moneyValue;
+            statsScript.thisgame_moneySpend += selectedItem.moneyValue;
+            statsScript.total_moneySpend += selectedItem.moneyValue;
             if (selectedItem.itemType == ShopType.Upgrades || selectedItem.itemType == ShopType.Random)
             {
+                statsScript.thisgame_upgradesBought++;
+                statsScript.total_upgradesBought++;
                 HeldUpgrades.Add(selectedItem as ShopUpgradeItem);
                 UpdateTexts();
                 CalculateStats();
             }
             else if (selectedItem.itemType == ShopType.Ammo)
             {
+                statsScript.thisgame_healthBought++;
+                statsScript.total_healthBought++;
                 ShopAmmo tempItem = selectedItem as ShopAmmo;
                 player.GrantAmmo(tempItem.normalAmmoAmount, tempItem.specialAmmoAmount);
             }
             else if (selectedItem.itemType == ShopType.Health)
             {
+                statsScript.thisgame_ammoBought++;
+                statsScript.total_ammoBought++;
                 ShopHealth tempItem = selectedItem as ShopHealth;
+                statsScript.thisgame_damageHealed += tempItem.healthAmount;
+                statsScript.thisgame_damageHealed += tempItem.healthAmount;
                 player.health.RecieveHealth(tempItem.healthAmount);
             }
             selectedItemInUI.Setup(null);
@@ -519,6 +570,17 @@ public class GameManager : MonoBehaviour
     public void ShopIsOpened(PlayerShop _shop)
     {
         shopResetCountText.text = $"Reset after :{_shop.resetRoll} waves";
+    }
+    private void OnApplicationQuit()
+    {
+        statsScript.total_timePlayed += time;
+        statsScript.thisgame_timeWastedNotShooting += player.timeWhileNotShooting;
+        statsScript.total_timeWastedNotShooting += player.timeWhileNotShooting;
+        statsScript.thisgame_timeWastedShooting += player.timeWhileShooting;
+        statsScript.total_timeWastedShooting += player.timeWhileShooting;
+        statsScript.thisgame_distanceWalked += player.distanceWalked;
+        statsScript.total_distanceWalked += player.distanceWalked;
+        Save();
     }
 }
 [System.Serializable]
