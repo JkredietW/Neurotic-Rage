@@ -137,9 +137,12 @@ public class PlayerMovement : MonoBehaviour
         if (allGamepads.Count > 0)
         {
             playerOne = allGamepads[0];
-            if (allGamepads.Count > 1)
+            if (playerAim.twoPlayers)
             {
-                playerTwo = allGamepads[1];
+                if (allGamepads.Count > 1)
+                {
+                    playerTwo = allGamepads[1];
+                }
             }
         }
 
@@ -204,13 +207,17 @@ public class PlayerMovement : MonoBehaviour
         weapon.transform.SetParent(weaponInHand.transform);
         weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
-        ////make weapon
-        //GameObject weaponTwo = Instantiate(currentWeaponTwo.objectprefab);
-        ////done like this so that scale is normal
-        //weaponTwo.transform.position = weaponInHandTwo.transform.position;
-        //weaponTwo.transform.rotation = weaponInHandTwo.transform.rotation;
-        //weaponTwo.transform.SetParent(weaponInHandTwo.transform);
-        //weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        if(playerAim.twoPlayers)
+        {
+            //make weapon
+            GameObject weaponTwo = Instantiate(currentWeaponTwo.objectprefab);
+            //done like this so that scale is normal
+            weaponTwo.transform.position = weaponInHandTwo.transform.position;
+            weaponTwo.transform.rotation = weaponInHandTwo.transform.rotation;
+            weaponTwo.transform.SetParent(weaponInHandTwo.transform);
+            weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        }
+
 
         if (FindObjectOfType<GameManager>())
         {
@@ -265,6 +272,10 @@ public class PlayerMovement : MonoBehaviour
         {
             controller.Move((movementSpeed + extraSprintSpeed) * Time.deltaTime * moveDir.normalized);
         }
+    }
+    public void Twoplayers()
+    {
+        playerAim.EnabledTwoPlayers();
     }
     void Inputs()
     {
@@ -360,7 +371,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if(playerTwo.rightShoulder.IsPressed())
             {
-                //hier swap voor 2e
+                ScrollWeaponTwo();
             }
         }
         #endregion
@@ -767,6 +778,7 @@ public class PlayerMovement : MonoBehaviour
         //animations for switching weapon
         isSwitchingWeapon = true;
         //animations hier <-----
+        babyAnimator.SetTrigger("SwitchWeapon");
 
         //actual switch values
         currentWeaponSlotTwo -= 1;
@@ -778,8 +790,9 @@ public class PlayerMovement : MonoBehaviour
         {
             currentWeaponSlotTwo = weaponSlotsTwo.Count - 1;
         }
-        currentWeapon = weaponSlotsTwo[currentWeaponSlot];
+        currentWeaponTwo = weaponSlotsTwo[currentWeaponSlot];
         attackCooldownTwo = currentWeapon.OnSwap(extra_attackSpeed);
+        babyAnimator.SetInteger("WeaponState", currentWeaponTwo.specialWeaponId);
 
         //make weapon
         GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
@@ -1160,14 +1173,15 @@ public class PlayerMovement : MonoBehaviour
         }
         isReloadingTwo = true;
         //hier animation
-        //float oldspeed = animator.GetFloat("ReloadSpeed");
-        //animator.SetFloat("ReloadSpeed", oldspeed / currentWeapon.reloadTime);
+        float oldspeed = animator.GetFloat("ReloadSpeed");
+        babyAnimator.SetFloat("ReloadSpeed", oldspeed / currentWeapon.reloadTime);
+        babyAnimator.SetTrigger("Reload");
         ammoSlider2.gameObject.SetActive(true);
         ammoSlider2.maxValue = currentWeaponTwo.reloadTime;
         ammoSlider2.value = currentWeaponTwo.reloadTime;
         yield return new WaitForSeconds(currentWeaponTwo.reloadTime);
         ammoSlider2.gameObject.SetActive(false);
-        //animator.SetFloat("ReloadSpeed", oldspeed);
+        babyAnimator.SetFloat("ReloadSpeed", oldspeed);
         if (currentWeaponTwo.ammo == currentWeaponTwo.maxAmmo)
         {
             if (currentWeaponTwo.type == weaponType.light)
