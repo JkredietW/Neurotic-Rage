@@ -105,7 +105,7 @@ public class EnemyHealth : BaseHealth
         maxhealth *= _scaling;
         health = maxhealth;
 
-        anim.speed *= _scaling;
+        anim.speed *= _scaling * 0.5f;
         if (type == TypeEnemy.normal)
         {
             es.damage *= _scaling;
@@ -114,7 +114,7 @@ public class EnemyHealth : BaseHealth
         {
             ed.damage *= _scaling;
         }
-        agent.speed *= _scaling;
+        agent.speed *= _scaling * 0.5f;
 
         chanceForDrop = _drop;
         worldWeaponPrefab = _worldWeapon;

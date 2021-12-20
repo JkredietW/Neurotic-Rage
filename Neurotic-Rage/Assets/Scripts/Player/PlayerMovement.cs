@@ -121,6 +121,14 @@ public class PlayerMovement : MonoBehaviour
     private int currentWeaponSlotTwo;
     public List<Weapon> weaponSlotsTwo;
 
+    //audio
+    public AudioSource audioSourceLoop;
+    public AudioClip audio_walking;
+    public AudioClip audio_running;
+
+    public Slider ammoSlider1;
+    public Slider ammoSlider2;
+
     private void Awake()
     {
         keyboard = Keyboard.current;
@@ -196,13 +204,13 @@ public class PlayerMovement : MonoBehaviour
         weapon.transform.SetParent(weaponInHand.transform);
         weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
-        //make weapon
-        GameObject weaponTwo = Instantiate(currentWeaponTwo.objectprefab);
-        //done like this so that scale is normal
-        weaponTwo.transform.position = weaponInHandTwo.transform.position;
-        weaponTwo.transform.rotation = weaponInHandTwo.transform.rotation;
-        weaponTwo.transform.SetParent(weaponInHandTwo.transform);
-        weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        ////make weapon
+        //GameObject weaponTwo = Instantiate(currentWeaponTwo.objectprefab);
+        ////done like this so that scale is normal
+        //weaponTwo.transform.position = weaponInHandTwo.transform.position;
+        //weaponTwo.transform.rotation = weaponInHandTwo.transform.rotation;
+        //weaponTwo.transform.SetParent(weaponInHandTwo.transform);
+        //weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         if (FindObjectOfType<GameManager>())
         {
@@ -230,13 +238,28 @@ public class PlayerMovement : MonoBehaviour
         {
             timeWhileNotShooting = 1 * Time.deltaTime;
         }
+
+        //ammo sliders
+        if(ammoSlider1.IsActive())
+        {
+            ammoSlider1.value -= 1 * Time.deltaTime;
+        }
+        if (ammoSlider2.IsActive())
+        {
+            ammoSlider2.value -= 1 * Time.deltaTime;
+        }
     }
     private void FixedUpdate()
     {
         float extraSprintSpeed = 0;
         if(isRunning)
         {
+            audioSourceLoop.clip = audio_running;
             extraSprintSpeed = movementSpeed * 0.7f;
+        }
+        else
+        {
+            audioSourceLoop.clip = audio_walking;
         }
         if (mayMove)
         {
@@ -1066,7 +1089,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public IEnumerator ReloadWeapon()
     {
-        if(isReloading || isSwitchingWeapon || shopIsOpen || currentWeapon.ammo >= currentWeapon.maxAmmo)
+        if(isReloading || isSwitchingWeapon || shopIsOpen || currentWeapon.ammo >= currentWeapon.maxAmmo || currentWeapon.type == weaponType.special)
         {
             yield break;
         }
@@ -1075,8 +1098,12 @@ public class PlayerMovement : MonoBehaviour
         isReloading = true;
         animator.SetTrigger("Reload");
         float oldspeed = animator.GetFloat("ReloadSpeed");
+        ammoSlider1.gameObject.SetActive(true);
+        ammoSlider1.maxValue = currentWeapon.reloadTime;
+        ammoSlider1.value = currentWeapon.reloadTime;
         animator.SetFloat("ReloadSpeed", oldspeed / currentWeapon.reloadTime);
         yield return new WaitForSeconds(currentWeapon.reloadTime);
+        ammoSlider1.gameObject.SetActive(false);
         animator.SetFloat("ReloadSpeed", oldspeed);
         if (!hasMeleeAttacked || currentWeapon.ammo == currentWeapon.maxAmmo)
         {
@@ -1135,7 +1162,11 @@ public class PlayerMovement : MonoBehaviour
         //hier animation
         //float oldspeed = animator.GetFloat("ReloadSpeed");
         //animator.SetFloat("ReloadSpeed", oldspeed / currentWeapon.reloadTime);
+        ammoSlider2.gameObject.SetActive(true);
+        ammoSlider2.maxValue = currentWeaponTwo.reloadTime;
+        ammoSlider2.value = currentWeaponTwo.reloadTime;
         yield return new WaitForSeconds(currentWeaponTwo.reloadTime);
+        ammoSlider2.gameObject.SetActive(false);
         //animator.SetFloat("ReloadSpeed", oldspeed);
         if (currentWeaponTwo.ammo == currentWeaponTwo.maxAmmo)
         {
@@ -1229,7 +1260,7 @@ public class PlayerMovement : MonoBehaviour
 		if (playerOne != null)
         {
             moveDir = new Vector3(playerOne.leftStick.x.ReadValue(), 0, playerOne.leftStick.y.ReadValue());
-		}
+        }
 
         //keyboard
         float vertical = keyboard.wKey.ReadValue() - keyboard.sKey.ReadValue();
@@ -1242,6 +1273,24 @@ public class PlayerMovement : MonoBehaviour
         else if(playerOne == null)
         {
             moveDir = Vector3.zero;
+        }
+
+        //sound
+        if(moveDir.magnitude > 0)
+        {
+            if (!audioSourceLoop.isPlaying)
+            {
+                audioSourceLoop.Play();
+                audioSourceLoop.volume = 1;
+            }
+        }
+        else
+        {
+            if (audioSourceLoop.isPlaying)
+            {
+                audioSourceLoop.Stop();
+                audioSourceLoop.volume = 0;
+            }
         }
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
 

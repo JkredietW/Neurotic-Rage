@@ -23,6 +23,10 @@ public class BaseHealth : MonoBehaviour
                 Died();
             }
         }
+        if (health == 0)
+        {
+            Died();
+        }
     }
     public virtual void RecieveHealth(float _heal)
     {
