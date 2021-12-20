@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: ec36124c1706d9b44a647ea79175f19b
+ModelImporter:
+  serializedVersion: 21100
+  internalIDToNameTable:
+  - first:
+      74: 1529611553055620628
+    second: metarig|4d3215f0.objAction
+  - first:
+      74: 3762243084169965198
+    second: metarig|fistbump
+  - first:
+      74: 7767199479168348927
+    second: metarig|group1|group1|Armature.001|Armature.001|forward/backwards|Arma_
+  - first:
+      74: 7677457243027300939
+    second: metarig|group1|group1|group1Action|group1|group1Action
+  - first:
+      74: -9207933143746019406
+    second: metarig|gun pose 2
+  - first:
+      74: -1488283944272352276
+    second: metarig|gunpose
+  - first:
+      74: 707863518075336087
+    second: metarig|highfive
+  - first:
+      74: 2611075726810385300
+    second: metarig|idle
+  - first:
+      74: -2055729252357201770
+    second: metarig|idle to running
+  - first:
+      74: -6790388888330126015
+    second: metarig|idle.001
+  - first:
+      74: 2563259378412548540
+    second: metarig|lazer_sniperAction
+  - first:
+      74: -4120082240812252120
+    second: metarig|melee
+  - first:
+      74: -5857720468386532382
+    second: metarig|Merged_PM3D_Cylinder3D1Action
+  - first:
+      74: -2805545295547229896
+    second: metarig|PM3D_Cylinder3D1Action
+  - first:
+      74: 5592168184732304750
+    second: metarig|pot_ropeAction
+  - first:
+      74: -8783443553917100578
+    second: metarig|pot_thingAction
+  - first:
+      74: 7496941621563775358
+    second: metarig|pot_thingAction.001
+  - first:
+      74: -5951039631710413948
+    second: metarig|reload
+  - first:
+      74: 5951837508278401262
+    second: metarig|runninganime
+  - first:
+      74: 4536566443691689245
+    second: metarig|sniper pose
+  - first:
+      74: 2424774219387388163
+    second: metarig|switch
+  - first:
+      74: 9194525084701134616
+    second: metarig|switch weapon
+  - first:
+      74: -6102428321134998151
+    second: metarig|uzipose
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 037f2b0a6070d434e8e7aabc6b39bb9c, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
