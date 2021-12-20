@@ -1227,7 +1227,7 @@ public class PlayerMovement : MonoBehaviour
     {
 		//controller
 		if (playerOne != null)
-        { 
+        {
             moveDir = new Vector3(playerOne.leftStick.x.ReadValue(), 0, playerOne.leftStick.y.ReadValue());
 		}
 
@@ -1235,9 +1235,13 @@ public class PlayerMovement : MonoBehaviour
         float vertical = keyboard.wKey.ReadValue() - keyboard.sKey.ReadValue();
         float horizontal = keyboard.dKey.ReadValue() - keyboard.aKey.ReadValue();
         Vector3 keyboardmovement = new Vector3(horizontal, 0, vertical);
-        if(keyboardmovement.magnitude > 0)
+        if (keyboardmovement.magnitude > 0)
         {
-                    moveDir = new Vector3(horizontal, 0, vertical);
+            moveDir = new Vector3(horizontal, 0, vertical);
+        }
+        else if(playerOne == null)
+        {
+            moveDir = Vector3.zero;
         }
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;
 

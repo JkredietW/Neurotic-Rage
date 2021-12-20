@@ -71,8 +71,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         time = 0;
-        statsScript = new StatHolder();
-        GetSaves();
     }
     public void Save()
     {
@@ -81,13 +79,12 @@ public class GameManager : MonoBehaviour
     }
     public void GetSaves()
     {
-        string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/Stats.json"); 
-        if(data.Length < 1)
+        if(System.IO.File.ReadAllText(Application.persistentDataPath + "/Stats.json") != null)
         {
-            return;
+            string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/Stats.json");
+            StatHolder _statsScript = JsonUtility.FromJson<StatHolder>(data);
+            statsScript = _statsScript;
         }
-        StatHolder _statsScript = JsonUtility.FromJson<StatHolder>(data);
-        statsScript = _statsScript;
     }
     private void Update()
     {
@@ -99,6 +96,8 @@ public class GameManager : MonoBehaviour
     }
     public void DelayedStart()
 	{
+        statsScript = new StatHolder();
+        GetSaves();
         player = FindObjectOfType<PlayerMovement>();
         foreach (Transform item in enemySpawnLocationParent)
         {
