@@ -50,6 +50,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private List<Image> weaponSpritesUi;
     [SerializeField] private List<GameObject> selectWeaponIndecator;
     [SerializeField] private List<GameObject> UiWeaponSlots;
+    [SerializeField] private GameObject babyUiWeaponSlot;
+    [SerializeField] private Image babyWeaponSpriteUi;
+    public TextMeshProUGUI weaponAmmoTwoText;
     [SerializeField] private GameObject statsPanel;
     bool babyRunFix;
 
@@ -91,8 +94,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform weaponStatsParent, upgradeItemStatsParent;
 
     //input nonsense
-    private Gamepad playerOne;
-    private Gamepad playerTwo;
+    public Gamepad playerOne;
+    public Gamepad playerTwo;
 
     //keyboard
     private Mouse mouse;
@@ -100,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
 
     //stats
     float statsCooldown;
+    float statsCooldownTwo;
     public float timeWhileNotShooting;
     public float timeWhileShooting;
     public float distanceWalked;
@@ -129,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Slider ammoSlider1;
     public Slider ammoSlider2;
+    private bool isSwitchingWeaponTwo;
 
     private void Awake()
     {
@@ -217,6 +222,8 @@ public class PlayerMovement : MonoBehaviour
             weaponTwo.transform.SetParent(weaponInHandTwo.transform);
             weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             babyAnimator.SetInteger("WeaponState", currentWeaponTwo.specialWeaponId);
+            currentWeaponTwo.ammo = currentWeaponTwo.maxAmmo;
+            babyUiWeaponSlot.SetActive(true);
         }
 
 
@@ -237,15 +244,44 @@ public class PlayerMovement : MonoBehaviour
         DefineDirection();
         Inputs();
 
+        if(Gamepad.all.Count > 0)
+        {
+            for (int i = 0; i < Gamepad.all.Count; i++)
+            {
+                if(Gamepad.all[i].selectButton.IsPressed() && Gamepad.all[i].startButton.IsPressed())
+                {
+                    if(playerTwo != null)
+                    {
+                        return;
+                    }
+                    if(Gamepad.all[i] == playerOne)
+                    {
+                        playerOne = null;
+                    }
+                    playerTwo = Gamepad.all[i];
+                    //make weapon
+                    GameObject weaponTwo = Instantiate(currentWeaponTwo.objectprefab);
+                    //done like this so that scale is normal
+                    weaponTwo.transform.SetPositionAndRotation(weaponInHandTwo.transform.position, weaponInHandTwo.transform.rotation);
+                    weaponTwo.transform.SetParent(weaponInHandTwo.transform);
+                    weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                    babyAnimator.SetInteger("WeaponState", currentWeaponTwo.specialWeaponId);
+                    currentWeaponTwo.ammo = currentWeaponTwo.maxAmmo;
+                    babyUiWeaponSlot.SetActive(true);
+                    playerAim.EnabledTwoPlayers();
+                }
+            }
+        }
+
         //stats
         distanceWalked += moveDir.magnitude * Time.deltaTime; 
         if(isShooting)
         {
-            timeWhileShooting = 1 * Time.deltaTime;
+            timeWhileShooting = 100 * Time.deltaTime;
         }
         else
         {
-            timeWhileNotShooting = 1 * Time.deltaTime;
+            timeWhileNotShooting = 100 * Time.deltaTime;
         }
 
         //ammo sliders
@@ -368,7 +404,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (mayMove)
                 {
-                    StartCoroutine(ReloadWeaponTwo());
+                    if (Time.time > statsCooldownTwo)
+                    {
+                        statsCooldownTwo = Time.time + 0.1f;
+                        StartCoroutine(ReloadWeaponTwo());
+                    }
                 }
             }
             //shoot 2
@@ -381,9 +421,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 isShootingTwo = false;
             }
+            //scroll
             if(playerTwo.rightShoulder.IsPressed())
             {
-                ScrollWeaponTwo();
+                if (Time.time > statsCooldownTwo)
+                {
+                    statsCooldownTwo = Time.time + 0.1f;
+                    ScrollWeaponTwo();
+                }
             }
         }
         #endregion
@@ -409,6 +454,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Time.time > statsCooldown)
             {
+                statsCooldown = Time.time + 0.1f;
                 Interact();
             }
         }
@@ -438,6 +484,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Time.time > statsCooldown)
             {
+                statsCooldown = Time.time + 0.1f;
                 ToggleMap();
             }
         }
@@ -562,16 +609,25 @@ public class PlayerMovement : MonoBehaviour
     {
         isRunning = _bool;
         animator.SetBool("Isrunning", false);
-        babyAnimator.SetBool("IsRunning", false);
+        if (!playerAim.twoPlayers)
+        {
+            babyAnimator.SetBool("IsRunning", false);
+        }
         if (moveDir.magnitude > 0.1f)
         {
             if (babyRunFix && isRunning)
             {
                 babyRunFix = false;
-                babyAnimator.SetTrigger("DoRunning");
+                if (!playerAim.twoPlayers)
+                {
+                    babyAnimator.SetTrigger("DoRunning");
+                }
             }
             animator.SetBool("Isrunning", isRunning);
-            babyAnimator.SetBool("IsRunning", isRunning);
+            if (!playerAim.twoPlayers)
+            {
+                babyAnimator.SetBool("IsRunning", isRunning);
+            }
         }
     }
     void OpenShop()
@@ -689,8 +745,10 @@ public class PlayerMovement : MonoBehaviour
             //animations for switching weapon
             isSwitchingWeapon = true;
             animator.SetTrigger("SwitchWeapon");
-            babyAnimator.SetTrigger("Switch");
-
+            if (!playerAim.twoPlayers)
+            {
+                babyAnimator.SetTrigger("Switch");
+            }
             //make weapon
             GameObject weapon = Instantiate(currentWeapon.objectprefab);
             //done like this so that scale is normal
@@ -731,7 +789,10 @@ public class PlayerMovement : MonoBehaviour
         //animations for switching weapon
         isSwitchingWeapon = true;
         animator.SetTrigger("SwitchWeapon");
-        babyAnimator.SetTrigger("Switch");
+        if (!playerAim.twoPlayers)
+        {
+            babyAnimator.SetTrigger("Switch");
+        }
 
         //actual switch values
         currentWeaponSlot -= 1;
@@ -791,7 +852,7 @@ public class PlayerMovement : MonoBehaviour
         weaponInHandTwo.transform.GetChild(0).gameObject.SetActive(false);
 
         //animations for switching weapon
-        isSwitchingWeapon = true;
+        isSwitchingWeaponTwo = true;
         //animations hier <-----
         babyAnimator.SetTrigger("SwitchWeapon");
 
@@ -812,15 +873,15 @@ public class PlayerMovement : MonoBehaviour
         //make weapon
         GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
         //done like this so that scale is normal
-        specialWeapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
-        specialWeapon.transform.SetParent(weaponInHand.transform);
+        specialWeapon.transform.SetPositionAndRotation(weaponInHandTwo.transform.position, weaponInHandTwo.transform.rotation);
+        specialWeapon.transform.SetParent(weaponInHandTwo.transform);
         specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         //swap cooldown
-        Invoke(nameof(SecAfterSwapWeapon), 0.5f);
+        Invoke(nameof(SecAfterSwapWeaponTwo), 0.5f);
 
         //ui sprite
-
+        babyWeaponSpriteUi.sprite = currentWeaponTwo.Ui_sprite;
         //ui indecator
 
         //remove old weapons
@@ -844,6 +905,11 @@ public class PlayerMovement : MonoBehaviour
         isSwitchingWeapon = false;
         babyAnimator.SetLayerWeight(babyAnimator.GetLayerIndex("AnnyStates"), 0);
     }
+    void SecAfterSwapWeaponTwo()
+    {
+        isSwitchingWeaponTwo = false;
+        babyAnimator.SetLayerWeight(babyAnimator.GetLayerIndex("AnnyStates"), 0);
+    }
     public IEnumerator MeleeAttack()
     {
         if(shopIsOpen || !mayMove)
@@ -863,7 +929,10 @@ public class PlayerMovement : MonoBehaviour
             hasMeleeAttacked = true;
             nextAttack = Time.time + meleeAttackCooldown;
             animator.SetTrigger("MeleeAttack");
-            babyAnimator.SetTrigger("MeleeAttack");
+            if(!playerAim.twoPlayers)
+            {
+                babyAnimator.SetTrigger("MeleeAttack");
+            }
             //damage/hitbox in animator
             yield return new WaitForSeconds(meleeAttackCooldown);
             swordOnBack.SetActive(true);
@@ -1008,7 +1077,7 @@ public class PlayerMovement : MonoBehaviour
                             StartCoroutine(ReloadWeapon());
                         }
                     }
-                    yield return new WaitForSeconds(0.1f / currentWeapon.attacksPerSecond);
+                    yield return new WaitForSeconds(0.1f * currentWeapon.burstShotAmount / currentWeapon.attacksPerSecond);
                 }
             }
             else if(mayMove)
@@ -1026,25 +1095,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //shooting
-        if (Time.time >= nextAttack && mayMove)
+        if (Time.time >= nextAttackTwo && mayMove)
         {
             if (isRunning)
             {
                 isRunning = false;
                 playerAim.RotateToAim();
             }
-            nextAttackTwo = Time.time + (attackCooldownTwo * currentWeaponTwo.burstShotAmount); ;
+            nextAttackTwo = Time.time + (attackCooldownTwo * currentWeaponTwo.burstShotAmount);
             if (currentWeaponTwo.ammo > 0)
             {
                 //shooting animation here <-----
                 currentWeaponTwo.ammo -= 1;
-
                 UpdateAmmoText();
                 ///ammo for second player needs to be added
 
                 //set pos of muzzle for new weapon
-                bulletOriginTwo.position = weaponInHandTwo.transform.GetChild(0).GetComponent<Shootpos>().shootpos.position;
+                bulletOriginTwo = weaponInHandTwo.transform.GetChild(0).GetComponent<Shootpos>().shootpos;
                 muzzleFlashObjectTwo.Play();
+                muzzleFlashObjectTwo.transform.position = bulletOriginTwo.position;
+                muzzleFlashObjectTwo.transform.rotation = bulletOriginTwo.rotation;
 
                 for (int b = 0; b < currentWeaponTwo.burstShotAmount; b++)
                 {
@@ -1052,7 +1122,7 @@ public class PlayerMovement : MonoBehaviour
                     for (int i = 0; i < currentWeapon.projectileCount + extra_bullets; i++)
                     {
                         //how much each projectile is away from eachother
-                        total = currentWeaponTwo.shootAngle / currentWeaponTwo.projectileCount + extra_bullets;
+                        float totalTwo = currentWeaponTwo.shootAngle / currentWeaponTwo.projectileCount + extra_bullets;
 
                         //get max rotation in radius
                         float value = (float)(Mathf.Atan2(playerAim.babyRotation.rotation.y, playerAim.babyRotation.rotation.w) / Mathf.PI) * 180;
@@ -1064,7 +1134,7 @@ public class PlayerMovement : MonoBehaviour
                         float roll = Random.Range(-currentWeaponTwo.rotationOffset, currentWeaponTwo.rotationOffset);
 
                         //spawn bullet
-                        Rigidbody spawnedBullet = Instantiate(currentWeaponTwo.Bullet, bulletOriginTwo.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeaponTwo.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
+                        Rigidbody spawnedBullet = Instantiate(currentWeaponTwo.Bullet, bulletOriginTwo.position, Quaternion.Euler(new Vector3(0, value - (totalTwo * ((currentWeaponTwo.projectileCount + extra_bullets) / 2)) + (totalTwo * i) + roll, 0)));
 
                         //check for bullet speed, 50+ sometimes goes through things....
                         if (currentWeaponTwo.bulletSpeed > 50)
@@ -1144,13 +1214,13 @@ public class PlayerMovement : MonoBehaviour
                             StartCoroutine(ReloadWeaponTwo());
                         }
                     }
+                    yield return new WaitForSeconds(0.1f * currentWeaponTwo.burstShotAmount / currentWeaponTwo.attacksPerSecond);
                 }
             }
             else if (mayMove)
             {
                 StartCoroutine(ReloadWeaponTwo());
             }
-            yield return new WaitForSeconds(0.1f / currentWeapon.attacksPerSecond);
         }
     }
     public IEnumerator ReloadWeapon()
@@ -1280,7 +1350,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isReloadingTwo = false;
         }
-        UpdateAmmoText();
+        UpdateAmmoTwoText();
     }
     void UpdateAmmoText()
     {
@@ -1292,6 +1362,10 @@ public class PlayerMovement : MonoBehaviour
         slot1WeaponAmmoText.text = $"Ammo : {weaponSlots[0].ammo} / {weaponSlots[0].maxAmmo}";
         slot2WeaponAmmoText.text = $"Ammo : {weaponSlots[1].ammo} / {weaponSlots[1].maxAmmo}";
         slotSpecialWeaponAmmo.text = $"Ammo : {currentWeapon.ammo} / {currentWeapon.maxAmmo}";
+    }
+    void UpdateAmmoTwoText()
+    {
+        weaponAmmoTwoText.text = $"Weapon ammo : {currentWeaponTwo.ammo} / {currentWeaponTwo.maxAmmo}";
     }
     void ToggleMap()
     {

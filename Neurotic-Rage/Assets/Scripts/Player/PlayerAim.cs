@@ -49,38 +49,41 @@ public class PlayerAim : MonoBehaviour
         if (player.lastInputWasController)
         {
             string[] controllers = Input.GetJoystickNames();
-            if (controllers.Length > 0)
+            if (player.playerOne != null)
             {
-                //devine controller look rotation
-                Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * player.GetAim();
-                Vector3 lookRotationWithControllerMovementBased = player.GetMoveDirection();
-                //look torwards lookrotation
-                if (lookRotationWithController.magnitude != 0 && !player.isRunning)
+                if (controllers.Length > 0)
                 {
-                    if (firstTime)
+                    //devine controller look rotation
+                    Vector3 lookRotationWithController = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * player.GetAim();
+                    Vector3 lookRotationWithControllerMovementBased = player.GetMoveDirection();
+                    //look torwards lookrotation
+                    if (lookRotationWithController.magnitude != 0 && !player.isRunning)
                     {
-                        firstTime = false;
-                        timer = Time.time + 0.1f;
+                        if (firstTime)
+                        {
+                            firstTime = false;
+                            timer = Time.time + 0.1f;
+                        }
+                        lookAtDirection = lookRotationWithController;
+                        transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
+                        if (Time.time >= timer && lookRotationWithController.magnitude > 0.8f)
+                        {
+                            player.isShooting = true;
+                            player.FireWeapon();
+                        }
                     }
-                    lookAtDirection = lookRotationWithController;
-                    transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
-                    if (Time.time >= timer && lookRotationWithController.magnitude > 0.8f)
+                    else if (lookRotationWithControllerMovementBased.magnitude > 0.1f)
                     {
-                        player.isShooting = true;
-                        player.FireWeapon();
+                        firstTime = true;
+                        lookAtDirection = lookRotationWithControllerMovementBased;
+                        transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
                     }
-                }
-                else if (lookRotationWithControllerMovementBased.magnitude > 0.1f)
-                {
-                    firstTime = true;
-                    lookAtDirection = lookRotationWithControllerMovementBased;
-                    transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(transform.forward.normalized), transform.rotation, 0.5f);
-                    player.isShooting = false;
-                    firstTime = true;
+                    else
+                    {
+                        transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(transform.forward.normalized), transform.rotation, 0.5f);
+                        player.isShooting = false;
+                        firstTime = true;
+                    }
                 }
             }
         }
@@ -154,7 +157,10 @@ public class PlayerAim : MonoBehaviour
             firstTimeTwo = false;
             timerTwo = Time.time + 0.1f;
         }
-        babyRotation.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookRotationWithController.normalized), babyRotation.rotation, 0.5f);
+        if(lookRotationWithController != Vector3.zero)
+        {
+            babyRotation.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookRotationWithController.normalized), babyRotation.rotation, 0.5f);
+        }
         if (Time.time >= timerTwo && lookRotationWithController.magnitude > 0.8f)
         {
             player.isShootingTwo = true;

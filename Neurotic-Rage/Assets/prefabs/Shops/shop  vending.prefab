@@ -341,6 +341,7 @@ MonoBehaviour:
   chanceForFirstItem: 100
   chanceForSecondItem: 100
   chanceForThirdItem: 50
+  resetRoll: 0
   resetAfterWaveCount: 3
   ItemTypes:
   - {fileID: 11400000, guid: 8c828fc50900a8844955e4744943e13b, type: 2}
@@ -358,40 +359,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a23880d129b3c2e4ebeb075897d6f6e9, type: 2}
   - {fileID: 11400000, guid: 646d5a045995f3e44915f66816db8a45, type: 2}
   - {fileID: 11400000, guid: 65eb6e2d95ad4784cb88b6cb6bfe9dd9, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
-  - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
   - {fileID: 11400000, guid: b3ae2f737fdfc924ab5adfd9567efef7, type: 2}
   discountList:
     minimumDiscount: 95

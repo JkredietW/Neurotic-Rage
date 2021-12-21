@@ -19,12 +19,13 @@ MonoBehaviour:
   Ui_sprite: {fileID: 21300000, guid: ea8d9726cee9d5b47b68bcc9a4b716e9, type: 3}
   Bullet: {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
   damage: 1
-  attacksPerSecond: 10
+  attacksPerSecond: 1
   reloadTime: 1
   pierceAmount: 0
-  ammo: 1000
+  ammo: 756
   maxAmmo: 1000
   bulletSpeed: 50
   projectileCount: 1
-  rotationOffset: 10
+  rotationOffset: 5
   shootAngle: 10
+  burstShotAmount: 1
