@@ -202,8 +202,7 @@ public class PlayerMovement : MonoBehaviour
         //make weapon
         GameObject weapon = Instantiate(currentWeapon.objectprefab);
         //done like this so that scale is normal
-        weapon.transform.position = weaponInHand.transform.position;
-        weapon.transform.rotation = weaponInHand.transform.rotation;
+        weapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
         weapon.transform.SetParent(weaponInHand.transform);
         weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
@@ -212,8 +211,7 @@ public class PlayerMovement : MonoBehaviour
             //make weapon
             GameObject weaponTwo = Instantiate(currentWeaponTwo.objectprefab);
             //done like this so that scale is normal
-            weaponTwo.transform.position = weaponInHandTwo.transform.position;
-            weaponTwo.transform.rotation = weaponInHandTwo.transform.rotation;
+            weaponTwo.transform.SetPositionAndRotation(weaponInHandTwo.transform.position, weaponInHandTwo.transform.rotation);
             weaponTwo.transform.SetParent(weaponInHandTwo.transform);
             weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
@@ -223,6 +221,7 @@ public class PlayerMovement : MonoBehaviour
         {
             shop = FindObjectOfType<GameManager>().shopUI;
         }
+        Twoplayers();
     }
 
     private void Update()
@@ -293,7 +292,7 @@ public class PlayerMovement : MonoBehaviour
             if (playerOne.rightTrigger.IsPressed())
             {
                 isShooting = true;
-                FireWeapon();
+                StartCoroutine(FireWeapon());
             }
             else
             {
@@ -356,14 +355,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (mayMove)
                 {
-                    ReloadWeaponTwo();
+                    StartCoroutine(ReloadWeaponTwo());
                 }
             }
             //shoot 2
             if (playerTwo.rightTrigger.IsPressed())
             {
                 isShootingTwo = true;
-                FireWeaponTwo();
+                StartCoroutine(FireWeaponTwo());
             }
             else
             {
@@ -386,7 +385,7 @@ public class PlayerMovement : MonoBehaviour
         if (mouse.leftButton.IsPressed())
         {
             isShooting = true;
-            FireWeapon();
+            StartCoroutine(FireWeapon());
         }
         else
         {
@@ -622,8 +621,7 @@ public class PlayerMovement : MonoBehaviour
         //spawn in weapon
         GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
         //done like this so that scale is normal
-        specialWeapon.transform.position = weaponInHand.transform.position;
-        specialWeapon.transform.rotation = weaponInHand.transform.rotation;
+        specialWeapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
         specialWeapon.transform.SetParent(weaponInHand.transform);
         specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
@@ -677,8 +675,7 @@ public class PlayerMovement : MonoBehaviour
             //make weapon
             GameObject weapon = Instantiate(currentWeapon.objectprefab);
             //done like this so that scale is normal
-            weapon.transform.position = weaponInHand.transform.position;
-            weapon.transform.rotation = weaponInHand.transform.rotation;
+            weapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
             weapon.transform.SetParent(weaponInHand.transform);
             weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
@@ -736,8 +733,7 @@ public class PlayerMovement : MonoBehaviour
         //make weapon
         GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
         //done like this so that scale is normal
-        specialWeapon.transform.position = weaponInHand.transform.position;
-        specialWeapon.transform.rotation = weaponInHand.transform.rotation;
+        specialWeapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
         specialWeapon.transform.SetParent(weaponInHand.transform);
         specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
@@ -797,8 +793,7 @@ public class PlayerMovement : MonoBehaviour
         //make weapon
         GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
         //done like this so that scale is normal
-        specialWeapon.transform.position = weaponInHand.transform.position;
-        specialWeapon.transform.rotation = weaponInHand.transform.rotation;
+        specialWeapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
         specialWeapon.transform.SetParent(weaponInHand.transform);
         specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
@@ -860,11 +855,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    public void FireWeapon()
+    public IEnumerator FireWeapon()
     {
         if(isReloading || isSwitchingWeapon || shopIsOpen || !mayMove)
         {
-            return;
+            yield break;
         }
         StartStopRunning(false);
         babyAnimator.SetLayerWeight(babyAnimator.GetLayerIndex("AnnyStates"), 0);
@@ -883,7 +878,7 @@ public class PlayerMovement : MonoBehaviour
                 isRunning = false;
                 playerAim.RotateToAim();
             }
-            nextAttack = Time.time + attackCooldown;
+            nextAttack = Time.time + (attackCooldown * currentWeapon.burstShotAmount);
             if (currentWeapon.ammo > 0)
             {
                 animator.SetTrigger("Shoot");
@@ -898,99 +893,102 @@ public class PlayerMovement : MonoBehaviour
                 FindObjectOfType<GameManager>().statsScript.thisgame_bulletsShot += currentWeapon.projectileCount + extra_bullets;
                 FindObjectOfType<GameManager>().statsScript.total_bulletsShot += currentWeapon.projectileCount + extra_bullets;
 
-                for (int i = 0; i < currentWeapon.projectileCount + extra_bullets; i++)
+                for (int b = 0; b < currentWeapon.burstShotAmount; b++)
                 {
-                    //how much each projectile is away from eachother
-                    total = currentWeapon.shootAngle / currentWeapon.projectileCount + extra_bullets;
-
-                    //get max rotation in radius
-                    float value = (float)(Mathf.Atan2(playerAim.transform.rotation.y, playerAim.transform.rotation.w) / Mathf.PI) * 180;
-                    if (value > 180)
+                    for (int i = 0; i < currentWeapon.projectileCount + extra_bullets; i++)
                     {
-                        value -= 360;
-                    }
-                    //set random bullet offset
-                    float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
+                        //how much each projectile is away from eachother
+                        total = currentWeapon.shootAngle / currentWeapon.projectileCount + extra_bullets;
 
-                    //spawn bullet
-                    Rigidbody spawnedBullet = Instantiate(currentWeapon.Bullet, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
-
-                    //check for bullet speed, 50+ sometimes goes through things....
-                    if(currentWeapon.bulletSpeed > 50)
-                    {
-                        spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage + extra_damage, currentWeapon.pierceAmount + extra_pierces, playerRotation.rotation, true);
-                        spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
-
-                        int pierces = currentWeapon.pierceAmount + extra_pierces;
-                        RaycastHit[] hitByRaycast = Physics.RaycastAll(bulletOrigin.position, spawnedBullet.velocity);
-                        bool hitEnemy = false;
-                        for (int r = 0; r < hitByRaycast.Length; r++)
+                        //get max rotation in radius
+                        float value = (float)(Mathf.Atan2(playerAim.transform.rotation.y, playerAim.transform.rotation.w) / Mathf.PI) * 180;
+                        if (value > 180)
                         {
-                            if(hitByRaycast[r].transform.GetComponent<EnemyHealth>())
+                            value -= 360;
+                        }
+                        //set random bullet offset
+                        float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
+
+                        //spawn bullet
+                        Rigidbody spawnedBullet = Instantiate(currentWeapon.Bullet, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
+
+                        //check for bullet speed, 50+ sometimes goes through things....
+                        if (currentWeapon.bulletSpeed > 50)
+                        {
+                            spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage + extra_damage, currentWeapon.pierceAmount + extra_pierces, playerRotation.rotation, true);
+                            spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
+
+                            int pierces = currentWeapon.pierceAmount + extra_pierces;
+                            RaycastHit[] hitByRaycast = Physics.RaycastAll(bulletOrigin.position, spawnedBullet.velocity);
+                            bool hitEnemy = false;
+                            for (int r = 0; r < hitByRaycast.Length; r++)
                             {
-                                hitEnemy = true;
-                                pierces--;
-                                hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeapon.damage + extra_damage);
-
-                                GameObject tempBlood = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpat, hitByRaycast[r].point, playerRotation.rotation);
-                                tempBlood.GetComponent<VisualEffect>().Play();
-                                Destroy(tempBlood, 5);
-
-                                //return when pierces all gone
-                                if (pierces == 0)
+                                if (hitByRaycast[r].transform.GetComponent<EnemyHealth>())
                                 {
-                                    if (hitEnemy)
+                                    hitEnemy = true;
+                                    pierces--;
+                                    hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeapon.damage + extra_damage);
+
+                                    GameObject tempBlood = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpat, hitByRaycast[r].point, playerRotation.rotation);
+                                    tempBlood.GetComponent<VisualEffect>().Play();
+                                    Destroy(tempBlood, 5);
+
+                                    //return when pierces all gone
+                                    if (pierces == 0)
                                     {
-                                        FindObjectOfType<GameManager>().statsScript.thisgame_bulletsHit++;
-                                        FindObjectOfType<GameManager>().statsScript.total_bulletsHit++;
+                                        if (hitEnemy)
+                                        {
+                                            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsHit++;
+                                            FindObjectOfType<GameManager>().statsScript.total_bulletsHit++;
+                                        }
+                                        else
+                                        {
+                                            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsMissed++;
+                                            FindObjectOfType<GameManager>().statsScript.total_bulletsMissed++;
+                                        }
+                                        yield break;
                                     }
-                                    else
-                                    {
-                                        FindObjectOfType<GameManager>().statsScript.thisgame_bulletsMissed++;
-                                        FindObjectOfType<GameManager>().statsScript.total_bulletsMissed++;
-                                    }
-                                    return;
                                 }
-                            }
-                            else //hits nothing
-                            {
-                                pierces--;
-                                //return when pierces all gone
-                                if (pierces == 0)
+                                else //hits nothing
                                 {
-                                    if (hitEnemy)
+                                    pierces--;
+                                    //return when pierces all gone
+                                    if (pierces == 0)
                                     {
-                                        FindObjectOfType<GameManager>().statsScript.thisgame_bulletsHit++;
-                                        FindObjectOfType<GameManager>().statsScript.total_bulletsHit++;
+                                        if (hitEnemy)
+                                        {
+                                            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsHit++;
+                                            FindObjectOfType<GameManager>().statsScript.total_bulletsHit++;
+                                        }
+                                        else
+                                        {
+                                            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsMissed++;
+                                            FindObjectOfType<GameManager>().statsScript.total_bulletsMissed++;
+                                        }
+                                        yield break;
                                     }
-                                    else
-                                    {
-                                        FindObjectOfType<GameManager>().statsScript.thisgame_bulletsMissed++;
-                                        FindObjectOfType<GameManager>().statsScript.total_bulletsMissed++;
-                                    }
-                                    return;
                                 }
                             }
                         }
+                        else
+                        {
+                            spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage + extra_damage, currentWeapon.pierceAmount + extra_pierces, playerRotation.rotation, false);
+                            spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
+                        }
                     }
-                    else
+                    if (currentWeapon.ammo == 0 && mayMove)
                     {
-                        spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeapon.damage + extra_damage, currentWeapon.pierceAmount + extra_pierces, playerRotation.rotation, false);
-                        spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeapon.bulletSpeed * Random.Range(0.8f, 1.2f));
+                        if (currentWeapon.type == weaponType.special)
+                        {
+                            DropWeapon(currentWeapon);
+                            currentWeapon = weaponSlots[currentWeaponSlot];
+                        }
+                        else
+                        {
+                            StartCoroutine(ReloadWeapon());
+                        }
                     }
-
-                }
-                if(currentWeapon.ammo == 0 && mayMove)
-                {
-                    if(currentWeapon.type == weaponType.special)
-                    {
-                        DropWeapon(currentWeapon);
-                        currentWeapon = weaponSlots[currentWeaponSlot];
-                    }
-                    else
-                    {
-                        StartCoroutine(ReloadWeapon());
-                    }
+                    yield return new WaitForSeconds(0.1f / currentWeapon.attacksPerSecond);
                 }
             }
             else if(mayMove)
@@ -999,12 +997,12 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    public void FireWeaponTwo()
+    public IEnumerator FireWeaponTwo()
     {
         //check if doing something
         if (isReloadingTwo)
         {
-            return;
+            yield break;
         }
 
         //shooting
@@ -1015,89 +1013,124 @@ public class PlayerMovement : MonoBehaviour
                 isRunning = false;
                 playerAim.RotateToAim();
             }
-            nextAttackTwo = Time.time + attackCooldownTwo;
+            nextAttackTwo = Time.time + (attackCooldownTwo * currentWeaponTwo.burstShotAmount); ;
             if (currentWeaponTwo.ammo > 0)
             {
                 //shooting animation here <-----
                 currentWeaponTwo.ammo -= 1;
 
-                //UpdateAmmoText();
+                UpdateAmmoText();
                 ///ammo for second player needs to be added
 
                 //set pos of muzzle for new weapon
                 bulletOriginTwo.position = weaponInHandTwo.transform.GetChild(0).GetComponent<Shootpos>().shootpos.position;
                 muzzleFlashObjectTwo.Play();
 
-                //bullets
-                for (int i = 0; i < currentWeapon.projectileCount + extra_bullets; i++)
+                for (int b = 0; b < currentWeaponTwo.burstShotAmount; b++)
                 {
-                    //how much each projectile is away from eachother
-                    total = currentWeaponTwo.shootAngle / currentWeaponTwo.projectileCount + extra_bullets;
-
-                    //get max rotation in radius
-                    float value = (float)(Mathf.Atan2(playerAim.babyRotation.rotation.y, playerAim.babyRotation.rotation.w) / Mathf.PI) * 180;
-                    if (value > 180)
+                    //bullets
+                    for (int i = 0; i < currentWeapon.projectileCount + extra_bullets; i++)
                     {
-                        value -= 360;
-                    }
-                    //set random bullet offset
-                    float roll = Random.Range(-currentWeaponTwo.rotationOffset, currentWeaponTwo.rotationOffset);
+                        //how much each projectile is away from eachother
+                        total = currentWeaponTwo.shootAngle / currentWeaponTwo.projectileCount + extra_bullets;
 
-                    //spawn bullet
-                    Rigidbody spawnedBullet = Instantiate(currentWeaponTwo.Bullet, bulletOriginTwo.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeaponTwo.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
-
-                    //check for bullet speed, 50+ sometimes goes through things....
-                    if (currentWeaponTwo.bulletSpeed > 50)
-                    {
-                        //spawns in bullet for visuals
-                        spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeaponTwo.damage + extra_damage, currentWeaponTwo.pierceAmount + extra_pierces, playerAim.babyRotation.rotation, true);
-                        spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeaponTwo.bulletSpeed * Random.Range(0.8f, 1.2f));
-
-                        int pierces = currentWeaponTwo.pierceAmount + extra_pierces;
-                        RaycastHit[] hitByRaycast = Physics.RaycastAll(bulletOriginTwo.position, spawnedBullet.velocity);
-                        for (int r = 0; r < hitByRaycast.Length; r++)
+                        //get max rotation in radius
+                        float value = (float)(Mathf.Atan2(playerAim.babyRotation.rotation.y, playerAim.babyRotation.rotation.w) / Mathf.PI) * 180;
+                        if (value > 180)
                         {
-                            if (hitByRaycast[r].transform.GetComponent<EnemyHealth>())
+                            value -= 360;
+                        }
+                        //set random bullet offset
+                        float roll = Random.Range(-currentWeaponTwo.rotationOffset, currentWeaponTwo.rotationOffset);
+
+                        //spawn bullet
+                        Rigidbody spawnedBullet = Instantiate(currentWeaponTwo.Bullet, bulletOriginTwo.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeaponTwo.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
+
+                        //check for bullet speed, 50+ sometimes goes through things....
+                        if (currentWeaponTwo.bulletSpeed > 50)
+                        {
+                            //spawns in bullet for visuals
+                            spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeaponTwo.damage + extra_damage, currentWeaponTwo.pierceAmount + extra_pierces, playerAim.babyRotation.rotation, true);
+                            spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeaponTwo.bulletSpeed * Random.Range(0.8f, 1.2f));
+
+                            int pierces = currentWeaponTwo.pierceAmount + extra_pierces;
+                            RaycastHit[] hitByRaycast = Physics.RaycastAll(bulletOriginTwo.position, spawnedBullet.velocity);
+                            bool hitEnemy = false;
+                            for (int r = 0; r < hitByRaycast.Length; r++)
                             {
-                                pierces--;
-                                hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeaponTwo.damage + extra_damage);
-
-                                GameObject tempBlood = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpat, hitByRaycast[r].point, playerAim.babyRotation.rotation);
-                                tempBlood.GetComponent<VisualEffect>().Play();
-                                Destroy(tempBlood, 5);
-
-                                //return when pierces all gone
-                                if (pierces == 0)
+                                if (hitByRaycast[r].transform.GetComponent<EnemyHealth>())
                                 {
-                                    return;
+                                    hitEnemy = true;
+                                    pierces--;
+                                    hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeaponTwo.damage + extra_damage);
+
+                                    GameObject tempBlood = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpat, hitByRaycast[r].point, playerAim.babyRotation.rotation);
+                                    tempBlood.GetComponent<VisualEffect>().Play();
+                                    Destroy(tempBlood, 5);
+
+                                    //return when pierces all gone
+                                    if (pierces == 0)
+                                    {
+                                        if (hitEnemy)
+                                        {
+                                            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsHit++;
+                                            FindObjectOfType<GameManager>().statsScript.total_bulletsHit++;
+                                        }
+                                        else
+                                        {
+                                            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsMissed++;
+                                            FindObjectOfType<GameManager>().statsScript.total_bulletsMissed++;
+                                        }
+                                        yield break;
+                                    }
+                                }
+                                else //hits nothing
+                                {
+                                    pierces--;
+                                    //return when pierces all gone
+                                    if (pierces == 0)
+                                    {
+                                        if (hitEnemy)
+                                        {
+                                            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsHit++;
+                                            FindObjectOfType<GameManager>().statsScript.total_bulletsHit++;
+                                        }
+                                        else
+                                        {
+                                            FindObjectOfType<GameManager>().statsScript.thisgame_bulletsMissed++;
+                                            FindObjectOfType<GameManager>().statsScript.total_bulletsMissed++;
+                                        }
+                                        yield break;
+                                    }
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeaponTwo.damage + extra_damage, currentWeaponTwo.pierceAmount + extra_pierces, playerAim.babyRotation.rotation, false);
-                        spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeaponTwo.bulletSpeed * Random.Range(0.8f, 1.2f));
-                    }
+                        else
+                        {
+                            spawnedBullet.GetComponent<BulletBehavior>().SetUp(currentWeaponTwo.damage + extra_damage, currentWeaponTwo.pierceAmount + extra_pierces, playerAim.babyRotation.rotation, false);
+                            spawnedBullet.velocity = spawnedBullet.transform.TransformDirection(spawnedBullet.transform.forward) * (currentWeaponTwo.bulletSpeed * Random.Range(0.8f, 1.2f));
+                        }
 
-                }
-                if (currentWeaponTwo.ammo == 0 && mayMove)
-                {
-                    if (currentWeaponTwo.type == weaponType.special)
-                    {
-                        DropWeapon(currentWeaponTwo);
-                        currentWeaponTwo = weaponSlots[currentWeaponSlot];
                     }
-                    else
+                    if (currentWeaponTwo.ammo == 0 && mayMove)
                     {
-                        ReloadWeaponTwo();
+                        if (currentWeaponTwo.type == weaponType.special)
+                        {
+                            DropWeapon(currentWeaponTwo);
+                            currentWeaponTwo = weaponSlots[currentWeaponSlot];
+                        }
+                        else
+                        {
+                            StartCoroutine(ReloadWeaponTwo());
+                        }
                     }
                 }
             }
             else if (mayMove)
             {
-                ReloadWeaponTwo();
+                StartCoroutine(ReloadWeaponTwo());
             }
+            yield return new WaitForSeconds(0.1f / currentWeapon.attacksPerSecond);
         }
     }
     public IEnumerator ReloadWeapon()

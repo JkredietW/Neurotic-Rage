@@ -23,6 +23,7 @@ public class Weapon : ScriptableObject
     public int projectileCount = 1;
     public float rotationOffset;
     public float shootAngle;
+    public int burstShotAmount = 1;
 
     public float OnSwap(float _extraAttackSpeed)
     {
