@@ -106,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     //1
     private Vector3 aimDirection;
+    bool isRunningWithController;
     //2
     private Vector3 secondAimDirection;
 
@@ -131,6 +132,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        //get components
+        controller = GetComponent<CharacterController>();
+        playerCamera = GetComponentInChildren<Camera>();
+        playerAim = GetComponentInChildren<PlayerAim>();
+        health = GetComponentInChildren<PlayerHealth>();
         keyboard = Keyboard.current;
         mouse = Mouse.current;
         var allGamepads = Gamepad.all;
@@ -154,11 +160,6 @@ public class PlayerMovement : MonoBehaviour
 		{
             MayMove(true);
         }
-        //get components
-        controller = GetComponent<CharacterController>();
-        playerCamera = GetComponentInChildren<Camera>();
-        playerAim = GetComponentInChildren<PlayerAim>();
-        health = GetComponentInChildren<PlayerHealth>();
 
         //set variables
         playerAim.GetVariables();
@@ -205,8 +206,9 @@ public class PlayerMovement : MonoBehaviour
         weapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
         weapon.transform.SetParent(weaponInHand.transform);
         weapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+        animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
 
-        if(playerAim.twoPlayers)
+        if (playerAim.twoPlayers)
         {
             //make weapon
             GameObject weaponTwo = Instantiate(currentWeaponTwo.objectprefab);
@@ -214,6 +216,7 @@ public class PlayerMovement : MonoBehaviour
             weaponTwo.transform.SetPositionAndRotation(weaponInHandTwo.transform.position, weaponInHandTwo.transform.rotation);
             weaponTwo.transform.SetParent(weaponInHandTwo.transform);
             weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            babyAnimator.SetInteger("WeaponState", currentWeaponTwo.specialWeaponId);
         }
 
 
@@ -221,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
         {
             shop = FindObjectOfType<GameManager>().shopUI;
         }
-        Twoplayers();
+        //Twoplayers();
     }
 
     private void Update()
@@ -301,7 +304,11 @@ public class PlayerMovement : MonoBehaviour
             //interact 
             if (playerOne.buttonWest.IsPressed())
             {
-                Interact();
+                if (Time.time > statsCooldown)
+                {
+                    statsCooldown = Time.time + 0.1f;
+                    Interact();
+                }
             }
             //reload 
             if (playerOne.buttonEast.IsPressed())
@@ -314,20 +321,26 @@ public class PlayerMovement : MonoBehaviour
             //sprint
             if (playerOne.leftShoulder.IsPressed())
             {
-                if (!isShooting)
+                if (!isShooting || !isRunning)
                 {
+                    isRunningWithController = true;
                     StartStopRunning(true);
                 }
             }
             else
             {
+                isRunningWithController = false;
                 babyRunFix = true;
                 StartStopRunning(false);
             }
             //toggle big map
             if (playerOne.buttonNorth.IsPressed())
             {
-                ToggleMap();
+                if (Time.time > statsCooldown)
+                {
+                    statsCooldown = Time.time + 0.1f;
+                    ToggleMap();
+                }
             }
             //melee
             if (playerOne.leftTrigger.IsPressed())
@@ -394,7 +407,10 @@ public class PlayerMovement : MonoBehaviour
         //interact 
         if (keyboard.eKey.IsPressed())
         {
-            Interact();
+            if (Time.time > statsCooldown)
+            {
+                Interact();
+            }
         }
         //reload 
         if (keyboard.rKey.IsPressed())
@@ -407,12 +423,12 @@ public class PlayerMovement : MonoBehaviour
         //sprint
         if (keyboard.leftShiftKey.IsPressed())
         {
-            if (!isShooting)
+            if (!isShooting || isRunning)
             {
                 StartStopRunning(true);
             }
         }
-        else
+        else if(!isRunningWithController)
         {
             babyRunFix = true;
             StartStopRunning(false);
@@ -420,7 +436,10 @@ public class PlayerMovement : MonoBehaviour
         //toggle big map
         if (keyboard.mKey.IsPressed())
         {
-            ToggleMap();
+            if (Time.time > statsCooldown)
+            {
+                ToggleMap();
+            }
         }
         //melee
         if (mouse.rightButton.IsPressed())
@@ -833,6 +852,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Time.time >= nextAttack && !hasMeleeAttacked && mayMove)
         {
+            isRunningWithController = false;
             if (weaponInHand.transform.childCount > 0)
             {
                 weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
