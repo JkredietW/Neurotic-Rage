@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: Olympia
   m_EditorClassIdentifier: 
   weaponId: 5
-  specialWeaponId: -1
+  specialWeaponId: 1
   type: 0
   objectprefab: {fileID: 7320750945144682316, guid: 361a9ee1c381f6a44a72472cb0e60665, type: 3}
-  Ui_sprite: {fileID: 21300000, guid: ea8d9726cee9d5b47b68bcc9a4b716e9, type: 3}
+  Ui_sprite: {fileID: 21300000, guid: 783e301caf9f24f4ea96746f227a6dcd, type: 3}
   Bullet: {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
   damage: 10
   attacksPerSecond: 2
   reloadTime: 1
   pierceAmount: 1
-  ammo: 2
+  ammo: 1
   maxAmmo: 2
   bulletSpeed: 50
   projectileCount: 5
   rotationOffset: 10
   shootAngle: 10
+  burstShotAmount: 1
