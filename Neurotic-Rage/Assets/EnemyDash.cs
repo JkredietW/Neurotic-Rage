@@ -140,4 +140,9 @@ public class EnemyDash : MonoBehaviour
 			hitbox = true;
 		}
 	}
+	public void StopAlAudio()
+	{
+		walking.Stop();
+		jumping.Stop();
+	}
 }

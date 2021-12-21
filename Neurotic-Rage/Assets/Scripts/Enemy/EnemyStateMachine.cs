@@ -212,4 +212,15 @@ public class EnemyStateMachine : MonoBehaviour
             hitbox = true;
         }
 	}
+    public void StopAlAudio()
+	{
+        heavyAttackSound.Stop();
+        AttackSound.Stop();
+        walkingSound.Stop();
+		for (int i = 0; i < screamSounds.Length; i++)
+		{
+            screamSounds[i].Stop();
+
+        }
+    }
 }

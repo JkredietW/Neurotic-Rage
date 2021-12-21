@@ -43,10 +43,12 @@ public class EnemyHealth : BaseHealth
         mapindicator.SetActive(false);
         if (type == TypeEnemy.normal)
 		{
+            es.StopAlAudio();
             es.enabled = false;
         }
 		else
 		{
+            ed.StopAlAudio();
             ed.enabled = false;
 		}
         Dying();
