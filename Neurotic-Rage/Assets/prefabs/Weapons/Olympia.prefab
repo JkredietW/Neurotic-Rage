@@ -172,9 +172,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6293316927632058923, guid: 7b3eb3f075dc9744ca27cef00f213e64, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 9204020899719246629, guid: 7b3eb3f075dc9744ca27cef00f213e64, type: 3}
       propertyPath: m_Name
       value: Olypia prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204020899719246629, guid: 7b3eb3f075dc9744ca27cef00f213e64, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b3eb3f075dc9744ca27cef00f213e64, type: 3}

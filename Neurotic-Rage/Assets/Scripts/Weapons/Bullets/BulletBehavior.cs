@@ -12,6 +12,7 @@ public class BulletBehavior : MonoBehaviour
     public List<string> IgnoreTag;
     bool mayNotDoDamage;
     bool hasHitAtleastOne;
+    [SerializeField] float explosionRadius;
 
     public void SetUp(float _damage, int _pierces, Quaternion _rotation, bool _mayNotDoDamage)
     {
@@ -27,7 +28,7 @@ public class BulletBehavior : MonoBehaviour
         {
             return;
         }
-        if (other.GetComponent<EnemyHealth>())
+        if (other.GetComponent<EnemyHealth>() && explosionRadius == 0)
         {
             //stats
             hasHitAtleastOne = true;
@@ -49,6 +50,10 @@ public class BulletBehavior : MonoBehaviour
         }
         else
         {
+            if (explosionRadius > 0)
+            {
+                Explode();
+            }
             if (!IgnoreTag.Contains(other.gameObject.tag))
             {
                 float roll = Random.Range(0, 100);
@@ -79,5 +84,20 @@ public class BulletBehavior : MonoBehaviour
     void DoDamageToEnemy(BaseHealth _health)
     {
         _health.DoDamage(damage);
+    }
+    private void Update()
+    {
+        if(transform.position.y <= 0 && explosionRadius > 0)
+        {
+            Explode();
+        }
+    }
+    void Explode()
+    {
+        print(123132);
+        //instantiate boom
+        //remove boom in time
+        //do damage in randius of boom
+        //remove object
     }
 }

@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 9005218485713117327}
   - component: {fileID: 5428857444098453290}
   - component: {fileID: 7832844269519494112}
-  m_Layer: 0
+  m_Layer: 21
   m_Name: lazer sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
