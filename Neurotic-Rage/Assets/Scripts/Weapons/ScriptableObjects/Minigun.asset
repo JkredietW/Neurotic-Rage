@@ -17,14 +17,20 @@ MonoBehaviour:
   type: 2
   objectprefab: {fileID: 8180016509372760208, guid: fe9af3ea29b321f40afc7df0b43558ca, type: 3}
   Ui_sprite: {fileID: 21300000, guid: 04d4c23f0b514174eaebc0b754796485, type: 3}
-  Bullet: {fileID: 6735764617908801877, guid: 8c981580c6b4a374587f32f00e0cfe64, type: 3}
+  Bullet:
+  - {fileID: 6735764617908801877, guid: a7e850a5bba5d7f4c97d88399f530087, type: 3}
+  - {fileID: 6735764617908801877, guid: 8c981580c6b4a374587f32f00e0cfe64, type: 3}
+  - {fileID: 6735764617908801877, guid: 4f70833f1ad2b68479acb5fceb3f6fa1, type: 3}
+  - {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
+  - {fileID: 6735764617908801877, guid: 641e28b08dac815468143288e8aba176, type: 3}
   damage: 5
   attacksPerSecond: 20
   reloadTime: 0
   pierceAmount: 1000
-  ammo: 4931
+  ammo: 5000
   maxAmmo: 5000
   bulletSpeed: 50
   projectileCount: 5
   rotationOffset: 5
   shootAngle: 3
+  burstShotAmount: 1

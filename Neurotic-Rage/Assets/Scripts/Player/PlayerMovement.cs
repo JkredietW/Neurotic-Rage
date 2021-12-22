@@ -1006,7 +1006,7 @@ public class PlayerMovement : MonoBehaviour
                         float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
 
                         //spawn bullet
-                        Rigidbody spawnedBullet = Instantiate(currentWeapon.Bullet, bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
+                        Rigidbody spawnedBullet = Instantiate(currentWeapon.Bullet[Random.Range(0, currentWeapon.Bullet.Count)], bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
 
                         //check for bullet speed, 50+ sometimes goes through things....
                         if (currentWeapon.bulletSpeed > 50)
@@ -1141,7 +1141,7 @@ public class PlayerMovement : MonoBehaviour
                         float roll = Random.Range(-currentWeaponTwo.rotationOffset, currentWeaponTwo.rotationOffset);
 
                         //spawn bullet
-                        Rigidbody spawnedBullet = Instantiate(currentWeaponTwo.Bullet, bulletOriginTwo.position, Quaternion.Euler(new Vector3(0, value - (totalTwo * ((currentWeaponTwo.projectileCount + extra_bullets) / 2)) + (totalTwo * i) + roll, 0)));
+                        Rigidbody spawnedBullet = Instantiate(currentWeaponTwo.Bullet[Random.Range(0, currentWeaponTwo.Bullet.Count)], bulletOriginTwo.position, Quaternion.Euler(new Vector3(0, value - (totalTwo * ((currentWeaponTwo.projectileCount + extra_bullets) / 2)) + (totalTwo * i) + roll, 0)));
 
                         //check for bullet speed, 50+ sometimes goes through things....
                         if (currentWeaponTwo.bulletSpeed > 50)

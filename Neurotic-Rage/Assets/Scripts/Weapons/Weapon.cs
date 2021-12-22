@@ -12,7 +12,7 @@ public class Weapon : ScriptableObject
     public weaponType type;
     public GameObject objectprefab;
     public Sprite Ui_sprite;
-    public Rigidbody Bullet;
+    public List<Rigidbody> Bullet;
     [Space]
     public float damage;
     public float attacksPerSecond;

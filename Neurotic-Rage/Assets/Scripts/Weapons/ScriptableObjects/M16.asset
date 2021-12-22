@@ -17,7 +17,8 @@ MonoBehaviour:
   type: 0
   objectprefab: {fileID: 7320750945144682316, guid: 600125053dd719f40b967c65dc82d7eb, type: 3}
   Ui_sprite: {fileID: 21300000, guid: 0f1fd8846376ec241a09cf5100284d30, type: 3}
-  Bullet: {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
+  Bullet:
+  - {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
   damage: 15
   attacksPerSecond: 5
   reloadTime: 3
