@@ -94,7 +94,6 @@ public class BulletBehavior : MonoBehaviour
     }
     void Explode()
     {
-        print(123132);
         //instantiate boom
         //remove boom in time
         //do damage in randius of boom
