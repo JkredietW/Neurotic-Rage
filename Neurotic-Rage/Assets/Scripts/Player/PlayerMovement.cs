@@ -94,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform weaponStatsParent, upgradeItemStatsParent;
 
     //input nonsense
+    int playerOneInputType;
     public Gamepad playerOne;
     public Gamepad playerTwo;
 
@@ -206,6 +207,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateAmmoText();
 
         //make weapon
+        playerOneInputType = PlayerPrefs.GetInt("playerinput", 0);
         GameObject weapon = Instantiate(currentWeapon.objectprefab);
         //done like this so that scale is normal
         weapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
@@ -257,6 +259,7 @@ public class PlayerMovement : MonoBehaviour
                     if(Gamepad.all[i] == playerOne)
                     {
                         playerOne = null;
+                        playerOneInputType = 0;
                     }
                     playerTwo = Gamepad.all[i];
                     //make weapon
@@ -318,17 +321,16 @@ public class PlayerMovement : MonoBehaviour
     void Inputs()
     {
         //inputs
-        #region controller 1
-        if (playerOne != null)
+        if(playerOneInputType == 0)
         {
-            //1
+            #region keyboard
             //swap weapon
-            if (playerOne.rightShoulder.IsPressed())
+            if (mouse.scroll.y.ReadValue() > 0.5f || mouse.scroll.y.ReadValue() < -0.5f)
             {
                 ScrollWeapon();
             }
             //shoot 
-            if (playerOne.rightTrigger.IsPressed())
+            if (mouse.leftButton.IsPressed())
             {
                 isShooting = true;
                 StartCoroutine(FireWeapon());
@@ -338,7 +340,7 @@ public class PlayerMovement : MonoBehaviour
                 isShooting = false;
             }
             //interact 
-            if (playerOne.buttonWest.IsPressed())
+            if (keyboard.eKey.IsPressed())
             {
                 if (Time.time > statsCooldown)
                 {
@@ -347,7 +349,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             //reload 
-            if (playerOne.buttonEast.IsPressed())
+            if (keyboard.rKey.IsPressed())
             {
                 if (mayMove)
                 {
@@ -355,22 +357,20 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             //sprint
-            if (playerOne.leftShoulder.IsPressed())
+            if (keyboard.leftShiftKey.IsPressed())
             {
-                if (!isShooting || !isRunning)
+                if (!isShooting || isRunning)
                 {
-                    isRunningWithController = true;
                     StartStopRunning(true);
                 }
             }
-            else
+            else if (!isRunningWithController)
             {
-                isRunningWithController = false;
                 babyRunFix = true;
                 StartStopRunning(false);
             }
             //toggle big map
-            if (playerOne.buttonNorth.IsPressed())
+            if (keyboard.mKey.IsPressed())
             {
                 if (Time.time > statsCooldown)
                 {
@@ -379,12 +379,12 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
             //melee
-            if (playerOne.leftTrigger.IsPressed())
+            if (mouse.rightButton.IsPressed())
             {
                 StartCoroutine(MeleeAttack());
             }
             //show stats
-            if (playerOne.selectButton.IsPressed())
+            if (keyboard.tabKey.IsPressed())
             {
                 if (Time.time > statsCooldown)
                 {
@@ -392,9 +392,87 @@ public class PlayerMovement : MonoBehaviour
                     ShowStatsToggle(!statsPanel.activeSelf);
                 }
             }
+            #endregion
         }
-        #endregion
-
+        else if(playerOneInputType == 1)
+        {
+            #region controller 1
+            if (playerOne != null)
+            {
+                //1
+                //swap weapon
+                if (playerOne.rightShoulder.IsPressed())
+                {
+                    ScrollWeapon();
+                }
+                //shoot 
+                if (playerOne.rightTrigger.IsPressed())
+                {
+                    isShooting = true;
+                    StartCoroutine(FireWeapon());
+                }
+                else
+                {
+                    isShooting = false;
+                }
+                //interact 
+                if (playerOne.buttonWest.IsPressed())
+                {
+                    if (Time.time > statsCooldown)
+                    {
+                        statsCooldown = Time.time + 0.1f;
+                        Interact();
+                    }
+                }
+                //reload 
+                if (playerOne.buttonEast.IsPressed())
+                {
+                    if (mayMove)
+                    {
+                        StartCoroutine(ReloadWeapon());
+                    }
+                }
+                //sprint
+                if (playerOne.leftShoulder.IsPressed())
+                {
+                    if (!isShooting || !isRunning)
+                    {
+                        isRunningWithController = true;
+                        StartStopRunning(true);
+                    }
+                }
+                else
+                {
+                    isRunningWithController = false;
+                    babyRunFix = true;
+                    StartStopRunning(false);
+                }
+                //toggle big map
+                if (playerOne.buttonNorth.IsPressed())
+                {
+                    if (Time.time > statsCooldown)
+                    {
+                        statsCooldown = Time.time + 0.1f;
+                        ToggleMap();
+                    }
+                }
+                //melee
+                if (playerOne.leftTrigger.IsPressed())
+                {
+                    StartCoroutine(MeleeAttack());
+                }
+                //show stats
+                if (playerOne.selectButton.IsPressed())
+                {
+                    if (Time.time > statsCooldown)
+                    {
+                        statsCooldown = Time.time + 0.1f;
+                        ShowStatsToggle(!statsPanel.activeSelf);
+                    }
+                }
+            }
+            #endregion
+        }
         #region controller 2
         //player two
         if (playerTwo != null)
@@ -429,77 +507,6 @@ public class PlayerMovement : MonoBehaviour
                     statsCooldownTwo = Time.time + 0.1f;
                     ScrollWeaponTwo();
                 }
-            }
-        }
-        #endregion
-
-        #region keyboard
-        //swap weapon
-        if (mouse.scroll.y.ReadValue() > 0.5f || mouse.scroll.y.ReadValue() < -0.5f)
-        {
-            ScrollWeapon();
-        }
-        //shoot 
-        if (mouse.leftButton.IsPressed())
-        {
-            isShooting = true;
-            StartCoroutine(FireWeapon());
-        }
-        else
-        {
-            isShooting = false;
-        }
-        //interact 
-        if (keyboard.eKey.IsPressed())
-        {
-            if (Time.time > statsCooldown)
-            {
-                statsCooldown = Time.time + 0.1f;
-                Interact();
-            }
-        }
-        //reload 
-        if (keyboard.rKey.IsPressed())
-        {
-            if (mayMove)
-            {
-                StartCoroutine(ReloadWeapon());
-            }
-        }
-        //sprint
-        if (keyboard.leftShiftKey.IsPressed())
-        {
-            if (!isShooting || isRunning)
-            {
-                StartStopRunning(true);
-            }
-        }
-        else if(!isRunningWithController)
-        {
-            babyRunFix = true;
-            StartStopRunning(false);
-        }
-        //toggle big map
-        if (keyboard.mKey.IsPressed())
-        {
-            if (Time.time > statsCooldown)
-            {
-                statsCooldown = Time.time + 0.1f;
-                ToggleMap();
-            }
-        }
-        //melee
-        if (mouse.rightButton.IsPressed())
-        {
-            StartCoroutine(MeleeAttack());
-        }
-        //show stats
-        if (keyboard.tabKey.IsPressed())
-        {
-            if(Time.time > statsCooldown)
-            {
-                statsCooldown = Time.time + 0.1f;
-                ShowStatsToggle(!statsPanel.activeSelf);
             }
         }
         #endregion
@@ -1550,4 +1557,10 @@ public class PlayerMovement : MonoBehaviour
         return aimLayer;
     }
     #endregion
+
+    public void ChangeInput(TMP_Dropdown _value)
+    {
+        playerOneInputType = _value.value;
+        PlayerPrefs.SetInt("playerinput", playerOneInputType);
+    }
 }

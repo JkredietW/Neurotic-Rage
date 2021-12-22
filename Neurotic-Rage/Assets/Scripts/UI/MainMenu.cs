@@ -149,6 +149,11 @@ public class MainMenu : MonoBehaviour
 	{
         Application.Quit();
     }
+    public void ChangeInput(TMP_Dropdown _value)
+    {
+        int playerOneInputType = _value.value;
+        PlayerPrefs.SetInt("playerinput", playerOneInputType);
+    }
 }
 [System.Serializable]
 public class ScoreBord

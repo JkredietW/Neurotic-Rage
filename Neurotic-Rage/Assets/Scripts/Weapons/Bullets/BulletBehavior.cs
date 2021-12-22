@@ -9,6 +9,7 @@ public class BulletBehavior : MonoBehaviour
     int pierceAmount;
     Quaternion rotation;
     public GameObject bloodSpat;
+    public GameObject Explosion;
     public List<string> IgnoreTag;
     bool mayNotDoDamage;
     bool hasHitAtleastOne;
@@ -50,12 +51,12 @@ public class BulletBehavior : MonoBehaviour
         }
         else
         {
-            if (explosionRadius > 0)
-            {
-                Explode();
-            }
             if (!IgnoreTag.Contains(other.gameObject.tag))
             {
+                if (explosionRadius > 0)
+                {
+                    Explode();
+                }
                 float roll = Random.Range(0, 100);
                 if (pierceAmount > 0 && roll > 50)
                 {
@@ -85,17 +86,24 @@ public class BulletBehavior : MonoBehaviour
     {
         _health.DoDamage(damage);
     }
-    private void Update()
-    {
-        if(transform.position.y <= 0 && explosionRadius > 0)
-        {
-            Explode();
-        }
-    }
     void Explode()
     {
-        //instantiate boom
-        //remove boom in time
+        GameObject boom = Instantiate(Explosion);
+        boom.transform.SetPositionAndRotation(transform.position, transform.rotation);
+        boom.GetComponent<VisualEffect>().SetFloat("Scale", explosionRadius);
+        Destroy(boom, 1);
+
+        Collider[] hitObjects = Physics.OverlapSphere(boom.transform.position, explosionRadius);
+        foreach (var item in hitObjects)
+        {
+            if (item.GetComponent<EnemyHealth>())
+            {
+                item.GetComponent<EnemyHealth>().DoDamage(damage);
+                Vector3 pointToSpawn = item.transform.position;
+                GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, transform.rotation);
+                tempBlood.GetComponent<VisualEffect>().Play();
+            }
+        }
         //do damage in randius of boom
         //remove object
     }

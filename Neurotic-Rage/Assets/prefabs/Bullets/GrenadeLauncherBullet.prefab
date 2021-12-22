@@ -275,13 +275,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSpat: {fileID: 8020872181441132644, guid: bdcadd29fdb64bd499ae57eb309edb8c, type: 3}
+  Explosion: {fileID: 9209644163448991203, guid: 2905477db4532d440bc84ebbedb0c40f, type: 3}
   IgnoreTag:
   - Player
   - Bullet
   - Shop
   - Enemy
   - Weapon
-  explosionRadius: 5
+  explosionRadius: 50
 --- !u!2083052967 &1580102315069324332
 VisualEffect:
   m_ObjectHideFlags: 0
