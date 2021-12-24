@@ -19,10 +19,10 @@ public class InGameSettings : MonoBehaviour
     public Slider musicslider;
     private void Start()
     {
-        mixer.SetFloat("Master", Mathf.Log10(PlayerPrefs.GetFloat("Master")) * 20);
-        mixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat("Music")) * 20);
-        mixer.SetFloat("SFX", Mathf.Log10(PlayerPrefs.GetFloat("SFX")) * 20);
-        mixer.SetFloat("UI", Mathf.Log10(PlayerPrefs.GetFloat("UI")) * 20);
+        mixer.SetFloat("Master", Mathf.Log10(PlayerPrefs.GetFloat("Master")));
+        mixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat("Music")));
+        mixer.SetFloat("SFX", Mathf.Log10(PlayerPrefs.GetFloat("SFX")));
+        mixer.SetFloat("UI", Mathf.Log10(PlayerPrefs.GetFloat("UI")));
 
         masterslider.value = PlayerPrefs.GetFloat("Master");
         musicslider.value = PlayerPrefs.GetFloat("Music");
@@ -54,6 +54,10 @@ public class InGameSettings : MonoBehaviour
     {
         mixer.SetFloat("Master", Mathf.Log10(sliderValue.value) * 20);
         PlayerPrefs.SetFloat("Master", sliderValue.value);
+		if (sliderValue.value == 0)
+		{
+            mixer.SetFloat("Master", -80);
+        }
     }
     public void SetBrightness(Slider sliderValue)
     {
@@ -64,16 +68,28 @@ public class InGameSettings : MonoBehaviour
     {
         mixer.SetFloat("Music", Mathf.Log10(sliderValue.value) * 20);
         PlayerPrefs.SetFloat("Music", sliderValue.value);
+        if (sliderValue.value == 0)
+        {
+            mixer.SetFloat("Music", -80);
+        }
     }
     public void SetSfxVolume(Slider sliderValue)
     {
         mixer.SetFloat("SFX", Mathf.Log10(sliderValue.value) * 20);
         PlayerPrefs.SetFloat("SFX", sliderValue.value);
+        if (sliderValue.value == 0)
+        {
+            mixer.SetFloat("SFX", -80);
+        }
     }
     public void SetUiVolume(Slider sliderValue)
     {
         mixer.SetFloat("UI", Mathf.Log10(sliderValue.value) * 20);
         PlayerPrefs.SetFloat("UI", sliderValue.value);
+        if (sliderValue.value == 0)
+        {
+            mixer.SetFloat("UI", -80);
+        }
     }
     public void SetResolution(int resIndex)
     {

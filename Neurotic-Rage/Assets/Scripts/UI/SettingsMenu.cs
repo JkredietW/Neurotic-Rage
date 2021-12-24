@@ -49,21 +49,37 @@ public class SettingsMenu : MonoBehaviour
     {
         mixer.SetFloat("Master", Mathf.Log10(sliderValue.value) * 20);
         PlayerPrefs.SetFloat("Master", sliderValue.value);
+        if (sliderValue.value == 0)
+        {
+            mixer.SetFloat("Master", -80);
+        }
     }
     public void SetMusicVolume(Slider sliderValue)
     {
         mixer.SetFloat("Music", Mathf.Log10(sliderValue.value) * 20);
         PlayerPrefs.SetFloat("Music", sliderValue.value);
+        if (sliderValue.value == 0)
+        {
+            mixer.SetFloat("Music", -80);
+        }
     }
     public void SetSfxVolume(Slider sliderValue)
     {
         mixer.SetFloat("SFX", Mathf.Log10(sliderValue.value) * 20);
         PlayerPrefs.SetFloat("SFX", sliderValue.value);
+        if (sliderValue.value == 0)
+        {
+            mixer.SetFloat("SFX", -80);
+        }
     }
     public void SetUiVolume(Slider sliderValue)
     {
         mixer.SetFloat("UI", Mathf.Log10(sliderValue.value) * 20);
         PlayerPrefs.SetFloat("UI", sliderValue.value);
+        if (sliderValue.value == 0)
+        {
+            mixer.SetFloat("UI", -80);
+        }
     }
     public void SetResolution(int resIndex)
     {

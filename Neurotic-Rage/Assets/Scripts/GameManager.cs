@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using UnityEngine;
+using UnityEngine.Audio;
 using TMPro;
 
 public class GameManager : MonoBehaviour
@@ -18,8 +19,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] Enemies;
     public List<GameObject> enemiesAlive;
     public List<GameObject> bossesAlive;
+    public AudioMixer mixer;
     private bool isBossRound,pauseWave;
-    
 
     //shop
     public GameObject shoppanel, shopUI;
@@ -70,6 +71,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        mixer.SetFloat("Master", Mathf.Log10(PlayerPrefs.GetFloat("Master")));
+        mixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat("Music")));
+        mixer.SetFloat("SFX", Mathf.Log10(PlayerPrefs.GetFloat("SFX")));
+        mixer.SetFloat("UI", Mathf.Log10(PlayerPrefs.GetFloat("UI")));
         time = 0;
     }
     public void Save()
@@ -581,6 +586,10 @@ public class GameManager : MonoBehaviour
         statsScript.total_distanceWalked += player.distanceWalked;
         Save();
     }
+    public void TurnOffObj(GameObject obj)
+	{
+        obj.SetActive(false);
+	}
 }
 [System.Serializable]
 public class Wave

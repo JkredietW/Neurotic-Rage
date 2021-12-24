@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class GiantHealth : EnemyHealth
 {
     public GameObject momDiedLight;
+    public GameObject firstText, SecondText;
     public bool isDead;
     public Color deadOutline;
     public override void Dying()
@@ -16,5 +17,11 @@ public class GiantHealth : EnemyHealth
         isDead = true;
         momDiedLight.SetActive(true);
         FindObjectOfType<GameManager>().MomDied();
+        Invoke("DeactivateFirst", 1f);
+    }
+    public void DeactivateFirst()
+	{
+        firstText.SetActive(false);
+        SecondText.SetActive(true);
     }
 }

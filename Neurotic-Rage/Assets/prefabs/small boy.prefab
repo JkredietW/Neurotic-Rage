@@ -8526,7 +8526,7 @@ MonoBehaviour:
   attackRange: 1.32
   chaseRange: 10
   destroyTime: 1.25
-  hitBoxRange: 3
+  hitBoxRange: 1.25
   damage: 5
   toCloseRange: 1.2
   rotationSpeed: 5
