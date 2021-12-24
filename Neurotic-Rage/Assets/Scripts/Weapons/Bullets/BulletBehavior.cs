@@ -49,6 +49,18 @@ public class BulletBehavior : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        else if(other.GetComponent<EnemyHealth>() && explosionRadius > 0)
+        {
+            Explode();
+            if (pierceAmount > 0)
+            {
+                pierceAmount--;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
         else
         {
             if (!IgnoreTag.Contains(other.gameObject.tag))
@@ -93,14 +105,15 @@ public class BulletBehavior : MonoBehaviour
         boom.GetComponent<VisualEffect>().SetFloat("Scale", explosionRadius);
         Destroy(boom, 1);
 
-        Collider[] hitObjects = Physics.OverlapSphere(boom.transform.position, explosionRadius);
+        Collider[] hitObjects = Physics.OverlapSphere(boom.transform.position, explosionRadius / 25);
         foreach (var item in hitObjects)
         {
             if (item.GetComponent<EnemyHealth>())
             {
                 item.GetComponent<EnemyHealth>().DoDamage(damage);
                 Vector3 pointToSpawn = item.transform.position;
-                GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, transform.rotation);
+                Vector3 Rotation = item.transform.position - transform.position;
+                GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, Quaternion.Euler(Rotation));
                 tempBlood.GetComponent<VisualEffect>().Play();
             }
         }

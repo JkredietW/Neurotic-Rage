@@ -135,6 +135,8 @@ public class PlayerMovement : MonoBehaviour
     public Slider ammoSlider1;
     public Slider ammoSlider2;
     private bool isSwitchingWeaponTwo;
+    private bool mapCooldown;
+    private bool interactCooldown;
 
     private void Awake()
     {
@@ -342,11 +344,15 @@ public class PlayerMovement : MonoBehaviour
             //interact 
             if (keyboard.eKey.IsPressed())
             {
-                if (Time.time > statsCooldown)
+                if (interactCooldown)
                 {
-                    statsCooldown = Time.time + 0.1f;
+                    interactCooldown = false;
                     Interact();
                 }
+            }
+            else
+            {
+                interactCooldown = true;
             }
             //reload 
             if (keyboard.rKey.IsPressed())
@@ -372,11 +378,15 @@ public class PlayerMovement : MonoBehaviour
             //toggle big map
             if (keyboard.mKey.IsPressed())
             {
-                if (Time.time > statsCooldown)
+                if (mapCooldown)
                 {
-                    statsCooldown = Time.time + 0.1f;
+                    mapCooldown = false;
                     ToggleMap();
                 }
+            }
+            else
+            {
+                mapCooldown = true;
             }
             //melee
             if (mouse.rightButton.IsPressed())
@@ -418,11 +428,15 @@ public class PlayerMovement : MonoBehaviour
                 //interact 
                 if (playerOne.buttonWest.IsPressed())
                 {
-                    if (Time.time > statsCooldown)
+                    if (interactCooldown)
                     {
-                        statsCooldown = Time.time + 0.1f;
+                        interactCooldown = false;
                         Interact();
                     }
+                }
+                else
+                {
+                    interactCooldown = true;
                 }
                 //reload 
                 if (playerOne.buttonEast.IsPressed())
@@ -450,11 +464,15 @@ public class PlayerMovement : MonoBehaviour
                 //toggle big map
                 if (playerOne.buttonNorth.IsPressed())
                 {
-                    if (Time.time > statsCooldown)
+                    if (interactCooldown)
                     {
-                        statsCooldown = Time.time + 0.1f;
+                        interactCooldown = false;
                         ToggleMap();
                     }
+                }
+                else
+                {
+                    interactCooldown = true;
                 }
                 //melee
                 if (playerOne.leftTrigger.IsPressed())
@@ -934,6 +952,8 @@ public class PlayerMovement : MonoBehaviour
             swordOnBack.SetActive(false);
             swordInHand.SetActive(true);
             hasMeleeAttacked = true;
+            int oldState = animator.GetInteger("SpecialStanceState");
+            animator.SetInteger("SpecialStanceState", -1);
             nextAttack = Time.time + meleeAttackCooldown;
             animator.SetTrigger("MeleeAttack");
             if(!playerAim.twoPlayers)
@@ -942,6 +962,7 @@ public class PlayerMovement : MonoBehaviour
             }
             //damage/hitbox in animator
             yield return new WaitForSeconds(meleeAttackCooldown);
+            animator.SetInteger("SpecialStanceState", oldState);
             swordOnBack.SetActive(true);
             swordInHand.SetActive(false);
             hasMeleeAttacked = false;
@@ -1047,7 +1068,6 @@ public class PlayerMovement : MonoBehaviour
                                 }
                                 else //hits nothing
                                 {
-                                    pierces--;
                                     //return when pierces all gone
                                     if (pierces == 0)
                                     {
@@ -1240,12 +1260,15 @@ public class PlayerMovement : MonoBehaviour
         FindObjectOfType<GameManager>().statsScript.total_timesReloaded++;
         isReloading = true;
         animator.SetTrigger("Reload");
+        int oldState = animator.GetInteger("SpecialStanceState");
+        animator.SetInteger("SpecialStanceState", -1);
         float oldspeed = animator.GetFloat("ReloadSpeed");
         ammoSlider1.gameObject.SetActive(true);
         ammoSlider1.maxValue = currentWeapon.reloadTime;
         ammoSlider1.value = currentWeapon.reloadTime;
         animator.SetFloat("ReloadSpeed", oldspeed / currentWeapon.reloadTime);
         yield return new WaitForSeconds(currentWeapon.reloadTime);
+        animator.SetInteger("SpecialStanceState", oldState);
         ammoSlider1.gameObject.SetActive(false);
         animator.SetFloat("ReloadSpeed", oldspeed);
         if (!hasMeleeAttacked || currentWeapon.ammo == currentWeapon.maxAmmo)

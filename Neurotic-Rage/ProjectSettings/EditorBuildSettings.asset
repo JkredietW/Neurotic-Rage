@@ -18,4 +18,4 @@ EditorBuildSettings:
     path: Assets/Scenes/main scene/Jorn main.unity
     guid: eed9bf8fbca7f594eb1105ef0547eb96
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: 09ca48313b9667148ad6bc4972883ea5, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: d3de87d03d3e5ed4c8d4eeb6c193aab6, type: 2}
