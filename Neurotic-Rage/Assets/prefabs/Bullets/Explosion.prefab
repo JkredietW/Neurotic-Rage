@@ -49,7 +49,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 0.1
+      - m_Value: 50
         m_Name: Scale
         m_Overridden: 1
     m_Vector2f:
@@ -132,17 +132,17 @@ VisualEffect:
         m_Overridden: 1
       - m_Value:
           serializedVersion: 2
-          key0: {r: 26.197765, g: 2.057416, b: 0, a: 0}
-          key1: {r: 0.34509805, g: 0.072271846, b: 0, a: 1}
-          key2: {r: 0, g: 0, b: 0, a: 0.14117648}
-          key3: {r: 0, g: 0, b: 0, a: 0}
+          key0: {r: 5.6229444, g: 2.6485653, b: 0.8243059, a: 0}
+          key1: {r: 2.7607844, g: 0.5647059, b: 0, a: 1}
+          key2: {r: 0.122641504, g: 0.04193465, b: 0.02128871, a: 0.20723248}
+          key3: {r: 0, g: 0, b: 0, a: 0.14117648}
           key4: {r: 0, g: 0, b: 0, a: 0}
           key5: {r: 0, g: 0, b: 0, a: 0}
           key6: {r: 0, g: 0, b: 0, a: 0}
           key7: {r: 0, g: 0, b: 0, a: 0}
           ctime0: 0
-          ctime1: 45489
-          ctime2: 0
+          ctime1: 15227
+          ctime2: 30262
           ctime3: 0
           ctime4: 0
           ctime5: 0
@@ -150,15 +150,15 @@ VisualEffect:
           ctime7: 0
           atime0: 0
           atime1: 6554
-          atime2: 29105
-          atime3: 65535
-          atime4: 0
+          atime2: 18697
+          atime3: 29105
+          atime4: 65535
           atime5: 0
           atime6: 0
           atime7: 0
           m_Mode: 0
-          m_NumColorKeys: 2
-          m_NumAlphaKeys: 4
+          m_NumColorKeys: 3
+          m_NumAlphaKeys: 5
         m_Name: ColorOfCloud
         m_Overridden: 1
       - m_Value:

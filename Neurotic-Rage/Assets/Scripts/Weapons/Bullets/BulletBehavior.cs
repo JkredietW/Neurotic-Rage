@@ -103,7 +103,7 @@ public class BulletBehavior : MonoBehaviour
         GameObject boom = Instantiate(Explosion);
         boom.transform.SetPositionAndRotation(transform.position, transform.rotation);
         boom.GetComponent<VisualEffect>().SetFloat("Scale", explosionRadius);
-        Destroy(boom, 1);
+        Destroy(boom, 5);
 
         Collider[] hitObjects = Physics.OverlapSphere(boom.transform.position, explosionRadius / 25);
         foreach (var item in hitObjects)
