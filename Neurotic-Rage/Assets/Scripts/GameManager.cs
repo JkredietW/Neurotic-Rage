@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float minimumDistance, maxDistance;
     public GameObject playerCanvas,momDiedCanvas,car;
     public Wave presetWave;
+    public LoadingScreen ls;
 	public List<Transform> spawnLocations;
     public Transform enemySpawnLocationParent;
     public List<Transform> spawnsExcluded;
@@ -296,7 +297,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5);
         FindObjectOfType<FadeToFromBlack>().FadeToBlack(2);
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(0);
+        ls.ChargementScene(0);
 	}
     #region player stats
     public void GiveLastShop(PlayerShop _shop)

@@ -15,6 +15,7 @@ public class PlayerHealth : BaseHealth
     public GameObject deathLight;
     public GameObject mesh;
     public PlayerMovement pm;
+    public LoadingScreen ls;
 
 
     protected override void Start()
@@ -75,8 +76,8 @@ public class PlayerHealth : BaseHealth
         yield return new WaitForSeconds(10);
         fdb.FadeToBlack(2.5f);
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(0);
-	}
+        ls.ChargementScene(0);
+    }
     public void CarHIt()
 	{
         StartCoroutine(CarComes());
@@ -95,7 +96,7 @@ public class PlayerHealth : BaseHealth
         yield return new WaitForSeconds(1.5f);
         fdb.FadeToBlack(2.5f);
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(0);
+        ls.ChargementScene(0);
     }
 
 }
