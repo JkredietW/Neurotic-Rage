@@ -23,12 +23,14 @@ MonoBehaviour:
   - {fileID: 6735764617908801877, guid: 4f70833f1ad2b68479acb5fceb3f6fa1, type: 3}
   - {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
   - {fileID: 6735764617908801877, guid: 641e28b08dac815468143288e8aba176, type: 3}
+  shootSound: {fileID: 8300000, guid: a7e690c41e6be1043a9885e2fb61755a, type: 3}
+  reloadSound: {fileID: 0}
   damage: 5
   attacksPerSecond: 20
   reloadTime: 0
   pierceAmount: 1000
-  ammo: 5000
-  maxAmmo: 5000
+  ammo: 871
+  maxAmmo: 1000
   bulletSpeed: 50
   projectileCount: 5
   rotationOffset: 5

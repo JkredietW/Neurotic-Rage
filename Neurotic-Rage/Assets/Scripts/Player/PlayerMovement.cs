@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public bool isShooting;
     bool hasMeleeAttacked;
     private List<WorldWeapon> weaponsInRange;
-    public WorldWeapon worldWeaponPrefab;
     public TextMeshProUGUI pickUpWeaponText;
     [SerializeField] private List<Image> weaponSpritesUi;
     [SerializeField] private List<GameObject> selectWeaponIndecator;
@@ -128,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
     public List<Weapon> weaponSlotsTwo;
 
     //audio
-    public AudioSource audioSourceLoop;
+    public AudioSource audioSourceWalking, audioSourceShooting;
     public AudioClip audio_walking;
     public AudioClip audio_running;
 
@@ -137,6 +136,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isSwitchingWeaponTwo;
     private bool mapCooldown;
     private bool interactCooldown;
+
+    private Animator specialAnimator;
+    float rotationSpeedMinigun;
 
     private void Awake()
     {
@@ -282,15 +284,21 @@ public class PlayerMovement : MonoBehaviour
         distanceWalked += moveDir.magnitude * Time.deltaTime; 
         if(isShooting)
         {
+            rotationSpeedMinigun = Mathf.Clamp(rotationSpeedMinigun += 2, 0, 100);
             timeWhileShooting = 100 * Time.deltaTime;
         }
         else
         {
+            rotationSpeedMinigun = Mathf.Clamp(rotationSpeedMinigun -= 3, 0, 100);
             timeWhileNotShooting = 100 * Time.deltaTime;
+        }
+        if (specialAnimator != null)
+        {
+            specialAnimator.SetFloat("RotationSpeed", rotationSpeedMinigun);
         }
 
         //ammo sliders
-        if(ammoSlider1.IsActive())
+        if (ammoSlider1.IsActive())
         {
             ammoSlider1.value -= 1 * Time.deltaTime;
         }
@@ -304,12 +312,12 @@ public class PlayerMovement : MonoBehaviour
         float extraSprintSpeed = 0;
         if(isRunning)
         {
-            audioSourceLoop.clip = audio_running;
+            audioSourceWalking.clip = audio_running;
             extraSprintSpeed = movementSpeed * 0.7f;
         }
         else
         {
-            audioSourceLoop.clip = audio_walking;
+            audioSourceWalking.clip = audio_walking;
         }
         if (mayMove)
         {
@@ -559,7 +567,7 @@ public class PlayerMovement : MonoBehaviour
                 moveDir = Vector3.zero;
                 StartStopRunning(false);
 
-                mayMove = false;
+                MayMove(false);
                 Invoke(nameof(MayMoveAgain), 1);
 
                 SwapWithWorldWeapon();
@@ -606,7 +614,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void MayMoveAgain()
     {
-        mayMove = true;
+        MayMove(true);
     }
     public void GiveStats(int _pierces, float _damage, float _attckSpeed, int _ammo, int _health, int _bullets)
     {
@@ -724,7 +732,7 @@ public class PlayerMovement : MonoBehaviour
         specialWeapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
         specialWeapon.transform.SetParent(weaponInHand.transform);
         specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
+        StartCoroutine(SecAfterSwap());
         animator.SetInteger("SpecialStanceState", currentWeapon.specialWeaponId);
 
         //destroy old world weapon
@@ -748,6 +756,14 @@ public class PlayerMovement : MonoBehaviour
         }
         ShowTextE();
         UpdateStats();
+    }
+    IEnumerator SecAfterSwap()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (currentWeapon.specialWeaponId == 0)
+        {
+            specialAnimator = weaponInHand.transform.GetChild(0).GetComponent<Shootpos>().specialAnim;
+        }
     }
     public void ScrollWeapon()
     {
@@ -990,16 +1006,19 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Time.time >= nextAttack && mayMove)
         {
+            nextAttack = Time.time + (attackCooldown * currentWeapon.burstShotAmount);
             if(isRunning)
             {
                 isRunning = false;
                 playerAim.RotateToAim();
             }
-            nextAttack = Time.time + (attackCooldown * currentWeapon.burstShotAmount);
             if (currentWeapon.ammo > 0)
             {
                 animator.SetTrigger("Shoot");
                 animator.SetTrigger("ShootWithSpecial");
+                //sound
+                audioSourceShooting.clip = currentWeapon.shootSound;
+                audioSourceShooting.Play();
                 currentWeapon.ammo -= 1;
                 UpdateAmmoText();
 
@@ -1124,11 +1143,6 @@ public class PlayerMovement : MonoBehaviour
         //shooting
         if (Time.time >= nextAttackTwo && mayMove)
         {
-            if (isRunning)
-            {
-                isRunning = false;
-                playerAim.RotateToAim();
-            }
             nextAttackTwo = Time.time + (attackCooldownTwo * currentWeaponTwo.burstShotAmount);
             if (currentWeaponTwo.ammo > 0)
             {
@@ -1139,9 +1153,8 @@ public class PlayerMovement : MonoBehaviour
 
                 //set pos of muzzle for new weapon
                 bulletOriginTwo = weaponInHandTwo.transform.GetChild(0).GetComponent<Shootpos>().shootpos;
+                muzzleFlashObjectTwo.transform.SetPositionAndRotation(bulletOriginTwo.position, bulletOriginTwo.rotation);
                 muzzleFlashObjectTwo.Play();
-                muzzleFlashObjectTwo.transform.position = bulletOriginTwo.position;
-                muzzleFlashObjectTwo.transform.rotation = bulletOriginTwo.rotation;
 
                 for (int b = 0; b < currentWeaponTwo.burstShotAmount; b++)
                 {
@@ -1267,6 +1280,11 @@ public class PlayerMovement : MonoBehaviour
         ammoSlider1.maxValue = currentWeapon.reloadTime;
         ammoSlider1.value = currentWeapon.reloadTime;
         animator.SetFloat("ReloadSpeed", oldspeed / currentWeapon.reloadTime);
+
+        //sound
+        audioSourceShooting.clip = currentWeapon.reloadSound;
+        audioSourceShooting.Play();
+
         yield return new WaitForSeconds(currentWeapon.reloadTime);
         animator.SetInteger("SpecialStanceState", oldState);
         ammoSlider1.gameObject.SetActive(false);
@@ -1449,18 +1467,18 @@ public class PlayerMovement : MonoBehaviour
         //sound
         if(moveDir.magnitude > 0)
         {
-            if (!audioSourceLoop.isPlaying)
+            if (!audioSourceWalking.isPlaying)
             {
-                audioSourceLoop.Play();
-                audioSourceLoop.volume = 1;
+                audioSourceWalking.Play();
+                audioSourceWalking.volume = 1;
             }
         }
         else
         {
-            if (audioSourceLoop.isPlaying)
+            if (audioSourceWalking.isPlaying)
             {
-                audioSourceLoop.Stop();
-                audioSourceLoop.volume = 0;
+                audioSourceWalking.Stop();
+                audioSourceWalking.volume = 0;
             }
         }
         moveDir = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * moveDir;

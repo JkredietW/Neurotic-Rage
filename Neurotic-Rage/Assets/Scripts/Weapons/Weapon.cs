@@ -13,6 +13,7 @@ public class Weapon : ScriptableObject
     public GameObject objectprefab;
     public Sprite Ui_sprite;
     public List<Rigidbody> Bullet;
+    public AudioClip shootSound, reloadSound;
     [Space]
     public float damage;
     public float attacksPerSecond;

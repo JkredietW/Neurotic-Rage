@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootpos: {fileID: 4728109865448239928}
+  specialAnim: {fileID: 2875209396208267576}
 --- !u!135 &5245311692838761494
 SphereCollider:
   m_ObjectHideFlags: 0

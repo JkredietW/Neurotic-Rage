@@ -19,6 +19,8 @@ MonoBehaviour:
   Ui_sprite: {fileID: 21300000, guid: 783e301caf9f24f4ea96746f227a6dcd, type: 3}
   Bullet:
   - {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
+  shootSound: {fileID: 8300000, guid: 5e4cefc316db87649a3a8a6f6c84961b, type: 3}
+  reloadSound: {fileID: 8300000, guid: 32d534bcd3952c042a008cc881c24c08, type: 3}
   damage: 10
   attacksPerSecond: 2
   reloadTime: 1

@@ -5,4 +5,5 @@ using UnityEngine;
 public class Shootpos : MonoBehaviour
 {
     public Transform shootpos;
+    public Animator specialAnim;
 }
