@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 public class GiantHealth : EnemyHealth
 {
     public GameObject momDiedLight;
-    public GameObject firstText, SecondText;
+    public Slider healthSlider;
+    public GameObject firstText, SecondText,healtbar;
     public bool isDead;
     public Color deadOutline;
-    public override void Dying()
+
+	private void Awake()
+	{
+        healthSlider.maxValue = maxhealth;
+        healtbar.SetActive(false);
+    }
+	public override void Dying()
     {
         for (int i = 0; i < outline.Length; i++)
         {
@@ -23,5 +31,23 @@ public class GiantHealth : EnemyHealth
 	{
         firstText.SetActive(false);
         SecondText.SetActive(true);
+    }
+	public override void UpdateHealthBar()
+	{
+        healthSlider.value = health;
+	}
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.transform.CompareTag("Player"))
+		{
+            healtbar.SetActive(true);
+		}
+	}
+	private void OnTriggerExit(Collider other)
+	{
+        if (other.transform.CompareTag("Player"))
+        {
+            healtbar.SetActive(false);
+        }
     }
 }
