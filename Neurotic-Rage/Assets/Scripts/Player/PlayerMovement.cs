@@ -208,7 +208,12 @@ public class PlayerMovement : MonoBehaviour
         baseHeavyAmmo = maxHeavyAmmo;
         weaponSlots[0].ammo = weaponSlots[0].maxAmmo;
         weaponSlots[1].ammo = weaponSlots[1].maxAmmo;
+        foreach (var item in weaponSlotsTwo)
+        {
+            item.ammo = item.maxAmmo;
+        }
         UpdateAmmoText();
+        UpdateAmmoTwoText();
 
         //make weapon
         playerOneInputType = PlayerPrefs.GetInt("playerinput", 0);
@@ -237,7 +242,6 @@ public class PlayerMovement : MonoBehaviour
         {
             shop = FindObjectOfType<GameManager>().shopUI;
         }
-        //Twoplayers();
     }
 
     private void Update()
@@ -274,6 +278,8 @@ public class PlayerMovement : MonoBehaviour
                     weaponTwo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                     babyAnimator.SetInteger("WeaponState", currentWeaponTwo.specialWeaponId);
                     currentWeaponTwo.ammo = currentWeaponTwo.maxAmmo;
+                    babyWeaponSpriteUi.sprite = currentWeaponTwo.Ui_sprite;
+                    UpdateAmmoTwoText();
                     babyUiWeaponSlot.SetActive(true);
                     playerAim.EnabledTwoPlayers();
                 }
@@ -884,7 +890,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void ScrollWeaponTwo()
     {
-        if (isSwitchingWeapon || shopIsOpen || isReloading)
+        if (isSwitchingWeaponTwo || shopIsOpen || isReloadingTwo)
         {
             return;
         }
@@ -907,8 +913,8 @@ public class PlayerMovement : MonoBehaviour
         {
             currentWeaponSlotTwo = weaponSlotsTwo.Count - 1;
         }
-        currentWeaponTwo = weaponSlotsTwo[currentWeaponSlot];
-        attackCooldownTwo = currentWeapon.OnSwap(extra_attackSpeed);
+        currentWeaponTwo = weaponSlotsTwo[currentWeaponSlotTwo];
+        attackCooldownTwo = currentWeaponTwo.OnSwap(extra_attackSpeed);
         babyAnimator.SetInteger("WeaponState", currentWeaponTwo.specialWeaponId);
 
         //make weapon
@@ -919,7 +925,7 @@ public class PlayerMovement : MonoBehaviour
         specialWeapon.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
         //swap cooldown
-        Invoke(nameof(SecAfterSwapWeaponTwo), 0.5f);
+        Invoke(nameof(SecAfterSwapWeaponTwo), 1);
 
         //ui sprite
         babyWeaponSpriteUi.sprite = currentWeaponTwo.Ui_sprite;
@@ -1148,7 +1154,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 //shooting animation here <-----
                 currentWeaponTwo.ammo -= 1;
-                UpdateAmmoText();
+                UpdateAmmoTwoText();
                 ///ammo for second player needs to be added
 
                 //set pos of muzzle for new weapon
@@ -1159,7 +1165,7 @@ public class PlayerMovement : MonoBehaviour
                 for (int b = 0; b < currentWeaponTwo.burstShotAmount; b++)
                 {
                     //bullets
-                    for (int i = 0; i < currentWeapon.projectileCount + extra_bullets; i++)
+                    for (int i = 0; i < currentWeaponTwo.projectileCount + extra_bullets; i++)
                     {
                         //how much each projectile is away from eachother
                         float totalTwo = currentWeaponTwo.shootAngle / currentWeaponTwo.projectileCount + extra_bullets;
@@ -1289,7 +1295,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetInteger("SpecialStanceState", oldState);
         ammoSlider1.gameObject.SetActive(false);
         animator.SetFloat("ReloadSpeed", oldspeed);
-        if (!hasMeleeAttacked || currentWeapon.ammo == currentWeapon.maxAmmo)
+        if (!hasMeleeAttacked || currentWeapon.ammo != currentWeapon.maxAmmo)
         {
             if (currentWeapon.type == weaponType.light)
             {
@@ -1353,7 +1359,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(currentWeaponTwo.reloadTime);
         ammoSlider2.gameObject.SetActive(false);
         babyAnimator.SetFloat("ReloadSpeed", oldspeed);
-        if (currentWeaponTwo.ammo == currentWeaponTwo.maxAmmo)
+        if (currentWeaponTwo.ammo != currentWeaponTwo.maxAmmo)
         {
             if (currentWeaponTwo.type == weaponType.light)
             {

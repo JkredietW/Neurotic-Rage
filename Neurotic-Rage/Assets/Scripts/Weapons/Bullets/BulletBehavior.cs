@@ -117,7 +117,9 @@ public class BulletBehavior : MonoBehaviour
                 tempBlood.GetComponent<VisualEffect>().Play();
             }
         }
-        //do damage in randius of boom
-        //remove object
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(transform.position, explosionRadius / 25);
     }
 }
