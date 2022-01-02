@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public FadeToFromBlack fb;
     public GameObject playPanel;
     public GameObject settingsPanel;
+    public GameObject tuturialButton;
     public float secondsToReopen;
     public float secondsTillCameraShake;
     public Animator garageDoor;
@@ -36,6 +37,10 @@ public class MainMenu : MonoBehaviour
             scorebord.scores[i].text.text = scorebord.scores[i].playerPrefName +" "+ PlayerPrefs.GetFloat(scorebord.scores[i].playerPrefName).ToString();
         }
         ChangeActivePanel(main);
+        if (PlayerPrefs.GetString("Tuturial") == "true")
+		{
+            tuturialButton.SetActive(true);
+		}
     }
     private void Update()
     {

@@ -78,6 +78,10 @@ public class GameManager : MonoBehaviour
         mixer.SetFloat("UI", Mathf.Log10(PlayerPrefs.GetFloat("UI")));
         time = 0;
     }
+    public void PlayedTuturial()
+	{
+        PlayerPrefs.SetString("Tuturial", "true");
+	}
     public void Save()
     {
         string totalplayerstats = JsonUtility.ToJson(statsScript);

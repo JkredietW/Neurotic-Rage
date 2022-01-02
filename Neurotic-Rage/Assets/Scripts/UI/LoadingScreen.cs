@@ -66,6 +66,21 @@ public class LoadingScreen : MonoBehaviour
         adviceText.text = advice[currentLine].ToString();
         Invoke("PickNextLine", 2.5f);
     }
+    public void CheckForTuturialPlayed(int i)
+	{
+        string playerprefTut = PlayerPrefs.GetString("Tuturial");
+		if (playerprefTut == "false")
+		{
+            ChargementScene(i-1);
+            print("koe");
+        }
+		else
+		{
+            ChargementScene(i);
+            print("koekje");
+        }
+
+    }
     public void ChargementScene(int i)
     {
         active = true;
