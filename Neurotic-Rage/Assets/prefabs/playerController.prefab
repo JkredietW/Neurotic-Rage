@@ -11891,7 +11891,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4249084291486012210}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2751253724490743087
 MeshFilter:
@@ -18054,8 +18054,8 @@ Transform:
   - {fileID: 4249084292314184446}
   - {fileID: 4249084292092199864}
   - {fileID: 20452350970647323}
-  - {fileID: 2034713755651764186}
   - {fileID: 2751253724490743082}
+  - {fileID: 2034713755651764186}
   - {fileID: 7205356711577875280}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -18115,7 +18115,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de8483fe09aabcc48877298558c5fb1b, type: 2}
   - {fileID: 11400000, guid: c221e4a5f9aab3f43bfaf4bcfb75d11b, type: 2}
   isShooting: 0
-  worldWeaponPrefab: {fileID: 4785820487764305760, guid: 1c07d4d0655701a409cc367140e92a37, type: 3}
   pickUpWeaponText: {fileID: 8464676612361931657}
   weaponSpritesUi:
   - {fileID: 834344093244094025}
@@ -26102,7 +26101,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4249084291486012210}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 45, z: 0}
 --- !u!20 &7605587675210586163
 Camera:
