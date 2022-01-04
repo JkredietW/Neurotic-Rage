@@ -28,8 +28,9 @@ public class MainMenu : MonoBehaviour
     int lastInput; //0 = mouse, 1 = controller
     Vector2 lastpos;
     GameObject lastFirstSelected;
+	private int playerOneInputType;
 
-    void Start()
+	void Start()
     {
         StartCoroutine(IEStart());
 		for (int i = 0; i < scorebord.scores.Length; i++)

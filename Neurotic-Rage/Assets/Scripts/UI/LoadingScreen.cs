@@ -51,7 +51,7 @@ public class LoadingScreen : MonoBehaviour
         else
 		{
             amountDots = 0;
-            dots = "";
+            loadingText.text = "Loading";
         }
         loadingText.text += dots;
         yield return new WaitForSeconds(0.25f);

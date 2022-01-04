@@ -41640,9 +41640,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ed28629676a34d2418836ce32a96cdcc, type: 2}
     - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
+      propertyPath: audioSourceWalking
+      value: 
+      objectReference: {fileID: 2075443057}
+    - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: bigMapCameraObject
       value: 
       objectReference: {fileID: 310081057}
+    - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
+      propertyPath: audioSourceShooting
+      value: 
+      objectReference: {fileID: 2075443056}
     - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: slotSpecialWeaponAmmo
       value: 
@@ -65897,6 +65905,16 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000014082156536, guid: 2cd5433aec5584cdcbd9345f4023909a, type: 3}
   m_PrefabInstance: {fileID: 2074728148}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2075443056 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4010144727581529032, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
+  m_PrefabInstance: {fileID: 1263998816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2075443057 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 616163314861351671, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
+  m_PrefabInstance: {fileID: 1263998816}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2076894048
 PrefabInstance:

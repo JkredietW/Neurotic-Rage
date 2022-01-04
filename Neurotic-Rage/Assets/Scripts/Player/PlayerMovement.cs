@@ -217,6 +217,7 @@ public class PlayerMovement : MonoBehaviour
 
         //make weapon
         playerOneInputType = PlayerPrefs.GetInt("playerinput", 0);
+        playerOneInputType = 0;
         GameObject weapon = Instantiate(currentWeapon.objectprefab);
         //done like this so that scale is normal
         weapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
