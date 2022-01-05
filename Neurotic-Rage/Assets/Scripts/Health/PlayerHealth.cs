@@ -14,6 +14,7 @@ public class PlayerHealth : BaseHealth
     public GameObject deathPlayer;
     public GameObject deathLight;
     public GameObject mesh;
+    public GameObject endStats;
     public PlayerMovement pm;
     public LoadingScreen ls;
 
@@ -74,6 +75,10 @@ public class PlayerHealth : BaseHealth
     public IEnumerator LoadNewScene()
 	{
         yield return new WaitForSeconds(10);
+        youDied.SetActive(false);
+        endStats.SetActive(true);
+        yield return new WaitForSeconds(4);
+        endStats.SetActive(false);
         fdb.FadeToBlack(2.5f);
         yield return new WaitForSeconds(1);
         ls.ChargementScene(0);
@@ -94,6 +99,9 @@ public class PlayerHealth : BaseHealth
         pm.swordOnBack.SetActive(false);
         pm.enabled = false;
         yield return new WaitForSeconds(1.5f);
+        endStats.SetActive(true);
+        yield return new WaitForSeconds(4);
+        endStats.SetActive(false);
         fdb.FadeToBlack(2.5f);
         yield return new WaitForSeconds(1);
         ls.ChargementScene(0);
