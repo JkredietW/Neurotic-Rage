@@ -72,10 +72,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        mixer.SetFloat("Master", Mathf.Log10(PlayerPrefs.GetFloat("Master")));
-        mixer.SetFloat("Music", Mathf.Log10(PlayerPrefs.GetFloat("Music")));
-        mixer.SetFloat("SFX", Mathf.Log10(PlayerPrefs.GetFloat("SFX")));
-        mixer.SetFloat("UI", Mathf.Log10(PlayerPrefs.GetFloat("UI")));
         time = 0;
     }
     public void PlayedTuturial()
