@@ -49,6 +49,7 @@ public class PlayerHealth : BaseHealth
         mesh.SetActive(false);
         deathPlayer.SetActive(true);
         deathLight.SetActive(true);
+        Time.timeScale = 0.3f;
         pm.swordInHand.SetActive(false);
         pm.swordOnBack.SetActive(false);
         pm.enabled = false;
@@ -95,6 +96,7 @@ public class PlayerHealth : BaseHealth
         mesh.SetActive(false);
         deathPlayer.SetActive(true);
         deathLight.SetActive(true);
+        Time.timeScale = 0.3f;
         pm.swordInHand.SetActive(false);
         pm.swordOnBack.SetActive(false);
         pm.enabled = false;

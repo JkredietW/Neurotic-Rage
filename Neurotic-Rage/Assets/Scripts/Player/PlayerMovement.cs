@@ -1477,7 +1477,7 @@ public class PlayerMovement : MonoBehaviour
             if (!audioSourceWalking.isPlaying)
             {
                 audioSourceWalking.Play();
-                audioSourceWalking.volume = 1;
+                audioSourceWalking.volume = 0.15f;
             }
         }
         else

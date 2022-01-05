@@ -788,7 +788,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4
+  - time: 0.31666666
     functionName: FadeToBlack
     data: 
     objectReferenceParameter: {fileID: 0}
