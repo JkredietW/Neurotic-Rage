@@ -513,7 +513,7 @@ public class GameManager : MonoBehaviour
         if (waveCount % 10 == 0)
         {      
             StartCoroutine(BossRound());
-            LastBosAmount *= 1.25f;
+            LastBosAmount *= 1.5f;
         }
 		else
 		{
