@@ -48,7 +48,7 @@ public class EnemyStateMachine : MonoBehaviour
     }
     public IEnumerator ScreamSound()
 	{
-        float waitTime = Random.Range(2.5f, 10);
+        float waitTime = Random.Range(2.5f, 5);
         yield return new WaitForSeconds(waitTime);
         int randomSound = Random.Range(0, screamSounds.Length);
         screamSounds[randomSound].Play();

@@ -123,6 +123,7 @@ public class EnemyDash : MonoBehaviour
 		yield return new WaitForSeconds(dashChargeTime);
 		transform.LookAt(player.transform.position);
 		moveTowards = true;
+		jumping.Play();
 		yield return new WaitForSeconds(dashCooldown);
 		isDashing = false;
 		isAttacking = false;
