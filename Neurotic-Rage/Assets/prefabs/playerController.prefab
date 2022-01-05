@@ -18094,10 +18094,10 @@ MonoBehaviour:
   meleeAttackCooldown: 0.8
   movementSpeed: 4
   gravity: -1
-  currentAmmo: 1000
-  maxAmmo: 1000
-  currentHeavyAmmo: 1000
-  maxHeavyAmmo: 1000
+  currentAmmo: 150
+  maxAmmo: 150
+  currentHeavyAmmo: 250
+  maxHeavyAmmo: 250
   lastInputWasController: 0
   isRunning: 0
   moveDir: {x: 0, y: 0, z: 0}

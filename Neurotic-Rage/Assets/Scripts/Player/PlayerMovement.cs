@@ -860,6 +860,8 @@ public class PlayerMovement : MonoBehaviour
 
         //make weapon
         GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
+        specialWeapon.SetActive(false);
+
         //done like this so that scale is normal
         specialWeapon.transform.SetPositionAndRotation(weaponInHand.transform.position, weaponInHand.transform.rotation);
         specialWeapon.transform.SetParent(weaponInHand.transform);
@@ -920,6 +922,8 @@ public class PlayerMovement : MonoBehaviour
 
         //make weapon
         GameObject specialWeapon = Instantiate(currentWeapon.objectprefab);
+        specialWeapon.SetActive(false);
+
         //done like this so that scale is normal
         specialWeapon.transform.SetPositionAndRotation(weaponInHandTwo.transform.position, weaponInHandTwo.transform.rotation);
         specialWeapon.transform.SetParent(weaponInHandTwo.transform);
@@ -951,11 +955,13 @@ public class PlayerMovement : MonoBehaviour
     void SecAfterSwapWeapon()
     {
         isSwitchingWeapon = false;
+        weaponInHand.transform.GetChild(0).gameObject.SetActive(true);
         babyAnimator.SetLayerWeight(babyAnimator.GetLayerIndex("AnnyStates"), 0);
     }
     void SecAfterSwapWeaponTwo()
     {
         isSwitchingWeaponTwo = false;
+        weaponInHandTwo.transform.GetChild(0).gameObject.SetActive(true);
         babyAnimator.SetLayerWeight(babyAnimator.GetLayerIndex("AnnyStates"), 0);
     }
     public IEnumerator MeleeAttack()

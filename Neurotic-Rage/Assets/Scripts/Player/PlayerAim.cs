@@ -23,14 +23,17 @@ public class PlayerAim : MonoBehaviour
 
     public Joystick mobileAimDirection;
 
-    public bool twoPlayers;
+    public bool twoPlayers = false;
     public Transform babyRotation;
+
+    Vector3 middleOfScreen;
 
     public void GetVariables()
     {
         player = GetComponentInParent<PlayerMovement>();
         playerCamera = player.GiveCamera();
         aimLayer = player.GiveLayerMask();
+        middleOfScreen = new Vector3(Screen.width / 2, 0, Screen.height / 2);
     }
     private void Update()
     {
@@ -69,7 +72,7 @@ public class PlayerAim : MonoBehaviour
                         if (Time.time >= timer && lookRotationWithController.magnitude > 0.8f)
                         {
                             player.isShooting = true;
-                            player.FireWeapon();
+                            StartCoroutine(player.FireWeapon());
                         }
                     }
                     else if (lookRotationWithControllerMovementBased.magnitude > 0.1f)
@@ -100,18 +103,18 @@ public class PlayerAim : MonoBehaviour
             }
             else
             {
-                RaycastHit _hit;
-                Ray _ray = playerCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(_ray, out _hit, Mathf.Infinity, aimLayer))
+                if (lastMousePosition != Input.mousePosition)
                 {
-                    if (lastMousePosition != Input.mousePosition)
-                    {
-                        lastMousePosition = Input.mousePosition;
-                        lookAtDirection = _hit.point - player.transform.position;
-                        lookAtDirection.y = 0;
-                        lookAtDirection.Normalize();
-                        transform.rotation = Quaternion.LookRotation(lookAtDirection);
-                    }
+                    //check if mouse moved
+                    lastMousePosition = Input.mousePosition;
+                    //define direction
+                    lookAtDirection = new Vector3(Input.mousePosition.x, 0, Input.mousePosition.y) - middleOfScreen;
+                    lookAtDirection.y = 0;
+                    //add camera rotation
+                    Vector3 newDirection = Quaternion.Euler(0, playerCamera.transform.eulerAngles.y, 0) * lookAtDirection;
+                    newDirection.Normalize();
+                    //apply rotation
+                    transform.rotation = Quaternion.LookRotation(newDirection);
                 }
             }
         }
@@ -133,7 +136,7 @@ public class PlayerAim : MonoBehaviour
                 if (Time.time >= timer)
                 {
                     player.isShooting = true;
-                    player.FireWeapon();
+                    StartCoroutine(player.FireWeapon());
                 }
             }
             else if (lookRotationWithJoystickMovementBased.magnitude != 0)
@@ -164,7 +167,7 @@ public class PlayerAim : MonoBehaviour
         if (Time.time >= timerTwo && lookRotationWithController.magnitude > 0.8f)
         {
             player.isShootingTwo = true;
-            player.FireWeaponTwo();
+            StartCoroutine(player.FireWeaponTwo());
         }
         else
         {
