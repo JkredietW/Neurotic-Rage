@@ -65,6 +65,12 @@ public class InGameSettings : MonoBehaviour
         mixer.SetFloat("SFX", sliderValue.value);
         PlayerPrefs.SetFloat("SFX", sliderValue.value);
     }
+
+    public void SetBrightness(Slider sliderValue)
+    {
+        brightnisLight.intensity = sliderValue.value / 1000;
+        PlayerPrefs.SetFloat("Bright", sliderValue.value / 1000);
+    }
     public void SetUiVolume(Slider sliderValue)
     {
         mixer.SetFloat("UI", sliderValue.value);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerShop : InterActable
 {
@@ -18,8 +19,11 @@ public class PlayerShop : InterActable
     //will be sscripable objects later
     public List<ShopItem> ItemTypes;
     [SerializeField] Discounts discountList;
+    private AudioSource source;
+
     private void Awake()
     {
+        source = GetComponent<AudioSource>();
         upgradeSlots = new List<ShopItem>();
         for (int i = 0; i < 3; i++)
         {
@@ -44,7 +48,7 @@ public class PlayerShop : InterActable
             slotLocations.Add(item);
         }
         RollItems();
-        resetRoll = Random.Range(3, 6);
+        resetRoll = Random.Range(5, 15);
     }
     public void AfterWave()
     {
@@ -135,6 +139,7 @@ public class PlayerShop : InterActable
     public void ShopOpened()
     {
         //put items in slots
+        source.Play();
         if (type == ShopType.Upgrades)
         {
             for (int i = 0; i < slotLocations.Count; i++)

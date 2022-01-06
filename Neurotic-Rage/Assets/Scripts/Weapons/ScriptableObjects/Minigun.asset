@@ -29,8 +29,8 @@ MonoBehaviour:
   attacksPerSecond: 20
   reloadTime: 0
   pierceAmount: 1000
-  ammo: 1000
-  maxAmmo: 1000
+  ammo: 200
+  maxAmmo: 200
   bulletSpeed: 50
   projectileCount: 5
   rotationOffset: 5

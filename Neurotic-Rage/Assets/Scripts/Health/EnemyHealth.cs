@@ -110,18 +110,23 @@ public class EnemyHealth : BaseHealth
     public virtual void EnemySetup(float _scaling, float _drop, WorldWeapon _worldWeapon, List<Weapon> _weapons)
     {
         maxhealth *= _scaling;
+        maxhealth *= Random.Range(0.8f, 1.2f);
         health = maxhealth;
 
         anim.speed *= _scaling * 0.5f;
+        anim.speed *= Random.Range(0.8f, 1.2f);
         if (type == TypeEnemy.normal)
         {
             es.damage *= _scaling;
+            es.damage *= Random.Range(0.8f, 1.2f);
         }
         else
         {
             ed.damage *= _scaling;
+            ed.damage *= Random.Range(0.8f, 1.2f);
         }
         agent.speed *= _scaling * 0.5f;
+        agent.speed *= Random.Range(0.8f, 1.2f);
 
         chanceForDrop = _drop;
         worldWeaponPrefab = _worldWeapon;

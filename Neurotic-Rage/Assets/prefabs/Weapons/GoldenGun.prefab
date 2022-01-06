@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 7320750945144682316}
   m_LocalRotation: {x: -0.47435775, y: 0.51798666, z: 0.43777263, w: 0.5612751}
   m_LocalPosition: {x: -0.005, y: -0.051, z: -0.048}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 7907829027635212576}
   - {fileID: 4183498572545851149}
@@ -79,6 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootpos: {fileID: 7907829027635212576}
+  specialAnim: {fileID: 0}
 --- !u!135 &-2765391317502063765
 SphereCollider:
   m_ObjectHideFlags: 0

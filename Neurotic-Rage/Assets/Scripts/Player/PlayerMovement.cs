@@ -292,12 +292,12 @@ public class PlayerMovement : MonoBehaviour
         if(isShooting)
         {
             rotationSpeedMinigun = Mathf.Clamp(rotationSpeedMinigun += 2, 0, 100);
-            timeWhileShooting = 100 * Time.deltaTime;
+            timeWhileShooting += 1 * Time.deltaTime;
         }
         else
         {
-            rotationSpeedMinigun = Mathf.Clamp(rotationSpeedMinigun -= 3, 0, 100);
-            timeWhileNotShooting = 100 * Time.deltaTime;
+            rotationSpeedMinigun = Mathf.Clamp(rotationSpeedMinigun -= 1, 0, 100);
+            timeWhileNotShooting += 1 * Time.deltaTime;
         }
         if (specialAnimator != null)
         {
@@ -686,7 +686,7 @@ public class PlayerMovement : MonoBehaviour
     void SwapWithWorldWeapon()
     {
         //return when already swapping weapon
-        if(isSwitchingWeapon)
+        if(isSwitchingWeapon || isReloading)
         {
             return;
         }
