@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4785820487764305760}
   - component: {fileID: 8315637442265032412}
   m_Layer: 21
-  m_Name: WorldWeapon
+  m_Name: WorldWeaponBASE
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heldItem: {fileID: 11400000, guid: 96ede0f51b1b8694b9ff96b391bc7bd2, type: 2}
-  alreadyInWorld: 0
+  alreadyInWorld: 1
 --- !u!65 &8315637442265032412
 BoxCollider:
   m_ObjectHideFlags: 0
