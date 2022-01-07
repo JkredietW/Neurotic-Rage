@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9326ebb8f7e4243a8015ec1d38bd99, type: 3}
   m_Name: 2Normal
   m_EditorClassIdentifier: 
-  moneyValue: 180
+  moneyValue: 20
   itemType: 1
-  normalAmmoAmount: 200
+  itemName: 
+  itemSprite: {fileID: 21300000, guid: 887883ccd5a623d47be5c08de71ea62a, type: 3}
+  normalAmmoAmount: 20
   specialAmmoAmount: 0

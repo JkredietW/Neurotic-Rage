@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyValue: 50
   itemType: 0
-  itemName: 
-  itemSprite: {fileID: 0}
+  itemName: Health1
+  itemSprite: {fileID: 21300000, guid: fb390151fdc0c6c41b2977a64a5fd03a, type: 3}
   healthAmount: 10

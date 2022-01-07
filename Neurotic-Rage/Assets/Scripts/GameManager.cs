@@ -447,6 +447,8 @@ public class GameManager : MonoBehaviour
                 HeldUpgrades.Add(selectedItem as ShopUpgradeItem);
                 UpdateTexts();
                 CalculateStats();
+                player.GrantAmmo(0, 0);
+                player.health.RecieveHealth(0);
             }
             else if (selectedItem.itemType == ShopType.Ammo)
             {
@@ -454,6 +456,7 @@ public class GameManager : MonoBehaviour
                 statsScript.total_healthBought++;
                 ShopAmmo tempItem = selectedItem as ShopAmmo;
                 player.GrantAmmo(tempItem.normalAmmoAmount, tempItem.specialAmmoAmount);
+                UpdateTexts();
             }
             else if (selectedItem.itemType == ShopType.Health)
             {
@@ -463,6 +466,7 @@ public class GameManager : MonoBehaviour
                 statsScript.thisgame_damageHealed += tempItem.healthAmount;
                 statsScript.thisgame_damageHealed += tempItem.healthAmount;
                 player.health.RecieveHealth(tempItem.healthAmount);
+                UpdateTexts();
             }
             selectedItemInUI.Setup(null);
             RemoveItemFromShop(selectedItem);

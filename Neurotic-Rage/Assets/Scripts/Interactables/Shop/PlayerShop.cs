@@ -107,10 +107,10 @@ public class PlayerShop : InterActable
         }
         else if(type == ShopType.Health)
         {
-            ammoSlots[0] = ItemTypes[0];
-            ammoSlots[1] = ItemTypes[1];
-            ammoSlots[2] = ItemTypes[2];
-            ammoSlots[3] = ItemTypes[3];
+            healthSlots[0] = ItemTypes[0];
+            healthSlots[1] = ItemTypes[1];
+            healthSlots[2] = ItemTypes[2];
+            healthSlots[3] = ItemTypes[3];
         }
     }
     ShopItem RandomizeItem(ShopItem _item)
