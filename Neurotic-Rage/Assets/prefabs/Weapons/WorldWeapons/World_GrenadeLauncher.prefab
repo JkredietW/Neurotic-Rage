@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 4785820487764305770}
   - component: {fileID: 4785820487764305760}
   - component: {fileID: 8315637442265032412}
+  - component: {fileID: -5925411036353591717}
   m_Layer: 21
   m_Name: World_GrenadeLauncher
   m_TagString: Weapon
@@ -204,6 +205,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14541438, y: 0.50704914, z: 0.7358797}
   m_Center: {x: 0.009294856, y: 0.054338485, z: -0.007854581}
+--- !u!114 &-5925411036353591717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4785820487764305769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.5958981, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6953717426110524333
 GameObject:
   m_ObjectHideFlags: 0
