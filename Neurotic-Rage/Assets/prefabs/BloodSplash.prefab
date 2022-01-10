@@ -72,7 +72,7 @@ VisualEffect:
       - m_Value:
           serializedVersion: 2
           key0: {r: 0.22647059, g: 0, b: 0.17745098, a: 1}
-          key1: {r: 0, g: 0.047258377, b: 1, a: 0.7411765}
+          key1: {r: 0, g: 0.011764706, b: 0.25, a: 0.7411765}
           key2: {r: 0, g: 0, b: 0, a: 0}
           key3: {r: 0, g: 0, b: 0, a: 0}
           key4: {r: 0, g: 0, b: 0, a: 0}
@@ -88,8 +88,8 @@ VisualEffect:
           ctime6: 0
           ctime7: 0
           atime0: 0
-          atime1: 48380
-          atime2: 64764
+          atime1: 29491
+          atime2: 43754
           atime3: 0
           atime4: 0
           atime5: 0

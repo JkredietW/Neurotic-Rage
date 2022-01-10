@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
             string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/Stats.json");
             StatHolder _statsScript = JsonUtility.FromJson<StatHolder>(data);
             statsScript = _statsScript;
+            statsScript.ResetCurrentGameStats();
         }
     }
     private void Update()

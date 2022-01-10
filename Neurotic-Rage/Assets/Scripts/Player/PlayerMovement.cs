@@ -691,9 +691,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        //set previous weapon off, no double weapons
-        weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
-
         //animation for picking up a weapon
         animator.SetTrigger("WeaponPickUp");
 
@@ -704,23 +701,35 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //get right indecator
-        Weapon oldWeapon = currentWeapon;
+        Weapon oldWeapon = default;
 
         //swap weapons
         switch (weaponsInRange[0].heldItem.type)
         {
             case weaponType.light:
-                selectWeaponIndecator[0].SetActive(true);
+                if (currentWeapon.type == weaponType.light)
+                {
+                    //set previous weapon off, no double weapons
+                    weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
+                    currentWeapon = weaponsInRange[0].heldItem;
+                    selectWeaponIndecator[0].SetActive(true);
+                }
+                oldWeapon = weaponSlots[0];
                 weaponSlots[0] = weaponsInRange[0].heldItem;
-                currentWeapon = weaponSlots[0];
                 DropWeapon(oldWeapon);
                 UiWeaponSlots[2].SetActive(false);
                 break;
 
             case weaponType.heavy:
-                selectWeaponIndecator[1].SetActive(true);
+                if (currentWeapon.type == weaponType.heavy)
+                {
+                    //set previous weapon off, no double weapons
+                    weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
+                    currentWeapon = weaponsInRange[0].heldItem;
+                    selectWeaponIndecator[1].SetActive(true);
+                }
+                oldWeapon = weaponSlots[1];
                 weaponSlots[1] = weaponsInRange[0].heldItem;
-                currentWeapon = weaponSlots[1];
                 DropWeapon(oldWeapon);
                 UiWeaponSlots[2].SetActive(false);
                 break;

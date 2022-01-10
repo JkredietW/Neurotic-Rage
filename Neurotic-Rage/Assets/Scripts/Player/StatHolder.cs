@@ -75,7 +75,7 @@ public class StatHolder
     public float thisgame_giantEnemyKills;
     #endregion
 
-    public void Awake()
+    public void ResetCurrentGameStats()
     {
         thisgame_competedWaves = 0;
         thisgame_timePlayed = 0;

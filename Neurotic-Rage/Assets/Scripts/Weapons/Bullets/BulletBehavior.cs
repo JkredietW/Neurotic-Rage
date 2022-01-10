@@ -112,8 +112,7 @@ public class BulletBehavior : MonoBehaviour
             {
                 item.GetComponent<EnemyHealth>().DoDamage(damage);
                 Vector3 pointToSpawn = item.transform.position;
-                Vector3 Rotation = item.transform.position - transform.position;
-                GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, Quaternion.Euler(Rotation));
+                GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, rotation);
                 tempBlood.GetComponent<VisualEffect>().Play();
             }
         }
