@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public Scrollbar scrolbar;
+    public ScrollRect myScrollRect;
     public FadeToFromBlack fb;
     public GameObject playPanel;
     public GameObject settingsPanel;
@@ -87,7 +90,14 @@ public class MainMenu : MonoBehaviour
         scorebord.scores[25].text.text = "Glitch enemy kills" + "  " + Mathf.Round(statsScript.total_glitchEnemyKills).ToString();
         scorebord.scores[26].text.text = "Giant enemy kills" + "  " + Mathf.Round(statsScript.total_giantEnemyKills).ToString();
     }
-    private void Update()
+	public void ResetScrollBar()
+	{
+        scrolbar.value = 1;
+        Canvas.ForceUpdateCanvases();
+        myScrollRect.verticalNormalizedPosition = 1;
+        Canvas.ForceUpdateCanvases();
+    }
+	private void Update()
     {
         var mouse = Mouse.current;
         if(mouse.position.ReadValue() != lastpos)

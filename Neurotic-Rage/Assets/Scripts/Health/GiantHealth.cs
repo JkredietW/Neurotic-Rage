@@ -11,7 +11,7 @@ public class GiantHealth : EnemyHealth
     public bool isDead;
     public Color deadOutline;
 
-	private void Awake()
+	private void start()
 	{
         healthSlider.maxValue = maxhealth;
         healthSlider.value = maxhealth;

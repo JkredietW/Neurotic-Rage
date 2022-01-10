@@ -14,7 +14,7 @@ public class LoadingScreen : MonoBehaviour
     public TextMeshProUGUI adviceText;
     public string[] advice;
     private bool active;
-    private int currentLine,amountDots;
+    private int currentLine, amountDots;
     private AsyncOperation async;
     private string dots;
 	private void Update()
@@ -38,22 +38,20 @@ public class LoadingScreen : MonoBehaviour
         amountDots++;
 		if (amountDots==1)
 		{
-            dots = ".";
+            loadingText.text = "LOADING" + " " + ".";
         }
 		else if (amountDots == 2)
 		{
-            dots = "..";
+            loadingText.text = "LOADING" + " " + "..";
         }
         else if (amountDots == 3)
         {
-            dots = "...";
+            loadingText.text = "LOADING" + " "+"...";
         }
         else
 		{
-            amountDots = 0;
-            loadingText.text = "Loading";
+            loadingText.text = "LOADING";
         }
-        loadingText.text += dots;
         yield return new WaitForSeconds(0.25f);
         AddNewDot();
     }
@@ -72,14 +70,11 @@ public class LoadingScreen : MonoBehaviour
 		if (playerprefTut == "false")
 		{
             ChargementScene(i-1);
-            print("koe");
         }
 		else
 		{
             ChargementScene(i);
-            print("koekje");
         }
-
     }
     public void ChargementScene(int i)
     {
