@@ -74,4 +74,38 @@ public class StatHolder
     public float thisgame_glitchEnemyKills;
     public float thisgame_giantEnemyKills;
     #endregion
+
+    public void Awake()
+    {
+        thisgame_competedWaves = 0;
+        thisgame_timePlayed = 0;
+
+        thisgame_damageDone = 0;
+        thisgame_damageTaken = 0;
+        thisgame_damageHealed = 0;
+        thisgame_bulletsShot = 0;
+        thisgame_bulletsHit = 0;
+        thisgame_bulletsMissed = 0;
+        thisgame_timesReloaded = 0;
+        thisgame_timeWastedNotShooting = 0;
+        thisgame_timeWastedShooting = 0;
+        thisgame_distanceWalked = 0;
+        thisgame_highfives = 0;
+        thisgame_boxes = 0;
+
+        thisgame_moneyCollected = 0;
+        thisgame_moneySpend = 0;
+        thisgame_itemsBought = 0;
+        thisgame_ammoBought = 0;
+        thisgame_healthBought = 0;
+        thisgame_upgradesBought = 0;
+        thisgame_shopsOpened = 0;
+
+        thisgame_kills = 0;
+        thisgame_smallEnemyKills = 0;
+        thisgame_mediumEnemyKills = 0;
+        thisgame_bigEnemyKills = 0;
+        thisgame_glitchEnemyKills = 0;
+        thisgame_giantEnemyKills = 0;
+    }
 }
