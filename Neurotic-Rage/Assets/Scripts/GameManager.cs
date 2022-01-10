@@ -74,8 +74,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         time = 0;
-        waveCount = 9;
-        totalWaveCount = waveCount;
     }
     public void PlayedTuturial()
 	{
