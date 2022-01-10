@@ -177,6 +177,8 @@ GameObject:
   - component: {fileID: 7862348284455887583}
   - component: {fileID: 1693445856174702790}
   - component: {fileID: 4111948207525244538}
+  - component: {fileID: 5778491255380767869}
+  - component: {fileID: 3712446554578983153}
   m_Layer: 0
   m_Name: ammo  vending
   m_TagString: Shop
@@ -365,6 +367,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &5778491255380767869
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2373839122005941176}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.010000001, y: 0.01, z: 0.0117591275}
+  m_Center: {x: -3.8282426e-11, y: 0, z: 0.009855288}
+--- !u!54 &3712446554578983153
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2373839122005941176}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2716927132704506462
 GameObject:
   m_ObjectHideFlags: 0

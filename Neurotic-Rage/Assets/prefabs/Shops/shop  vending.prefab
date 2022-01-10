@@ -285,6 +285,8 @@ GameObject:
   - component: {fileID: 8734489503468409406}
   - component: {fileID: 4385395621448464603}
   - component: {fileID: -2405376062213154859}
+  - component: {fileID: 3790706286671970841}
+  - component: {fileID: 6622860076171571434}
   m_Layer: 0
   m_Name: shop  vending
   m_TagString: Shop
@@ -481,6 +483,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &3790706286671970841
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402753102738471313}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01, y: 0.01, z: 0.0114065735}
+  m_Center: {x: -2.8657104e-11, y: 0, z: 0.009610909}
+--- !u!54 &6622860076171571434
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402753102738471313}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2602429642998440055
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,7 +749,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3572c8f90f551f04c9af9ed33b5b33f5, type: 3}
-  m_Color: {r: 0, g: 0.11378741, b: 1, a: 1}
+  m_Color: {r: 0.299229, g: 0.047659315, b: 0.5943396, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

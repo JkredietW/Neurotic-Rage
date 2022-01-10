@@ -69,6 +69,7 @@ public class PlayerHealth : BaseHealth
 
         }
         StartCoroutine(LoadNewScene());
+        Destroy(FindObjectOfType<GiantHealth>());
         Invoke("ShowLoss", 4);
     }
     public void ShowLoss()
