@@ -19,6 +19,7 @@ public class GiantHealth : EnemyHealth
     }
 	public override void Dying()
     {
+        healtbar.SetActive(false);
         for (int i = 0; i < outline.Length; i++)
         {
             outline[i].OutlineColor = deadOutline;

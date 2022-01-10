@@ -68,11 +68,14 @@ public class GameManager : MonoBehaviour
 
     //stats
     public StatHolder statsScript;
-    float time;
+    [HideInInspector]
+    public float time;
 
     private void Start()
     {
         time = 0;
+        waveCount = 9;
+        totalWaveCount = waveCount;
     }
     public void PlayedTuturial()
 	{
@@ -147,7 +150,7 @@ public class GameManager : MonoBehaviour
     }
     public void EnemyDied(GameObject enemyThatDied)
     {
-		if (pauseWave)
+        if (pauseWave)
 		{
             return;
 		}
@@ -162,19 +165,26 @@ public class GameManager : MonoBehaviour
             GiveMoney(10 * totalWaveCount);
             enemiesAlive.Remove(enemyThatDied);
         }
-		if (!isBossRound)
-		{
+        if (!isBossRound)
+        {
             if (enemiesAlive.Count <= 5 && waveIsInProgress)
             {
                 WaveComplete();
             }
         }
-		else
-		{
-            if (bossesAlive.Count <= 0 && waveIsInProgress)
+        else
+        {
+            if (bossesAlive.Count <= 3 && waveIsInProgress)
             {
-                //geef hiero item ding op enemydied positie
+                bossesAlive.Clear();
                 WaveComplete();
+            }
+        }
+        for (int i = 0; i < bossesAlive.Count; i++)
+        {
+            if (bossesAlive[i] == null)
+            {
+                bossesAlive.Remove(bossesAlive[i]);
             }
         }
     }

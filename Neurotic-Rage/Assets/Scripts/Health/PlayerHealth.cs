@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : BaseHealth
 {
@@ -16,8 +17,9 @@ public class PlayerHealth : BaseHealth
     public GameObject mesh;
     public GameObject endStats;
     public PlayerMovement pm;
+    public GameManager gm;
     public LoadingScreen ls;
-
+    public TextMeshProUGUI[] statsText;
 
     protected override void Start()
     {
@@ -42,7 +44,7 @@ public class PlayerHealth : BaseHealth
     }
     public override void Died()
     {
-        //stats
+        ShowStats();
         FindObjectOfType<GameManager>().statsScript.total_deaths++;
         FindObjectOfType<GameManager>().Save();
         pm.MayMove(false);
@@ -90,6 +92,7 @@ public class PlayerHealth : BaseHealth
     }
     public IEnumerator CarComes()
 	{
+        ShowStats();
         FindObjectOfType<CarScript>().otherPos.transform.SetParent(null);
         FindObjectOfType<CarScript>().transform.SetParent(null);
         pm.MayMove(false);
@@ -107,6 +110,25 @@ public class PlayerHealth : BaseHealth
         fdb.FadeToBlack(2.5f);
         yield return new WaitForSeconds(1);
         ls.ChargementScene(0);
+    }
+    public void ShowStats()
+	{
+        statsText[0].text = "Time Alive"+"  "+ Mathf.Round(gm.time).ToString();
+        statsText[1].text = "Waves Completed" + "  " + Mathf.Round(gm.statsScript.thisgame_competedWaves).ToString();
+        statsText[2].text = "kills" + "" + Mathf.Round(gm.statsScript.thisgame_kills).ToString();
+        statsText[3].text = "Money Collected" + "  " + Mathf.Round(gm.statsScript.thisgame_moneyCollected).ToString();
+        statsText[4].text = "Money Spend" + "  " + Mathf.Round(gm.statsScript.thisgame_moneySpend).ToString();
+        statsText[5].text = "Upgrades" + "  " + Mathf.Round(gm.statsScript.thisgame_upgradesBought).ToString();
+        statsText[6].text = "Distance Travaled" + "  " + Mathf.Round(gm.statsScript.thisgame_distanceWalked).ToString();
+        statsText[7].text = "Damage Taken" + "  " + Mathf.Round(gm.statsScript.thisgame_damageTaken).ToString();
+        statsText[8].text = "Small Enemys Killed" + "  " + Mathf.Round(gm.statsScript.thisgame_smallEnemyKills).ToString();
+        statsText[9].text = "Medium Enemys Killed" + "  " + Mathf.Round(gm.statsScript.thisgame_mediumEnemyKills).ToString();
+        statsText[10].text = "Medium Enemys Killed" + "  " + Mathf.Round(gm.statsScript.thisgame_bigEnemyKills).ToString();
+        statsText[11].text = "Glitch Enemys Killed" + "  " + Mathf.Round(gm.statsScript.thisgame_glitchEnemyKills).ToString();
+        statsText[12].text = "Time Waisted Not Shooting" + "  " + Mathf.Round(gm.statsScript.thisgame_timeWastedNotShooting).ToString();
+        statsText[13].text = "Bullets Mised" + "  " + Mathf.Round(gm.statsScript.thisgame_bulletsMissed).ToString();
+        statsText[14].text = "Bullets Hit" + "  " + Mathf.Round(gm.statsScript.thisgame_bulletsHit).ToString();
+        statsText[15].text = "Times Reloaded" + "  " + Mathf.Round(gm.statsScript.thisgame_timesReloaded).ToString();
     }
 
 }
