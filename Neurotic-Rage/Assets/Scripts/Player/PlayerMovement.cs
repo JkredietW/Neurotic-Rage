@@ -948,7 +948,8 @@ public class PlayerMovement : MonoBehaviour
     {
         //instatiate weapon that was held
         GameObject droppedWeapon = Instantiate(_oldWeapon.objectprefab, bulletOrigin.position, playerAim.transform.rotation);
-        droppedWeapon.AddComponent<WorldWeapon>().Setup(_oldWeapon, true);
+        bool special = _oldWeapon.type == weaponType.special ? true : false;
+        droppedWeapon.AddComponent<WorldWeapon>().Setup(_oldWeapon, special);
 
         currentWeapon.OnSwap(extra_attackSpeed);
     }
