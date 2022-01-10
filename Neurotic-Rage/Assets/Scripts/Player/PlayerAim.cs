@@ -68,6 +68,10 @@ public class PlayerAim : MonoBehaviour
                             timer = Time.time + 0.1f;
                         }
                         lookAtDirection = lookRotationWithController;
+                        if (lookAtDirection == Vector3.zero)
+                        {
+                            return;
+                        }
                         transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
                         if (Time.time >= timer && lookRotationWithController.magnitude > 0.8f)
                         {
@@ -79,6 +83,10 @@ public class PlayerAim : MonoBehaviour
                     {
                         firstTime = true;
                         lookAtDirection = lookRotationWithControllerMovementBased;
+                        if (lookAtDirection == Vector3.zero)
+                        {
+                            return;
+                        }
                         transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
                     }
                     else
@@ -98,6 +106,10 @@ public class PlayerAim : MonoBehaviour
                 lookAtDirection = player.moveDir;
                 lookAtDirection.y = 0;
                 lookAtDirection.Normalize();
+                if (lookAtDirection == Vector3.zero)
+                {
+                    return;
+                }
                 transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
                 player.GiveFireCooldown();
             }
@@ -132,6 +144,10 @@ public class PlayerAim : MonoBehaviour
                     timer = Time.time + 0.1f;
                 }
                 lookAtDirection = lookRotationWithJoystick;
+                if (lookAtDirection == Vector3.zero)
+                {
+                    return;
+                }
                 transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
                 if (Time.time >= timer)
                 {
@@ -143,6 +159,10 @@ public class PlayerAim : MonoBehaviour
             {
                 firstTime = true;
                 lookAtDirection = -lookRotationWithJoystickMovementBased;
+                if(lookAtDirection == Vector3.zero)
+                {
+                    return;
+                }
                 transform.rotation = Quaternion.Lerp(Quaternion.LookRotation(lookAtDirection.normalized), transform.rotation, 0.5f);
             }
             else

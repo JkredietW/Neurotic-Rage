@@ -175,6 +175,7 @@ public class GameManager : MonoBehaviour
         {
             if (bossesAlive.Count <= 3 && waveIsInProgress)
             {
+                player.GrantAmmo(1000000000, 1000000000);
                 bossesAlive.Clear();
                 WaveComplete();
             }
@@ -461,17 +462,17 @@ public class GameManager : MonoBehaviour
             }
             else if (selectedItem.itemType == ShopType.Ammo)
             {
-                statsScript.thisgame_healthBought++;
-                statsScript.total_healthBought++;
                 ShopAmmo tempItem = selectedItem as ShopAmmo;
+                statsScript.thisgame_ammoBought += tempItem.normalAmmoAmount + tempItem.specialAmmoAmount;
+                statsScript.total_ammoBought += tempItem.normalAmmoAmount + tempItem.specialAmmoAmount;
                 player.GrantAmmo(tempItem.normalAmmoAmount, tempItem.specialAmmoAmount);
                 UpdateTexts();
             }
             else if (selectedItem.itemType == ShopType.Health)
             {
-                statsScript.thisgame_ammoBought++;
-                statsScript.total_ammoBought++;
                 ShopHealth tempItem = selectedItem as ShopHealth;
+                statsScript.thisgame_healthBought += tempItem.healthAmount;
+                statsScript.total_healthBought += tempItem.healthAmount;
                 statsScript.thisgame_damageHealed += tempItem.healthAmount;
                 statsScript.thisgame_damageHealed += tempItem.healthAmount;
                 player.health.RecieveHealth(tempItem.healthAmount);
