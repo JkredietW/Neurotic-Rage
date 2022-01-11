@@ -46,13 +46,6 @@ public class InGameMenu : MonoBehaviour
 	{
 		panel.SetActive(false);
 	}
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			Menu();
-		}
-	}
 	public void ExitGame()
 	{
 		Application.Quit();

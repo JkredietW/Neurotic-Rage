@@ -420,7 +420,7 @@ public class GameManager : MonoBehaviour
             {
                 descriptionText[0].gameObject.SetActive(false);
             }
-            if (item.normalAmmoAmount != 0)
+            if (item.specialAmmoAmount != 0)
             {
                 descriptionText[1].gameObject.SetActive(true);
                 descriptionText[1].text = $"Restore heavy ammo : {item.specialAmmoAmount}";
@@ -507,6 +507,31 @@ public class GameManager : MonoBehaviour
             total_ammo += HeldUpgrades[i].stats.ammo;
             total_health += HeldUpgrades[i].stats.health;
             total_bullets += HeldUpgrades[i].stats.extraBullets;
+        }
+        //no negative stats
+        if (total_pierces < 0)
+        {
+            total_pierces = 0;
+        }
+        if (total_damage < 0)
+        {
+            total_damage = 0;
+        }
+        if (total_attackSpeed < 0)
+        {
+            total_attackSpeed = 0;
+        }
+        if (total_ammo < 0)
+        {
+            total_ammo = 0;
+        }
+        if (total_health < 0)
+        {
+            total_health = 0;
+        }
+        if (total_bullets < 0)
+        {
+            total_bullets = 0;
         }
         player.GiveStats(total_pierces, total_damage, total_attackSpeed, total_ammo, total_health, total_bullets);
     }

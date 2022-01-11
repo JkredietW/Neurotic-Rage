@@ -133,6 +133,10 @@ public class PlayerShop : InterActable
     }
     public override void OnPlayerExit()
     {
+        if(player == null)
+        {
+            return;
+        }
         player.ShopToggle(false, null);
         base.OnPlayerExit();
     }

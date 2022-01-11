@@ -254,6 +254,17 @@ public class PlayerMovement : MonoBehaviour
         }
         DefineDirection();
         Inputs();
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(shopIsOpen)
+            {
+                OpenShop();
+            }
+            else
+            {
+                FindObjectOfType<InGameMenu>().Menu();
+            }
+        }
 
         if(Gamepad.all.Count > 0)
         {
@@ -1151,7 +1162,15 @@ public class PlayerMovement : MonoBehaviour
             }
             else if(mayMove)
             {
-                StartCoroutine(ReloadWeapon());
+                if (currentWeapon.type == weaponType.special)
+                {
+                    DropWeapon(currentWeapon);
+                    currentWeapon = weaponSlots[currentWeaponSlot];
+                }
+                else
+                {
+                    StartCoroutine(ReloadWeapon());
+                }
             }
         }
     }
