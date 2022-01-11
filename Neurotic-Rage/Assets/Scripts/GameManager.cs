@@ -8,7 +8,6 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public float delayTime;
     public float timeBetweenWaves, timeBetweenSpawns;
     public float minimumDistance, maxDistance;
     public GameObject playerCanvas,momDiedCanvas,car;

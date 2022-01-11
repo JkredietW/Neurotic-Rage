@@ -44,6 +44,7 @@ public class PlayerHealth : BaseHealth
     }
     public override void Died()
     {
+        Destroy(FindObjectOfType<GiantHealth>().transform.gameObject);
         ShowStats();
         FindObjectOfType<GameManager>().statsScript.total_deaths++;
         FindObjectOfType<GameManager>().Save();
@@ -69,7 +70,6 @@ public class PlayerHealth : BaseHealth
 
         }
         StartCoroutine(LoadNewScene());
-        Destroy(FindObjectOfType<GiantHealth>());
         Invoke("ShowLoss", 4);
     }
     public void ShowLoss()
@@ -116,7 +116,7 @@ public class PlayerHealth : BaseHealth
 	{
         statsText[0].text = "Time Alive"+"  "+ Mathf.Round(gm.time).ToString();
         statsText[1].text = "Waves Completed" + "  " + Mathf.Round(gm.statsScript.thisgame_competedWaves).ToString();
-        statsText[2].text = "kills" + "" + Mathf.Round(gm.statsScript.thisgame_kills).ToString();
+        statsText[2].text = "kills" + "  " + Mathf.Round(gm.statsScript.thisgame_kills).ToString();
         statsText[3].text = "Money Collected" + "  " + Mathf.Round(gm.statsScript.thisgame_moneyCollected).ToString();
         statsText[4].text = "Money Spend" + "  " + Mathf.Round(gm.statsScript.thisgame_moneySpend).ToString();
         statsText[5].text = "Upgrades" + "  " + Mathf.Round(gm.statsScript.thisgame_upgradesBought).ToString();
