@@ -17,6 +17,7 @@ public class EnemyHealth : BaseHealth
     private WorldWeapon worldWeaponPrefab;
     private List<Weapon> dropItems;
     public EnemyType enemyType;
+    public AudioSource getHit;
 
     public enum EnemyType
     {
@@ -88,6 +89,7 @@ public class EnemyHealth : BaseHealth
         FindObjectOfType<GameManager>().statsScript.total_damageDone += _damage;
         base.DoDamage(_damage);
         anim.SetTrigger("GetHit");
+        getHit.Play();
         UpdateHealthBar();
     }
     public virtual void UpdateHealthBar()

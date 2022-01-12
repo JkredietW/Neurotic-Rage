@@ -20,6 +20,8 @@ public class PlayerHealth : BaseHealth
     public GameManager gm;
     public LoadingScreen ls;
     public TextMeshProUGUI[] statsText;
+    public AudioSource gruntPlayer;
+    public AudioClip[] grunts;
 
     protected override void Start()
     {
@@ -35,6 +37,9 @@ public class PlayerHealth : BaseHealth
         FindObjectOfType<GameManager>().statsScript.total_damageTaken += _damage;
         base.DoDamage(_damage);
         animator.SetTrigger("GetHit");
+        int randomgrunt = Random.Range(0, grunts.Length);
+        gruntPlayer.clip = grunts[randomgrunt];
+        gruntPlayer.Play();
         healthSlider.value = health;
     }
     public void GainMoreMaxHealth(float _extraHealth)
