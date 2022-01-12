@@ -38,5 +38,6 @@ public class GiantHealth : EnemyHealth
 	public override void UpdateHealthBar()
 	{
         healthSlider.value = health;
+        print("updates");
 	}
 }

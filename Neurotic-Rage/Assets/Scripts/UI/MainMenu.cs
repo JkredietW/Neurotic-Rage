@@ -129,6 +129,14 @@ public class MainMenu : MonoBehaviour
 	{
         pressed.Play();
     }
+    public void PlaySound(AudioSource audio)
+    {
+		if (audio.isPlaying)
+		{
+            return;
+		}
+        audio.Play();
+    }
     public void BeginScene(int i)
 	{
         StartCoroutine(StartScene(i));

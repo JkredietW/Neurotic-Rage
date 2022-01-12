@@ -70,7 +70,7 @@ public class PlayerHealth : BaseHealth
 
         }
         StartCoroutine(LoadNewScene());
-        Invoke("ShowLoss", 4);
+        Invoke("ShowLoss", 1);
     }
     public void ShowLoss()
 	{
@@ -78,10 +78,10 @@ public class PlayerHealth : BaseHealth
 	}
     public IEnumerator LoadNewScene()
 	{
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(4);
         youDied.SetActive(false);
         endStats.SetActive(true);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
         endStats.SetActive(false);
         fdb.FadeToBlack(2.5f);
         yield return new WaitForSeconds(1);

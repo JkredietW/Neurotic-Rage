@@ -87,6 +87,7 @@ public class EnemyHealth : BaseHealth
         FindObjectOfType<GameManager>().statsScript.thisgame_damageDone += _damage;
         FindObjectOfType<GameManager>().statsScript.total_damageDone += _damage;
         base.DoDamage(_damage);
+        anim.SetTrigger("GetHit");
         UpdateHealthBar();
     }
     public virtual void UpdateHealthBar()
