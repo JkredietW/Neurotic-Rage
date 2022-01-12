@@ -96,6 +96,10 @@ public class MainMenu : MonoBehaviour
         scorebord[25].text = "Glitch enemy kills :" + "  " + Mathf.Round(statsScript.total_glitchEnemyKills).ToString();
         scorebord[26].text = "Giant enemy kills :" + "  " + Mathf.Round(statsScript.total_giantEnemyKills).ToString();
     }
+    public void SelectSkin(Dropdown _value)
+    {
+        PlayerPrefs.SetInt("Skin", _value.value);
+    }
 	public void ResetScrollBar()
 	{
         scrolbar.value = 1;

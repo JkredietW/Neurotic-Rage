@@ -69,10 +69,14 @@ public class GameManager : MonoBehaviour
     public StatHolder statsScript;
     [HideInInspector]
     public float time;
+    private int selectedPlayerInt;
+    public List<GameObject> playerSkins;
 
     private void Start()
     {
         time = 0;
+        selectedPlayerInt = PlayerPrefs.GetInt("Skin", 0);
+        playerSkins[selectedPlayerInt].SetActive(true);
     }
     public void PlayedTuturial()
 	{
