@@ -7258,62 +7258,8 @@ MonoBehaviour:
   secondsToReopen: 0.24
   secondsTillCameraShake: 0.2
   garageDoor: {fileID: 1615269812}
-  scorebord:
-    scores:
-    - text: {fileID: 1007235319}
-      playerPrefName: kills
-    - text: {fileID: 570509100}
-      playerPrefName: multikill
-    - text: {fileID: 1672093185}
-      playerPrefName: deaths
-    - text: {fileID: 129835745}
-      playerPrefName: money collected
-    - text: {fileID: 436792268}
-      playerPrefName: upgrade collected
-    - text: {fileID: 2034618906}
-      playerPrefName: item bought
-    - text: {fileID: 96806934}
-      playerPrefName: damage taken
-    - text: {fileID: 135994444}
-      playerPrefName: damage done
-    - text: {fileID: 1991065024}
-      playerPrefName: small enemy killed
-    - text: {fileID: 1084474152}
-      playerPrefName: medium enemy killed
-    - text: {fileID: 1927758565}
-      playerPrefName: big enemy killed
-    - text: {fileID: 1206341462}
-      playerPrefName: glitch enemy killed
-    - text: {fileID: 908386343}
-      playerPrefName: giant enemy killed
-    - text: {fileID: 157546039}
-      playerPrefName: highest wave reached
-    - text: {fileID: 836094946}
-      playerPrefName: bullets shot
-    - text: {fileID: 409419670}
-      playerPrefName: gallon of blood spilled
-    - text: {fileID: 1161052018}
-      playerPrefName: times reloaded
-    - text: {fileID: 1408622643}
-      playerPrefName: time waisted while not shooting
-    - text: {fileID: 1025275273}
-      playerPrefName: weapon pick ups
-    - text: {fileID: 1346179877}
-      playerPrefName: km walked
-    - text: {fileID: 828232552}
-      playerPrefName: area's explored
-    - text: {fileID: 2082623904}
-      playerPrefName: highfives given
-    - text: {fileID: 339082399}
-      playerPrefName: fist bump given
-    - text: {fileID: 1630687351}
-      playerPrefName: shops opend
-    - text: {fileID: 1938238243}
-      playerPrefName: health restored
-    - text: {fileID: 442901455}
-      playerPrefName: bullets hit
-    - text: {fileID: 1726395317}
-      playerPrefName: clean runs
+  scoreContentObject: {fileID: 1447858520}
+  scorebord: []
   garage: 0
   eventSystem: {fileID: 1284211176}
   main: {fileID: 1797465201}

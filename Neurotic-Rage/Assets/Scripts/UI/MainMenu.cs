@@ -19,7 +19,8 @@ public class MainMenu : MonoBehaviour
     public float secondsToReopen;
     public float secondsTillCameraShake;
     public Animator garageDoor;
-    public ScoreBord scorebord;
+    public Transform scoreContentObject;
+    public List<TextMeshProUGUI> scorebord;
     public bool garage;
     public EventSystem eventSystem;
     public GameObject main;
@@ -39,6 +40,11 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(IEStart());
         statsScript = new StatHolder();
+        scorebord = new List<TextMeshProUGUI>();
+        foreach (Transform item in scoreContentObject)
+        {
+            scorebord.Add(item.GetComponent<TextMeshProUGUI>());
+        }
         GetSaves();
         ChangeActivePanel(main);
         if (PlayerPrefs.GetString("Tuturial") == "true")
@@ -59,36 +65,36 @@ public class MainMenu : MonoBehaviour
     }
     public void ShowStats()
     {
-        scorebord.scores[0].text.text = "Deaths :" + "  " + Mathf.Round(statsScript.total_deaths).ToString();
-        scorebord.scores[1].text.text = "Total runs completed :" + "  " + Mathf.Round(statsScript.total_competedRuns).ToString();
-        scorebord.scores[2].text.text = "Waves completed :" + "  " + Mathf.Round(statsScript.total_competedWaves).ToString();
-        scorebord.scores[3].text.text = "Time played :" + "" + Mathf.Round(statsScript.total_timePlayed).ToString() + "/sec";
+        scorebord[0].text = "Deaths :" + "  " + Mathf.Round(statsScript.total_deaths).ToString();
+        scorebord[1].text = "Total runs completed :" + "  " + Mathf.Round(statsScript.total_competedRuns).ToString();
+        scorebord[2].text = "Waves completed :" + "  " + Mathf.Round(statsScript.total_competedWaves).ToString();
+        scorebord[3].text = "Time played :" + "" + Mathf.Round(statsScript.total_timePlayed).ToString() + "/sec";
 
-        scorebord.scores[4].text.text = "Damage done :" + "  " + Mathf.Round(statsScript.total_damageDone).ToString();
-        scorebord.scores[5].text.text = "Damage taken :" + "  " + Mathf.Round(statsScript.total_damageTaken).ToString();
-        scorebord.scores[6].text.text = "Damage healed :" + "  " + Mathf.Round(statsScript.total_damageHealed).ToString();
-        scorebord.scores[7].text.text = "Bullets shot :" + "  " + Mathf.Round(statsScript.total_bulletsShot).ToString();
-        scorebord.scores[8].text.text = "Bullets hit :" + "  " + Mathf.Round(statsScript.total_bulletsHit).ToString();
-        scorebord.scores[9].text.text = "Bullets missed :" + "  " + Mathf.Round(statsScript.total_bulletsMissed).ToString();
-        scorebord.scores[10].text.text = "Times reloaded :" + "  " + Mathf.Round(statsScript.total_timesReloaded).ToString();
-        scorebord.scores[11].text.text = "Time spend shooting :" + "  " + Mathf.Round(statsScript.total_timeWastedNotShooting).ToString() + "/sec";
-        scorebord.scores[12].text.text = "Time wasted not shooting :" + "  " + Mathf.Round(statsScript.total_timeWastedShooting).ToString() + "/sec";
-        scorebord.scores[13].text.text = "Distance walked :" + "  " + Mathf.Round(statsScript.total_distanceWalked).ToString() + "/m";
+        scorebord[4].text = "Damage done :" + "  " + Mathf.Round(statsScript.total_damageDone).ToString();
+        scorebord[5].text = "Damage taken :" + "  " + Mathf.Round(statsScript.total_damageTaken).ToString();
+        scorebord[6].text = "Damage healed :" + "  " + Mathf.Round(statsScript.total_damageHealed).ToString();
+        scorebord[7].text = "Bullets shot :" + "  " + Mathf.Round(statsScript.total_bulletsShot).ToString();
+        scorebord[8].text = "Bullets hit :" + "  " + Mathf.Round(statsScript.total_bulletsHit).ToString();
+        scorebord[9].text = "Bullets missed :" + "  " + Mathf.Round(statsScript.total_bulletsMissed).ToString();
+        scorebord[10].text = "Times reloaded :" + "  " + Mathf.Round(statsScript.total_timesReloaded).ToString();
+        scorebord[11].text = "Time spend shooting :" + "  " + Mathf.Round(statsScript.total_timeWastedNotShooting).ToString() + "/sec";
+        scorebord[12].text = "Time wasted not shooting :" + "  " + Mathf.Round(statsScript.total_timeWastedShooting).ToString() + "/sec";
+        scorebord[13].text = "Distance walked :" + "  " + Mathf.Round(statsScript.total_distanceWalked).ToString() + "/m";
 
-        scorebord.scores[14].text.text = "Money collected :" + "  " + Mathf.Round(statsScript.total_moneyCollected).ToString();
-        scorebord.scores[15].text.text = "Money spend :" + "  " + Mathf.Round(statsScript.total_moneySpend).ToString();
-        scorebord.scores[16].text.text = "Items bought :" + "  " + Mathf.Round(statsScript.total_itemsBought).ToString();
-        scorebord.scores[17].text.text = "Ammo bought :" + "  " + Mathf.Round(statsScript.total_ammoBought).ToString();
-        scorebord.scores[18].text.text = "Health bought :" + "  " + Mathf.Round(statsScript.total_healthBought).ToString();
-        scorebord.scores[19].text.text = "Upgrades bought :" + "  " + Mathf.Round(statsScript.total_upgradesBought).ToString();
-        scorebord.scores[20].text.text = "Shops opened :" + "  " + Mathf.Round(statsScript.total_shopsOpened).ToString();
+        scorebord[14].text = "Money collected :" + "  " + Mathf.Round(statsScript.total_moneyCollected).ToString();
+        scorebord[15].text = "Money spend :" + "  " + Mathf.Round(statsScript.total_moneySpend).ToString();
+        scorebord[16].text = "Items bought :" + "  " + Mathf.Round(statsScript.total_itemsBought).ToString();
+        scorebord[17].text = "Ammo bought :" + "  " + Mathf.Round(statsScript.total_ammoBought).ToString();
+        scorebord[18].text = "Health bought :" + "  " + Mathf.Round(statsScript.total_healthBought).ToString();
+        scorebord[19].text = "Upgrades bought :" + "  " + Mathf.Round(statsScript.total_upgradesBought).ToString();
+        scorebord[20].text = "Shops opened :" + "  " + Mathf.Round(statsScript.total_shopsOpened).ToString();
 
-        scorebord.scores[21].text.text = "Kills :" + "  " + Mathf.Round(statsScript.total_kills).ToString();
-        scorebord.scores[22].text.text = "Small enemy kills :" + "  " + Mathf.Round(statsScript.total_smallEnemyKills).ToString();
-        scorebord.scores[23].text.text = "Medium enemy kills :" + "  " + Mathf.Round(statsScript.total_mediumEnemyKills).ToString();
-        scorebord.scores[24].text.text = "Big enemy kills :" + "  " + Mathf.Round(statsScript.total_bigEnemyKills).ToString();
-        scorebord.scores[25].text.text = "Glitch enemy kills :" + "  " + Mathf.Round(statsScript.total_glitchEnemyKills).ToString();
-        scorebord.scores[26].text.text = "Giant enemy kills :" + "  " + Mathf.Round(statsScript.total_giantEnemyKills).ToString();
+        scorebord[21].text = "Kills :" + "  " + Mathf.Round(statsScript.total_kills).ToString();
+        scorebord[22].text = "Small enemy kills :" + "  " + Mathf.Round(statsScript.total_smallEnemyKills).ToString();
+        scorebord[23].text = "Medium enemy kills :" + "  " + Mathf.Round(statsScript.total_mediumEnemyKills).ToString();
+        scorebord[24].text = "Big enemy kills :" + "  " + Mathf.Round(statsScript.total_bigEnemyKills).ToString();
+        scorebord[25].text = "Glitch enemy kills :" + "  " + Mathf.Round(statsScript.total_glitchEnemyKills).ToString();
+        scorebord[26].text = "Giant enemy kills :" + "  " + Mathf.Round(statsScript.total_giantEnemyKills).ToString();
     }
 	public void ResetScrollBar()
 	{
@@ -222,15 +228,4 @@ public class MainMenu : MonoBehaviour
         int playerOneInputType = _value.value;
         PlayerPrefs.SetInt("playerinput", playerOneInputType);
     }
-}
-[System.Serializable]
-public class ScoreBord
-{
-    public Score[] scores;
-}
-[System.Serializable]
-public class Score
-{
-    public TextMeshProUGUI text;
-    public string playerPrefName;
 }
