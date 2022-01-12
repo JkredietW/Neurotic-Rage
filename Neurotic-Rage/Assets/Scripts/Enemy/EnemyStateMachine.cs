@@ -27,7 +27,6 @@ public class EnemyStateMachine : MonoBehaviour
     public GameObject head;
 
     [Header("Sounds")]
-    public AudioSource heavyAttackSound;
     public AudioSource AttackSound;
     public AudioSource walkingSound;
     public AudioSource[] screamSounds;
@@ -48,11 +47,17 @@ public class EnemyStateMachine : MonoBehaviour
     }
     public IEnumerator ScreamSound()
 	{
-        float waitTime = Random.Range(2.5f, 5);
+        float waitTime = Random.Range(0.5f, 1.25f);
         yield return new WaitForSeconds(waitTime);
         int randomSound = Random.Range(0, screamSounds.Length);
         screamSounds[randomSound].Play();
+        ReturnScream();
     }
+    public void ReturnScream()
+	{
+        StartCoroutine(ScreamSound());
+    }
+
     void Update()
     {
         if (hitbox)
@@ -162,12 +167,9 @@ public class EnemyStateMachine : MonoBehaviour
 
     public IEnumerator EnemyDyingState()
     {
-        //idk
         yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);
     }
-
-    //
 
     public void EnterChaseState()
     {
@@ -185,16 +187,13 @@ public class EnemyStateMachine : MonoBehaviour
         anim.SetBool("Feet", true);
         attacking = true;
         Invoke("ResetAnim", attackCoolDown);
-	}
+        PlayAttackSound();
+    }
 	public void ResetAnim()
 	{
         anim.SetBool("Feet", false);
         anim.SetLayerWeight(1, 0);
         attacking = false;
-    }
-    public void PlayHeavyAttackSound()
-	{
-        heavyAttackSound.Play();
     }
     public void PlayAttackSound()
     {
@@ -214,7 +213,6 @@ public class EnemyStateMachine : MonoBehaviour
 	}
     public void StopAlAudio()
 	{
-        heavyAttackSound.Stop();
         AttackSound.Stop();
         walkingSound.Stop();
 		for (int i = 0; i < screamSounds.Length; i++)

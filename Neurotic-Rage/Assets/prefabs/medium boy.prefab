@@ -8790,9 +8790,9 @@ MonoBehaviour:
   navMeshAgent: {fileID: 919132148383939819}
   anim: {fileID: 2841683320089693539}
   head: {fileID: 4617222080392323209}
-  heavyAttackSound: {fileID: 4854089567539752719}
+  heavyAttackSound: {fileID: 6788279353986782783}
   AttackSound: {fileID: 1064005160975801754}
-  walkingSound: {fileID: 6788279353986782783}
+  walkingSound: {fileID: 4854089567539752719}
   screamSounds:
   - {fileID: 1946904718100850516}
   - {fileID: 1328959842725992917}
