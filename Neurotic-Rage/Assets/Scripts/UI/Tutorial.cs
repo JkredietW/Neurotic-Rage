@@ -10,6 +10,7 @@ public class Tutorial : MonoBehaviour
     public GameObject[] controllerTutorialArray;
     public GameObject helicopterTrigger;
     public Animator stage1,stage2,stage3,stage4;
+    public AudioSource completeSound;
     void Start()
     {
         foreach(GameObject tutorialText in pcTutorialArray)
@@ -119,7 +120,8 @@ public class Tutorial : MonoBehaviour
 
     public void UpdateTutorialUI()
     {
-        if(controllerConnected == false)
+        PlayComplete();
+        if (controllerConnected == false)
         {
             pcTutorialArray[tutorialProgression - 1].SetActive(false);
             pcTutorialArray[tutorialProgression].SetActive(true);
@@ -146,5 +148,9 @@ public class Tutorial : MonoBehaviour
     public void UnlockHelicopter()
     {
         helicopterTrigger.SetActive(true);
+    }
+    public void PlayComplete()
+	{
+        completeSound.Play();
     }
 }

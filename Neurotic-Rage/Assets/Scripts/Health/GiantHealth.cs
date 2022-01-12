@@ -10,13 +10,6 @@ public class GiantHealth : EnemyHealth
     public GameObject firstText, SecondText,healtbar,buttons;
     public bool isDead;
     public Color deadOutline;
-
-	private void start()
-	{
-        healthSlider.maxValue = maxhealth;
-        healthSlider.value = maxhealth;
-        healtbar.SetActive(false);
-    }
 	public override void Dying()
     {
         healtbar.SetActive(false);
@@ -37,7 +30,7 @@ public class GiantHealth : EnemyHealth
     }
 	public override void UpdateHealthBar()
 	{
+        healthSlider.maxValue = baseMaxHealth;
         healthSlider.value = health;
-        print("updates");
 	}
 }
