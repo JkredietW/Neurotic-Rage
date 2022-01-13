@@ -27,6 +27,7 @@ public class MainMenu : MonoBehaviour
     [Header("Sounds")]
     public AudioSource hover;
     public AudioSource pressed;
+    public TMP_Dropdown skinDropDown;
 
     //input detection
     int lastInput; //0 = mouse, 1 = controller
@@ -51,6 +52,7 @@ public class MainMenu : MonoBehaviour
 		{
             tuturialButton.SetActive(true);
 		}
+        skinDropDown.value = PlayerPrefs.GetInt("Skin");
     }
     public void GetSaves()
     {
@@ -61,6 +63,52 @@ public class MainMenu : MonoBehaviour
             statsScript = _statsScript;
             statsScript.ResetCurrentGameStats();
             ShowStats();
+        }
+    }
+    public void SetObjectActive(TipsToUnlock ttu)
+	{
+		if (ttu.text.text == "Basic")
+		{
+            ttu.tip[0].SetActive(true);
+        }
+        else if (ttu.text.text == "Neon")
+        {
+            ttu.tip[1].SetActive(true);
+        }
+        else if (ttu.text.text == "Big Enemy")
+        {
+            ttu.tip[2].SetActive(true);
+        }
+        else if (ttu.text.text == "Small Enemy")
+        {
+            ttu.tip[3].SetActive(true);
+        }
+        else if (ttu.text.text == "Glitch Enemy")
+        {
+            ttu.tip[4].SetActive(true);
+        }
+	}
+    public void SetObjectNotActive(TipsToUnlock ttu)
+    {
+        if (ttu.text.text == "Basic")
+        {
+            ttu.tip[0].SetActive(false);
+        }
+        else if (ttu.text.text == "Neon")
+        {
+            ttu.tip[1].SetActive(false);
+        }
+        else if (ttu.text.text == "Big Enemy")
+        {
+            ttu.tip[2].SetActive(false);
+        }
+        else if (ttu.text.text == "Small Enemy")
+        {
+            ttu.tip[3].SetActive(false);
+        }
+        else if (ttu.text.text == "Glitch Enemy")
+        {
+            ttu.tip[4].SetActive(false);
         }
     }
     public void ShowStats()
