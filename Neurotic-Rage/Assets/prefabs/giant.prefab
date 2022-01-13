@@ -4972,6 +4972,7 @@ MonoBehaviour:
   outline: []
   mapindicator: {fileID: 7798087469025419527}
   enemyType: 0
+  getHit: {fileID: 6890975685230633218}
   momDiedLight: {fileID: 0}
   healthSlider: {fileID: 0}
   firstText: {fileID: 0}
@@ -5044,7 +5045,6 @@ MonoBehaviour:
   navMeshAgent: {fileID: 3615119100826587438}
   anim: {fileID: 7798087468309816974}
   head: {fileID: 6498358352283580151}
-  heavyAttackSound: {fileID: 9184567201560148266}
   AttackSound: {fileID: 6209359218135937849}
   walkingSound: {fileID: 4206586973834520525}
   screamSounds:

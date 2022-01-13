@@ -3149,7 +3149,6 @@ MonoBehaviour:
   navMeshAgent: {fileID: 2483306680457116689}
   anim: {fileID: 8294768415698244174}
   head: {fileID: 1468431887563521956}
-  heavyAttackSound: {fileID: 8615386077792728141}
   AttackSound: {fileID: 4081229778523416418}
   walkingSound: {fileID: 4703320781752010439}
   screamSounds:
@@ -3179,6 +3178,7 @@ MonoBehaviour:
   - {fileID: 9159347637631033463}
   mapindicator: {fileID: 4937562866797392300}
   enemyType: 0
+  getHit: {fileID: 4508646656987136700}
 --- !u!114 &9159347637631033463
 MonoBehaviour:
   m_ObjectHideFlags: 0

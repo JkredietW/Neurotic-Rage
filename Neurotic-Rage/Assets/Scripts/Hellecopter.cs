@@ -13,7 +13,7 @@ public class Hellecopter : MonoBehaviour
 	public GameObject helliCam;
 	public GameObject player;
 	public GameManager gm;
-	public PlayerMovement pm;
+	public PlayerMovement[] pm;
 	public GameObject fireObject;
 	public AudioSource flyingSound;
 	public AudioClip altmostCrash,crash;
@@ -62,7 +62,9 @@ public class Hellecopter : MonoBehaviour
 		SceneManager.LoadScene(sceneIndexToAdd, LoadSceneMode.Additive);
 		helliCam.SetActive(false);
 		player.SetActive(true);
-		pm.MayMove(true);
+		int playerInt = PlayerPrefs.GetInt("Skin");
+		print(playerInt);
+		pm[playerInt].MayMove(true);
 		gm.DelayedStart();
 	}
 }

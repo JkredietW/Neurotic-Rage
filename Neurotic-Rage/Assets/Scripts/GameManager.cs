@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         time = 0;
-        selectedPlayerInt = PlayerPrefs.GetInt("Skin", 0);
+        selectedPlayerInt = PlayerPrefs.GetInt("Skin");
         playerSkins[selectedPlayerInt].SetActive(true);
     }
     public void PlayedTuturial()

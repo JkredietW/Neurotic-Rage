@@ -8510,6 +8510,7 @@ MonoBehaviour:
   - {fileID: 3499784113075499802}
   mapindicator: {fileID: 1285234374662831307}
   enemyType: 0
+  getHit: {fileID: 6300360869496293598}
 --- !u!114 &919132148383939818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8536,7 +8537,6 @@ MonoBehaviour:
   navMeshAgent: {fileID: 919132148383939819}
   anim: {fileID: 2841683320089693539}
   head: {fileID: 4617222080392323209}
-  heavyAttackSound: {fileID: 1432472086559749943}
   AttackSound: {fileID: 281478076701150712}
   walkingSound: {fileID: 3965073290898184621}
   screamSounds:
