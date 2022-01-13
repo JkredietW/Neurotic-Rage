@@ -47816,6 +47816,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 607933667}
     - target: {fileID: 4676866642268500778, guid: 9589df28bd5e3fd4997912cc41861b8f, type: 3}
+      propertyPath: isTuturial
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4676866642268500778, guid: 9589df28bd5e3fd4997912cc41861b8f, type: 3}
       propertyPath: LastBosAmount
       value: 0
       objectReference: {fileID: 0}

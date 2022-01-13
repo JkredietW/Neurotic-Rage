@@ -114,7 +114,7 @@ public class PlayerHealth : BaseHealth
         yield return new WaitForSeconds(4);
         endStats.SetActive(false);
         fdb.FadeToBlack(2.5f);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.15f);
         ls.ChargementScene(0);
     }
     public void ShowStats()

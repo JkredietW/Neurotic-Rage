@@ -81,6 +81,9 @@ public class LoadingScreen : MonoBehaviour
         active = true;
         loadingScreen.SetActive(true);
         async = SceneManager.LoadSceneAsync(i);
+        async = SceneManager.LoadSceneAsync(i);
+        SceneManager.LoadSceneAsync(i);
+        SceneManager.LoadScene(i);
         async.allowSceneActivation = false;
         PickNextLine();
         AddNewDot();

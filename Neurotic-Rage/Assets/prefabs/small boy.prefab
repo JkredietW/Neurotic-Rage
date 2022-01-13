@@ -8524,12 +8524,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCoolDown: 3.69
-  attackRange: 1.32
+  attackRange: 2.01
   chaseRange: 10
   destroyTime: 1.25
   hitBoxRange: 1.25
   damage: 5
-  toCloseRange: 1.2
+  toCloseRange: 1.85
   rotationSpeed: 5
   numberOffAttacks: 2
   handPos: {fileID: 6304069426369150170}

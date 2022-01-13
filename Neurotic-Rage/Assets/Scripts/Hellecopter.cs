@@ -56,15 +56,19 @@ public class Hellecopter : MonoBehaviour
 	}
 	public void StartScene()
 	{
+		int playerInt = PlayerPrefs.GetInt("Skin");
+		pm[playerInt].transform.gameObject.SetActive(true);
+		pm[playerInt].MayMove(true);
 		flyingSound.clip = crash;
 		flyingSound.Play();
 		flyingSound.loop = false;
 		SceneManager.LoadScene(sceneIndexToAdd, LoadSceneMode.Additive);
 		helliCam.SetActive(false);
 		player.SetActive(true);
-		int playerInt = PlayerPrefs.GetInt("Skin");
-		print(playerInt);
-		pm[playerInt].MayMove(true);
+		Invoke("DelayStart", 1.5f);
+	}
+	public void DelayStart()
+	{
 		gm.DelayedStart();
 	}
 }

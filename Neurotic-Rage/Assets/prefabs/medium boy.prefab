@@ -8778,12 +8778,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCoolDown: 3.69
-  attackRange: 1.32
+  attackRange: 2
   chaseRange: 10
   destroyTime: 1.35
   hitBoxRange: 1.5
   damage: 10
-  toCloseRange: 1.2
+  toCloseRange: 1.9
   rotationSpeed: 5
   numberOffAttacks: 2
   handPos: {fileID: 6304069426369150170}

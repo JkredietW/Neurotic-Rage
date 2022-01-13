@@ -146,7 +146,6 @@ public class MainMenu : MonoBehaviour
     }
     public void SelectSkin(TMP_Dropdown _value)
     {
-        print(_value.value);
         PlayerPrefs.SetInt("Skin", _value.value);
     }
 	public void ResetScrollBar()

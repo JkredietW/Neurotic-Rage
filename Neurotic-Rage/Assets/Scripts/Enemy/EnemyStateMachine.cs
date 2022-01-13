@@ -101,12 +101,20 @@ public class EnemyStateMachine : MonoBehaviour
 
                 break;
         }
+		if (player == null)
+		{
+            return;
+		}
         if(Vector3.Distance(gameObject.transform.position, player.transform.position) >= toCloseRange)
 		{
 			if (!walkingSound.isPlaying)
 			{
                 walkingSound.Play();
             }
+			if (!navMeshAgent.enabled)
+			{
+                return;
+			}
             navMeshAgent.SetDestination(player.transform.position);
 
             var targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
@@ -141,6 +149,10 @@ public class EnemyStateMachine : MonoBehaviour
     }
     public void EnemyChaseState()
     {
+		if (player == null)
+		{
+            return;
+		}
         if (Vector3.Distance(gameObject.transform.position, player.transform.position) <= attackRange)
         {
             currentEnemyState = EnemyStates.attack;
