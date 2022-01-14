@@ -90,25 +90,9 @@ public class MainMenu : MonoBehaviour
 	}
     public void SetObjectNotActive(TipsToUnlock ttu)
     {
-        if (ttu.text.text == "Basic")
-        {
-            ttu.tip[0].SetActive(false);
-        }
-        else if (ttu.text.text == "Neon")
-        {
-            ttu.tip[1].SetActive(false);
-        }
-        else if (ttu.text.text == "Big Enemy")
-        {
-            ttu.tip[2].SetActive(false);
-        }
-        else if (ttu.text.text == "Small Enemy")
-        {
-            ttu.tip[3].SetActive(false);
-        }
-        else if (ttu.text.text == "Glitch Enemy")
-        {
-            ttu.tip[4].SetActive(false);
+		for (int i = 0; i < ttu.tip.Length; i++)
+		{
+            ttu.tip[i].SetActive(false);
         }
     }
     public void ShowStats()
