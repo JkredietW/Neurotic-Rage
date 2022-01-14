@@ -136,24 +136,24 @@ public class MainMenu : MonoBehaviour
         {
             selectedSkin = 1;
         }
-        else if(Mathf.Round(statsScript.total_giantEnemyKills) > 150 && _value.value == 1)
+        else if(Mathf.Round(statsScript.total_giantEnemyKills) > 150 && _value.value == 2)
         {
             selectedSkin = 2;
         }
-        else if (Mathf.Round(statsScript.total_smallEnemyKills) > 690 && _value.value == 1)
+        else if (Mathf.Round(statsScript.total_smallEnemyKills) > 690 && _value.value == 3)
         {
             selectedSkin = 3;
         }
-        else if (Mathf.Round(statsScript.total_glitchEnemyKills) > 950 && _value.value == 1)
+        else if (Mathf.Round(statsScript.total_glitchEnemyKills) > 950 && _value.value == 4)
         {
             selectedSkin = 4;
         }
         else
         {
             selectedSkin = 0;
+            _value.SetValueWithoutNotify(selectedSkin);
         }
         PlayerPrefs.SetInt("Skin", selectedSkin);
-        _value.SetValueWithoutNotify(selectedSkin);
         Invoke("SetTipsOff", 1);
     }
 	public void ResetScrollBar()

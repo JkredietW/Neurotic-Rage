@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     }
     public void GetSaves()
     {
-        if(System.IO.File.ReadAllText(Application.persistentDataPath + "/Stats.json") != null)
+        if(System.IO.File.Exists(Application.persistentDataPath + "/Stats.json"))
         {
             string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/Stats.json");
             StatHolder _statsScript = JsonUtility.FromJson<StatHolder>(data);

@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSpat: {fileID: 8020872181441132644, guid: bdcadd29fdb64bd499ae57eb309edb8c, type: 3}
+  bloodSpatDecal: {fileID: 6875858710793031325, guid: a4ce4b2f67891904883aff1bb381a2ee, type: 3}
   Explosion: {fileID: 0}
   IgnoreTag:
   - Player
@@ -283,6 +284,9 @@ MonoBehaviour:
   - Shop
   - Enemy
   - Weapon
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   explosionRadius: 0
 --- !u!2083052967 &1580102315069324332
 VisualEffect:

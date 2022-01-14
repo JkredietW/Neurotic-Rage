@@ -9,8 +9,10 @@ public class BulletBehavior : MonoBehaviour
     int pierceAmount;
     Quaternion rotation;
     public GameObject bloodSpat;
+    public GameObject bloodSpatDecal;
     public GameObject Explosion;
     public List<string> IgnoreTag;
+    public LayerMask groundLayer;
     bool mayNotDoDamage;
     bool hasHitAtleastOne;
     [SerializeField] float explosionRadius;
@@ -36,8 +38,10 @@ public class BulletBehavior : MonoBehaviour
             BaseHealth health = other.GetComponent<BaseHealth>();
             Vector3 pointToSpawn = other.ClosestPoint(transform.position);
             GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, rotation);
+            GameObject tempBloodDecal = Instantiate(bloodSpatDecal, CheckForGroundHeight(), rotation);
             tempBlood.GetComponent<VisualEffect>().Play();
             Destroy(tempBlood, 5);
+            Destroy(tempBloodDecal, 5);
             if (pierceAmount > 0)
             {
                 pierceAmount--;
@@ -113,9 +117,23 @@ public class BulletBehavior : MonoBehaviour
                 item.GetComponent<EnemyHealth>().DoDamage(damage);
                 Vector3 pointToSpawn = item.transform.position;
                 GameObject tempBlood = Instantiate(bloodSpat, pointToSpawn, rotation);
+                GameObject tempBloodDecal = Instantiate(bloodSpatDecal, CheckForGroundHeight(), rotation);
                 tempBlood.GetComponent<VisualEffect>().Play();
+                Destroy(tempBlood, 5);
+                Destroy(tempBloodDecal, 5);
             }
         }
+    }
+    Vector3 CheckForGroundHeight()
+    {
+        Vector3 groundPos = Vector3.zero;
+        RaycastHit _hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out _hit, 10, groundLayer))
+        {
+            groundPos = _hit.point;
+            groundPos.y -= 0.4f;
+        }
+        return groundPos;
     }
     private void OnDrawGizmos()
     {

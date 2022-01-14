@@ -19,7 +19,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 234
     y: -190
-    width: 2681
+    width: 2680
     height: 2046
 --- !u!114 &114350483966674976
 MonoBehaviour:
@@ -5589,7 +5589,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614876}
   - {fileID: 8926484042661614877}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
   repeat: 0
   spawnMode: 0
   delayMode: 0

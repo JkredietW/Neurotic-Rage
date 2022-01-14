@@ -140,6 +140,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator specialAnimator;
     float rotationSpeedMinigun;
 
+    public LayerMask groundLayer;
+
     private void Awake()
     {
         //get components
@@ -1100,8 +1102,10 @@ public class PlayerMovement : MonoBehaviour
                                     hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeapon.damage + extra_damage);
 
                                     GameObject tempBlood = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpat, hitByRaycast[r].point, playerRotation.rotation);
+                                    GameObject tempBloodDecal = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpatDecal, CheckForGroundHeight(hitByRaycast[r].point), playerRotation.rotation);
                                     tempBlood.GetComponent<VisualEffect>().Play();
                                     Destroy(tempBlood, 5);
+                                    Destroy(tempBloodDecal, 5);
 
                                     //return when pierces all gone
                                     if (pierces == 0)
@@ -1237,8 +1241,11 @@ public class PlayerMovement : MonoBehaviour
                                     hitByRaycast[r].transform.GetComponent<EnemyHealth>().DoDamage(currentWeaponTwo.damage + extra_damage);
 
                                     GameObject tempBlood = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpat, hitByRaycast[r].point, playerAim.babyRotation.rotation);
+                                    GameObject tempBloodDecal = Instantiate(spawnedBullet.GetComponent<BulletBehavior>().bloodSpatDecal, CheckForGroundHeight(hitByRaycast[r].point), playerRotation.rotation);
+
                                     tempBlood.GetComponent<VisualEffect>().Play();
                                     Destroy(tempBlood, 5);
+                                    Destroy(tempBloodDecal, 5);
 
                                     //return when pierces all gone
                                     if (pierces == 0)
@@ -1304,6 +1311,17 @@ public class PlayerMovement : MonoBehaviour
                 StartCoroutine(ReloadWeaponTwo());
             }
         }
+    }
+    Vector3 CheckForGroundHeight(Vector3 pos)
+    {
+        Vector3 groundPos = Vector3.zero;
+        RaycastHit _hit;
+        if (Physics.Raycast(pos, Vector3.down, out _hit, 10, groundLayer))
+        {
+            groundPos = _hit.point;
+            groundPos.y -= 0.4f;
+        }
+        return groundPos;
     }
     public IEnumerator ReloadWeapon()
     {
