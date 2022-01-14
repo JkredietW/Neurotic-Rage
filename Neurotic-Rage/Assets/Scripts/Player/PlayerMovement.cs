@@ -730,6 +730,8 @@ public class PlayerMovement : MonoBehaviour
                 oldWeapon = weaponSlots[0];
                 weaponSlots[0] = weaponsInRange[0].heldItem;
                 DropWeapon(oldWeapon);
+                UiWeaponSlots[0].SetActive(true);
+                UiWeaponSlots[1].SetActive(true);
                 UiWeaponSlots[2].SetActive(false);
                 break;
 
@@ -744,12 +746,16 @@ public class PlayerMovement : MonoBehaviour
                 oldWeapon = weaponSlots[1];
                 weaponSlots[1] = weaponsInRange[0].heldItem;
                 DropWeapon(oldWeapon);
+                UiWeaponSlots[0].SetActive(true);
+                UiWeaponSlots[1].SetActive(true);
                 UiWeaponSlots[2].SetActive(false);
                 break;
 
             case weaponType.special:
                 selectWeaponIndecator[2].SetActive(true);
                 currentWeapon = weaponsInRange[0].heldItem;
+                UiWeaponSlots[0].SetActive(false);
+                UiWeaponSlots[1].SetActive(false);
                 UiWeaponSlots[2].SetActive(true);
                 break;
         }
