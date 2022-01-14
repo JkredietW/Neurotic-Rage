@@ -17435,28 +17435,32 @@ PrefabInstance:
       value: -0.056
       objectReference: {fileID: 0}
     - target: {fileID: 3616922725108933875, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
+      propertyPath: m_IsOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616922725108933875, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
       propertyPath: m_Colors.m_SelectedColor.b
-      value: 0
+      value: 0.4716981
       objectReference: {fileID: 0}
     - target: {fileID: 3616922725108933875, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
       propertyPath: m_Colors.m_SelectedColor.g
-      value: 0
+      value: 0.4716981
       objectReference: {fileID: 0}
     - target: {fileID: 3616922725108933875, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
       propertyPath: m_Colors.m_SelectedColor.r
-      value: 1
+      value: 0.4716981
       objectReference: {fileID: 0}
     - target: {fileID: 3616922725108933875, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.b
-      value: 0
+      value: 0.3584906
       objectReference: {fileID: 0}
     - target: {fileID: 3616922725108933875, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.g
-      value: 0
+      value: 0.3584906
       objectReference: {fileID: 0}
     - target: {fileID: 3616922725108933875, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.r
-      value: 1
+      value: 0.3584906
       objectReference: {fileID: 0}
     - target: {fileID: 3616922725111377959, guid: d597fd37426cbcd4a8e58a3eb8aa9da3, type: 3}
       propertyPath: m_fontAsset
