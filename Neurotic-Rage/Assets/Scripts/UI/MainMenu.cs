@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     public bool garage;
     public EventSystem eventSystem;
     public GameObject main;
+    public GameObject[] tips;
     [Header("Sounds")]
     public AudioSource hover;
     public AudioSource pressed;
@@ -153,6 +154,7 @@ public class MainMenu : MonoBehaviour
         }
         PlayerPrefs.SetInt("Skin", selectedSkin);
         _value.SetValueWithoutNotify(selectedSkin);
+        Invoke("SetTipsOff", 1);
     }
 	public void ResetScrollBar()
 	{
@@ -183,6 +185,13 @@ public class MainMenu : MonoBehaviour
                     eventSystem.SetSelectedGameObject(lastFirstSelected);
                 }
             }
+        }
+    }
+    public void SetTipsOff()
+	{
+		for (int i = 0; i < tips.Length; i++)
+		{
+            tips[i].SetActive(false);
         }
     }
     public void Hover()
