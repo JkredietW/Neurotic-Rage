@@ -146,7 +146,29 @@ public class MainMenu : MonoBehaviour
     }
     public void SelectSkin(TMP_Dropdown _value)
     {
-        PlayerPrefs.SetInt("Skin", _value.value);
+        int selectedSkin = 0;
+        if(Mathf.Round(statsScript.total_competedRuns) > 0 && _value.value == 1)
+        {
+            selectedSkin = 1;
+        }
+        else if(Mathf.Round(statsScript.total_giantEnemyKills) > 150 && _value.value == 1)
+        {
+            selectedSkin = 2;
+        }
+        else if (Mathf.Round(statsScript.total_smallEnemyKills) > 690 && _value.value == 1)
+        {
+            selectedSkin = 3;
+        }
+        else if (Mathf.Round(statsScript.total_glitchEnemyKills) > 950 && _value.value == 1)
+        {
+            selectedSkin = 4;
+        }
+        else
+        {
+            selectedSkin = 0;
+        }
+        PlayerPrefs.SetInt("Skin", selectedSkin);
+        _value.SetValueWithoutNotify(selectedSkin);
     }
 	public void ResetScrollBar()
 	{
