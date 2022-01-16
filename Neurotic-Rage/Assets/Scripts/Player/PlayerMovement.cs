@@ -141,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
     float rotationSpeedMinigun;
 
     public LayerMask groundLayer;
+    public GameObject Sparks;
 
     private void Awake()
     {
@@ -1131,6 +1132,8 @@ public class PlayerMovement : MonoBehaviour
                                 }
                                 else //hits nothing
                                 {
+                                    GameObject tempSparks = Instantiate(Sparks, hitByRaycast[r].point, playerRotation.rotation);
+                                    Destroy(tempSparks, 1);
                                     //return when pierces all gone
                                     if (pierces == 0)
                                     {

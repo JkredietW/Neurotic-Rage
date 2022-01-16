@@ -9,6 +9,7 @@ public class BulletBehavior : MonoBehaviour
     int pierceAmount;
     Quaternion rotation;
     public GameObject bloodSpat;
+    public GameObject Sparks;
     public GameObject bloodSpatDecal;
     public GameObject Explosion;
     public List<string> IgnoreTag;
@@ -73,6 +74,8 @@ public class BulletBehavior : MonoBehaviour
                 {
                     Explode();
                 }
+                GameObject tempSparks = Instantiate(bloodSpat, transform.position, rotation);
+                Destroy(tempSparks, 1);
                 float roll = Random.Range(0, 100);
                 if (pierceAmount > 0 && roll > 50)
                 {

@@ -276,8 +276,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSpat: {fileID: 8020872181441132644, guid: bdcadd29fdb64bd499ae57eb309edb8c, type: 3}
+  Sparks: {fileID: 0}
   bloodSpatDecal: {fileID: 6875858710793031325, guid: a4ce4b2f67891904883aff1bb381a2ee, type: 3}
-  Explosion: {fileID: 0}
+  Explosion: {fileID: 8754959383595341302, guid: 1403243efeb444444af9731daaa5354b, type: 3}
   IgnoreTag:
   - Player
   - Bullet
