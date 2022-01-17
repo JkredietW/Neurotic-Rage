@@ -131,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource audioSourceWalking, audioSourceShooting;
     public AudioClip audio_walking;
     public AudioClip audio_running;
+    public AudioClip audio_melee;
 
     public Slider ammoSlider1;
     public Slider ammoSlider2;
@@ -1008,6 +1009,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 weaponInHand.transform.GetChild(0).gameObject.SetActive(false);
             }
+            audioSourceShooting.clip = audio_melee;
+            audioSourceShooting.Play();
             StartStopRunning(false);
             swordOnBack.SetActive(false);
             swordInHand.SetActive(true);

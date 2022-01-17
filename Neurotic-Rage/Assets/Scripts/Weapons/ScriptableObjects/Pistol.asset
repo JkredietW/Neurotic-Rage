@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 392d0d83a16a9494db22f464d352bcc4, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: 
+  weaponId: 1
+  specialWeaponId: -1
+  type: 0
+  objectprefab: {fileID: 7320750945144682316, guid: a4588d20c39000145a44fc0e5672984e, type: 3}
+  Ui_sprite: {fileID: 21300000, guid: 6819862832e0b0d4f90b5aeb17e3d1cb, type: 3}
+  Bullet:
+  - {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
+  shootSound: {fileID: 8300000, guid: fbbf52278c9918745b3334b0a590a3c3, type: 3}
+  reloadSound: {fileID: 8300000, guid: 0c4919efa6005fa49a374a88f5d45a46, type: 3}
+  damage: 10
+  attacksPerSecond: 2
+  reloadTime: 1
+  pierceAmount: 2
+  ammo: 10
+  maxAmmo: 10
+  bulletSpeed: 50
+  projectileCount: 1
+  rotationOffset: 3
+  shootAngle: 4
+  burstShotAmount: 1

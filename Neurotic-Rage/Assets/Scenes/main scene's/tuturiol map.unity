@@ -42283,9 +42283,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
+      propertyPath: Sparks
+      value: 
+      objectReference: {fileID: 8754959383595341302, guid: 1403243efeb444444af9731daaa5354b, type: 3}
+    - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: tuturial
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
+      propertyPath: audio_melee
+      value: 
+      objectReference: {fileID: 8300000, guid: 3f5c7aa33f30a1c45bc00f35f112a26d, type: 3}
     - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: audio_running
       value: 
@@ -42297,7 +42305,7 @@ PrefabInstance:
     - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: currentWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 4c4a203508c95634c87d7fe2317ea334, type: 2}
+      objectReference: {fileID: 11400000, guid: 4babc52513da848429fbd98fbb6e4d28, type: 2}
     - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: currentWeaponTwo
       value: 
@@ -42311,6 +42319,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 310081057}
     - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: audioSourceShooting
       value: 
       objectReference: {fileID: 2075443056}
@@ -42321,7 +42333,7 @@ PrefabInstance:
     - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: weaponSlots.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 4c4a203508c95634c87d7fe2317ea334, type: 2}
+      objectReference: {fileID: 11400000, guid: 4babc52513da848429fbd98fbb6e4d28, type: 2}
     - target: {fileID: 4249084291486012211, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: weaponSlots.Array.data[1]
       value: 
