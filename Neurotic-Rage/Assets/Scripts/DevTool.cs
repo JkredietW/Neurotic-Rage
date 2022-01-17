@@ -9,7 +9,8 @@ public class DevTool : MonoBehaviour
         for (int i = 0; i < cheats.Length; i++)
         {
             string key = cheats[i].input.ToString();
-            string secondKey = cheats[i].input.ToString();
+            string secondKey = cheats[i].secondInput.ToString();
+            print(secondKey);
 
 			switch (cheats[i].extraInput)
 			{
@@ -106,14 +107,4 @@ public enum Key
     b = 24,
     n = 25,
     m = 26,
-    _0 = 27,
-    _1 = 28,
-    _2 = 29,
-    _3 = 30,
-    _4 = 31,
-    _5 = 31,
-    _6 = 32,
-    _7 = 33,
-    _8 = 34,
-    _9 = 35,
 }
