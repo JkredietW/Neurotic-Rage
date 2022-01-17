@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("PlayerStats")]
     public float meleeAttackCooldown;
     public float movementSpeed = 1;
+    bool superSpeed;
     public float gravity;
     public int currentAmmo, maxAmmo, currentHeavyAmmo, maxHeavyAmmo;
     private int baseAmmo, baseHeavyAmmo;
@@ -1672,5 +1673,31 @@ public class PlayerMovement : MonoBehaviour
     {
         playerOneInputType = _value.value;
         PlayerPrefs.SetInt("playerinput", playerOneInputType);
+    }
+
+    //voor timme cheat codes
+    public void ToggleGodmode()
+    {
+        health.ToggleGodmode();
+    }
+    public void KillPlayer()
+    {
+        health.KillPlayer();
+    }
+    public void MaxAmmo()
+    {
+        GrantAmmo(100000,100000);
+    }
+    public void SuperSpeed()
+    {
+        if (superSpeed)
+        {
+            movementSpeed /= 5;
+        }
+        else
+        {
+            movementSpeed *= 5;
+        }
+        superSpeed = !superSpeed;
     }
 }

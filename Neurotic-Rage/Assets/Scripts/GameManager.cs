@@ -651,6 +651,31 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(i);
 	}
     #endregion
+    public void UnlockSkins()
+    {
+        statsScript.total_competedRuns += 1000000;
+        statsScript.total_kills += 1000000;
+        statsScript.total_bigEnemyKills += 1000000;
+        statsScript.total_giantEnemyKills += 1000000;
+        statsScript.total_smallEnemyKills += 1000000;
+        statsScript.total_mediumEnemyKills += 1000000;
+    }
+    public void ToggleGodmode()
+    {
+        player.ToggleGodmode();
+    }
+    public void KillPlayer()
+    {
+        player.KillPlayer();
+    }
+    public void MaxAmmo()
+    {
+        player.GrantAmmo(100000, 100000);
+    }
+    public void SuperSpeed()
+    {
+        player.SuperSpeed();
+    }
 }
 [System.Serializable]
 public class Wave

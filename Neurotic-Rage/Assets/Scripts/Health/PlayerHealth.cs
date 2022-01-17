@@ -22,6 +22,7 @@ public class PlayerHealth : BaseHealth
     public TextMeshProUGUI[] statsText;
     public AudioSource gruntPlayer;
     public AudioClip[] grunts;
+    private bool GODMODE;
 
     protected override void Start()
     {
@@ -33,6 +34,10 @@ public class PlayerHealth : BaseHealth
     }
     public override void DoDamage(float _damage)
     {
+        if(GODMODE)
+        {
+            return;
+        }
         FindObjectOfType<GameManager>().statsScript.thisgame_damageTaken += _damage;
         FindObjectOfType<GameManager>().statsScript.total_damageTaken += _damage;
         base.DoDamage(_damage);
@@ -136,5 +141,12 @@ public class PlayerHealth : BaseHealth
         statsText[14].text = "Bullets Hit" + "  " + Mathf.Round(gm.statsScript.thisgame_bulletsHit).ToString();
         statsText[15].text = "Times Reloaded" + "  " + Mathf.Round(gm.statsScript.thisgame_timesReloaded).ToString();
     }
-
+    public void ToggleGodmode()
+    {
+        GODMODE = !GODMODE;
+    }
+    public void KillPlayer()
+    {
+        Died();
+    }
 }
