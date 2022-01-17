@@ -74,7 +74,7 @@ public class BulletBehavior : MonoBehaviour
                 {
                     Explode();
                 }
-                GameObject tempSparks = Instantiate(bloodSpat, transform.position, rotation);
+                GameObject tempSparks = Instantiate(Sparks, transform.position, rotation);
                 Destroy(tempSparks, 1);
                 float roll = Random.Range(0, 100);
                 if (pierceAmount > 0 && roll > 50)
