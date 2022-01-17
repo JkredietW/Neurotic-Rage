@@ -10,17 +10,17 @@ public class GameManager : MonoBehaviour
 {
     public float timeBetweenWaves, timeBetweenSpawns;
     public float minimumDistance, maxDistance;
-    public GameObject playerCanvas,momDiedCanvas,car;
+    public GameObject playerCanvas, momDiedCanvas, car;
     public Wave presetWave;
     public LoadingScreen ls;
-	public List<Transform> spawnLocations;
+    public List<Transform> spawnLocations;
     public Transform enemySpawnLocationParent;
     public List<Transform> spawnsExcluded;
     public GameObject[] Enemies;
     public List<GameObject> enemiesAlive;
     public List<GameObject> bossesAlive;
     public AudioMixer mixer;
-    private bool isBossRound,pauseWave;
+    private bool isBossRound, pauseWave;
 
     //shop
     public GameObject shoppanel, shopUI;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI moneyText, waveText, shopResetCountText;
 
     //privates
-    int waveCount; 
+    int waveCount;
     int totalWaveCount;
     int killAmount;
 
@@ -72,12 +72,12 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        time = 0;		
+        time = 0;
     }
     public void PlayedTuturial()
-	{
+    {
         PlayerPrefs.SetString("Tuturial", "true");
-	}
+    }
     public void ResetSaves()
     {
         if (System.IO.File.Exists(Application.persistentDataPath + "/Stats.json"))
@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
     }
     public void GetSaves()
     {
-        if(System.IO.File.Exists(Application.persistentDataPath + "/Stats.json"))
+        if (System.IO.File.Exists(Application.persistentDataPath + "/Stats.json"))
         {
             string data = System.IO.File.ReadAllText(Application.persistentDataPath + "/Stats.json");
             StatHolder _statsScript = JsonUtility.FromJson<StatHolder>(data);
@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
         }
     }
     public void DelayedStart()
-	{
+    {
         statsScript = new StatHolder();
         GetSaves();
         player = FindObjectOfType<PlayerMovement>();
@@ -161,17 +161,17 @@ public class GameManager : MonoBehaviour
     public void EnemyDied(GameObject enemyThatDied)
     {
         if (pauseWave)
-		{
+        {
             return;
-		}
+        }
         killAmount++;
-        if(enemiesAlive.Contains(enemyThatDied))
+        if (enemiesAlive.Contains(enemyThatDied))
         {
             GiveMoney(2 * totalWaveCount);
             enemiesAlive.Remove(enemyThatDied);
         }
-		if (bossesAlive.Contains(enemyThatDied))
-		{
+        if (bossesAlive.Contains(enemyThatDied))
+        {
             GiveMoney(10 * totalWaveCount);
             enemiesAlive.Remove(enemyThatDied);
         }
@@ -228,7 +228,7 @@ public class GameManager : MonoBehaviour
         {
             totalTimesThisSpawn--;
         }
-        if(!spawnsExcluded.Contains(spawnLocations[lastLocation]))
+        if (!spawnsExcluded.Contains(spawnLocations[lastLocation]))
         {
             spawnsExcluded.Add(spawnLocations[lastLocation]);
         }
@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour
         }
     }
     public void MomDied()
-	{
+    {
         FindObjectOfType<PlayerMovement>().MayMove(false);
         playerCanvas.SetActive(false);
         momDiedCanvas.SetActive(true);
@@ -282,7 +282,7 @@ public class GameManager : MonoBehaviour
         Invoke("KillEnemies", 2.5f);
     }
     public void KillEnemies()
-	{
+    {
         GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < enemyList.Length; i++)
         {
@@ -293,7 +293,7 @@ public class GameManager : MonoBehaviour
         }
     }
     public void ContinueEndless()
-	{
+    {
         enemiesAlive.Clear();
         bossesAlive.Clear();
         FindObjectOfType<PlayerMovement>().MayMove(true);
@@ -303,15 +303,15 @@ public class GameManager : MonoBehaviour
         WaveComplete();
     }
     public void EndEnless()
-	{
+    {
         statsScript.total_competedRuns++;
         statsScript.thisgame_timePlayed += time;
         statsScript.total_timePlayed += time;
         Save();
         StartCoroutine(EndWave());
-	}
+    }
     public IEnumerator EndWave()
-	{
+    {
         car.SetActive(true);
         car.GetComponent<CarScript>().drive = true;
         momDiedCanvas.SetActive(false);
@@ -319,7 +319,7 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<FadeToFromBlack>().FadeToBlack(2);
         yield return new WaitForSeconds(1);
         ls.ChargementScene(0);
-	}
+    }
     #region player stats
     public void GiveLastShop(PlayerShop _shop)
     {
@@ -327,7 +327,7 @@ public class GameManager : MonoBehaviour
     }
     public void GiveSelectedItem(UiItem _selectedItem)
     {
-        if(_selectedItem.heldItem == null)
+        if (_selectedItem.heldItem == null)
         {
             UpdateDescriptions();
             return;
@@ -338,7 +338,7 @@ public class GameManager : MonoBehaviour
     }
     void UpdateDescriptions()
     {
-        if(selectedItemInUI.heldItem == null || selectedItem == null)
+        if (selectedItemInUI.heldItem == null || selectedItem == null)
         {
             for (int i = 0; i < descriptionText.Count; i++)
             {
@@ -419,11 +419,11 @@ public class GameManager : MonoBehaviour
             }
             #endregion
         }
-        else if(selectedItem.itemType == ShopType.Ammo)
+        else if (selectedItem.itemType == ShopType.Ammo)
         {
             ShopAmmo item = selectedItem as ShopAmmo;
 
-            if(item.normalAmmoAmount != 0)
+            if (item.normalAmmoAmount != 0)
             {
                 descriptionText[0].gameObject.SetActive(true);
                 descriptionText[0].text = $"Restore light ammo : {item.normalAmmoAmount}";
@@ -452,7 +452,7 @@ public class GameManager : MonoBehaviour
     }
     public void BuyItem()
     {
-        if(selectedItem == null)
+        if (selectedItem == null)
         {
             return;
         }
@@ -548,21 +548,21 @@ public class GameManager : MonoBehaviour
         player.GiveStats(total_pierces, total_damage, total_attackSpeed, total_ammo, total_health, total_bullets);
     }
     public void NewRound()
-	{
+    {
         if (pauseWave)
-		{
+        {
             return;
-		}
+        }
         waveIsInProgress = true;
         waveCount++;
         totalScaling = baseScaling * ((scalingPerWave * totalWaveCount) + 1);
         if (waveCount % 10 == 0)
-        {      
+        {
             StartCoroutine(BossRound());
             LastBosAmount *= 1.5f;
         }
-		else
-		{
+        else
+        {
             StartCoroutine(SpawnEnemies());
         }
         if (waveCount % 4 == 0)
@@ -576,22 +576,22 @@ public class GameManager : MonoBehaviour
         lastSmallEnemieAmount *= 1.2f;
     }
     public IEnumerator BossRound()
-	{
-		for (int i = 0; i < (int)LastBosAmount; i++)
-		{
+    {
+        for (int i = 0; i < (int)LastBosAmount; i++)
+        {
             Spawn(presetWave.boss, true);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
-	}
+    }
     public IEnumerator SpawnEnemies()
-	{
-		if (pauseWave)
-		{
+    {
+        if (pauseWave)
+        {
             yield break;
-		}
-		for (int i = 0; i < (int)lastSmallEnemieAmount; i++)
-		{
-            Spawn(presetWave.small,false);
+        }
+        for (int i = 0; i < (int)lastSmallEnemieAmount; i++)
+        {
+            Spawn(presetWave.small, false);
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
         for (int i = 0; i < (int)lastMediumEnemieAmount; i++)
@@ -605,8 +605,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenSpawns);
         }
     }
-    public void Spawn(GameObject gameObject,bool isBoss)
-	{
+    public void Spawn(GameObject gameObject, bool isBoss)
+    {
         isBossRound = isBoss;
         GameObject tempEnemy = Instantiate(gameObject, GetSpawnPositionNearPlayer(), Quaternion.identity);
         tempEnemy.GetComponent<EnemyHealth>().EnemySetup(totalScaling, totalDropChance, worldWeaponPrefab, dropItems);
@@ -615,8 +615,8 @@ public class GameManager : MonoBehaviour
             enemiesAlive.Add(tempEnemy);
             totalSpawnsThisWave++;
         }
-		else
-		{
+        else
+        {
             bossesAlive.Add(tempEnemy);
             totalSpawnsThisWave++;
         }
@@ -638,9 +638,19 @@ public class GameManager : MonoBehaviour
         Save();
     }
     public void TurnOffObj(GameObject obj)
-	{
+    {
         obj.SetActive(false);
+    }
+    #region Cheats
+    public void AddMoney()
+    {
+        GiveMoney(100000);
+    }
+    public void LoadScene(int i)
+	{
+        SceneManager.LoadScene(i);
 	}
+    #endregion
 }
 [System.Serializable]
 public class Wave

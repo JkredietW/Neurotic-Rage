@@ -33,4 +33,9 @@ public class GiantHealth : EnemyHealth
         healthSlider.maxValue = baseMaxHealth;
         healthSlider.value = health;
 	}
+    public void ChangeHpTo5()
+	{
+        health = 5;
+        UpdateHealthBar();
+    }
 }
