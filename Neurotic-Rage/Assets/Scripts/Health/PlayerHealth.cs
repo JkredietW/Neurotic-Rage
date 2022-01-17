@@ -119,7 +119,7 @@ public class PlayerHealth : BaseHealth
     }
     public void ShowStats()
 	{
-        statsText[0].text = "Time Alive"+"  "+ Mathf.Round(gm.time).ToString();
+        statsText[0].text = "Time Alive"+"  "+ Mathf.Round(gm.statsScript.thisgame_timePlayed).ToString();
         statsText[1].text = "Waves Completed" + "  " + Mathf.Round(gm.statsScript.thisgame_competedWaves).ToString();
         statsText[2].text = "kills" + "  " + Mathf.Round(gm.statsScript.thisgame_kills).ToString();
         statsText[3].text = "Money Collected" + "  " + Mathf.Round(gm.statsScript.thisgame_moneyCollected).ToString();
@@ -129,7 +129,7 @@ public class PlayerHealth : BaseHealth
         statsText[7].text = "Damage Taken" + "  " + Mathf.Round(gm.statsScript.thisgame_damageTaken).ToString();
         statsText[8].text = "Small Enemys Killed" + "  " + Mathf.Round(gm.statsScript.thisgame_smallEnemyKills).ToString();
         statsText[9].text = "Medium Enemys Killed" + "  " + Mathf.Round(gm.statsScript.thisgame_mediumEnemyKills).ToString();
-        statsText[10].text = "Medium Enemys Killed" + "  " + Mathf.Round(gm.statsScript.thisgame_bigEnemyKills).ToString();
+        statsText[10].text = "Big Enemys Killed" + "  " + Mathf.Round(gm.statsScript.thisgame_bigEnemyKills).ToString();
         statsText[11].text = "Glitch Enemys Killed" + "  " + Mathf.Round(gm.statsScript.thisgame_glitchEnemyKills).ToString();
         statsText[12].text = "Time Waisted Not Shooting" + "  " + Mathf.Round(gm.statsScript.thisgame_timeWastedNotShooting).ToString();
         statsText[13].text = "Bullets Mised" + "  " + Mathf.Round(gm.statsScript.thisgame_bulletsMissed).ToString();

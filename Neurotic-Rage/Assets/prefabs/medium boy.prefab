@@ -8763,7 +8763,7 @@ MonoBehaviour:
   outline:
   - {fileID: 8818648649627694225}
   mapindicator: {fileID: 3645703108698067490}
-  enemyType: 0
+  enemyType: 1
   getHit: {fileID: 1328959842725992917}
 --- !u!114 &919132148383939818
 MonoBehaviour:

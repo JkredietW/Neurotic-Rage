@@ -6047,7 +6047,7 @@ MonoBehaviour:
   outline:
   - {fileID: 931754095907042701}
   mapindicator: {fileID: 1697747738099302856}
-  enemyType: 0
+  enemyType: 3
   getHit: {fileID: 7685104597886064166}
 --- !u!114 &6837059145829708360
 MonoBehaviour:

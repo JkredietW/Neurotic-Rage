@@ -78,6 +78,14 @@ public class GameManager : MonoBehaviour
 	{
         PlayerPrefs.SetString("Tuturial", "true");
 	}
+    public void ResetSaves()
+    {
+        if (System.IO.File.Exists(Application.persistentDataPath + "/Stats.json"))
+        {
+            System.IO.File.Delete(Application.persistentDataPath + "/Stats.json");
+            print("deleted save file");
+        }
+    }
     public void Save()
     {
         string totalplayerstats = JsonUtility.ToJson(statsScript);
@@ -99,6 +107,10 @@ public class GameManager : MonoBehaviour
         if (Keyboard.current.enterKey.IsPressed())
         {
             Save();
+        }
+        if (Keyboard.current.tKey.IsPressed() && Keyboard.current.yKey.IsPressed())
+        {
+            ResetSaves();
         }
     }
     public void DelayedStart()
