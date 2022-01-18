@@ -55,6 +55,16 @@ public class MainMenu : MonoBehaviour
 		}
         skinDropDown.value = PlayerPrefs.GetInt("Skin");
     }
+    public void SetInp5Seconds(GameObject obj)
+	{
+        StartCoroutine(SetActiveAfther(obj));
+	}
+    IEnumerator SetActiveAfther(GameObject obj)
+	{
+        obj.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        obj.SetActive(true);
+    }
     public void GetSaves()
     {
         if (System.IO.File.ReadAllText(Application.persistentDataPath + "/Stats.json") != null)

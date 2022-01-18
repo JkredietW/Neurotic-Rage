@@ -17,6 +17,10 @@ public class LoadingScreen : MonoBehaviour
     private int currentLine, amountDots;
     private AsyncOperation async;
     private string dots;
+	private void Start()
+	{
+        currentLine = Random.Range(0, advice.Length);
+	}
 	private void Update()
 	{
 		if (active)
