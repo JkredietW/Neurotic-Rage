@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponId: 1
   specialWeaponId: -1
   type: 0
-  objectprefab: {fileID: 7320750945144682316, guid: a4588d20c39000145a44fc0e5672984e, type: 3}
+  objectprefab: {fileID: 7320750945144682316, guid: f94981ac12eea2f42a6184e527b7b6f6, type: 3}
   Ui_sprite: {fileID: 21300000, guid: 6819862832e0b0d4f90b5aeb17e3d1cb, type: 3}
   Bullet:
   - {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
@@ -25,7 +25,7 @@ MonoBehaviour:
   attacksPerSecond: 2
   reloadTime: 1
   pierceAmount: 2
-  ammo: 10
+  ammo: 8
   maxAmmo: 10
   bulletSpeed: 50
   projectileCount: 1
