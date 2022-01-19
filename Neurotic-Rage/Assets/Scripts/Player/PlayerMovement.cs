@@ -902,10 +902,7 @@ public class PlayerMovement : MonoBehaviour
         Invoke(nameof(SecAfterSwapWeapon), 0.5f);
         UiWeaponSlots[2].SetActive(false);
 
-        //ui sprite
-        weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
-        weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
-        weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
+        Invoke(nameof(AfterSwap), 0.5f);
 
         //ui indecator
         for (int i = 0; i < selectWeaponIndecator.Count; i++)
@@ -921,6 +918,13 @@ public class PlayerMovement : MonoBehaviour
         }
         UpdateAmmoText();
         UpdateStats();
+    }
+    void AfterSwap()
+    {
+        //ui sprite
+        weaponSpritesUi[0].sprite = weaponSlots[0].Ui_sprite;
+        weaponSpritesUi[1].sprite = weaponSlots[1].Ui_sprite;
+        weaponSpritesUi[2].sprite = currentWeapon.Ui_sprite;
     }
     public void ScrollWeaponTwo()
     {

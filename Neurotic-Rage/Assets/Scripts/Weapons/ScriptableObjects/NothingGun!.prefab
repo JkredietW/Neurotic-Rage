@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 801176801914983938}
   - component: {fileID: 1051895996369193334}
   - component: {fileID: 7540967377998984019}
+  - component: {fileID: 3513076569500017200}
+  - component: {fileID: 2880534688043834806}
+  - component: {fileID: 7248518620395177956}
   m_Layer: 0
   m_Name: NothingGun!
   m_TagString: Untagged
@@ -63,6 +66,46 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &3513076569500017200
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801176801914983936}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.00001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2880534688043834806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801176801914983936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 117a38c76efebbe48b98e231ab0b203b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heldItem: {fileID: 11400000, guid: 956ed285316622b4db034d5f3eb6e75a, type: 2}
+  alreadyInWorld: 0
+--- !u!65 &7248518620395177956
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801176801914983936}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5788547340270481530
 GameObject:
   m_ObjectHideFlags: 0

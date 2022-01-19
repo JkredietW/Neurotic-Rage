@@ -43700,7 +43700,7 @@ PrefabInstance:
     - target: {fileID: 8464676612361931657, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 7828c7cd4c4b87b49bf75307b505fe29, type: 2}
+      objectReference: {fileID: 11400000, guid: 9b0d7a1475eb69048927dab450af147b, type: 2}
     - target: {fileID: 8464676612361931657, guid: 8ff67c19c79360649aedbcc5a59b8cd5, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 1
