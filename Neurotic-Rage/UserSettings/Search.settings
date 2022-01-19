@@ -8,10 +8,10 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.83F126EB" = "car"
+	"last_search.83F126EB" = "main sce"
 	"m_ShownPanels.83F126EB" = "3"
-	"m_SideBarSplitter.83F126EB" = "180"
-	"m_DetailsPanelSplitter.83F126EB" = "700"
+	"m_SideBarSplitter.83F126EB" = "288"
+	"m_DetailsPanelSplitter.83F126EB" = "960"
 	"currentGroup.83F126EB" = "asset"
 	"last_search.7F95D817" = ""
 	"m_ShownPanels.7F95D817" = "3"
@@ -57,8 +57,9 @@ providers = {
 	}
 }
 recentSearches = [
-	"slider"
+	"main sce"
 	"car"
+	"slider"
 	"main menu"
 ]
 savedSearchesSortOrder = 0

@@ -73,7 +73,9 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         time = 0;
-        if(SceneManager.GetActiveScene().buildIndex == 1)
+
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             DelayedStart();
         }

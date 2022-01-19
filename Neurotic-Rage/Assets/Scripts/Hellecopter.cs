@@ -59,6 +59,7 @@ public class Hellecopter : MonoBehaviour
 		int playerInt = PlayerPrefs.GetInt("Skin");
 		pm[playerInt].transform.gameObject.SetActive(true);
 		pm[playerInt].MayMove(true);
+		FindObjectOfType<GiantHealth>().GetComponent<EnemyStateMachine>().player = pm[playerInt].transform.gameObject;
 		flyingSound.clip = crash;
 		flyingSound.Play();
 		flyingSound.loop = false;

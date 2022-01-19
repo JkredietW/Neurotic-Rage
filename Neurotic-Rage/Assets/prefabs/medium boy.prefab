@@ -1542,13 +1542,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: 5930a7b37e4e43148b0bd4b8f692d64b, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.727
+  m_Volume: 0.652
   m_Pitch: 1.13
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 135
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 0.7
   MaxDistance: 16
@@ -3034,13 +3034,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: bdf7fc3eb1fe76d4db0eb135663240fb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.727
+  m_Volume: 0.652
   m_Pitch: 1.29
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 135
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 0.7
   MaxDistance: 16
@@ -3607,13 +3607,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: f6f44c85b939e9b48aeb4208397761fb, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.727
+  m_Volume: 0.796
   m_Pitch: 1.15
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 135
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 0.7
   MaxDistance: 16
@@ -6760,13 +6760,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: 22a0e3154d19fb948955bb07b5fe455a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.856
   m_Pitch: 1.09
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 135
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 0.7
   MaxDistance: 16
@@ -7695,13 +7695,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 3946178150659046756, guid: 1600ba87c38080445bac59df01612e15, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0ac72d5036578854c8538ab105470ed2, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.727
+  m_Volume: 0.796
   m_Pitch: 1.15
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 135
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 0.7
   MaxDistance: 16
