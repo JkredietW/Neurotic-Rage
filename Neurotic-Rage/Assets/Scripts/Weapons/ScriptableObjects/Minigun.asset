@@ -24,7 +24,7 @@ MonoBehaviour:
   - {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
   - {fileID: 6735764617908801877, guid: 641e28b08dac815468143288e8aba176, type: 3}
   shootSound: {fileID: 8300000, guid: a7e690c41e6be1043a9885e2fb61755a, type: 3}
-  reloadSound: {fileID: 8300000, guid: 413dee2ae0bcbcf47831d8dd8adc0717, type: 3}
+  reloadSound: {fileID: 8300000, guid: c541b600d2fbf62468d721cd59429b49, type: 3}
   damage: 5
   attacksPerSecond: 20
   reloadTime: 0

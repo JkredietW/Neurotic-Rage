@@ -57,6 +57,7 @@ public class Hellecopter : MonoBehaviour
 	public void StartScene()
 	{
 		int playerInt = PlayerPrefs.GetInt("Skin");
+		gm.thiscar = gm.car[playerInt];
 		pm[playerInt].transform.gameObject.SetActive(true);
 		pm[playerInt].MayMove(true);
 		FindObjectOfType<GiantHealth>().GetComponent<EnemyStateMachine>().player = pm[playerInt].transform.gameObject;

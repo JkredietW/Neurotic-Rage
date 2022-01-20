@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 {
     public float timeBetweenWaves, timeBetweenSpawns;
     public float minimumDistance, maxDistance;
-    public GameObject playerCanvas, momDiedCanvas, car;
+    public GameObject playerCanvas, momDiedCanvas;
+    public GameObject[] car;
     public Wave presetWave;
     public LoadingScreen ls;
     public List<Transform> spawnLocations;
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> bossesAlive;
     public AudioMixer mixer;
     private bool isBossRound, pauseWave;
+    [HideInInspector]
+    public GameObject thiscar;
 
     //shop
     public GameObject shoppanel, shopUI;
@@ -319,8 +322,8 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator EndWave()
     {
-        car.SetActive(true);
-        car.GetComponent<CarScript>().drive = true;
+        thiscar.SetActive(true);
+        thiscar.GetComponent<CarScript>().drive = true;
         momDiedCanvas.SetActive(false);
         yield return new WaitForSeconds(5);
         FindObjectOfType<FadeToFromBlack>().FadeToBlack(2);
