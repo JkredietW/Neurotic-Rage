@@ -16,6 +16,7 @@ MonoBehaviour:
   specialWeaponId: -2
   type: 1
   objectprefab: {fileID: 801176801914983936, guid: ebfcb430fa6063644bd10a101c5653c4, type: 3}
+  objectprefabWorld: {fileID: 801176801914983936, guid: ebfcb430fa6063644bd10a101c5653c4, type: 3}
   Ui_sprite: {fileID: 21300000, guid: bde9c80051a9ca4498e751ab4257829f, type: 3}
   Bullet:
   - {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}

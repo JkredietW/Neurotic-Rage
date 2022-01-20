@@ -303,6 +303,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if(Input.GetKeyDown(KeyCode.R) && Input.GetKeyDown(KeyCode.K))
+        {
+            PlayerPrefs.DeleteAll();
+        }
+
         //stats
         distanceWalked += moveDir.magnitude * Time.deltaTime; 
         if(isShooting)
@@ -314,6 +319,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rotationSpeedMinigun = Mathf.Clamp(rotationSpeedMinigun -= 1, 0, 100);
             timeWhileNotShooting += 1 * Time.deltaTime;
+            if(rotationSpeedMinigun == 0)
+            {
+                audioSourceShooting.Stop();
+            }
         }
         if (specialAnimator != null)
         {
@@ -1170,8 +1179,7 @@ public class PlayerMovement : MonoBehaviour
                     {
                         if (currentWeapon.type == weaponType.special)
                         {
-                            DropWeapon(currentWeapon);
-                            currentWeapon = weaponSlots[currentWeaponSlot];
+                            ScrollWeapon();
                         }
                         else
                         {
@@ -1183,12 +1191,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if(mayMove)
             {
-                if (currentWeapon.type == weaponType.special)
-                {
-                    DropWeapon(currentWeapon);
-                    currentWeapon = weaponSlots[currentWeaponSlot];
-                }
-                else
+                if (currentWeapon.type != weaponType.special)
                 {
                     StartCoroutine(ReloadWeapon());
                 }
@@ -1310,15 +1313,7 @@ public class PlayerMovement : MonoBehaviour
                     }
                     if (currentWeaponTwo.ammo == 0 && mayMove)
                     {
-                        if (currentWeaponTwo.type == weaponType.special)
-                        {
-                            DropWeapon(currentWeaponTwo);
-                            currentWeaponTwo = weaponSlots[currentWeaponSlot];
-                        }
-                        else
-                        {
-                            StartCoroutine(ReloadWeaponTwo());
-                        }
+                        StartCoroutine(ReloadWeaponTwo());
                     }
                     yield return new WaitForSeconds(0.1f * currentWeaponTwo.burstShotAmount / currentWeaponTwo.attacksPerSecond);
                 }

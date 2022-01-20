@@ -14,18 +14,21 @@ public class SettingsMenu : MonoBehaviour
     public Slider uislider;
     public Slider sfxslider;
     public Slider musicslider;
+
+    private void Awake()
+    {
+        mixer.SetFloat("Master", PlayerPrefs.GetFloat("Master", 0));
+        mixer.SetFloat("Music", PlayerPrefs.GetFloat("Music", 0));
+        mixer.SetFloat("SFX", PlayerPrefs.GetFloat("SFX", 0));
+        mixer.SetFloat("UI", PlayerPrefs.GetFloat("UI", 0));
+
+        masterslider.value = PlayerPrefs.GetFloat("Master", 0);
+        musicslider.value = PlayerPrefs.GetFloat("Music", 0);
+        sfxslider.value = PlayerPrefs.GetFloat("SFX", 0);
+        uislider.value = PlayerPrefs.GetFloat("UI", 0);
+    }
     private void Start()
     {
-        mixer.SetFloat("Master",PlayerPrefs.GetFloat("Master"));
-        mixer.SetFloat("Music", PlayerPrefs.GetFloat("Music"));
-        mixer.SetFloat("SFX", PlayerPrefs.GetFloat("SFX"));
-        mixer.SetFloat("UI", PlayerPrefs.GetFloat("UI"));
-
-        masterslider.value = PlayerPrefs.GetFloat("Master");
-        musicslider.value = PlayerPrefs.GetFloat("Music");
-        sfxslider.value = PlayerPrefs.GetFloat("SFX");
-        uislider.value = PlayerPrefs.GetFloat("UI");
-
         resolutions = Screen.resolutions;
         resDrop.ClearOptions();
         List<string> options = new List<string>();

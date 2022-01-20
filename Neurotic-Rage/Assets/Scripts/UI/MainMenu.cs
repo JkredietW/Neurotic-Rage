@@ -38,6 +38,10 @@ public class MainMenu : MonoBehaviour
 
     private StatHolder statsScript;
 
+    private void Awake()
+    {
+        
+    }
     void Start()
     {
         StartCoroutine(IEStart());

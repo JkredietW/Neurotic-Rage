@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class Hellecopter : MonoBehaviour
@@ -18,10 +19,16 @@ public class Hellecopter : MonoBehaviour
 	public AudioSource flyingSound;
 	public AudioClip altmostCrash,crash;
 	private bool greenLightB;
-	private void Start()
+	public AudioMixer mixer;
+
+    private void Start()
 	{
 		StartCoroutine(Light());
 		GetComponent<FadeToFromBlack>().FadeFromBlack(2);
+		mixer.SetFloat("Master", PlayerPrefs.GetFloat("Master", 0));
+		mixer.SetFloat("Music", PlayerPrefs.GetFloat("Music", 0));
+		mixer.SetFloat("SFX", PlayerPrefs.GetFloat("SFX", 0));
+		mixer.SetFloat("UI", PlayerPrefs.GetFloat("UI", 0));
 	}
 	public IEnumerator Light()
 	{
