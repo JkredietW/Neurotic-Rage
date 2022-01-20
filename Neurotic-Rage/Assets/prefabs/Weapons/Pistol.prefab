@@ -152,9 +152,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c7d34018230d5c84a8d945230dc37012, type: 2}
+    - target: {fileID: 4387853212675209071, guid: c704ad0b49469ae4b83157a0b8a78acd, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 5446091660273399080, guid: c704ad0b49469ae4b83157a0b8a78acd, type: 3}
       propertyPath: m_Name
       value: golden gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446091660273399080, guid: c704ad0b49469ae4b83157a0b8a78acd, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7900624025556941816, guid: c704ad0b49469ae4b83157a0b8a78acd, type: 3}
       propertyPath: m_RootOrder

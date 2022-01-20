@@ -148,9 +148,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7791024184296257619}
     m_Modifications:
+    - target: {fileID: 4387853212675209071, guid: c704ad0b49469ae4b83157a0b8a78acd, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 5446091660273399080, guid: c704ad0b49469ae4b83157a0b8a78acd, type: 3}
       propertyPath: m_Name
       value: golden gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5446091660273399080, guid: c704ad0b49469ae4b83157a0b8a78acd, type: 3}
+      propertyPath: m_Layer
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 7900624025556941816, guid: c704ad0b49469ae4b83157a0b8a78acd, type: 3}
       propertyPath: m_RootOrder

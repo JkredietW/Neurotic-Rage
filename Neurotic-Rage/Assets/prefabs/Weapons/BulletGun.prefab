@@ -152,6 +152,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: bulletgun prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 276286093705435454, guid: 431526d9311ff8741ba9533c06e57e62, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690656684393242384, guid: 431526d9311ff8741ba9533c06e57e62, type: 3}
+      propertyPath: m_Layer
+      value: 21
+      objectReference: {fileID: 0}
     - target: {fileID: 9061743609639757357, guid: 431526d9311ff8741ba9533c06e57e62, type: 3}
       propertyPath: m_RootOrder
       value: 1
