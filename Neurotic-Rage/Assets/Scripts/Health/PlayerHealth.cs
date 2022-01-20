@@ -120,6 +120,7 @@ public class PlayerHealth : BaseHealth
         endStats.SetActive(false);
         fdb.FadeToBlack(2.5f);
         yield return new WaitForSeconds(0.15f);
+        endStats.SetActive(false);
         ls.ChargementScene(0);
     }
     public void ShowStats()
