@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
         killAmount++;
         if (enemiesAlive.Contains(enemyThatDied))
         {
-            GiveMoney(2 * totalWaveCount);
+            GiveMoney(5 * totalWaveCount);
             enemiesAlive.Remove(enemyThatDied);
         }
         if (bossesAlive.Contains(enemyThatDied))
