@@ -20,13 +20,13 @@ MonoBehaviour:
   Ui_sprite: {fileID: 21300000, guid: 6819862832e0b0d4f90b5aeb17e3d1cb, type: 3}
   Bullet:
   - {fileID: 6735764617908801877, guid: 0964e7256bffdc34d9363d15f6cf3d7f, type: 3}
-  shootSound: {fileID: 8300000, guid: d8a938ff9d094ba4c92ee7b2c8986b63, type: 3}
+  shootSound: {fileID: 8300000, guid: f7ae00ece7375654e9dff00ae2402f91, type: 3}
   reloadSound: {fileID: 8300000, guid: 0c4919efa6005fa49a374a88f5d45a46, type: 3}
   damage: 10
   attacksPerSecond: 2
   reloadTime: 1
   pierceAmount: 2
-  ammo: 10
+  ammo: 8
   maxAmmo: 10
   bulletSpeed: 50
   projectileCount: 1
