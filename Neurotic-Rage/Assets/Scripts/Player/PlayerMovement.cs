@@ -711,7 +711,7 @@ public class PlayerMovement : MonoBehaviour
     void SwapWithWorldWeapon()
     {
         //return when already swapping weapon
-        if(isSwitchingWeapon || isReloading)
+        if(isSwitchingWeapon || isReloading || currentWeapon.type == weaponType.special)
         {
             return;
         }
@@ -1105,9 +1105,14 @@ public class PlayerMovement : MonoBehaviour
                         }
                         //set random bullet offset
                         float roll = Random.Range(-currentWeapon.rotationOffset, currentWeapon.rotationOffset);
+                        int bulletRoll = 0;
+                        if (PlayerPrefs.GetInt("Skin") == 1)
+                        {
+                            bulletRoll = Random.Range(0, currentWeapon.Bullet.Count);
+                        }
 
                         //spawn bullet
-                        Rigidbody spawnedBullet = Instantiate(currentWeapon.Bullet[Random.Range(0, currentWeapon.Bullet.Count)], bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
+                        Rigidbody spawnedBullet = Instantiate(currentWeapon.Bullet[bulletRoll], bulletOrigin.position, Quaternion.Euler(new Vector3(0, value - (total * ((currentWeapon.projectileCount + extra_bullets) / 2)) + (total * i) + roll, 0)));
 
                         //check for bullet speed, 50+ sometimes goes through things....
                         if (currentWeapon.bulletSpeed > 50)
