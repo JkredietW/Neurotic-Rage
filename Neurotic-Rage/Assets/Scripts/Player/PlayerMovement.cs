@@ -727,7 +727,6 @@ public class PlayerMovement : MonoBehaviour
 
         //get right indecator
         Weapon oldWeapon = default;
-
         //swap weapons
         switch (weaponsInRange[0].heldItem.type)
         {
@@ -801,7 +800,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(weaponInHand.transform.GetChild(0).gameObject);
         }
+        print(5);
         ShowTextE();
+        print(6);
         UpdateStats();
     }
     IEnumerator SecAfterSwap()
