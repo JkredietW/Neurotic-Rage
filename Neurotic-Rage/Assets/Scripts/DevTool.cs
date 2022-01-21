@@ -14,7 +14,7 @@ public class DevTool : MonoBehaviour
 			switch (cheats[i].extraInput)
 			{
                 case TypeInput.Default:
-                if (Input.GetKey(key)&&Input.GetKey(secondKey))
+                if (Input.GetKey(key)&&Input.GetKeyDown(secondKey))
                 {
 					if (cheats[i].function == null)
 					{
@@ -28,7 +28,7 @@ public class DevTool : MonoBehaviour
                 }
                 break;
                 case TypeInput.Ctrl:
-                if (Input.GetKey(key) && Input.GetKey(secondKey) &&Input.GetKey(KeyCode.LeftControl))
+                if (Input.GetKey(key) && Input.GetKeyDown(secondKey) &&Input.GetKey(KeyCode.LeftControl))
                 {
                     if (cheats[i].function == null)
                     {
@@ -42,7 +42,7 @@ public class DevTool : MonoBehaviour
                 }
                 break;
                 case TypeInput.Shift:
-                    if (Input.GetKey(key) && Input.GetKey(secondKey) && Input.GetKey(KeyCode.LeftShift))
+                    if (Input.GetKey(key) && Input.GetKeyDown(secondKey) && Input.GetKey(KeyCode.LeftShift))
                 {
                     if (cheats[i].function == null)
                     {

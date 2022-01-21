@@ -303,7 +303,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.R) && Input.GetKeyDown(KeyCode.K))
+        if(Input.GetKey(KeyCode.R) && Input.GetKeyDown(KeyCode.K))
         {
             PlayerPrefs.DeleteAll();
         }
