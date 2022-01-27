@@ -65,6 +65,8 @@ public class Hellecopter : MonoBehaviour
 	{
 		int playerInt = PlayerPrefs.GetInt("Skin");
 		gm.thiscar = gm.car[playerInt];
+		gm.myMoneyText = gm.moneyText[playerInt];
+		gm.myWaveText = gm.waveText[playerInt];
 		pm[playerInt].transform.gameObject.SetActive(true);
 		pm[playerInt].MayMove(true);
 		FindObjectOfType<GiantHealth>().GetComponent<EnemyStateMachine>().player = pm[playerInt].transform.gameObject;

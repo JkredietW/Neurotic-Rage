@@ -29,7 +29,9 @@ public class GameManager : MonoBehaviour
     public GameObject shoppanel, shopUI;
     [SerializeField] Transform descriptionParent;
     [SerializeField] List<TextMeshProUGUI> descriptionText;
-    [SerializeField] TextMeshProUGUI moneyText, waveText, shopResetCountText;
+    [SerializeField] TextMeshProUGUI  shopResetCountText;
+    public TextMeshProUGUI[] moneyText, waveText;
+    [HideInInspector] public TextMeshProUGUI myMoneyText, myWaveText;
 
     //privates
     int waveCount;
@@ -506,8 +508,8 @@ public class GameManager : MonoBehaviour
     }
     void UpdateTexts()
     {
-        moneyText.text = $"Money : {money}";
-        waveText.text = $"Waves : {totalWaveCount}";
+        myMoneyText.text = $"Money : {money}";
+        myWaveText.text = $"Waves : {totalWaveCount}";
     }
     void RemoveItemFromShop(ShopItem _removeThis)
     {
