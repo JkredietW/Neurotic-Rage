@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] List<TextMeshProUGUI> descriptionText;
     [SerializeField] TextMeshProUGUI  shopResetCountText;
     public TextMeshProUGUI[] moneyText, waveText;
-    [HideInInspector] public TextMeshProUGUI myMoneyText, myWaveText;
+    public TextMeshProUGUI myMoneyText, myWaveText;
 
     //privates
     int waveCount;
